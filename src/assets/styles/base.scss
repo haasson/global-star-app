@@ -1,0 +1,168 @@
+* {
+   -webkit-tap-highlight-color: transparent;
+}
+*,
+*:after,
+*:before {
+   box-sizing: border-box;
+}
+
+html, body {
+   height: 100%;
+   box-sizing: border-box;
+}
+
+div, a {
+   outline: none;
+}
+
+
+body {
+   position: relative;
+   min-width: 320px;
+   min-height: 100vh;
+   font-family: 'Roboto', sans-serif;
+   font-size: 16px;
+   line-height: 1.4;
+   //color: $main-text-color;
+   overflow-x: hidden;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   box-sizing: border-box;
+   //opacity: 1;
+   //transform: none;
+   //transition: opacity 1s, transform .5s;
+}
+
+
+
+.wrapper {
+   width: calc(100% - 70px);
+   max-width: var(--wrapper);
+   margin: 0 auto;
+}
+
+
+img {
+   display: block;
+   max-width: 100%;
+   height: auto;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   /*IE10*/
+   -ms-user-select: none;
+   user-select: none;
+   /*Android and not desktop browsers*/
+   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+video {
+   outline: none;
+}
+
+a {
+   text-decoration: none;
+   color: var(--white);
+}
+
+button {
+   border: none ;
+}
+
+.nowrap {
+   white-space: nowrap;
+}
+
+
+//.icons {
+//   width: 20px
+//   height: 20px
+//}
+//
+
+.hide {
+   display: none !important;
+}
+
+
+
+.rel {
+   position: relative;
+   width: 100%;
+   &-child {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0
+   }
+
+   &::before {
+      display: block;
+      content: '';
+   }
+   &_16-9::before {
+      padding-top: 56.25%
+   }
+}
+
+
+
+input::-ms-clear {
+   display: none;
+}
+
+
+input[type="text"], textarea {
+   -webkit-appearance: none;
+   //-webkit-border-radius: 0;
+   outline: none;
+   cursor: text !important;
+}
+
+
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+   cursor: pointer !important;
+}
+
+
+input::-webkit-input-placeholder {
+   color: var(--placeholder-color)
+}
+input::-moz-placeholder {
+   color: var(--placeholder-color)
+}
+input:-moz-placeholder {
+   color: var(--placeholder-color)
+}
+input:-ms-input-placeholder {
+   color: var(--placeholder-color)
+}
+
+
+input:focus,
+textarea:focus {
+   outline: none;
+}
+
+
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
+   color: transparent
+}
+input:focus::-moz-placeholder,
+textarea:focus::-moz-placeholder {
+   color: transparent
+}
+input:focus:-moz-placeholder,
+textarea:focus:-moz-placeholder {
+   color: transparent
+}
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder {
+   color: transparent
+}
+
