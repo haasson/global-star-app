@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import './plugins/firebase'
 
-import './assets/styles/vars.scss';
+import './assets/styles/main.scss';
 
 createApp(App)
    .use(router)

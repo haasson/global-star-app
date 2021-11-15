@@ -19,13 +19,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'reset-css/sass/_reset.scss';
-
-@import './assets/styles/vars.scss';
-@import './assets/styles/mixins.scss';
-@import './assets/styles/fonts.scss';
-@import './assets/styles/base.scss';
-
 #app {
    display: flex;
    flex-direction: column;

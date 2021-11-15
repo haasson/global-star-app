@@ -1,8 +1,8 @@
-import {getDownloadURL, getStorage, ref} from "firebase/storage";
-const storage = getStorage();
+import {getDownloadURL, ref} from "firebase/storage";
+import {storage} from "../plugins/firebase";
 
 const getImageUrl = async (image) => {
-   const url = await getDownloadURL(ref(storage, 'images/photo.png'))
+   const url = await getDownloadURL(ref(storage, image))
    return url
 }
 

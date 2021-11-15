@@ -1,16 +1,38 @@
 body {
-   --orange: #FFD157;
+   // COLORS
    --white: #fff;
+   --black: #000;
+
+   --orange: #FFD157;
+   --dark-orange: #FFC222;
+
    --blue: #102F51;
    --dark-blue: #0D2742;
+   --deep-blue: #061421;
+
    --brown: #404040;
-
-
-
 
    --placeholder-color: black;
 
 
+   // TYPOGRAPHY
+   --title-size: 32px;
+   --article-text-size: 24px;
+   --subtitle-size: 20px;
+   --text-size: 16px;
+   --text-small-size: 14px;
+
+
+   // SHADOWS
+   --card-shadow: 2px 46px 40px -24px rgba(0, 0, 0, 0.2);
+   --card-shadow-hover: 2px 46px 40px -24px rgba(0, 0, 0, 0.55);
+
+   --card-shadow-shifted: 40px 46px 40px -24px rgba(0, 0, 0, 0.2);
+   --card-shadow-shifted-hover: 40px 46px 40px -24px rgba(0, 0, 0, 0.55);
+   --button-shadow: 0 21px 19px -14px rgba(0, 0, 0, 0.22);
+
+
+   // LAYOUT
    --wrapper: 1280px;
 }
 

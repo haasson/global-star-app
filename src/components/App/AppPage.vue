@@ -7,20 +7,20 @@
           v-bind="component.props"
       />
 
-      <AppList :items="[]" />
    </main>
 </template>
 
 <script>
-import {getCurrentInstance, defineComponent, computed, defineAsyncComponent} from 'vue'
+import {defineComponent, defineAsyncComponent} from 'vue'
 import {pageContent} from '../../store'
-import AppList from "./AppList.vue";
+import AppList from "../AppList.vue";
 
 
 export default defineComponent({
    name: "AppPage",
    components: {AppList},
-   setup() {
+   setup(props) {
+      console.log(props)
       pageContent.value.forEach(component => component.is = defineAsyncComponent(() => import(`../${component.name}.vue`)))
       return {pageContent}
    }
@@ -42,5 +42,8 @@ main {
    height: 100vh;
    background: linear-gradient(315deg, #ececec 0%, #ececec 400px, #ffffff 400px, #fff calc(100% - 400px), #ececec calc(100% - 400px), #ececec 100%);
 
+}
+section {
+   margin-top: 60px;
 }
 </style>

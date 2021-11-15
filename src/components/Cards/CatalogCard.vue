@@ -1,0 +1,92 @@
+<template>
+   <Card class="card">
+
+      <div class="image">
+         <img :src="cardImage" alt="">
+      </div>
+
+      <h3 v-html="title"/>
+
+      <p>{{text}}</p>
+
+      <AppButton v-if="button" :href="link" class="btn" color="orange">
+         {{button}}
+      </AppButton>
+
+   </Card>
+</template>
+
+<script>
+import {ref} from "vue";
+import {getImageUrl} from "../../helpers/firebase";
+import Card from "./Card.vue";
+import AppButton from "../App/AppButton.vue";
+
+export default {
+   name: "CatalogCard",
+   components: {AppButton, Card},
+   props: {
+      title: {
+         type: String,
+         required: true
+      },
+      image: {
+         type: String,
+      },
+      text: {
+         type: String,
+      },
+      button: {
+        type: String,
+      },
+      link: {
+         type: String,
+      }
+   },
+
+   setup({image}) {
+      const cardImage = ref('')
+      if (image) getImageUrl(image).then(res => cardImage.value = res)
+
+      return {cardImage}
+   }
+}
+</script>
+
+<style lang="scss" scoped>
+// TODO: box-shadow
+li {
+   padding: 58px 16px 32px;
+   box-shadow: var(--card-shadow-shifted);
+   &:hover {
+      box-shadow: var(--card-shadow-shifted-hover);
+   }
+}
+
+.image {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 180px;
+   margin-bottom: 35px;
+}
+
+h3 {
+   font-weight: 500;
+   text-align: center;
+   height: 70px;
+   margin-bottom: 24px;
+}
+
+p {
+   height: 94px;
+   margin-bottom: 32px;
+   font-size: var(--text-small-size);
+   overflow: hidden;
+}
+
+.btn {
+   min-width: auto;
+   width: 100%;
+}
+</style>

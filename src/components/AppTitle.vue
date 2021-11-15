@@ -1,24 +1,19 @@
-<link rel="stylesheet" href="../../../../Projects/Hunter/src/sass/_interface.sass">
-<link rel="stylesheet" href="../../../../Projects/Hunter/src/sass/base.sass">
 <template>
-   <div
-       class="title"
-       :class="[position]"
-   >
-      <div class="wrapper">
-         <div class="inner">
-            <h2>{{ text }}</h2>
-         </div>
+   <PageSection class="title" :class="[position]">
+      <div class="inner">
+         <h2>{{ text }}</h2>
       </div>
-   </div>
+   </PageSection>
 </template>
 
 <script>
-import {getImageUrl} from "../helpers/firebase";
+import PageSection from "./Providers/PageSection.vue";
 
 const TITLE_POSITIONS = ['left', 'right']
+
 export default {
    name: "AppTitle",
+   components: {PageSection},
    props: {
       position: {
          type: String,
@@ -30,11 +25,6 @@ export default {
          required: true
       }
    },
-
-   setup() {
-      let url = async () => await getImageUrl('photo.png')
-      console.log(url)
-   }
 }
 </script>
 
@@ -42,17 +32,24 @@ export default {
 
 .title {
    --title-bg-width: 42%;
-   margin-top: 60px;
+
    padding: 15px 0;
    color: var(--white);
+
    &.right {
       background: linear-gradient(90deg,
           transparent 0%,
           transparent var(--title-bg-width),
           var(--orange) var(--title-bg-width),
           var(--orange) 100%);
+
       .inner {
          justify-content: flex-end;
+      }
+
+      h2 {
+         background: linear-gradient(135deg, transparent 0, transparent 35px, var(--brown) 35px, var(--brown) 100%);
+         padding: 3px 25px 3px 80px;
       }
    }
 
@@ -63,6 +60,11 @@ export default {
           var(--orange) var(--title-bg-width),
           var(--orange) 100%);
       text-align: right;
+
+      h2 {
+         background: linear-gradient(225deg, transparent 0, transparent 35px, var(--brown) 35px, var(--brown) 100%);
+         padding: 3px 80px 3px 25px;
+      }
    }
 }
 
@@ -72,9 +74,7 @@ export default {
 
 h2 {
    min-width: 70%;
-   padding: 3px 25px;
-   background-color: var(--brown);
-   font-size: 32px;
-   font-weight: 600;
+   font-size: var(--title-size);
+   font-weight: 700;
 }
 </style>

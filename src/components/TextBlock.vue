@@ -1,18 +1,18 @@
 <template>
-   <div class="text-block">
-      <div class="wrapper">
-         <div
-             class="inner"
-             :style="{fontSize: `${size}px`}"
-             v-html="text"
-         />
-      </div>
-   </div>
+   <PageSection class="text-block">
+      <div
+          class="inner"
+          :style="{fontSize: `${size}px`}"
+          v-html="text"
+      />
+   </PageSection>
 </template>
 
 <script>
+import PageSection from "./Providers/PageSection.vue";
 export default {
    name: "TextBlock",
+   components: {PageSection},
    props: {
       text: {
          type: String,
@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .text-block {
-   margin-top: 60px;
+   font-size: var(--article-text-size);
    padding: 0 60px;
    line-height: 1.2;
 }

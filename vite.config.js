@@ -7,7 +7,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // additionalData: `import 'reset-css/sass/_reset.scss'`
+        // additionalData: `@import '@/assets/styles/mixins.scss';`
       }
     }
   },
