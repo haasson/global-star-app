@@ -1,24 +1,78 @@
-<link rel="stylesheet" href="../../../../../Projects/Hunter/src/sass/mixins/_mixins.sass">
 <template>
    <div class="menu">
       <div class="wrapper">
+
          <div class="inner">
-            Menu
+            <MenuItem
+                v-for="(item, key) in data"
+                :name="item.name"
+                :children="item.menuHideChildren ? {} : item.children"
+                :path="`/${key}`"
+                :style="{order: item.position}"
+                @click.stop="goTo(key, item.redirect)"
+                class="menu-item"
+            />
          </div>
       </div>
    </div>
 </template>
 
 <script>
+import {computed, watch} from "vue";
+import useDatabase from "../../composable/database";
+import {useRouter} from "vue-router";
+
+import MenuItem from "./MenuItem.vue";
+
 export default {
-name: "AppMenu"
+   name: "AppMenu",
+   components: {MenuItem},
+
+   setup(props) {
+      const {get, data} = useDatabase('siteMap')
+      get()
+
+      watch(data, () => {
+         // console.log(data.value)
+      })
+
+      const menuData = computed(() => {
+
+      })
+
+      const router = useRouter()
+      const goTo = (key, redirect) => {
+         router.push(redirect ? `/${key}/${redirect}` : `/${key}`)
+      }
+
+
+      return {
+         data,
+
+         goTo
+      }
+   }
 }
 </script>
 
 <style lang="scss" scoped>
 .menu {
-   padding: 18px 0;
-   background-color: var(--dark-blue);
-   color: var(--white)
+   position: relative;
+   z-index: 1;
+   background-color: var(--blue);
+   color: var(--white);
+   font-size: var(--subtitle-size);
+}
+
+
+.inner {
+   display: flex;
+   justify-content: center;
+}
+
+
+.dropdown {
+   padding: 10px;
+   background-color: yellow;
 }
 </style>

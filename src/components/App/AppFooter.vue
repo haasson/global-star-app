@@ -2,7 +2,14 @@
    <footer>
       <div class="wrapper">
          <div class="inner">
-            Footer
+            <div class="address">
+               <p>Юридический адрес:</p>
+               <p>ООО “ГлобалСтар” 656043, г. Барнаул, ул. Короленко д. 104, оф. 813</p>
+               <div class="phone">
+                  <span>телефон </span>
+                  <a href="tel:+78007006124">+7(800)-700-61-24</a>
+               </div>
+            </div>
          </div>
       </div>
    </footer>
@@ -17,7 +24,12 @@ name: "AppFooter"
 <style lang="scss" scoped>
 footer {
    padding: 25px 0 40px;
-   background-color: var(--blue);
+   background-color: var(--light-blue);
    color: var(--white)
+}
+
+.address{
+   text-align: center;
+   font-size: var(--text-size-big);
 }
 </style>

@@ -22,13 +22,15 @@
          </div>
       </div>
    </header>
+   <AppMenu />
 </template>
 
 <script>
 import AppIcon from "./AppIcon.vue";
+import AppMenu from "./AppMenu.vue";
 export default {
    name: "AppHeader",
-   components: {AppIcon}
+   components: {AppMenu, AppIcon}
 }
 </script>
 
@@ -36,7 +38,7 @@ export default {
 
 header {
    padding: 35px 0;
-   background-color: var(--blue);
+   background-color: var(--light-blue);
    color: var(--white)
 }
 

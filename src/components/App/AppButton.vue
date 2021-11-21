@@ -1,51 +1,46 @@
 <template>
-   <a
-       v-if="href"
-       :href="href"
+   <Component
+       :is="href ? 'a' : 'button'"
+       :href="href || null"
        class="btn"
-       :class="color"
-       :style="cssVars"
+       :class="[color, {icon}]"
    >
-      <slot />
-   </a>
+      <AppIcon
+         v-if="icon"
+         :name="icon"
+      />
+      <slot v-else />
+   </Component>
 
-   <button
-       v-else
-       class="btn"
-       :class="color"
-       :style="cssVars"
-   >
-      <slot />
-   </button>
+
 </template>
 
 <script>
 
 import {computed} from "vue";
 import {getColorByName} from "../../helpers/interface";
+import AppIcon from "./AppIcon.vue";
 
 export default {
    name: "AppButton",
+   components: {AppIcon},
    props: {
+      icon: {
+         type: String,
+      },
       href: {
          type: String
       },
       color: {
          type: String,
-         default: 'orange'
       }
    },
 
-   setup({color}) {
-      const cssVars = computed(() => {
-         console.log(getColorByName(color))
-         return {
-            '--button-bg': getColorByName(color)
-         }
-      })
+   setup() {
 
 
-      return {cssVars}
+
+      return {}
    }
 }
 </script>
@@ -64,11 +59,17 @@ export default {
    box-shadow: var(--button-shadow);
    cursor: pointer;
 
+   &.icon {
+      padding: 0;
+      min-width: 0;
+      box-shadow: none;
+   }
+
    &.orange {
       color: var(--black);
-      background-color: var(--button-bg);
+      background-color: var(--orange);
       &:hover {
-         border: 1px solid var(--deep-blue)
+         border: 1px solid var(--dark-blue)
       }
       &:active {
          background-color: var(--dark-orange);
@@ -78,12 +79,12 @@ export default {
 
    &.blue {
       color: var(--white);
-      background-color: var(--button-bg);
+      background-color: var(--blue);
       &:hover {
          border: 1px solid var(--dark-orange)
       }
       &:active {
-         background-color: var(--deep-blue);
+         background-color: var(--dark-blue);
          border: 1px solid transparent;
       }
    }

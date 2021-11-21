@@ -18,6 +18,8 @@
                    :image="item.image"
                    :link="item.link"
                    :text="item.text"
+                   :icon="item.icon"
+                   :itemHeight="itemHeight"
                    :button="item.button"
                />
             </SwiperSlide>
@@ -32,6 +34,8 @@
                 :image="item.image"
                 :link="item.link"
                 :text="item.text"
+                :icon="item.icon"
+                :itemHeight="itemHeight"
                 :button="item.button"
                 :style="{width: `calc(100%/${itemsPerRow} - ${cssVars.doubleGap})`}"
                 class="list-item"
@@ -44,10 +48,10 @@
 </template>
 
 <script>
+import {ref} from 'vue'
 import SwiperCore, {Pagination} from 'swiper'
 import {Swiper, SwiperSlide} from 'swiper/vue'
-import 'swiper/scss';
-import 'swiper/scss/pagination';
+
 import {capitalize, computed, defineAsyncComponent, defineComponent, shallowRef} from "vue";
 import BackgroundProvider from "./Providers/BackgroundProvider.vue";
 import PageSection from "./Providers/PageSection.vue";
@@ -80,6 +84,14 @@ export default defineComponent({
       itemsPerRow: {
          type: Number,
          default: 4
+      },
+      itemHeight: {
+         type: Number,
+         required: true
+      },
+      gap: {
+         type: Number,
+         default: () => 17
       }
    },
 
@@ -88,12 +100,16 @@ export default defineComponent({
       const listItemComponent = shallowRef('')
       listItemComponent.value = defineAsyncComponent(() => import(`./Cards/${capitalize(props.type)}Card.vue`))
 
+      console.log(props.gap)
+      const gap = ref(props.gap)
       const cssVars = computed(() => {
          return {
-            '--gap': '17px',
-            doubleGap: '45px'
+            '--gap': `${gap.value}px`,
+            doubleGap: `${2*gap.value}px`
          }
       })
+
+      console.log(cssVars)
 
 
       return {

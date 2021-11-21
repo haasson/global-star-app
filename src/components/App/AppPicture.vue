@@ -10,6 +10,7 @@
 import {reactive, ref} from "vue";
 import appConfig from "../../config/app.config";
 import {getImageUrl} from "../../helpers/firebase";
+import useImage from "../../composable/useImage";
 
 export default {
    name: "AppPicture",
@@ -37,11 +38,7 @@ export default {
          srcset.webp = `${path}.webp`
       }
 
-
-      const cardImage = ref('')
-      getImageUrl(props.src).then(res => cardImage.value = res)
-
-
+      const cardImage = useImage(image)
 
       return {srcset, ext, cardImage}
    }

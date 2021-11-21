@@ -1,28 +1,61 @@
 <template>
    <main>
       <div class="bg"></div>
-      <Component
-          v-for="component in pageContent"
-          :is="component.is"
-          v-bind="component.props"
+
+      <AppSection
+          v-for="(section, index) in pageContent"
+          :section="section"
+          :index="index"
       />
 
    </main>
+
+   <AppModal ref="modal" :minWidth="900">
+      <template #title>Редактирование</template>
+      <template #content>
+         <AppEditor @update:modelValue="saveData" class="fixed-editor" v-if="isAdmin" />
+      </template>
+   </AppModal>
 </template>
 
 <script>
-import {defineComponent, defineAsyncComponent} from 'vue'
+import {defineComponent, defineAsyncComponent, watch, ref} from 'vue'
 import {pageContent} from '../../store'
-import AppList from "../AppList.vue";
 
+
+
+import AppEditor from "./AppEditor.vue";
+import AppModal from "./AppModal.vue";
+import AppSection from "./AppSection.vue";
 
 export default defineComponent({
    name: "AppPage",
-   components: {AppList},
+   components: {AppSection, AppEditor, AppModal},
+
    setup(props) {
-      console.log(props)
-      pageContent.value.forEach(component => component.is = defineAsyncComponent(() => import(`../${component.name}.vue`)))
-      return {pageContent}
+      watch(pageContent, () => {
+         console.log(pageContent.value)
+         pageContent.value.forEach(component => component.is = defineAsyncComponent(() => import(`../${component.name}.vue`)))
+      }, {immediate: true})
+
+
+      const modal = ref(null)
+      const openModal = async () => {
+         return await modal.value.open()
+      }
+
+      const saveData = (data) => {
+         console.log(data)
+      }
+
+
+      return {
+         pageContent,
+
+         openModal,
+         modal,
+         saveData,
+      }
    }
 })
 </script>

@@ -1,20 +1,31 @@
 <template>
+   <div id="modals" />
    <AppHeader />
-   <AppMenu />
 
    <AppPage />
 
    <AppFooter />
+
 </template>
 
 <script>
+import {ref} from 'vue'
+
 import AppHeader from "./components/App/AppHeader.vue";
 import AppFooter from "./components/App/AppFooter.vue";
 import AppPage from "./components/App/AppPage.vue";
-import AppMenu from "./components/App/AppMenu.vue";
 
 export default {
-   components: {AppMenu, AppPage, AppFooter, AppHeader}
+   components: {AppPage, AppFooter, AppHeader},
+
+   setup() {
+      const modal = ref(null)
+      const openModal = async () => {
+         return await modal.value.open()
+      }
+
+      return {openModal, modal}
+   }
 }
 </script>
 
@@ -23,18 +34,6 @@ export default {
    display: flex;
    flex-direction: column;
    min-height: 100vh;
-}
-
-.v-text-left {
-   text-align: left;
-}
-
-.v-text-right {
-   text-align: right;
-}
-
-.v-text-white {
-   color: var(--white)
 }
 
 </style>

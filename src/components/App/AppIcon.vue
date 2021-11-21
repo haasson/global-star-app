@@ -6,7 +6,7 @@
       <svg
          width="100%"
          height="100%"
-         :viewBox="`0 0 ${width} ${height}`"
+         :viewBox="`0 0 ${width} ${height || width}`"
       >
          <Component :is="currentIcon" :fill="fill" />
       </svg>
@@ -25,7 +25,7 @@ export default defineComponent({
       },
       width: {
          type: String,
-         default: '20'
+         default: '24'
       },
       height: {
          type: String,
@@ -36,6 +36,7 @@ export default defineComponent({
    },
 
    setup({name}) {
+      console.log(name)
       const currentIcon = shallowRef('')
       watchEffect(() => {
          import(`../../icons/Icon${capitalize(name)}.vue`).then(component => {

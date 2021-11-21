@@ -17,13 +17,3 @@
 
    </g>
 </template>
-
-<script>
-export default {
-   name: "IconLogo"
-}
-</script>
-
-<style scoped>
-
-</style>

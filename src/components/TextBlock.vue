@@ -29,7 +29,9 @@ export default {
 <style lang="scss" scoped>
 .text-block {
    font-size: var(--article-text-size);
-   padding: 0 60px;
    line-height: 1.2;
+}
+.inner {
+   padding: 0 60px;
 }
 </style>

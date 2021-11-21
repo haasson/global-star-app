@@ -2,13 +2,17 @@ body {
    // COLORS
    --white: #fff;
    --black: #000;
+   --darc: #273043;
+
+
 
    --orange: #FFD157;
    --dark-orange: #FFC222;
 
-   --blue: #102F51;
-   --dark-blue: #0D2742;
-   --deep-blue: #061421;
+   --light-blue: #102F51;
+   --blue: #0D2742;
+   --dark-blue: #061421;
+   --extra-blue: #030a11;
 
    --brown: #404040;
 
@@ -19,6 +23,7 @@ body {
    --title-size: 32px;
    --article-text-size: 24px;
    --subtitle-size: 20px;
+   --text-size-big: 18px;
    --text-size: 16px;
    --text-small-size: 14px;
 
@@ -30,6 +35,7 @@ body {
    --card-shadow-shifted: 40px 46px 40px -24px rgba(0, 0, 0, 0.2);
    --card-shadow-shifted-hover: 40px 46px 40px -24px rgba(0, 0, 0, 0.55);
    --button-shadow: 0 21px 19px -14px rgba(0, 0, 0, 0.22);
+   --image-shadow: 11px 10px 0px 0px rgba(255, 209, 87, 1);
 
 
    // LAYOUT

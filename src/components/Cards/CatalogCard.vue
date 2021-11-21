@@ -21,6 +21,7 @@ import {ref} from "vue";
 import {getImageUrl} from "../../helpers/firebase";
 import Card from "./Card.vue";
 import AppButton from "../App/AppButton.vue";
+import useImage from "../../composable/useImage";
 
 export default {
    name: "CatalogCard",
@@ -45,8 +46,7 @@ export default {
    },
 
    setup({image}) {
-      const cardImage = ref('')
-      if (image) getImageUrl(image).then(res => cardImage.value = res)
+      const cardImage = useImage(image)
 
       return {cardImage}
    }

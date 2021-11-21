@@ -4,6 +4,6 @@ export default [
    {
       path: '/',
       name: 'main',
-      component: MainPage
+      // component: MainPage
    }
 ]

@@ -1,7 +1,7 @@
 <template>
-   <section :style="style">
+   <div :style="style">
       <slot />
-   </section>
+   </div>
 </template>
 
 <script>
@@ -61,7 +61,7 @@ export default {
    --list-bg-color: var(--orange);
 }
 .blue {
-   --list-bg-color: var(--blue);
+   --list-bg-color: var(--light-blue);
 }
 
 .full {
