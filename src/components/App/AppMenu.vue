@@ -28,8 +28,9 @@ export default {
    name: "AppMenu",
    components: {MenuItem},
 
+
    setup(props) {
-      const {get, data} = useDatabase('siteMap')
+      const {get, data} = useDatabase('pages')
       get()
 
       watch(data, () => {

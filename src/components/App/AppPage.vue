@@ -27,14 +27,15 @@ import {pageContent} from '../../store'
 import AppEditor from "./AppEditor.vue";
 import AppModal from "./AppModal.vue";
 import AppSection from "./AppSection.vue";
+import {useRouter} from "vue-router";
 
 export default defineComponent({
    name: "AppPage",
    components: {AppSection, AppEditor, AppModal},
 
    setup(props) {
+      const router = useRouter()
       watch(pageContent, () => {
-         console.log(pageContent.value)
          pageContent.value.forEach(component => component.is = defineAsyncComponent(() => import(`../${component.name}.vue`)))
       }, {immediate: true})
 

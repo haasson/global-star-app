@@ -1,6 +1,6 @@
 <template>
    <section>
-      <div v-if="isAdmin" class="edit">
+      <div v-if="isAdmin && section.editable" class="edit">
          <AppButtonsGroup>
             <AppButton>Edit</AppButton>
             <AppButton @click="deleteSection(index)" :color="clicked ? 'orange' : 'blue'">Delete</AppButton>
@@ -39,7 +39,8 @@ export default {
       }
    },
 
-   setup() {
+   setup(props) {
+      console.log(props)
       const clicked = ref(false)
 
       const {set, get, data} = useDatabase(dbPath.value + '/content')
