@@ -1,7 +1,7 @@
 <template>
    <div
        class="icon"
-       :style="`width: ${width}px; height: ${height || width}px`"
+       :style="`width: ${width * scale}px; height: ${(height * scale) || (width * scale)}px`"
    >
       <svg
          width="100%"
@@ -30,16 +30,19 @@ export default defineComponent({
       height: {
          type: String,
       },
+      scale: {
+         type: Number,
+         default: 1
+      },
       fill: {
          type: String
       }
    },
 
-   setup({name}) {
-      console.log(name)
+   setup(props) {
       const currentIcon = shallowRef('')
       watchEffect(() => {
-         import(`../../icons/Icon${capitalize(name)}.vue`).then(component => {
+         import(`../../icons/Icon${capitalize(props.name)}.vue`).then(component => {
             currentIcon.value = component.default
          })
       })

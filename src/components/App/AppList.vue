@@ -15,7 +15,7 @@
                <Component
                    :is="listItemComponent"
                    :title="item.title"
-                   :image="item.image"
+                   :name="item.name"
                    :link="item.link"
                    :text="item.text"
                    :icon="item.icon"
@@ -26,12 +26,12 @@
          </Swiper>
 
          <!-- Simple list -->
-         <ul v-else class="list">
+         <ul v-else class="list" :style="{justifyContent: justify}">
             <Component
                 :is="listItemComponent"
                 v-for="item in items"
                 :title="item.title"
-                :image="item.image"
+                :name="item.name"
                 :link="item.link"
                 :text="item.text"
                 :icon="item.icon"
@@ -53,8 +53,8 @@ import SwiperCore, {Pagination} from 'swiper'
 import {Swiper, SwiperSlide} from 'swiper/vue'
 
 import {capitalize, computed, defineAsyncComponent, defineComponent, shallowRef} from "vue";
-import BackgroundProvider from "./Providers/BackgroundProvider.vue";
-import PageSection from "./Providers/PageSection.vue";
+import BackgroundProvider from "../Providers/BackgroundProvider.vue";
+import PageSection from "../Providers/PageSection.vue";
 
 SwiperCore.use([Pagination]);
 
@@ -86,21 +86,23 @@ export default defineComponent({
          default: 4
       },
       itemHeight: {
-         type: Number,
-         required: true
+         type: Number
       },
       gap: {
          type: Number,
          default: () => 17
+      },
+      justify: {
+         type: String,
+         default: 'center'
       }
    },
 
    setup(props) {
       // Import component
       const listItemComponent = shallowRef('')
-      listItemComponent.value = defineAsyncComponent(() => import(`./Cards/${capitalize(props.type)}Card.vue`))
+      listItemComponent.value = defineAsyncComponent(() => import(`../Cards/${capitalize(props.type)}Card.vue`))
 
-      console.log(props.gap)
       const gap = ref(props.gap)
       const cssVars = computed(() => {
          return {
@@ -108,8 +110,6 @@ export default defineComponent({
             doubleGap: `${2*gap.value}px`
          }
       })
-
-      console.log(cssVars)
 
 
       return {
@@ -133,7 +133,6 @@ h3 {
 .list {
    display: flex;
    flex-wrap: wrap;
-   justify-content: center;
    margin-top: 60px;
 }
 

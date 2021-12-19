@@ -1,5 +1,5 @@
 <template>
-   <Card class="card">
+   <Card class="card" link="/weg">
 
       <div class="image">
          <img :src="cardImage" alt="">
@@ -39,6 +39,7 @@ export default {
       },
       button: {
         type: String,
+         default: 'Просмотреть'
       },
       link: {
          type: String,
@@ -55,8 +56,9 @@ export default {
 
 <style lang="scss" scoped>
 // TODO: box-shadow
-li {
-   padding: 58px 16px 32px;
+.card {
+   padding: 58px 22px 32px;
+   color: var(--black);
    box-shadow: var(--card-shadow-shifted);
    &:hover {
       box-shadow: var(--card-shadow-shifted-hover);
@@ -76,12 +78,15 @@ h3 {
    text-align: center;
    height: 70px;
    margin-bottom: 24px;
+   font-size: var(--subtitle-size);
+   line-height: 1.15;
+   overflow: hidden;
 }
 
 p {
    height: 94px;
    margin-bottom: 32px;
-   font-size: var(--text-small-size);
+   font-size: var(--text-size);
    overflow: hidden;
 }
 

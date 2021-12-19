@@ -1,15 +1,15 @@
 <template>
    <PageSection>
       <div class="inner">
-         <div class="images">
+         <div class="image-block">
             <img class="image" :src="cardImage" alt="">
          </div>
          <div class="content">
             <h3>{{title}}</h3>
-            <p class="date">{{date}}</p>
-            <div class="text" v-html="text"></div>
+            <p class="date">{{formattedDate}}</p>
+            <div class="text" v-html="description"></div>
             <div class="links">
-               <a class="link" :href="link">Просмотреть</a>
+               <router-link class="link" :to="`news/${id}`">Просмотреть</router-link>
             </div>
          </div>
       </div>
@@ -17,15 +17,20 @@
 </template>
 
 <script>
-import {ref} from 'vue'
-import {getImageUrl} from '../helpers/firebase'
+import {computed, ref, watch} from 'vue'
+import dayjs from "dayjs";
 
+import useStorage from "../composable/storage";
+import {descriptionToHTML} from "../helpers/interface";
 import PageSection from "./Providers/PageSection.vue";
-import useImage from "../composable/useImage";
 
 export default {
-   name: "NewsItem",
+   name: "ArticleItem",
    components: { PageSection},
+   articleType: {
+      type: String,
+      required: true
+   },
    props: {
       image: {
          type: String,
@@ -35,24 +40,38 @@ export default {
          type: String,
          required: true
       },
-      date: {
-         type: String,
+      time: {
+         type: Number,
          required: true
       },
       text: {
          type: String,
          required: true
       },
-      link: {
-         type: String,
+      id: {
+         type: Number,
          required: true
       },
    },
 
-   setup({image}) {
-      const cardImage = useImage(image)
+   setup(props) {
+      console.log(props)
+      const {get, data: cardImage, error} = useStorage()
+      get(props.image)
 
-      return {cardImage}
+      watch(error, () => {
+         console.log(error)
+      })
+
+      const formattedDate = computed(() => {
+         return dayjs(props.time).format('DD.MM.YYYY')
+      })
+
+      const description = computed(() => {
+         return descriptionToHTML(props.text)
+      })
+
+      return {cardImage, formattedDate, description}
    }
 }
 </script>
@@ -64,14 +83,23 @@ export default {
    padding-bottom: 50px;
    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.images{
-   max-width: calc(50% - 15px);
+.image-block{
+   flex-shrink: 0;
+   width: 390px;
+   height: 290px;
+   margin-right: 70px;
 }
 .image{
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
    box-shadow: var(--image-shadow);
 }
 .content{
-   max-width: calc(50% - 15px);
+   //max-width: calc(50% - 15px);
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1;
 }
 h3{
    font-size: var(--title-size);
@@ -88,6 +116,7 @@ h3{
    }
 }
 .links{
+   margin-top: auto;
    text-align: right;
 }
 .link{

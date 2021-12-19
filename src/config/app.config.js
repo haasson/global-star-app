@@ -1,4 +1,8 @@
+import navigation from "./navigation";
+
 const appConfig = {
+   navigation,
+
    useRetina: false,
 }
 

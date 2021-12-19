@@ -4,9 +4,9 @@
          <div class="inner">
 
             <!-- Logo -->
-            <a href="#">
-               <AppIcon name="logo" width="287" height="61" />
-            </a>
+            <router-link to="/">
+               <AppIcon name="logo" width="287" height="61" :fill="'white'"/>
+            </router-link>
 
             <!-- Search -->
 
@@ -16,7 +16,7 @@
                <a href="http://instagtam.com" target="_blank" class="icon">
                   <AppIcon name="instagram" width="30" height="30" />
                </a>
-               <a href="tel:+78007006124">+7 (800) 700-61-24 </a>
+               <a href="tel:+78007006124" class="phone">+7 (800) 700-61-24</a>
             </div>
 
          </div>
@@ -37,6 +37,8 @@ export default {
 <style lang="scss" scoped>
 
 header {
+   position: relative;
+   z-index: 1;
    padding: 35px 0;
    background-color: var(--light-blue);
    color: var(--white)
@@ -53,13 +55,15 @@ header {
    align-items: center;
    font-size: 20px;
    .icon {
-      margin-right: 16px;
       cursor: pointer;
       transition: transform .1s;
       &:hover {
          transform: scale(1.05);
          filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
       }
+   }
+   .phone {
+      margin-left: 16px;
    }
 }
 

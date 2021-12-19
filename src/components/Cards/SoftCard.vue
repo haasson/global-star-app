@@ -1,5 +1,5 @@
 <template>
-   <Card class="item" v-if="text">
+   <Card class="item" v-if="text" link="/weg">
       <div class="rectangle">
          <div class="white">
             <img class="image" :src="cardImage" alt="">
@@ -10,7 +10,7 @@
       </div>
    </Card>
 
-   <Card class="item middle" v-else>
+   <Card class="item middle" v-else link="/weg">
       <img class="image-big" :src="cardImage" alt="">
    </Card>
 </template>
@@ -24,7 +24,7 @@ export default {
    name: "SoftItem",
    components: {Card},
    props: {
-      image: {
+      name: {
          type: String,
          required: true
       },
@@ -34,19 +34,15 @@ export default {
       },
    },
 
-   setup({image}) {
-      const cardImage = useImage(image)
+   setup({name}) {
+      const cardImage = useImage(name)
 
       return {cardImage}
    }
 }
 </script>
 
-import {ref} from 'vue'
-import {getImageUrl} from '../helpers/firebase'
 
-import PageSection from "./Providers/PageSection.vue";
-import useImage from "../composable/useImage";
 
 <style lang="scss" scoped>
 .item {

@@ -61,6 +61,7 @@ export default {
    position: relative;
    width: 100px;
    height: 100px;
+   margin: 0 auto;
    border: 8px solid var(--orange);
 }
 
@@ -69,6 +70,7 @@ export default {
 }
 
 .text {
+   margin-top: 20px;
    font-size: var(--subtitle-size);
    text-align: center;
 }

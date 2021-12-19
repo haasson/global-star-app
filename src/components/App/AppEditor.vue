@@ -3,10 +3,7 @@
       <div class="editorx_body">
          <div id="codex-editor"></div>
       </div>
-
-      <AppButton @click="save">Save</AppButton>
    </div>
-
 </template>
 
 <script>
@@ -21,7 +18,12 @@ import AppButton from "./AppButton.vue";
 export default {
    name: 'AppEditor',
    components: {AppButton},
-   setup(_, {emit}) {
+   props: {
+      modelValue: {
+         type: Object
+      }
+   },
+   setup(props, {emit}) {
       const editor = ref()
       onMounted(() => {
          initEditor()
@@ -34,15 +36,12 @@ export default {
             // autofocus: true,
             inlineToolbar: true,
             // placeholder: 'Введите ',
-            minHeight: 50,
+            minHeight: 0,
             displayName: true,
 
 
+            data: props.modelValue,
             tools: {
-               header: {
-                  class: Header,
-                  config: {levels: [2], defaultLevel: 2},
-               },
                list: {
                   class: List,
                   config: { placeholder: 'Введите текст'}
@@ -51,19 +50,19 @@ export default {
                   class: Table,
                   config: {}
                },
-               image: {
-                  class: ImageTool,
-                  config: {}
-               },
-            }
+            },
+
+            onChange: save
          })
       }
 
       const save = () => {
-         editor.value.save().then((data) => emit('update:modelValue', data))
+         editor.value.save().then((data) => {
+            console.log(data)
+            emit('update:modelValue', data)
+         })
       }
 
-      return {save}
    }
 }
 </script>
@@ -71,7 +70,7 @@ export default {
 <style lang="scss">
 
 .editorx_body {
-   max-width: 650px;
+   //max-width: 650px;
    margin: 0 auto;
    width: 100%;
 
@@ -79,11 +78,17 @@ export default {
       padding: 0 10px;
       border: 1px solid #ccc;
       margin-bottom: 7px;
+
    }
    .ce-header {
       margin-bottom: 0;
       padding: 10px 0;
       font-size: var(--title-size);
+   }
+
+   .ce-block__content,
+   .ce-toolbar__content {
+      max-width: 100%;
    }
 }
 

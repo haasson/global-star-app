@@ -1,7 +1,7 @@
 <template>
    <PageSection class="title" :class="[position]">
       <div class="inner">
-         <h2>{{ text }}</h2>
+         <h2><slot /></h2>
       </div>
    </PageSection>
 </template>
@@ -19,10 +19,6 @@ export default {
          type: String,
          default: 'right',
          validator: (value) => TITLE_POSITIONS.includes(value)
-      },
-      text: {
-         type: String,
-         required: true
       }
    },
 }

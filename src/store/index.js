@@ -1,6 +1,6 @@
 import {shallowRef, ref} from 'vue'
 
-const isAdmin = ref(true)
+
 
 const pages = {
    title: [{
@@ -447,4 +447,7 @@ const pages = {
 const pageContent = shallowRef([]);
 const dbPath = ref('')
 
-export {pages, pageContent, isAdmin, dbPath}
+const isAdmin = ref(true)
+const globalLoading = ref(false)
+
+export {pages, pageContent, isAdmin, dbPath, globalLoading}

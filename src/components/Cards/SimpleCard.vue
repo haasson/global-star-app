@@ -1,5 +1,5 @@
 <template>
-   <Card class="item" :style="{minHeight: `${itemHeight}px`}">
+   <Card class="item" :style="{minHeight: `${itemHeight}px`}" link="/wer">
       <img class="image" :src="cardImage" alt="">
    </Card>
 </template>
@@ -13,7 +13,7 @@ export default {
    name: "SimpleCard",
    components: {Card},
    props: {
-      image: {
+      name: {
          type: String,
          required: true
       },
@@ -23,8 +23,8 @@ export default {
       }
    },
 
-   setup({image}) {
-      const cardImage = useImage(image)
+   setup({name}) {
+      const cardImage = useImage(name)
 
       return {cardImage}
    }

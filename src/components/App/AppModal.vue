@@ -17,20 +17,21 @@
                </div>
 
                <!-- Body -->
-               <div  v-if="$slots.content" class="content" :class="{ 'overflow-hidden overflow-y-auto': scrollable }">
+               <div  v-if="$slots.content" class="content" :class="{ 'scrollable': scrollable }">
                   <slot name="content" />
                </div>
                <!-- Footer -->
                <div v-if="$slots.controls" class="controls">
                   <slot name="controls" :decline="decline" :confirm="confirm" />
                </div>
+
                <!-- Close icon -->
                <button
                    v-show="closeIcon"
                    @click="decline"
                    class="close"
                >
-                  <AppIcon name="close" width="20" height="20"/>
+                  <AppIcon name="close"/>
                </button>
             </div>
          </div>
@@ -167,5 +168,16 @@ export default {
 .content {
    padding: 16px;
    border-bottom: 1px solid var(--brown);
+}
+.scrollable {
+   overflow: hidden;
+   overflow-y: auto;
+   max-height: 65vh;
+}
+.close {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   cursor: pointer;
 }
 </style>

@@ -1,22 +1,27 @@
 <template>
-   <div id="modals" />
-   <AppHeader />
+   <div id="modals"/>
+   <AppHeader/>
 
-   <AppPage />
+   <main>
+      <RouterView />
+<!--      <transition v-else name="fade" appear>-->
+<!--         <RouterView />-->
+<!--      </transition>-->
+   </main>
 
-   <AppFooter />
-
+   <AppFooter/>
 </template>
 
 <script>
 import {ref} from 'vue'
 
+
+
 import AppHeader from "./components/App/AppHeader.vue";
 import AppFooter from "./components/App/AppFooter.vue";
-import AppPage from "./components/App/AppPage.vue";
 
 export default {
-   components: {AppPage, AppFooter, AppHeader},
+   components: {AppFooter, AppHeader},
 
    setup() {
       const modal = ref(null)
@@ -35,6 +40,24 @@ export default {
    flex-direction: column;
    min-height: 100vh;
 }
+
+main {
+   position: relative;
+   flex-grow: 1;
+}
+
+.fade-leave-active {
+   transition: all .3s ease-out;
+}
+.fade-leave-from {
+   opacity: 1;
+   transform: translateX(0);
+}
+.fade-leave-to {
+   opacity: 0;
+   transform: translateX(40px);
+}
+
 
 </style>
 

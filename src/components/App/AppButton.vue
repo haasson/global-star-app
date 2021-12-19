@@ -33,6 +33,7 @@ export default {
       },
       color: {
          type: String,
+         default: 'empty'
       }
    },
 
@@ -60,9 +61,7 @@ export default {
    cursor: pointer;
 
    &.icon {
-      padding: 0;
       min-width: 0;
-      box-shadow: none;
    }
 
    &.orange {
@@ -86,6 +85,17 @@ export default {
       &:active {
          background-color: var(--dark-blue);
          border: 1px solid transparent;
+      }
+   }
+
+   &.empty {
+      color: var(--black);
+      border: 1px solid var(--blue);
+      &:hover {
+         border: 1px solid var(--dark-orange)
+      }
+      &:active {
+         border: 1px solid var(--extra-blue)
       }
    }
 }

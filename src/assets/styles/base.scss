@@ -26,6 +26,7 @@ body {
    line-height: 1.4;
    //color: $main-text-color;
    overflow-x: hidden;
+   overflow-y: scroll;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -64,11 +65,13 @@ video {
 
 a {
    text-decoration: none;
-   color: var(--white);
+   //color: var(--white);
 }
 
 button {
-   border: none ;
+   box-shadow: none;
+   border: none;
+   background-color: transparent;
 }
 
 .nowrap {

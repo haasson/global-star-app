@@ -1,14 +1,14 @@
 <template>
-   <Card class="card">
+   <Card class="card" :link="link">
       <h3 v-html="title" />
       <div class="image">
-         <img :src="cardImage" alt="">
+         <img :src="image" alt="">
       </div>
    </Card>
 </template>
 
 <script>
-import {ref} from "vue";
+import {ref, shallowRef, watchEffect} from "vue";
 import {getImageUrl} from "../../helpers/firebase";
 
 import Card from "./Card.vue";
@@ -23,7 +23,7 @@ export default {
          type: String,
          required: true
       },
-      image: {
+      name: {
          type: String,
       },
       link: {
@@ -31,10 +31,15 @@ export default {
       }
    },
 
-   setup({image}) {
-      const cardImage = useImage(image)
-
-      return {cardImage}
+   setup({name}) {
+      const image = shallowRef('')
+      watchEffect(() => {
+         import((`../../assets/images/products/cards/${name}.png`)).then(component => {
+            image.value = component.default
+         })
+      })
+      console.log(image)
+      return {image}
    }
 }
 </script>
@@ -46,8 +51,9 @@ export default {
    flex-direction: column;
    align-items: center;
 
-   height: 216px;
-   padding: 24px;
+   height: 270px;
+   max-width: 433px;
+   padding: 20px;
    text-align: center;
    font-size: var(--subtitle-size);
    font-weight: 500;
@@ -57,6 +63,7 @@ export default {
 
 h3 {
    margin-bottom: 7px;
+   color: var(--black)
 }
 
 .image {

@@ -23,6 +23,8 @@ name: "AppFooter"
 
 <style lang="scss" scoped>
 footer {
+   position: relative;
+   z-index: 1;
    padding: 25px 0 40px;
    background-color: var(--light-blue);
    color: var(--white)
