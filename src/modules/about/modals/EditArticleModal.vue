@@ -2,7 +2,6 @@
    <AppModal ref="modal" :minWidth="1000">
       <template #title>{{ articleType }}</template>
       <template #content>
-
          <form class="form">
             <AppInput class="title" label="Заголовок" v-model="data.title"/>
 
@@ -10,12 +9,14 @@
                <label>Описание</label>
                <AppEditor v-model="data.text"/>
             </div>
-
-            <span v-for="img in data.images">
-               {{img.isMain}}
-            </span>
-            <AppImageUpload class="upload-image" v-model="data.images"/>
-
+            <!--            <span v-for="img in data.images">-->
+            <!--          {{ img }}-->
+            <!--        </span>-->
+            <AppImageUpload
+                class="upload-image"
+                :images="data.images"
+                @update:images="onUpdateImages"
+            />
          </form>
       </template>
       <template #controls>
@@ -41,88 +42,111 @@ import useDatabase from "../../../composable/database";
 
 export default {
    name: "EditArticleModal",
-   components: {AppIcon, AppImageUpload, AppInput, AppButton, AppButtonsGroup, AppEditor, AppModal},
+   components: {
+      AppIcon,
+      AppImageUpload,
+      AppInput,
+      AppButton,
+      AppButtonsGroup,
+      AppEditor,
+      AppModal,
+   },
    props: {
       articleType: {
          type: String,
-         required: true
+         required: true,
+      },
+      id: {
+         type: String,
+         default: "",
       },
       title: {
          type: String,
-         default: ''
+         default: "",
       },
       text: {
          type: String,
-         default: ''
+         default: "",
       },
       images: {
          type: Object,
-         default: {}
+         default: () => ({}),
       },
    },
    setup(props, {emit}) {
-      const entity = props.articleType.indexOf('News') !== -1 ? 'news' : 'projects'
-      const modal = ref(null)
+      const entity = props.articleType.indexOf("news") !== -1 ? "news" : "projects";
+      const modal = ref(null);
       const open = () => {
-         getNewsCount('news/count')
-         modal.value.open()
-      }
+         getArticlesCount(`${entity}/count`);
+         modal.value.open();
+      };
       const close = () => {
-         clearForm()
-         modal.value.decline()
-      }
+         clearForm();
+         modal.value.decline();
+      };
 
+      const data = reactive({title: ""});
+      const {set: setImages, loading: imagesUpload, error: uploadError} = useStorage();
 
-      const data = reactive({title: ''})
-      const {set: setImages, loading: imagesUpload, error: uploadError} = useStorage()
+      const {get: getArticlesCount, data: articlesCount} = useDatabase();
+      const {set: setArticle} = useDatabase();
 
-      const {get: getNewsCount, data: newsCount} = useDatabase()
-      const {set: setNews} = useDatabase()
+      const onUpdateImages = (files) => {
+         data.images = files
+      };
 
       const saveData = async () => {
-         const images = getImagesDataForDatabase()
-         const filesArray = Object.keys(data.images).map(imageName => data.images[imageName]).sort((a,b) => a.isMain === true ? 1 : -1)
+         const images = getImagesDataForDatabase();
+         const filesArray = Object.keys(data.images)
+             .map((imageName) => data.images[imageName])
+             .filter(file => file.type)
+             .sort((a, b) => (a.isMain === true ? 1 : -1))
 
-         const newsID = newsCount.value === undefined ? 0 : newsCount.value + 1
-         const newsToSave = {...data, id: newsID, images, time: Date.now()}
+         const articleID = typeof props.id === "number"
+             ? props.id
+             : articlesCount.value === undefined ? 0 : articlesCount.value + 1
+         const articleToSave = {...data, id: articleID, images, time: Date.now()}
 
-         const storagePath = `images/${entity}/${newsID}`
+         const storagePath = `images/${entity}/${articleID}`
+
          await Promise.all([
             // Save data to database
-            setNews(`${entity}/count`, newsID),
-            setNews(`${entity}/list/${newsID}`, newsToSave),
+            setArticle(`${entity}/count`, articleID),
+            setArticle(`${entity}/list/${articleID}`, articleToSave),
             // Save images to storage
-            setImages(`${storagePath}/gallery`, filesArray)
-         ])
+            setImages(`${storagePath}/gallery`, filesArray),
+         ]);
 
-         close()
-         emit('update:article')
-      }
+         close();
+         emit("update:article");
+      };
 
       const getImagesDataForDatabase = () => {
-         return Object.keys(data.images).map(imageName => {
-            const imgData = {...data.images[imageName]}
-            imgData.name = imageName
-            imgData.size = data.images[imageName].size
-            delete imgData.src
-            return imgData
-         }).sort((a,b) => a.isMain === true ? 1 : -1)
-      }
+         return Object.keys(data.images)
+             .map((imageName) => {
+                const imgData = {...data.images[imageName]};
+                imgData.name = imageName;
+                imgData.size = data.images[imageName].size;
+                imgData.src = data.images[imageName].src;
+                delete imgData.src;
+                return imgData;
+             })
+             .sort((a, b) => (a.isMain === true ? 1 : -1));
+      };
 
       watch(props, () => {
-         console.log('here', props)
-         data.title = props.title
-         data.text = props.text
-         data.images = props.images
-      }, {immediate: true})
+             data.title = props.title;
+             data.text = props.text;
+             data.images = props.images;
+          },
+          {immediate: true}
+      );
 
       const clearForm = () => {
-         console.log('here')
-         data.title = ''
-         data.text = ''
-         data.images = {}
-      }
-
+         data.title = "";
+         data.text = "";
+         data.images = {};
+      };
 
       return {
          modal,
@@ -130,14 +154,14 @@ export default {
          close,
 
          data,
+         onUpdateImages,
          saveData,
-      }
-   }
-}
+      };
+   },
+};
 </script>
 
 <style lang="scss" scoped>
-
 .form {
    padding: 0 20px;
 }

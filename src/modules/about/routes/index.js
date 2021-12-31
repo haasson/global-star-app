@@ -27,6 +27,13 @@ const aboutRoutes = [
             component: () => import("../pages/Projects.vue")
          },
          {
+            path: 'projects/:id',
+            name: 'projectsArticle',
+            meta: {content: 'projects'},
+            component: () => import("../../../components/FullArticle.vue"),
+            props: {articleType: 'projects'}
+         },
+         {
             path: 'vacancy',
             name: 'vacancy',
             component: () => import("../pages/Vacancy.vue")

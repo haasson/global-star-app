@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {computed, ref} from 'vue'
+import {computed, ref, watch} from 'vue'
 import {isAdmin} from "../../../store";
 import ArticleItem from "../../../components/ArticleItem.vue";
 import AppButton from "../../../components/App/AppButton.vue";
@@ -41,10 +41,10 @@ export default {
       const {get, data: newsList} = useDatabase()
       get('news/list')
 
-      const getMainImage = (news) => {
-         const mainImage = news.images.find(image => image.isMain === true).name
-         console.log(mainImage)
-         return `images/news/${news.id}/gallery/${mainImage}`
+       const getMainImage = (news) => {
+         const mainImage = news.images.find(image => image.isMain === true)
+         const mainImageName = mainImage ? mainImage.name : news.images[0].name
+         return `images/news/${news.id}/gallery/${mainImageName}`
       }
 
 

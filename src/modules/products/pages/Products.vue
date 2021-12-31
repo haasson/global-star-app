@@ -27,7 +27,6 @@ export default {
    setup() {
       agricultureContent.forEach(item => item.link = { name: 'catalogList', params: { id: item.name }})
       transportContent.forEach(item => item.link = { name: 'catalogList', params: { id: item.name }})
-      console.log(agricultureContent)
 
       return {agricultureContent, transportContent}
    }

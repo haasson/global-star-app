@@ -20,12 +20,10 @@ const database = getDatabase(app);
 const dbRef = databaseRef(database)
 
 const setToDatabase = async (url, data) => {
-   console.log(url, data, typeof data)
    return await set(databaseRef(database, url), data)
 }
 
 const getFromDatabase = async (url) => {
-   console.log(url)
    const snapshot = await get(child(dbRef, url))
 
    if (snapshot.exists()) {
@@ -34,7 +32,6 @@ const getFromDatabase = async (url) => {
 }
 
 const putToDatabase = async (data) => {
-   console.log(data)
    return await update(databaseRef(database), data)
 }
 
@@ -47,7 +44,6 @@ const deleteFromDatabase = async (url) => {
 const storage = getStorage(app);
 
 const putToStorage = async (url, file) => {
-   console.log(url, file)
    const ref = storageRef(storage, url)
    uploadBytes(ref, file).then((snapshot) => {
       console.log('Uploaded a blob or file!');
@@ -55,7 +51,6 @@ const putToStorage = async (url, file) => {
 }
 
 const getFromStorage = async (url) => {
-   console.log(url)
    return await getDownloadURL(storageRef(storage, url))
 }
 

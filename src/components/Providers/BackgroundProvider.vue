@@ -45,7 +45,6 @@ export default {
             return {background: getColorByName(bgColor)}
          }
 
-         console.log(`linear-gradient(180deg, ${breakpoints.join(',')})`)
          return {
             background: `linear-gradient(180deg, ${breakpoints.join(',')})`
          }

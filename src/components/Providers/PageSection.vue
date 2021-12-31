@@ -48,8 +48,6 @@ export default {
       }
    },
    setup(props, {emit}) {
-      console.log(props)
-
       const sectionId = props.sectionId // Name of section data in DB
       const route = useRoute()
       const dbPath = `pages${route.fullPath}/${sectionId}`
@@ -60,7 +58,6 @@ export default {
 
       watch(data, () => {
          if (data.value) {
-            console.log(data.value)
             isVisible.value = data.value.visible
          }
 

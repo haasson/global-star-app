@@ -2,14 +2,14 @@
    <PageSection>
       <div class="inner">
          <div class="image-block">
-            <img class="image" :src="cardImage" alt="">
+            <img v-if="cardImage" class="image" :src="cardImage.src" alt="">
          </div>
          <div class="content">
             <h3>{{title}}</h3>
             <p class="date">{{formattedDate}}</p>
             <div class="text" v-html="description"></div>
             <div class="links">
-               <router-link class="link" :to="`news/${id}`">Просмотреть</router-link>
+               <router-link class="link" :to="`${articleType}/${id}`">Просмотреть</router-link>
             </div>
          </div>
       </div>
@@ -27,11 +27,12 @@ import PageSection from "./Providers/PageSection.vue";
 export default {
    name: "ArticleItem",
    components: { PageSection},
-   articleType: {
-      type: String,
-      required: true
-   },
+
    props: {
+      articleType: {
+         type: String,
+         required: true
+      },
       image: {
          type: String,
          required: true
@@ -55,13 +56,8 @@ export default {
    },
 
    setup(props) {
-      console.log(props)
       const {get, data: cardImage, error} = useStorage()
       get(props.image)
-
-      watch(error, () => {
-         console.log(error)
-      })
 
       const formattedDate = computed(() => {
          return dayjs(props.time).format('DD.MM.YYYY')

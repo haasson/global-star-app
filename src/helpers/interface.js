@@ -6,11 +6,8 @@ const colorsMap = {
 const getColorByName = (color) => colorsMap[color]
 
 const descriptionToHTML = (description) => {
-   console.log(description)
    if (!description.blocks) return ''
    return description.blocks.map(block => {
-      console.log(block)
-      console.log(`<p>${block.data.text}</p>`)
       if (block.type === 'paragraph') return `<p>${block.data.text}</p>`
    }).join('')
 }

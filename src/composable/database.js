@@ -13,7 +13,6 @@ const useDatabase = () => {
       globalLoading.value = true
       getFromDatabase(url)
          .then((res) => {
-            console.log(res)
             data.value = res
          })
          .catch(e => error.value = e)
@@ -22,8 +21,8 @@ const useDatabase = () => {
             loading.value = false
          })
    }
-   const set = async (url, data) => {
-      await setToDatabase(url, data)
+   const set = async (url, payload) => {
+      await setToDatabase(url, payload)
          .then((res) => data.value = res)
          .catch(e => {
             console.log(e)
@@ -32,8 +31,8 @@ const useDatabase = () => {
          .finally(() => loading.value = false)
    }
 
-   const put = async (data) => {
-      await putToDatabase(data)
+   const put = async (payload) => {
+      await putToDatabase(payload)
          .then((res) => data.value = res)
          .catch(e => {
             console.log(e)

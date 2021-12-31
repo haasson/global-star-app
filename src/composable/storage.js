@@ -10,20 +10,15 @@ const useStorage = () => {
    const get = async (url) => {
       loading.value = true
 
-      if (!Array.isArray(url)) url = [url]
-      data.value = []
-      url.forEach(urlItem => {
-         getFromStorage(urlItem)
-            .then((res) => {
-               if (url.length === 1) data.value = res
-               else data.value === null ? data.value = [res] : data.value.push(res)
-            })
-            .catch(e => error.value = e)
-            .finally(() => {
-               loading.value = false
-            })
-      })
-
+      const fileName = url.split('/').reverse()[0]
+      getFromStorage(url)
+         .then((res) => {
+            data.value = {src: res, fileName}
+         })
+         .catch(e => error.value = e)
+         .finally(() => {
+            loading.value = false
+         })
    }
    const set = (url, files) => {
       loading.value = true
@@ -33,7 +28,6 @@ const useStorage = () => {
          const imageUrl = `${url}/${file.name}`
          putToStorage(imageUrl, file)
             .then((res) => {
-               console.log(res)
                data.value = res
             })
             .catch(e => error.value = e)

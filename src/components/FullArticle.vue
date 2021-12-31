@@ -1,8 +1,9 @@
 <template>
    <PageSection v-if="isAdmin">
-      <AppButtonsGroup>
+      <AppButtonsGroup v-if="article">
          <AppButton @click="editArticle" color="blue">Редактировать</AppButton>
-         <AppButton @click="removeArticle" color="blue">Удалить</AppButton>
+         <AppButton @click="hideArticle" color="blue">{{article.isHidden ? 'Показать' : 'Скрыть'}}</AppButton>
+         <div v-if="article.isHidden" class="hidden-warning">Новость скрыта от пользователей</div>
       </AppButtonsGroup>
    </PageSection>
 
@@ -20,10 +21,12 @@
    <EditArticleModal
        v-if="article"
        ref="editModal"
-       articleType="editNews"
+       :articleType="`edit-${articleType}`"
+       :id="article.id"
        :title="article.title"
        :text="article.text"
        :images="article.images"
+       @update:article="updateArticle"
    />
 
 </template>
@@ -57,16 +60,22 @@ export default {
    setup(props) {
       const description = ref()
       const route = useRoute()
-      const {get: getArticle, data: article} = useDatabase()
-      const {get: getGallery, data: gallery, error} = useStorage()
+      const articleLink = `${props.articleType}/list/${route.params.id}`
 
-      getArticle(`${props.articleType}/list/${route.params.id}`)
+      const {get: getArticle, put: putArticle, data: article} = useDatabase()
+      const {get: getImage, data: image, error} = useStorage()
+
+
+      getArticle(articleLink)
 
       watch(article, () => {
+         if (!article.value) return
+         // Get all images
          const paths = article.value.images.map(image => {
             return `images/${props.articleType}/${route.params.id}/gallery/${image.name}`
          })
-         getGallery(paths)
+         paths.forEach(path => getImage(path))
+
          description.value = descriptionToHTML(article.value.text)
 
          // Make object from array of images
@@ -76,20 +85,29 @@ export default {
       })
 
 
-      watch(gallery, () => {
-         console.log(gallery.value)
+      const gallery = ref()
+      watch(image, () => {
+         if (!image.value) return
+
+         const {fileName, src} = image.value
+         article.value.images[fileName].src = src
+         article.value.images = {...article.value.images}
+
+         gallery.value = Object.values(article.value.images)
+             .map(image => image.src)
+             .sort((a, b) => (a.isMain === true ? 1 : -1))
       })
 
       const editModal = ref(null)
 
-      const editArticle = () => {
-         editModal.value.open()
-
+      const editArticle = () =>  editModal.value.open()
+      const hideArticle = async () => {
+         const visibleProp = [articleLink] + '/isHidden'
+         await putArticle({[visibleProp] : !article.value.isHidden})
+         updateArticle()
       }
 
-      const removeArticle = () => {
-
-      }
+      const updateArticle = () => getArticle(articleLink)
 
 
 
@@ -102,13 +120,19 @@ export default {
          editModal,
 
          editArticle,
-         removeArticle,
+         hideArticle,
+
+         updateArticle,
       }
    }
 }
 </script>
 
 <style lang="scss" scoped>
+.hidden-warning {
+   font-size: var(--subtitle-size);
+}
+
 h3 {
    font-size: var(--title-size);
    font-weight: 500;
@@ -122,6 +146,7 @@ h3 {
 }
 
 .text {
+   margin-bottom: 30px;
    font-size: var(--subtitle-size);
 }
 </style>

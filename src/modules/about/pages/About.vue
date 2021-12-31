@@ -21,7 +21,6 @@ export default {
 
    setup() {
       const router = useRouter()
-      console.log(router)
       if (router.currentRoute.value.fullPath === '/about') router.push('/about/company')
    }
 }

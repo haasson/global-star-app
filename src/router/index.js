@@ -26,7 +26,6 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-   console.log('gggg')
    next()
    // const route = to.path.slice(1) || 'main'
    //

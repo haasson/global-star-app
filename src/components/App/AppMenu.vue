@@ -31,8 +31,6 @@ export default {
    setup(props) {
       const data = appConfig.navigation
 
-      console.log(data)
-
       // const router = useRouter()
       // const goTo = (key, redirect) => {
       //    router.push(redirect ? `/${key}/${redirect}` : `/${key}`)

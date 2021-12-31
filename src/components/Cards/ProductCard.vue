@@ -38,7 +38,6 @@ export default {
             image.value = component.default
          })
       })
-      console.log(image)
       return {image}
    }
 }

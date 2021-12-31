@@ -3,14 +3,18 @@
       <label class="file-input">
          <AppIcon class="icon-plus" name="plus"/>
          <span class="text">Добавить изображения</span>
-         <input type="file" accept="image/*" multiple @change="setImages">
+         <input type="file" accept="image/*" multiple @change="setImages"/>
       </label>
 
       <div class="gallery">
-         <div class="image" v-for="file in data" @click="setMain(file.name)" :class="{main: file.isMain}">
-            {{ file }}
-            <img :src="file.src" alt="">
-            <div>{{ file.name }}</div>
+         <div
+             class="image"
+             v-for="file in uploadedFiles"
+             @click="setMain(file.name)"
+             :class="{ main: !!file.isMain }"
+         >
+            <img :src="file.src" alt=""/>
+            <strong>{{ file.name }}</strong>
             <div>{{ (file.size / 1000).toFixed(1) }} kB</div>
 
             <div class="close" @click.stop="deleteImage(file.name)">
@@ -19,8 +23,13 @@
          </div>
       </div>
 
-      <p class="warning">Перед загрузкой не забудьте оптимизировать изображения <br>
-         <a href="https://www.onlineimagetool.com/ru/compress-png-jpg-webp-gif" target="_blank">Online Image Tool</a>
+      <p class="warning">
+         Перед загрузкой не забудьте оптимизировать изображения <br/>
+         <a
+             href="https://www.onlineimagetool.com/ru/compress-png-jpg-webp-gif"
+             target="_blank"
+         >Online Image Tool</a
+         >
       </p>
    </div>
 </template>
@@ -28,70 +37,64 @@
 <script>
 import AppButton from "./AppButton.vue";
 import AppIcon from "./AppIcon.vue";
-import {ref} from "vue";
+import {reactive, ref} from "vue";
 
 export default {
    name: "AppImageUpload",
    components: {AppIcon, AppButton},
    props: {
-      modelValue: {
+      images: {
          type: Object,
-         required: true
-      }
+         required: true,
+      },
    },
 
    setup(props, {emit}) {
-      console.log(props)
-      const data = ref({...props.modelValue})
+      const uploadedFiles = ref({...props.images});
 
       // Show images after uploading from computer
       const setImages = (event) => {
-         const files = [...event.target.files]
+         const files = [...event.target.files];
 
-         files.forEach(file => {
-            const fileReader = new FileReader()
+         files.forEach((file) => {
+            const fileReader = new FileReader();
             fileReader.onload = function (e) {
-               file.src = e.target.result
-               data.value[file.name] = file
+               file.src = e.target.result;
+               uploadedFiles.value[file.name] = file;
                // emit here for every image because process is async
-               emit('update:modelValue', data.value)
-            }
+               emit("update:images", uploadedFiles.value);
+            };
 
-            fileReader.readAsDataURL(file)
-         })
-         files[0].isMain = true
-      }
+            fileReader.readAsDataURL(file);
+         });
+         // files[0].isMain = true;
+      };
 
       const setMain = (name) => {
-         console.log(name)
-         console.log(data.value)
-         Object.values(data.value).forEach(img => {
-            console.log(img)
-            img.isMain = false
-         })
+         const uploadedFilesArray = Object.values(uploadedFiles.value);
+         uploadedFilesArray.forEach((img) =>  img.isMain = false);
 
-         if (name) data.value[name].isMain = true
-         else Object.values(data.value)[0].isMain = true
+         if (name) uploadedFiles.value[name].isMain = true;
+         else uploadedFilesArray[0].isMain = true;
 
-         data.value = {...data.value}
-         console.log('set')
-         emit('update:modelValue', data.value)
-      }
+         uploadedFiles.value = {...uploadedFiles.value};
+         emit("update:images", uploadedFiles.value);
+      };
 
       const deleteImage = (name) => {
-         delete data.value[name]
-         setMain()
+         delete uploadedFiles.value[name];
+         // setMain();
          // emit('delete', fileName)
-      }
+      };
 
       return {
-         data,
+         uploadedFiles,
          setImages,
          setMain,
          deleteImage,
-      }
-   }
-}
+      };
+   },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -138,7 +141,7 @@ export default {
 
          &:before {
             position: absolute;
-            content: 'Главное';
+            content: "Главное";
             left: -5px;
             top: -10px;
             padding: 5px 10px;
@@ -173,6 +176,6 @@ export default {
    max-width: 600px;
    margin: 0 auto;
    text-align: center;
-   color: var(--blue)
+   color: var(--blue);
 }
 </style>

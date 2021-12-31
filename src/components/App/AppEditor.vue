@@ -58,7 +58,6 @@ export default {
 
       const save = () => {
          editor.value.save().then((data) => {
-            console.log(data)
             emit('update:modelValue', data)
          })
       }
