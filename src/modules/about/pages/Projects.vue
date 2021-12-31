@@ -17,7 +17,7 @@
 
 
    <!-- Modals -->
-   <EditArticleModal ref="editModal" articleType="addProject" @update:article="get('projects/list')"/>
+   <EditArticleModal ref="editModal" articleType="add-project" @update:article="get('projects/list')"/>
 </template>
 
 <script>

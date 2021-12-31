@@ -102,17 +102,15 @@ export default {
              .filter(file => file.type)
              .sort((a, b) => (a.isMain === true ? 1 : -1))
 
-         const articleID = typeof props.id === "number"
-             ? props.id
-             : articlesCount.value === undefined ? 0 : articlesCount.value + 1
-         const articleToSave = {...data, id: articleID, images, time: Date.now()}
+         const articleID = props.id || articlesCount.value === undefined ? 1 : articlesCount.value + 1
+         const articleToSave = {...data, id: `id${articleID}`, images, time: Date.now()}
 
-         const storagePath = `images/${entity}/${articleID}`
+         const storagePath = `images/${entity}/id${articleID}`
 
          await Promise.all([
             // Save data to database
             setArticle(`${entity}/count`, articleID),
-            setArticle(`${entity}/list/${articleID}`, articleToSave),
+            setArticle(`${entity}/list/id${articleID}`, articleToSave),
             // Save images to storage
             setImages(`${storagePath}/gallery`, filesArray),
          ]);

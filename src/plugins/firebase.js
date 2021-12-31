@@ -1,6 +1,16 @@
-import { initializeApp } from "firebase/app";
-import {getStorage, uploadBytes, ref as storageRef, getDownloadURL, ref} from "firebase/storage";
-import {set, ref as databaseRef, get, child, update, remove, getDatabase} from 'firebase/database'
+import {initializeApp} from "firebase/app";
+import {getDownloadURL, getStorage, ref as storageRef, uploadBytes} from "firebase/storage";
+import {
+   child, equalTo,
+   getDatabase, limitToFirst,
+   limitToLast,
+   onValue, orderByChild,
+   query,
+   ref as databaseRef,
+   remove,
+   set,
+   update
+} from 'firebase/database'
 
 const firebaseConfig = {
    apiKey: "AIzaSyCpNXKCMuPpH4fD2d0NgNFrwdge2aTNJi4",
@@ -24,11 +34,20 @@ const setToDatabase = async (url, data) => {
 }
 
 const getFromDatabase = async (url) => {
-   const snapshot = await get(child(dbRef, url))
+   console.log(url, database)
+   const records = await query(databaseRef(database, url))
+   // const records = await query(databaseRef(database, url), orderByChild('title'))
+   let res = null
 
-   if (snapshot.exists()) {
-      return snapshot.val()
-   }
+   const promise = new Promise((resolve, reject) => {
+      onValue(records, snapshot => {
+         res = snapshot.val()
+         resolve()
+      })
+   })
+
+   await promise
+   return res
 }
 
 const putToDatabase = async (data) => {

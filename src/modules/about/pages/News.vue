@@ -3,6 +3,10 @@
       <AppButton @click="addNews" color="blue">Добавить новость</AppButton>
    </PageSection>
 
+   <div v-for="(news, i) in newsList">
+      {{i}} - {{news}}
+   </div>
+
    <div v-if="newsList">
       <ArticleItem
           v-for="news in newsList"
@@ -17,7 +21,7 @@
 
 
    <!-- Modals -->
-   <EditArticleModal ref="editModal" articleType="addNews" @update:article="get('news/list')"/>
+   <EditArticleModal ref="editModal" articleType="add-news" @update:article="get('news/list')"/>
 </template>
 
 <script>
