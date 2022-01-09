@@ -1,5 +1,5 @@
 <template>
-   <PageSection class="title" :class="[position]">
+   <PageSection class="title" :class="[position, type]">
       <div class="inner">
          <h2><slot /></h2>
       </div>
@@ -19,6 +19,9 @@ export default {
          type: String,
          default: 'right',
          validator: (value) => TITLE_POSITIONS.includes(value)
+      },
+      type: {
+         type: String
       }
    },
 }
@@ -27,7 +30,7 @@ export default {
 <style lang="scss" scoped>
 
 .title {
-   --title-bg-width: 42%;
+   --title-bg-width: 45%;
 
    padding: 15px 0;
    color: var(--white);
@@ -58,9 +61,27 @@ export default {
       text-align: right;
 
       h2 {
-         background: linear-gradient(225deg, transparent 0, transparent 35px, var(--brown) 35px, var(--brown) 100%);
+         background: linear-gradient(315deg, transparent 0, transparent 35px, var(--brown) 35px, var(--brown) 100%);
          padding: 3px 80px 3px 25px;
       }
+   }
+
+   &.simple {
+      color: var(--black);
+      padding: 0;
+
+      h2 {
+         padding-top: 8px;
+         padding-bottom: 8px;
+         background: linear-gradient(135deg, transparent 0, transparent 43px, var(--orange) 43px, var(--orange) 100%);
+      }
+
+      &.left {
+         h2 {
+            background: linear-gradient(315deg, transparent 0, transparent 43px, var(--orange) 43px, var(--orange) 100%);
+         }
+      }
+
    }
 }
 

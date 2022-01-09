@@ -1,6 +1,8 @@
 <template>
-   <AppLoader v-if="globalLoading"/>
-   <slot />
+   <div class="app-page" :class="{'no-offset': noOffset}">
+      <div class="app-bg"></div>
+      <slot />
+   </div>
 
 <!--   <AppModal ref="modal" :minWidth="900">-->
 <!--      <template #title>Редактирование</template>-->
@@ -23,6 +25,12 @@ import AppLoader from "./AppLoader.vue";
 export default defineComponent({
    name: "AppPage",
    components: {AppLoader, AppSection, AppEditor, AppModal},
+   props: {
+      noOffset: {
+         type: Boolean,
+         default: false
+      }
+   },
 
    setup(props) {
       const modal = ref(null)
@@ -46,12 +54,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-main {
-   position: relative;
-   flex-grow: 1;
-}
-.bg {
+<style lang="scss">
+.app-bg {
    position: fixed;
    top: 0;
    left: 0;
@@ -59,10 +63,16 @@ main {
    bottom: 0;
    z-index: -1;
    height: 100vh;
-   background: linear-gradient(315deg, #ececec 0%, #ececec 400px, #ffffff 400px, #fff calc(100% - 400px), #ececec calc(100% - 400px), #ececec 100%);
-
+   background: linear-gradient(315deg, #ececec 0%, #ececec 550px, #ffffff 550px, #fff calc(100% - 520px), #ececec calc(100% - 520px), #ececec 100%);
 }
-section {
-   margin-top: 60px;
+.app-page {
+   padding-bottom: 100px;
+   &:not(.no-offset) {
+      padding-top: 70px;
+   }
+}
+
+.app-page > *:not(:last-child) {
+   margin-bottom: 70px;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-   <Card class="item" v-if="text" link="/weg">
+   <Card class="item" v-if="text" link="/weg" v-bind="$attrs">
       <div class="rectangle">
          <div class="white">
-            <img class="image" :src="cardImage" alt="">
+            <img class="image" :src="imageSrc" alt="">
          </div>
          <div class="name">
             <p class="text">{{ text }}</p>
@@ -11,7 +11,7 @@
    </Card>
 
    <Card class="item middle" v-else link="/weg">
-      <img class="image-big" :src="cardImage" alt="">
+      <img class="image-big" :src="imageSrc" alt="">
    </Card>
 </template>
 
@@ -19,6 +19,7 @@
 import {ref} from "vue";
 import Card from "./Card.vue";
 import useImage from "../../composable/useImage";
+import useLocalImage from "../../composable/localImage.js";
 
 export default {
    name: "SoftItem",
@@ -35,9 +36,8 @@ export default {
    },
 
    setup({name}) {
-      const cardImage = useImage(name)
-
-      return {cardImage}
+      const {imageSrc} = useLocalImage(name)
+      return {imageSrc}
    }
 }
 </script>
@@ -56,6 +56,7 @@ export default {
    align-items: center;
    max-width: 300px;
    min-height: 75px;
+   margin: 0 auto;
    background-color: var(--darc);
 }
 
@@ -88,6 +89,7 @@ export default {
 .middle {
    display: flex;
    align-items: center;
+   padding: 0;
 }
 
 .image-big {

@@ -1,13 +1,17 @@
 <template>
-   <Card class="card" link="/weg">
+   <Card class="card">
 
       <div class="image">
          <img :src="cardImage" alt="">
       </div>
 
-      <h3 v-html="title"/>
+      <div v-ellipsis class="title-container">
+         <h3 v-html="title" />
+      </div>
 
-      <p>{{text}}</p>
+      <div v-ellipsis class="text-container">
+         <p v-html="text"></p>
+      </div>
 
       <AppButton v-if="button" :href="link" class="btn" color="orange">
          {{button}}
@@ -61,7 +65,7 @@ export default {
    color: var(--black);
    box-shadow: var(--card-shadow-shifted);
    &:hover {
-      box-shadow: var(--card-shadow-shifted-hover);
+      box-shadow: var(--card-shadow-shifted);
    }
 }
 

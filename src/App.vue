@@ -17,8 +17,8 @@ import {ref} from 'vue'
 
 
 
-import AppHeader from "./components/App/AppHeader.vue";
-import AppFooter from "./components/App/AppFooter.vue";
+import AppHeader from "./components/Sections/AppHeader.vue";
+import AppFooter from "./components/Sections/AppFooter.vue";
 
 export default {
    components: {AppFooter, AppHeader},

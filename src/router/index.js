@@ -1,10 +1,11 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
-import MainPage from "../components/Pages/MainPage.vue";
-
 import solutionRoutes from "../modules/solution/routes";
 import productsRoutes from "../modules/products/routes";
+import programSolutionRoutes from "../modules/product-solution/routes";
+import serviceRoutes from "../modules/service/routes"
 import aboutRoutes from "../modules/about/routes";
+import contactsRoutes from "../modules/contacts/routes";
 
 const router = createRouter({
    history: createWebHistory(),
@@ -12,13 +13,15 @@ const router = createRouter({
       {
          path: '/',
          name: 'main',
-         component: MainPage
+         component: () => import("../components/Pages/MainPage.vue"),
       },
 
       ...solutionRoutes,
       ...productsRoutes,
-
-      ...aboutRoutes
+      ...programSolutionRoutes,
+      ...serviceRoutes,
+      ...aboutRoutes,
+      ...contactsRoutes
    ]
 })
 

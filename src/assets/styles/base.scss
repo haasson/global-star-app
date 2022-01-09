@@ -65,7 +65,12 @@ video {
 
 a {
    text-decoration: none;
-   //color: var(--white);
+   &.dark-bg {
+      color: var(--white);
+      &:visited {
+         color: var(--white)
+      }
+   }
 }
 
 button {

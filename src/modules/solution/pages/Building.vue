@@ -32,6 +32,6 @@ export default {
        transparent 565px,
        transparent 100%
    );
-   padding-bottom: 50px;
+   padding-bottom: 90px;
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
    <AppTitle position="left">Тестовый заголовок слева</AppTitle>
-   <AppTitle >Тестовый заголовок справа</AppTitle>
+   <AppTitle>Тестовый заголовок справа</AppTitle>
 
-   <AppList title="Заголовок списка" type="feature" gap="5" :items="items1" itemsPerRow="3" />
+   <AppList title="Заголовок списка" type="feature" gap="5" :items="items1" itemsPerRow="3" multiline/>
    <AppList title='Услуги сервиса'
-   type='service'
-   itemsPerRow="5"
-   gap="53"
-   :items="[
+            type='service'
+            itemsPerRow="5"
+            gap="53"
+            :items="[
    {
    icon: {
    name: 'guarantee',
@@ -48,15 +48,15 @@
    },
    text: 'Удаленная поддержка',
    },
-   ]" />
+   ]"/>
 
    <AppList
        title='Gurtam'
-   type='soft'
-   itemsPerRow="3"
-   :items="[
+       type='soft'
+       itemsPerRow="3"
+       :items="[
    {
-   name: 'images/soft/1.png',
+   name: 'solution/soft/wialon.png',
    text: 'Wialon',
    },
    {
@@ -87,10 +87,10 @@
 
    <AppList
        title='Наши клиенты'
-   type='simple'
-   itemsPerRow="3"
-   itemHeight="100"
-   :items="[
+       type='simple'
+       itemsPerRow="3"
+       itemHeight="100"
+       :items="[
    {
    name: 'images/simple/1.png',
    },
@@ -114,9 +114,9 @@
 
    <AppList
        type='catalog'
-   title='Модули слежения'
-   itemsPerRow="4"
-   :items="[
+       title='Модули слежения'
+       itemsPerRow="4"
+       :items="[
    {
    title: 'Модуль слежения <br> СМАРТ S-2421',
    name: 'images/catalog/tracking-module/smart.png',
@@ -176,6 +176,7 @@ import {ref} from 'vue'
 import PageSection from "../Providers/PageSection.vue";
 import AppTitle from "../AppTitle.vue";
 import AppList from "../App/AppList.vue";
+
 export default {
    name: "MainPage",
    components: {AppList, AppTitle, PageSection},
@@ -225,8 +226,6 @@ export default {
             text: 'Контроль скоростного режима',
          },
       ])
-
-
 
 
       return {items1}

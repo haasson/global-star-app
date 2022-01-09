@@ -20,7 +20,8 @@
     "reset-css": "^5.0.1",
     "swiper": "^7.2.0",
     "vue": "^3.2.16",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vue-yandex-maps": "^0.12.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",

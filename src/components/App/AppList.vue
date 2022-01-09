@@ -1,43 +1,47 @@
 <template>
-   <PageSection class="list-block" :bgType="bg.type" :bgColor="bg.color" :style="cssVars">
+   <PageSection class="list-block" :class="[bgType, bgColor, {'with-title': title && bgType}]" >
       <div class="inner">
-         <h3 v-if="title">{{ title }}</h3>
+         <h3 v-if="title" :class="titleSize">{{ title }}</h3>
 
          <!-- Slider -->
          <Swiper
              v-if="isSlider"
              :slides-per-view="itemsPerRow"
-             :space-between="cssVars.doubleGap"
+             :space-between="2*gap"
              :pagination="{clickable: true}"
              class="list"
          >
             <SwiperSlide v-for="item in items">
                <Component
                    :is="listItemComponent"
+                   :empty="empty"
                    :title="item.title"
                    :name="item.name"
                    :link="item.link"
                    :text="item.text"
                    :icon="item.icon"
                    :itemHeight="itemHeight"
+                   :imageHeight="imageHeight"
                    :button="item.button"
                />
             </SwiperSlide>
          </Swiper>
 
          <!-- Simple list -->
-         <ul v-else class="list" :style="{justifyContent: justify}">
+         <ul v-else class="list" :class="{multiline}" :style="{justifyContent: justify}">
             <Component
                 :is="listItemComponent"
                 v-for="item in items"
+                :empty="empty"
                 :title="item.title"
                 :name="item.name"
                 :link="item.link"
                 :text="item.text"
                 :icon="item.icon"
                 :itemHeight="itemHeight"
+                :imageHeight="imageHeight"
                 :button="item.button"
-                :style="{width: `calc(100%/${itemsPerRow} - ${cssVars.doubleGap})`}"
+                :style="{width: `calc(100%/${itemsPerRow} - 2*${gap}px)`, margin: `0 ${gap}px ${multiline ? '50px' : 0}`}"
                 class="list-item"
             />
          </ul>
@@ -66,6 +70,10 @@ export default defineComponent({
          type: String,
          required: true
       },
+      empty: {
+         type: Boolean,
+         default: false
+      },
       items: {
          type: Array,
          required: true
@@ -73,19 +81,30 @@ export default defineComponent({
       title: {
          type: String
       },
+      titleSize: {
+         type: String,
+         default: 'lg'
+      },
       isSlider: {
          type: Boolean,
          default: false
       },
-      bg: {
-         type: Object,
-         default: () => ({})
+      bgType: {
+         type: String,
+         default: ''
+      },
+      bgColor: {
+         type: String,
+         default: ''
       },
       itemsPerRow: {
          type: Number,
          default: 4
       },
       itemHeight: {
+         type: Number
+      },
+      imageHeight: {
          type: Number
       },
       gap: {
@@ -95,6 +114,10 @@ export default defineComponent({
       justify: {
          type: String,
          default: 'center'
+      },
+      multiline: {
+         type: Boolean,
+         default: false
       }
    },
 
@@ -103,20 +126,10 @@ export default defineComponent({
       const listItemComponent = shallowRef('')
       listItemComponent.value = defineAsyncComponent(() => import(`../Cards/${capitalize(props.type)}Card.vue`))
 
-      const gap = ref(props.gap)
-      const cssVars = computed(() => {
-         return {
-            '--gap': `${gap.value}px`,
-            doubleGap: `${2*gap.value}px`
-         }
-      })
-
 
       return {
          listItemComponent,
          modules: [Pagination],
-
-         cssVars
       };
    },
 })
@@ -124,19 +137,37 @@ export default defineComponent({
 
 
 <style lang="scss" scoped>
+.list-block {
+   &.with-title {
+      padding-top: 40px;
+   }
+
+   &.blue {
+      h3 {
+         color: var(--white)
+      }
+   }
+}
 h3 {
-   font-size: var(--title-size);
-   font-weight: 700;
    text-align: center;
+
+   &.sm {
+      font-size: var(--subtitle-size);
+   }
+
+   &.lg {
+      font-size: var(--title-size);
+      font-weight: 700;
+   }
 }
 
 .list {
    display: flex;
    flex-wrap: wrap;
-   margin-top: 60px;
+   margin-top: 40px;
+   &.multiline {
+      margin-bottom: -50px;
+   }
 }
 
-.list-item {
-   margin: 0 var(--gap) 50px;
-}
 </style>

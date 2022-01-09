@@ -1,21 +1,23 @@
 <template>
-   <PageSection v-if="isAdmin">
-      <AppButtonsGroup v-if="article">
-         <AppButton @click="editArticle" color="blue">Редактировать</AppButton>
-         <AppButton @click="hideArticle" color="blue">{{article.isHidden ? 'Показать' : 'Скрыть'}}</AppButton>
-         <div v-if="article.isHidden" class="hidden-warning">Новость скрыта от пользователей</div>
-      </AppButtonsGroup>
-   </PageSection>
+   <AppPage>
+      <PageSection v-if="isAdmin">
+         <AppButtonsGroup v-if="article">
+            <AppButton @click="editArticle" color="blue">Редактировать</AppButton>
+            <AppButton @click="hideArticle" color="blue">{{ article.isHidden ? 'Показать' : 'Скрыть' }}</AppButton>
+            <div v-if="article.isHidden" class="hidden-warning">Новость скрыта от пользователей</div>
+         </AppButtonsGroup>
+      </PageSection>
 
-   <PageSection>
-      <div v-if="article" class="inner">
-         <h3>{{article.title}}</h3>
-         <p class="date">{{article.date}}</p>
-         <div class="text" v-html="description"></div>
+      <PageSection>
+         <div v-if="article" class="inner">
+            <h3>{{ article.title }}</h3>
+            <p class="date">{{ article.date }}</p>
+            <div class="text" v-html="description"></div>
 
-         <AppGallery v-if="gallery" :slides="gallery" :fromStorage="true" />
-      </div>
-   </PageSection>
+            <AppGallery v-if="gallery" :slides="gallery" :fromStorage="true"/>
+         </div>
+      </PageSection>
+   </AppPage>
 
    <!-- Modals -->
    <EditArticleModal
@@ -46,10 +48,11 @@ import AppGallery from "./App/AppGallery.vue";
 import AppButton from "./App/AppButton.vue";
 import AppButtonsGroup from "./App/AppButtonsGroup.vue";
 import EditArticleModal from "../modules/about/modals/EditArticleModal.vue";
+import AppPage from "./App/AppPage.vue";
 
 export default {
    name: "FullArticle",
-   components: {EditArticleModal, AppButtonsGroup, AppButton, AppGallery, PageSection, Swiper, SwiperSlide},
+   components: {AppPage, EditArticleModal, AppButtonsGroup, AppButton, AppGallery, PageSection, Swiper, SwiperSlide},
    props: {
       articleType: {
          type: String,
@@ -100,15 +103,14 @@ export default {
 
       const editModal = ref(null)
 
-      const editArticle = () =>  editModal.value.open()
+      const editArticle = () => editModal.value.open()
       const hideArticle = async () => {
          const visibleProp = [articleLink] + '/isHidden'
-         await putArticle({[visibleProp] : !article.value.isHidden})
+         await putArticle({[visibleProp]: !article.value.isHidden})
          updateArticle()
       }
 
       const updateArticle = () => getArticle(articleLink)
-
 
 
       return {

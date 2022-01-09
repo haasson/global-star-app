@@ -1,19 +1,22 @@
 <template>
-   <PageSection v-if="isAdmin">
-      <AppButton @click="addProject" color="blue">Добавить проект</AppButton>
-   </PageSection>
+   <AppPage>
+      <PageSection v-if="isAdmin">
+         <AppButton @click="addProject" color="blue">Добавить проект</AppButton>
+      </PageSection>
 
-   <div v-if="projectsList">
-      <ArticleItem
-          v-for="news in projectsList"
-          articleType="projects"
-          :id="news.id"
-          :title="news.title"
-          :text="news.text"
-          :image="getMainImage(news)"
-          :time="news.time"
-      />
-   </div>
+      <div v-if="projectsList">
+         <ArticleItem
+             v-for="news in projectsList"
+             articleType="projects"
+             :id="news.id"
+             :title="news.title"
+             :text="news.text"
+             :image="getMainImage(news)"
+             :time="news.time"
+             class="item"
+         />
+      </div>
+   </AppPage>
 
 
    <!-- Modals -->
@@ -28,9 +31,11 @@ import AppButton from "../../../components/App/AppButton.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
 import EditArticleModal from "../modals/EditArticleModal.vue";
 import useDatabase from "../../../composable/database";
+import AppPage from "../../../components/App/AppPage.vue";
+
 export default {
    name: "Projects",
-   components: {EditArticleModal, PageSection, AppButton, ArticleItem},
+   components: {AppPage, EditArticleModal, PageSection, AppButton, ArticleItem},
 
    setup() {
       const editModal = ref(null)
@@ -61,5 +66,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.item:not(:last-child) {
+   margin-bottom: 40px;
+}
 </style>

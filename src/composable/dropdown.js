@@ -1,7 +1,7 @@
 import { ref, nextTick } from 'vue'
 import { createPopper } from '@popperjs/core'
 
-export default function useDropdown({placement} = {}) {
+export default function useDropdown({placement, offset} = {}) {
   const dropdownEl = ref(null)
   const buttonEl = ref(null)
   const isOpen = ref(false)
@@ -21,15 +21,16 @@ export default function useDropdown({placement} = {}) {
   }
 
   function setupPopper() {
+    console.log('set')
     new createPopper(buttonEl.value, dropdownEl.value, {
       placement: dropdownPlacement.value,
       modifiers: [
-        // {
-        //   name: 'offset',
-        //   options: {
-        //     offset: [-10, 10]
-        //   }
-        // },
+        {
+          name: 'offset',
+          options: {
+            offset: offset || [0,0]
+          }
+        },
         {
           name: 'preventOverflow',
           options: {

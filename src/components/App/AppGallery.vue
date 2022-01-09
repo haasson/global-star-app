@@ -1,28 +1,31 @@
 <template>
-   <div class="image-big">
-      <img :src="currentSlide" alt="">
-   </div>
+   <PageSection>
+      <div class="image-big">
+         <img :src="currentSlide" alt="">
+      </div>
 
-   <Swiper
-       :slidesPerView="'auto'"
-       :slideToClickedSlide="true"
-       :spaceBetween="20"
-       class="list"
-       @tap="onChange"
-   >
-      <SwiperSlide v-for="slide in slidesComponents" class="slide">
-         <img :src="slide" alt="">
-      </SwiperSlide>
-   </Swiper>
+      <Swiper
+          :slidesPerView="'auto'"
+          :slideToClickedSlide="true"
+          :spaceBetween="20"
+          class="list"
+          @tap="onChange"
+      >
+         <SwiperSlide v-for="slide in slidesComponents" class="slide">
+            <img :src="slide" alt="">
+         </SwiperSlide>
+      </Swiper>
+   </PageSection>
 </template>
 
 <script>
 import {Swiper, SwiperSlide} from 'swiper/vue'
 import {ref, watch, watchEffect} from "vue";
+import PageSection from "../Providers/PageSection.vue";
 
 export default {
    name: "AppGallery",
-   components: {Swiper, SwiperSlide},
+   components: {PageSection, Swiper, SwiperSlide},
    props: {
       slides: {
          type: Array,
@@ -37,18 +40,21 @@ export default {
    setup(props) {
       const slidesComponents = ref([])
       const currentSlide = ref('')
-      watchEffect(() => {
-         if (!props.fromStorage) {
-            props.slides.forEach(slide => {
-               import(slide).then(component => slidesComponents.value.push(component.default))
-            })
-         } else {
-            slidesComponents.value = props.slides
-         }
+      if (!props.fromStorage) {
+         console.log('here1')
+         props.slides.forEach(slide => {
+            import(slide).then(component => slidesComponents.value.push(component.default))
+         })
+      } else {
+         console.log('here')
+         slidesComponents.value = props.slides
+      }
+      console.log(slidesComponents.value)
 
+
+      watchEffect(() => {
          currentSlide.value = slidesComponents.value[0]
       })
-
 
       const onChange = (event) => {
          currentSlide.value = slidesComponents.value[event.clickedIndex]

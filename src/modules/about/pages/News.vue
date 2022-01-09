@@ -1,23 +1,23 @@
 <template>
-   <PageSection v-if="isAdmin">
-      <AppButton @click="addNews" color="blue">Добавить новость</AppButton>
-   </PageSection>
+   <AppPage>
+      <PageSection v-if="isAdmin">
+         <AppButton @click="addNews" color="blue">Добавить новость</AppButton>
+      </PageSection>
 
-   <div v-for="(news, i) in newsList">
-      {{i}} - {{news}}
-   </div>
+      <div v-if="newsList">
+         <ArticleItem
+             v-for="news in newsList"
+             articleType="news"
+             :id="news.id"
+             :title="news.title"
+             :text="news.text"
+             :image="getMainImage(news)"
+             :time="news.time"
+             class="item"
+         />
+      </div>
 
-   <div v-if="newsList">
-      <ArticleItem
-          v-for="news in newsList"
-          articleType="news"
-          :id="news.id"
-          :title="news.title"
-          :text="news.text"
-          :image="getMainImage(news)"
-          :time="news.time"
-      />
-   </div>
+   </AppPage>
 
 
    <!-- Modals -->
@@ -32,9 +32,11 @@ import AppButton from "../../../components/App/AppButton.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
 import EditArticleModal from "../modals/EditArticleModal.vue";
 import useDatabase from "../../../composable/database";
+import AppPage from "../../../components/App/AppPage.vue";
+
 export default {
    name: "News",
-   components: {EditArticleModal, PageSection, AppButton, ArticleItem},
+   components: {AppPage, EditArticleModal, PageSection, AppButton, ArticleItem},
 
    setup() {
       const editModal = ref(null)
@@ -45,7 +47,7 @@ export default {
       const {get, data: newsList} = useDatabase()
       get('news/list')
 
-       const getMainImage = (news) => {
+      const getMainImage = (news) => {
          const mainImage = news.images.find(image => image.isMain === true)
          const mainImageName = mainImage ? mainImage.name : news.images[0].name
          return `images/news/${news.id}/gallery/${mainImageName}`
@@ -66,5 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.item:not(:last-child) {
+   margin-bottom: 40px;
+}
 </style>

@@ -84,7 +84,7 @@ export default {
       const deleteImage = (name) => {
          delete uploadedFiles.value[name];
          // setMain();
-         // emit('delete', fileName)
+         emit('update:images', uploadedFiles.value)
       };
 
       return {

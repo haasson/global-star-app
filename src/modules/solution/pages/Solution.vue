@@ -1,37 +1,21 @@
 <template>
-   <div>
-      <AppList
-          :type="'solution'"
-          :items="agricultureContent"
-          :itemsPerRow="3"
-          :title="'Решения для сельского хозяйства'"
-          class="list-w-bg"
-      />
-
-      <AppList
-          :type="'solution'"
-          :items="transportContent"
-          :itemsPerRow="3"
-          :title="'Решения для транспорта'"
-          class="list-w-bg offset"
-      />
-
-      <AppList
-          :type="'solution'"
-          :items="buildingContent"
-          :itemsPerRow="3"
-          :title="'Решения для строительства'"
-          class="list-w-bg offset"
-      />
-   </div>
+   <AppPage>
+      <Agriculture />
+      <Transport />
+      <Building />
+   </AppPage>
 </template>
 
 <script>
 import AppList from "../../../components/App/AppList.vue";
 import {agricultureContent, transportContent, buildingContent} from '../composable/solution'
+import Agriculture from "./Agriculture.vue";
+import Transport from "./Transport.vue";
+import Building from "./Building.vue";
+import AppPage from "../../../components/App/AppPage.vue";
 export default {
    name: "Solution",
-   components: {AppList},
+   components: {AppPage, Building, Transport, Agriculture, AppList},
    setup() {
 
       return {agricultureContent, transportContent, buildingContent}
@@ -40,19 +24,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.list-w-bg {
-   background: linear-gradient(180deg,
-       transparent 0%,
-       transparent 235px,
-       var(--orange) 235px,
-       var(--orange) 565px,
-       transparent 565px,
-       transparent 100%
-   );
-   &.offset {
-      padding-bottom: 50px;
-   }
-}
 
 </style>

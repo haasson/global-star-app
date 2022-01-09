@@ -92,6 +92,7 @@ export default {
       const {set: setArticle} = useDatabase();
 
       const onUpdateImages = (files) => {
+         console.log(files)
          data.images = files
       };
 
@@ -102,11 +103,13 @@ export default {
              .filter(file => file.type)
              .sort((a, b) => (a.isMain === true ? 1 : -1))
 
-         const articleID = props.id || articlesCount.value === undefined ? 1 : articlesCount.value + 1
+         console.log('id:', props.id, 'current count:', articlesCount.value)
+         const articleID = props.id ? props.id.slice(2) : (articlesCount.value === undefined ? 1 : articlesCount.value + 1)
          const articleToSave = {...data, id: `id${articleID}`, images, time: Date.now()}
 
          const storagePath = `images/${entity}/id${articleID}`
 
+         console.log(articleToSave)
          await Promise.all([
             // Save data to database
             setArticle(`${entity}/count`, articleID),

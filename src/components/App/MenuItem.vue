@@ -84,6 +84,7 @@ export default {
    //text-align: center;
    color: white;
    cursor: pointer;
+   white-space: nowrap;
    &:hover {
       background-color: var(--extra-blue);
    }
@@ -97,12 +98,13 @@ export default {
 
 .sub-item {
    //width: 100%;
+   white-space: nowrap;
 }
 
 .dropdown {
    display: flex;
    flex-direction: column;
-   min-width: 230px;
+   //min-width: 330px;
    background-color: var(--dark-blue);
 
 }

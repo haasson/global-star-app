@@ -1,8 +1,14 @@
 <template>
-   <router-link class="link" :to="link">
-      <slot/>
-   </router-link>
+      <router-link
+          v-if="link"
+          :to="link"
+          class="card link"
+          :class="{empty}"
+      >
+         <slot/>
+      </router-link>
 
+      <div v-else class="card" :class="{empty}"><slot /></div>
 </template>
 
 <script>
@@ -11,24 +17,32 @@ export default {
    props: {
       link: {
          type: String
+      },
+      empty: {
+         type: Boolean
       }
    }
 }
 </script>
 
 <style lang="scss" scoped>
-.link {
+.card {
    width: 100%;
-   height: 100%;
-
-   border-radius: 10px;
    overflow: hidden;
-   box-shadow: var(--card-shadow);
-   transition: box-shadow .3s;
-   background-color: #fff;
 
-   &:hover {
-      box-shadow: var(--card-shadow-hover);
+   &:not(.empty) {
+      border-radius: 10px;
+      box-shadow: var(--card-shadow);
+      transition: box-shadow .3s;
+      background-color: #fff;
+      &:hover {
+         box-shadow: var(--card-shadow-hover);
+      }
+   }
+
+
+   &.link {
+      cursor: pointer;
    }
 }
 </style>

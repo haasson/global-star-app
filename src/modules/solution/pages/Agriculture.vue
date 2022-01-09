@@ -5,6 +5,7 @@
        :itemsPerRow="3"
        :title="'Решения для сельского хозяйства'"
        class="list-w-bg"
+       multiline
    />
 </template>
 
@@ -28,8 +29,8 @@ export default {
        transparent 0%,
        transparent 235px,
        var(--orange) 235px,
-       var(--orange) 565px,
-       transparent 565px,
+       var(--orange) 545px,
+       transparent 545px,
        transparent 100%
    );
 }

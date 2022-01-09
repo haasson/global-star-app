@@ -16,7 +16,10 @@ export default {
    setup() {
       const route = useRoute()
 
-      const catalog = ref([ {title: 'Some title reugh euirgукгщпр гукпр укгпр кгу прукрп укщшпр укщшпркущршп укщпр укшkjwefhwjif ewiuf gweuifguwei fooeufhweufh f euwfhuiegfiweugfuiwegfuiwegfuiwegfuiewgewuifgh erekjrgh reiguierg ruieg erui uierohg urieohguiorwegheurighgh eriug eirugh ieurg iuerg'}, {title: 'Some title', text: 'text'}] )
+      const catalog = ref([
+          {title: 'Some title reugh euirgукгщпр гукпр укгпр кгу прукрп укщшпр укщшпркущршп укщпр укшkjwefhwjif ewiuf gweuifguwei fooeufhweufh f euwfhuiegfiweugfuiwegfuiwegfuiwegfuiewgewuifgh erekjrgh reiguierg ruieg erui uierohg urieohguiorwegheurighgh eriug eirugh ieurg iuerg'},
+         {title: 'Some title', text: 'text fguiewfgwe fui weiufg weruig ergui erguh eruioghergioheroighr eroigheroi gh erogi eriogherig rogihre ogihr goier hgoeri goerihgeriogheriogheri geriohg eroighreiog erogherioghre goierhg riohg eroig roihg eroigh gutigreutigreutgreutger ruietgrueitgreuitgrt ruitgrtuirgter ruietgreuitgerutgr uirtgureitgtu'}
+         ])
 
 
       return {some: route.params.id, catalog}

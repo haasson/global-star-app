@@ -1,11 +1,12 @@
 <template>
-   <div>
+   <AppPage>
       <AppList
           :type="'product'"
           :items="agricultureContent"
           :itemsPerRow="3"
           :title="'Для сельского хозяйства'"
           class="list-w-bg"
+          multiline
       />
 
       <AppList
@@ -14,16 +15,18 @@
           :itemsPerRow="2"
           :title="'Для транспорта'"
           class="list-w-bg"
+          multiline
       />
-   </div>
+   </AppPage>
 </template>
 
 <script>
 import AppList from "../../../components/App/AppList.vue";
 import {agricultureContent, transportContent} from '../composable/products'
+import AppPage from "../../../components/App/AppPage.vue";
 export default {
    name: "Products",
-   components: {AppList},
+   components: {AppPage, AppList},
    setup() {
       agricultureContent.forEach(item => item.link = { name: 'catalogList', params: { id: item.name }})
       transportContent.forEach(item => item.link = { name: 'catalogList', params: { id: item.name }})
@@ -34,15 +37,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .list-w-bg {
-   padding-bottom: 50px;
    background: linear-gradient(180deg,
        transparent 0%,
-       transparent 235px,
-       var(--orange) 235px,
-       var(--orange) 565px,
-       transparent 565px,
+       transparent 215px,
+       var(--orange) 215px,
+       var(--orange) 545px,
+       transparent 545px,
        transparent 100%
    );
 }
