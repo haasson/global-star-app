@@ -1,21 +1,24 @@
 <template>
-   <AppList
-       :type="'solution'"
-       :items="agricultureContent"
-       :itemsPerRow="3"
-       :title="'Решения для сельского хозяйства'"
-       class="list-w-bg"
-       multiline
-   />
+   <AppPage>
+      <AppList
+          :type="'solution'"
+          :items="agricultureContent"
+          :itemsPerRow="3"
+          :title="'Решения для сельского хозяйства'"
+          class="list-w-bg"
+          multiline
+      />
+   </AppPage>
 </template>
 
 <script>
 import {agricultureContent} from '../composable/solution'
 import AppList from "../../../components/App/AppList.vue";
+import AppPage from "../../../components/App/AppPage.vue";
 
 export default {
    name: "Agriculture",
-   components: {AppList},
+   components: {AppPage, AppList},
    setup() {
 
       return {agricultureContent}

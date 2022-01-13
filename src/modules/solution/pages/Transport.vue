@@ -1,20 +1,23 @@
 <template>
-   <AppList
-       :type="'solution'"
-       :items="transportContent"
-       :itemsPerRow="3"
-       :title="'Решения для транспорта'"
-       class="list-w-bg"
-   />
+   <AppPage>
+      <AppList
+          :type="'solution'"
+          :items="transportContent"
+          :itemsPerRow="3"
+          :title="'Решения для транспорта'"
+          class="list-w-bg"
+      />
+   </AppPage>
 </template>
 
 <script>
 import {transportContent} from '../composable/solution'
 import AppList from "../../../components/App/AppList.vue";
+import AppPage from "../../../components/App/AppPage.vue";
 
 export default {
    name: "Transport",
-   components: {AppList},
+   components: {AppPage, AppList},
    setup() {
 
       return {transportContent}

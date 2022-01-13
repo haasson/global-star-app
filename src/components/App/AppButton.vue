@@ -1,7 +1,8 @@
 <template>
    <Component
-       :is="href ? 'a' : 'button'"
-       :href="href || null"
+       :is="href ? 'a' : to ? 'router-link' : 'button'"
+       :href="href"
+       :to="to"
        class="btn"
        :class="[color, {icon}]"
    >
@@ -29,6 +30,9 @@ export default {
          type: String,
       },
       href: {
+         type: String
+      },
+      to: {
          type: String
       },
       color: {

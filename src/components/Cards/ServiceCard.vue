@@ -12,20 +12,17 @@
          </div>
       </div>
 
-
       <p class="text">{{ text }}</p>
    </div>
 
 </template>
 
 <script>
-import {ref} from "vue";
-import Card from "./Card.vue";
 import AppIcon from "../App/AppIcon.vue";
 
 export default {
    name: "ServiceCard",
-   components: {AppIcon, Card},
+   components: {AppIcon},
    props: {
       icon: {
          type: Object,

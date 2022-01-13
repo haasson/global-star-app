@@ -9,22 +9,39 @@ const productsRoutes = [
       path: '/products/agriculture',
       name: 'productsAgriculture',
       component: () => import("../pages/Agriculture.vue"),
+      children: [
+         {
+            path: ':id', name: 'catalogList1', component: () => import("../pages/CatalogList.vue"),
+         }
+      ]
    },
 
    {
       path: '/products/transport',
       name: 'productsTransport',
-      component: () => import("../pages/Transport.vue")
+      component: () => import("../pages/Transport.vue"),
+      children: [
+         {
+            path: ':id', name: 'catalogList2', component: () => import("../pages/CatalogList.vue"),
+         }
+      ]
    },
 
    {
       path: '/products/catalog',
       name: 'productsCatalog',
       component: () => import("../pages/Catalog.vue"),
-      children: [
-         {path: ':id', name: 'catalogList', component: () => import("../pages/CatalogList.vue")}
-      ]
+      // children: [
+      //    {path: ':id', name: 'catalogList', component: () => import("../pages/CatalogList.vue")}
+      // ]
    },
+
+   {
+      path: '/products/:section/:category/:productID',
+      name: 'productPage',
+      component: () => import("../pages/ProductPage.vue"),
+   },
+
 
    // {
    //    path: '/products/agriculture/navigation',

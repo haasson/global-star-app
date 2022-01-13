@@ -7,7 +7,7 @@
    </TextBlock>
 
    <TextWithImage image="solution/pages/harvest/yield-map.png" imagePosition="left">
-      <p>Карта урожайности отвечает на вопросы:</p>
+      <p class="list-title">Карта урожайности отвечает на вопросы:</p>
       <ul>
          <li>Какие участки поля принесли больше всего?</li>
          <li>Какие участки дали меньше всего?</li>
@@ -31,23 +31,14 @@
    <div>
       <AppTitle position="left">Особенности системы</AppTitle>
       <AppList
-          type="feature" gap="5"
+          type="feature" gap="25"
           :items="features"
           itemsPerRow="2"
           multiline
       />
    </div>
 
-   <div>
-      <AppTitle>Программное обеспечение</AppTitle>
-      <AppList
-          type="soft"
-          gap="14"
-          :items="soft"
-          itemsPerRow="3"
-          empty
-      />
-   </div>
+   <SoftSection :items="soft" />
 
    <AppAlert>Цена комплекта от 5600$</AppAlert>
 
@@ -60,6 +51,7 @@ import TextWithImage from "../../../../../components/Sections/TextWithImage.vue"
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
+import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 
 const basePath = 'solution/pages/harvest/'
 const imageWithPoints = {
@@ -105,14 +97,11 @@ const features = [
       text: 'Информация о переполнении и выгрузке бункера',
    },
 ]
-const soft = [
-   {name: 'solution/soft/finiti.png'},
-   {name: 'solution/soft/sms.png'}
-]
+const soft = ['finiti', 'sms']
 
 export default {
    name: "AgLeader",
-   components: {AppAlert, AppList, ImageWithMarkers, TextWithImage, AppTitle, TextBlock},
+   components: {SoftSection, AppAlert, AppList, ImageWithMarkers, TextWithImage, AppTitle, TextBlock},
 
    setup() {
       return {imageWithPoints, systemItems, features, soft}
@@ -121,8 +110,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
+.list-title {
+   margin-bottom: 10px;
+}
 ul {
    list-style: disc;
    margin-left: 30px;

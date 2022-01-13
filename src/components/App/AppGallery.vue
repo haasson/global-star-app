@@ -40,17 +40,16 @@ export default {
    setup(props) {
       const slidesComponents = ref([])
       const currentSlide = ref('')
-      if (!props.fromStorage) {
-         console.log('here1')
-         props.slides.forEach(slide => {
-            import(slide).then(component => slidesComponents.value.push(component.default))
-         })
-      } else {
-         console.log('here')
-         slidesComponents.value = props.slides
-      }
-      console.log(slidesComponents.value)
 
+      watch(props, () => {
+         if (!props.fromStorage) {
+            props.slides.forEach(slide => {
+               import(slide).then(component => slidesComponents.value.push(component.default))
+            })
+         } else {
+            slidesComponents.value = props.slides
+         }
+      }, {immediate: true})
 
       watchEffect(() => {
          currentSlide.value = slidesComponents.value[0]

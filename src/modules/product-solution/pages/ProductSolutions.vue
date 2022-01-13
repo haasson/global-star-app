@@ -4,16 +4,26 @@
           title='Gurtam'
           type='soft'
           itemsPerRow="3"
-          :items="gurtamItems"
+          :items="programSolutions.gurtamPS"
           multiline
           class="list-w-bg"
+      />
+
+      <AppList
+          title='DTM'
+          type='soft'
+          itemsPerRow="3"
+          :items="programSolutions.dtmPS"
+          multiline
+          bgColor="orange"
+          bgType="half"
       />
 
       <AppList
           title='AgLeader'
           type='soft'
           itemsPerRow="3"
-          :items="agLeaderItems"
+          :items="programSolutions.agLeaderPS"
           multiline
           bgColor="orange"
           bgType="half"
@@ -24,44 +34,16 @@
 <script>
 import AppList from "../../../components/App/AppList.vue";
 import AppPage from "../../../components/App/AppPage.vue";
+import appConfig from "../../../config/app.config.js";
 
-const gurtamItems = [
-   {
-      name: 'solution/soft/wialon.png',
-      text: 'Wialon',
-   },
-   {
-      name: 'solution/soft/hecterra.png',
-      text: 'Hecterra',
-   },
-   {
-      name: 'solution/soft/logistics.png',
-      text: 'Logistics',
-   },
-   {
-      name: 'solution/soft/eco-driving.png',
-      text: 'Eco Driving',
-   },
-   {
-      name: 'solution/soft/fleetrun.png',
-      text: 'Fleetrun',
-   },
-   {
-      name: 'solution/soft/wia-tag.png',
-      text: 'Wia Tag',
-   },
-]
-const agLeaderItems = [
-   {name: 'solution/soft/finiti.png'},
-   {name: 'solution/soft/sms.png'},
-]
+
 export default {
    name: "ProductSolutions",
    components: {AppPage, AppList},
 
    setup() {
-
-      return {gurtamItems, agLeaderItems}
+      const {programSolutions} = appConfig
+      return {programSolutions}
    }
 }
 </script>

@@ -1,51 +1,41 @@
 <template>
-   <AppPage>
-      <AppList
-          :type="'product'"
-          :items="agricultureContent"
-          :itemsPerRow="3"
-          :title="'Для сельского хозяйства'"
-          class="list-w-bg"
-          multiline
-      />
+   <PageSection v-if="isAdmin" class="add-button">
+      <AppButton @click="addProduct" color="blue">Добавить продукт</AppButton>
+   </PageSection>
+   <Agriculture class="products-block"/>
+   <Transport/>
 
-      <AppList
-          :type="'product'"
-          :items="transportContent"
-          :itemsPerRow="2"
-          :title="'Для транспорта'"
-          class="list-w-bg"
-          multiline
-      />
-   </AppPage>
+   <!-- Modals -->
+<!--   <EditArticleModal ref="editModal" articleType="add-news" @update:article=""/>-->
+
 </template>
 
 <script>
-import AppList from "../../../components/App/AppList.vue";
-import {agricultureContent, transportContent} from '../composable/products'
-import AppPage from "../../../components/App/AppPage.vue";
+import {isAdmin} from "../../../store";
+import Agriculture from "./Agriculture.vue";
+import Transport from "./Transport.vue";
+import PageSection from "../../../components/Providers/PageSection.vue";
+import AppButton from "../../../components/App/AppButton.vue";
+
 export default {
    name: "Products",
-   components: {AppPage, AppList},
+   components: {AppButton, PageSection, Transport, Agriculture},
    setup() {
-      agricultureContent.forEach(item => item.link = { name: 'catalogList', params: { id: item.name }})
-      transportContent.forEach(item => item.link = { name: 'catalogList', params: { id: item.name }})
+      const addProduct = () => {
 
-      return {agricultureContent, transportContent}
+      }
+
+      return {isAdmin, addProduct}
    }
 }
 </script>
 
 <style lang="scss" scoped>
-.list-w-bg {
-   background: linear-gradient(180deg,
-       transparent 0%,
-       transparent 215px,
-       var(--orange) 215px,
-       var(--orange) 545px,
-       transparent 545px,
-       transparent 100%
-   );
+.add-button {
+   margin-top: 70px;
+}
+.products-block {
+   padding-bottom: 0;
 }
 
 </style>

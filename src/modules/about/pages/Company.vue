@@ -56,20 +56,20 @@ const slides = [
    '../../assets/images/about/company/8.jpg',
 ]
 const clients = [
-   {name: 'images/simple/1.png'},
-   {name: 'images/simple/2.png'},
-   {name: 'images/simple/3.png'},
-   {name: 'images/simple/4.png'},
-   {name: 'images/simple/5.png'},
-   {name: 'images/simple/6.png'},
+   {name: 'about/clients/1.png'},
+   {name: 'about/clients/2.png'},
+   {name: 'about/clients/3.png'},
+   {name: 'about/clients/4.png'},
+   {name: 'about/clients/5.png'},
+   {name: 'about/clients/6.png'},
 ]
 const partners = [
-   {name: 'images/simple/1.png'},
-   {name: 'images/simple/2.png'},
-   {name: 'images/simple/3.png'},
-   {name: 'images/simple/4.png'},
-   {name: 'images/simple/5.png'},
-   {name: 'images/simple/6.png'},
+   {name: 'about/partners/1.png'},
+   {name: 'about/partners/2.png'},
+   {name: 'about/partners/3.png'},
+   {name: 'about/partners/4.png'},
+   {name: 'about/partners/5.png'},
+   {name: 'about/partners/6.png'},
 ]
 export default {
    name: "Company",

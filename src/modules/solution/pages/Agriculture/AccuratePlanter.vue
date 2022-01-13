@@ -37,15 +37,7 @@
           bgType="half"
       />
 
-      <div>
-         <AppTitle position="left">Программное обеспечение</AppTitle>
-         <AppList
-             type="soft"
-             gap="14"
-             :items="soft"
-             itemsPerRow="3"
-         />
-      </div>
+     <SoftSection :items="soft" titlePosition="left" />
 
 
    </AppPage>
@@ -59,17 +51,18 @@ import AppPage from "../../../../components/App/AppPage.vue";
 import AppTitle from "../../../../components/AppTitle.vue";
 import TextWithImage from "../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../components/App/AppList.vue";
+import SoftSection from "../../../../components/Sections/SoftSection.vue";
 
 const variants = [
    {name: 'solution/pages/accurate-planter/variant1.png', title: 'SureSpeed'},
    {name: 'solution/pages/accurate-planter/variant2.png', title: 'SureDrive'},
    {name: 'solution/pages/accurate-planter/variant3.png', title: 'SureForce'},
 ]
-const soft = [{name: 'solution/soft/finiti.png'}, {name: 'solution/soft/sms.png'}]
+const soft = ['finiti', 'sms']
 
 export default {
 name: "AccuratePlanter",
-   components: {AppList, TextWithImage, AppTitle, AppPage, TextBlock, HeadImage},
+   components: {SoftSection, AppList, TextWithImage, AppTitle, AppPage, TextBlock, HeadImage},
    setup() {
       return {image, variants, soft}
    }

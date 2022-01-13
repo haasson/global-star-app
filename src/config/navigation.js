@@ -89,7 +89,8 @@ const navigation = {
          agriculture: {
             position: 1,
             name: 'Для сельского хозяйства',
-            path: 'catalog',
+            path: 'agriculture',
+            // params: {category: 'agriculture'},
             children: {
                'navigation': {
                   position: 1,
@@ -121,7 +122,8 @@ const navigation = {
          transport: {
             position: 2,
             name: 'Для транспорта',
-            path: 'catalog',
+            path: 'transport',
+            // params: {category: 'transport'},
             children: {
                'tracker': {
                   position: 1,

@@ -2,7 +2,7 @@
    <Card class="card">
 
       <div class="image">
-         <img :src="cardImage" alt="">
+         <img v-if="cardImage" :src="cardImage.src" alt="">
       </div>
 
       <div v-ellipsis class="title-container">
@@ -13,7 +13,7 @@
          <p v-html="text"></p>
       </div>
 
-      <AppButton v-if="button" :href="link" class="btn" color="orange">
+      <AppButton v-if="button" :href="link"  class="btn" color="orange">
          {{button}}
       </AppButton>
 
@@ -21,11 +21,12 @@
 </template>
 
 <script>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {getImageUrl} from "../../helpers/firebase";
 import Card from "./Card.vue";
 import AppButton from "../App/AppButton.vue";
 import useImage from "../../composable/useImage";
+import useStorage from "../../composable/storage.js";
 
 export default {
    name: "CatalogCard",
@@ -51,7 +52,13 @@ export default {
    },
 
    setup({image}) {
-      const cardImage = useImage(image)
+      const {get, data: cardImage, error} = useStorage()
+      console.log(image)
+      get(image)
+
+      watch(cardImage, () => {
+         console.log(cardImage.value)
+      })
 
       return {cardImage}
    }

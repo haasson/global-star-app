@@ -7,22 +7,13 @@
    <ImageWithMarkers :imagePath="imageWithPoints.imagePath" :points="imageWithPoints.points"/>
 
    <AppList
-       type="feature" gap="5"
+       type="feature" gap="30"
        :items="features"
        itemsPerRow="3"
        multiline
    />
 
-   <div>
-      <AppTitle position="left">Программное обеспечение</AppTitle>
-      <AppList
-          type="soft"
-          gap="14"
-          :items="soft"
-          itemsPerRow="3"
-          empty
-      />
-   </div>
+   <SoftSection :items="soft" titlePosition="left" />
 </template>
 
 <script>
@@ -30,6 +21,7 @@ import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/AppTitle.vue";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
+import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/machines-monitoring/combine/combine.png',
@@ -69,13 +61,10 @@ const features = [
       text: 'Контроль скоростного режима',
    },
 ]
-const soft = [
-   {name: 'solution/soft/hecterra.png', text: 'Hererra'},
-   {name: 'solution/soft/wialon.png', text: 'Wiallon'}
-]
+const soft = ['hecterra', 'wialon']
 export default {
    name: "CombineMonitoring",
-   components: {ImageWithMarkers, AppTitle, AppList, TextBlock},
+   components: {SoftSection, ImageWithMarkers, AppTitle, AppList, TextBlock},
 
    setup() {
       return {imageWithPoints, features, soft}

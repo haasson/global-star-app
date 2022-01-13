@@ -1,20 +1,23 @@
 <template>
-   <AppList
-       :type="'solution'"
-       :items="buildingContent"
-       :itemsPerRow="3"
-       :title="'Решения для строительства'"
-       class="list-w-bg"
-   />
+   <AppPage>
+      <AppList
+          :type="'solution'"
+          :items="buildingContent"
+          :itemsPerRow="3"
+          :title="'Решения для строительства'"
+          class="list-w-bg"
+      />
+   </AppPage>
 </template>
 
 <script>
 import {buildingContent} from '../composable/solution'
 import AppList from "../../../components/App/AppList.vue";
+import AppPage from "../../../components/App/AppPage.vue";
 
 export default {
    name: "Building",
-   components: {AppList},
+   components: {AppPage, AppList},
    setup() {
 
       return {buildingContent}

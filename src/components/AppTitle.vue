@@ -1,7 +1,12 @@
 <template>
    <PageSection class="title" :class="[position, type]">
       <div class="inner">
-         <h2><slot /></h2>
+         <h2>
+            <span class="title-text">
+              <slot />
+            </span>
+
+         </h2>
       </div>
    </PageSection>
 </template>
@@ -30,6 +35,7 @@ export default {
 <style lang="scss" scoped>
 
 .title {
+   margin-bottom: 70px;
    --title-bg-width: 45%;
 
    padding: 15px 0;
@@ -50,6 +56,9 @@ export default {
          background: linear-gradient(135deg, transparent 0, transparent 35px, var(--brown) 35px, var(--brown) 100%);
          padding: 3px 25px 3px 80px;
       }
+      .title-text {
+         text-align: right;
+      }
    }
 
    &.left {
@@ -63,6 +72,9 @@ export default {
       h2 {
          background: linear-gradient(315deg, transparent 0, transparent 35px, var(--brown) 35px, var(--brown) 100%);
          padding: 3px 80px 3px 25px;
+      }
+      .title-text {
+         text-align: left;
       }
    }
 
@@ -93,5 +105,9 @@ h2 {
    min-width: 70%;
    font-size: var(--title-size);
    font-weight: 700;
+}
+.title-text {
+   display: inline-block;
+   min-width: 260px;
 }
 </style>

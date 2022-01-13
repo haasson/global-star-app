@@ -3,7 +3,9 @@
       <div class="inner">
          <div class="content">
             <p class="text"><slot /></p>
-            <AppButton v-if="button" class="btn" :color="button.color">{{button.text}}</AppButton>
+            <div class="button">
+               <AppButton v-if="button" :to="button.to" :color="button.color">{{button.text}}</AppButton>
+            </div>
          </div>
          <div class="images" :class="{left: imagePosition === 'left'}">
             <img class="image" :src="imageSrc" alt="">
@@ -58,11 +60,10 @@ export default {
 }
 .text {
    font-size: var(--article-text-size);
-   margin-bottom: 40px;
 }
-.btn {
-   display: block;
-   margin: 0 auto;
+.button {
+   text-align: center;
+   margin-top: 40px;
 }
 .images {
    $gap: 60px;
@@ -75,5 +76,10 @@ export default {
    }
 }
 
+@media(max-width: 768px){
+   .block {
+      margin-top: 40px;
+   }
+}
 
 </style>

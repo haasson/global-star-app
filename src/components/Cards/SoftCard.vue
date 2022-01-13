@@ -36,7 +36,7 @@ export default {
    },
 
    setup({name}) {
-      const {imageSrc} = useLocalImage(name)
+      const {imageSrc} = useLocalImage(`solution/soft/${name}.png`)
       return {imageSrc}
    }
 }

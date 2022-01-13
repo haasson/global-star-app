@@ -1,20 +1,20 @@
 <template>
-   <PageSection>
-      <div class="inner">
-         <div class="item">
-            <div class="square">
-               <AppIcon
-                   class="icon"
-                   :style="{top: `${icon.shift.top}px`, left: `${icon.shift.left}px`}"
-                   :name="icon.name"
-                   width="64"
-                   height="64"
-               />
-            </div>
-            <p class="text">{{text}}</p>
-         </div>
+   <div class="item">
+      <div class="square">
+         <AppIcon
+             class="icon"
+             :style="{top: `${icon.shift.top}px`, left: `${icon.shift.left}px`}"
+             :name="icon.name"
+             :width="icon.width || 64"
+             :height="icon.height || icon.width || 64"
+         />
       </div>
-   </PageSection>
+      <div class="content">
+         <h3 v-if="title">{{title}}</h3>
+         <p>{{ text }}</p>
+      </div>
+
+   </div>
 </template>
 
 <script>
@@ -31,6 +31,9 @@ export default {
          type: Object,
          required: true
       },
+      title: {
+         type: String,
+      },
       text: {
          type: String,
          required: true
@@ -40,22 +43,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.item{
+.item {
    display: flex;
-   align-items: center;
+   align-items: flex-start;
 }
-.square{
+
+.square {
    position: relative;
    width: 64px;
    height: 64px;
    border: 5px solid var(--orange);
    flex-shrink: 0;
 }
-.text{
-   font-weight: 300;
+
+.content {
    margin-left: 16px;
 }
-.icon{
+h3 {
+   font-weight: 600;
+}
+p {
+   font-weight: 300;
+}
+
+.icon {
    position: absolute;
 }
 </style>

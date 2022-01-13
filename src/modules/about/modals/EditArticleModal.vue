@@ -104,19 +104,20 @@ export default {
              .sort((a, b) => (a.isMain === true ? 1 : -1))
 
          console.log('id:', props.id, 'current count:', articlesCount.value)
-         const articleID = props.id ? props.id.slice(2) : (articlesCount.value === undefined ? 1 : articlesCount.value + 1)
+         const articleID = props.id ? +(props.id.slice(2)) : (articlesCount.value === undefined ? 1 : articlesCount.value + 1)
          const articleToSave = {...data, id: `id${articleID}`, images, time: Date.now()}
 
          const storagePath = `images/${entity}/id${articleID}`
 
          console.log(articleToSave)
-         await Promise.all([
+         const promises = [
             // Save data to database
-            setArticle(`${entity}/count`, articleID),
             setArticle(`${entity}/list/id${articleID}`, articleToSave),
             // Save images to storage
             setImages(`${storagePath}/gallery`, filesArray),
-         ]);
+         ]
+         if (!props.id) promises.push(setArticle(`${entity}/count`, articleID))
+         await Promise.all(promises);
 
          close();
          emit("update:article");

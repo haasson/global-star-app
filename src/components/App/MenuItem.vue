@@ -33,8 +33,7 @@ export default {
    props: {
       name: {
          type: String,
-         default: 'temp'
-         // required: true
+         required: true
       },
       children: {
          type: Object
@@ -52,12 +51,16 @@ export default {
    setup(props) {
       const {buttonEl, dropdownEl, open, close, isOpen} = useDropdown({placement: props.placement})
 
-      // const router = useRouter()
-      // const goTo = (key, redirect) => {
-      //    console.log(props.path, key)
-      //    router.push(redirect ? `${props.path}/${key}/${redirect}` : `${props.path}/${key}`)
-      // }
+      const parseParams = (params) => {
+         let query = ''
+         for (const paramsKey in params) {
+            if (params.hasOwnProperty(paramsKey)) {
+               query += `${paramsKey}=${params[paramsKey]}`
+            }
+         }
 
+         return `?${query}`
+      }
 
       return {
          buttonEl,
@@ -65,23 +68,16 @@ export default {
          open,
          close,
          isOpen,
-
-         // goTo,
+         parseParams,
       }
    }
 }
 </script>
 
 <style lang="scss" scoped>
-//.menu-item {
-//  position: relative;
-//
-//}
-
 .trigger {
    display: block;
    padding: 18px 28px;
-   //text-align: center;
    color: white;
    cursor: pointer;
    white-space: nowrap;
@@ -97,16 +93,13 @@ export default {
 }
 
 .sub-item {
-   //width: 100%;
    white-space: nowrap;
 }
 
 .dropdown {
    display: flex;
    flex-direction: column;
-   //min-width: 330px;
    background-color: var(--dark-blue);
-
 }
 
 .router-link-active {

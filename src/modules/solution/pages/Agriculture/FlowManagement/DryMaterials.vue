@@ -26,7 +26,7 @@
       <div>
          <AppTitle>Дисплей</AppTitle>
          <TextWithImage image="solution/pages/flow-management/display.png">
-            <p>Особенности:</p>
+            <p class="list-title">Особенности:</p>
             <ul>
                <li>Точность заданной нормы при помощи GPS/GLONASS</li>
                <li>Автоматическое включение/ выключение подачи удобрений</li>
@@ -36,15 +36,7 @@
          </TextWithImage>
       </div>
 
-      <div>
-         <AppTitle position="left">Программное обеспечение</AppTitle>
-         <AppList
-             type="soft"
-             gap="14"
-             :items="soft"
-             itemsPerRow="3"
-         />
-      </div>
+   <SoftSection :items="soft" />
 </template>
 
 <script>
@@ -52,12 +44,13 @@ import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppTitle from "../../../../../components/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../../components/App/AppList.vue";
+import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 
-const soft = [{name: 'solution/soft/finiti.png'}, {name: 'solution/soft/sms.png'}]
+const soft = ['finiti', 'sms']
 
 export default {
    name: "DryMaterials",
-   components: {AppList, TextWithImage, AppTitle, TextBlock},
+   components: {SoftSection, AppList, TextWithImage, AppTitle, TextBlock},
    setup() {
       return {soft}
    }
@@ -65,6 +58,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list-title {
+   margin-bottom: 10px;
+}
 ul {
    list-style: disc;
    margin-left: 30px;

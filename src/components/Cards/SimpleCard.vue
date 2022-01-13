@@ -65,7 +65,7 @@ h3 {
 }
 .image{
    flex-shrink: 0;
-   margin: 0 auto;
+   margin: auto;
 }
 p {
    margin-top: 12px;
