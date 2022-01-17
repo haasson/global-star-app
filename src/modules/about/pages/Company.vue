@@ -46,14 +46,14 @@ import AppList from "../../../components/App/AppList.vue";
 import AppTitle from "../../../components/AppTitle.vue";
 
 const slides = [
-   '../../assets/images/about/company/1.jpg',
-   '../../assets/images/about/company/2.jpg',
-   '../../assets/images/about/company/3.jpg',
-   '../../assets/images/about/company/4.jpg',
-   '../../assets/images/about/company/5.jpg',
-   '../../assets/images/about/company/6.jpg',
-   '../../assets/images/about/company/7.jpg',
-   '../../assets/images/about/company/8.jpg',
+   'about/company/1.jpg',
+   'about/company/2.jpg',
+   'about/company/3.jpg',
+   'about/company/4.jpg',
+   'about/company/5.jpg',
+   'about/company/6.jpg',
+   'about/company/7.jpg',
+   'about/company/8.jpg',
 ]
 const clients = [
    {name: 'about/clients/1.png'},

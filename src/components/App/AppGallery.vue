@@ -22,6 +22,7 @@
 import {Swiper, SwiperSlide} from 'swiper/vue'
 import {ref, watch, watchEffect} from "vue";
 import PageSection from "../Providers/PageSection.vue";
+import useLocalImage from "../../composable/localImage.js";
 
 export default {
    name: "AppGallery",
@@ -44,7 +45,8 @@ export default {
       watch(props, () => {
          if (!props.fromStorage) {
             props.slides.forEach(slide => {
-               import(slide).then(component => slidesComponents.value.push(component.default))
+               const {imageSrc} = useLocalImage(slide)
+               slidesComponents.value.push(imageSrc.value)
             })
          } else {
             slidesComponents.value = props.slides

@@ -1,11 +1,10 @@
-import {shallowRef, watchEffect} from "vue";
+import {shallowRef, ref, watchEffect} from "vue";
 
 const useLocalImage = (path) => {
    const imageSrc = shallowRef('')
-   watchEffect(() => {
-      import((`../assets/images/${path}`)).then(component => {
-         imageSrc.value = component.default
-      })
+   watchEffect(async () => {
+      const url = new URL(`../assets/images/${path}`, import.meta.url);
+      imageSrc.value = url.href
    })
 
    return {imageSrc}
@@ -13,3 +12,5 @@ const useLocalImage = (path) => {
 
 
 export default useLocalImage
+
+

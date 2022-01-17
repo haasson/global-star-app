@@ -15,12 +15,9 @@
 </template>
 
 <script>
-import {ref} from 'vue'
-import {getImageUrl} from '../../helpers/firebase.js'
 
 import PageSection from "../Providers/PageSection.vue";
 import AppButton from "../App/AppButton.vue";
-import useImage from "../../composable/useImage.js";
 import useLocalImage from "../../composable/localImage.js";
 export default {
    name: "TextWithImage",
