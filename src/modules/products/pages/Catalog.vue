@@ -1,5 +1,6 @@
 <template>
    <AppPage>
+      jgougiu
       <AppTitle>{{$route.params.id}}</AppTitle>
       <AppList :items="catalog" type="catalog" :items-per-row="4" justify="flex-start"
       />
@@ -20,7 +21,6 @@ export default {
    setup() {
       const route = useRoute()
       onBeforeRouteUpdate((to, from, next) => {
-         console.log(to.query)
          next()
       })
 

@@ -38,17 +38,11 @@ export default defineComponent({
          return await modal.value.open()
       }
 
-      const saveData = (data) => {
-         console.log(data)
-      }
-
-
       return {
          globalLoading,
 
          openModal,
          modal,
-         saveData,
       }
    }
 })

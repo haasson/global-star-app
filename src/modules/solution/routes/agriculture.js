@@ -6,18 +6,26 @@ export default [
 
    {
       path: '/solution/agriculture/navigation',
-      component: () => import("../pages/Agriculture/Navigation.vue")
+      component: () => import("../pages/Agriculture/Navigation/Navigation.vue")
    },
 
    {
       path: '/solution/agriculture/auto-drive',
-      component: () => import("../pages/Agriculture/AutoDrive.vue")
+      component: () => import("../pages/Agriculture/AutoDrive/AutoDrive.vue")
    },
+
+   {path: '/solution/agriculture/auto-drive/steering-device', name: 'SteeringDevice', component: () => import("../pages/Agriculture/AutoDrive/SteeringDevice.vue")},
+   {path: '/solution/agriculture/auto-drive/hydraulic-autopilot', name: 'HydraulicAutopilot', component: () => import("../pages/Agriculture/AutoDrive/HydraulicAutopilot.vue")},
+   {path: '/solution/agriculture/auto-drive/electric-autopilot', name: 'ElectricAutopilot', component: () => import("../pages/Agriculture/AutoDrive/ElectricAutopilot.vue")},
+
 
    {
       path: '/solution/agriculture/accurate-planter',
-      component: () => import("../pages/Agriculture/AccuratePlanter.vue")
+      component: () => import("../pages/Agriculture/AccuratePlanter/AccuratePlanter.vue")
    },
+
+   {path: '/solution/agriculture/accurate-planter/sure-drive', name: 'SureDrive', component: () => import("../pages/Agriculture/AccuratePlanter/SureDrive.vue")},
+
 
    {
       path: '/solution/agriculture/flow-management',

@@ -1,10 +1,13 @@
 <template>
    <div>
-      <label class="file-input">
+      <label v-if="multiple || !Object.keys(uploadedFiles).length" class="file-input">
          <AppIcon class="icon-plus" name="plus"/>
-         <span class="text">Добавить изображения</span>
-         <input type="file" accept="image/*" multiple @change="setImages"/>
+         <span class="text">
+            Добавить {{multiple ? 'изображения' : 'изображение'}}
+         </span>
+         <input type="file" accept="image/*" :multiple="multiple" @change="setImages"/>
       </label>
+      <p v-else>Можно добавить только одно изображение. Чтобы изменить изображение - удалите текущее</p>
 
       <div class="gallery">
          <div
@@ -24,7 +27,8 @@
       </div>
 
       <p class="warning">
-         Перед загрузкой не забудьте оптимизировать изображения <br/>
+         Перед загрузкой не забудьте оптимизировать изображения. <br/>
+         Также желательно уменьшить ширину изображения до 1300 пикселей <br>
          <a
              href="https://www.onlineimagetool.com/ru/compress-png-jpg-webp-gif"
              target="_blank"
@@ -47,6 +51,10 @@ export default {
          type: Object,
          required: true,
       },
+      multiple: {
+         type: Boolean,
+         default: true
+      }
    },
 
    setup(props, {emit}) {
@@ -61,6 +69,7 @@ export default {
             fileReader.onload = function (e) {
                file.src = e.target.result;
                uploadedFiles.value[file.name] = file;
+               if (!props.multiple) file.isMain = true
                // emit here for every image because process is async
                emit("update:images", uploadedFiles.value);
             };
@@ -71,6 +80,7 @@ export default {
       };
 
       const setMain = (name) => {
+         if (!props.multiple) return
          const uploadedFilesArray = Object.values(uploadedFiles.value);
          uploadedFilesArray.forEach((img) =>  img.isMain = false);
 

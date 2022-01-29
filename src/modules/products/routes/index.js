@@ -27,14 +27,14 @@ const productsRoutes = [
       ]
    },
 
-   {
-      path: '/products/catalog',
-      name: 'productsCatalog',
-      component: () => import("../pages/Catalog.vue"),
+   // {
+      // path: '/products/catalog',
+      // name: 'productsCatalog',
+      // component: () => import("../pages/Catalog.vue"),
       // children: [
       //    {path: ':id', name: 'catalogList', component: () => import("../pages/CatalogList.vue")}
       // ]
-   },
+   // },
 
    {
       path: '/products/:section/:category/:productID',

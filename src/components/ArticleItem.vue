@@ -1,6 +1,6 @@
 <template>
-   <PageSection>
-      <div class="inner">
+   <PageSection v-if="!isHidden || isAdmin">
+      <div class="inner" :class="{inactive: isAdmin && isHidden}">
          <div class="image-block">
             <img v-if="cardImage" class="image" :src="cardImage.src" alt="">
          </div>
@@ -20,6 +20,7 @@
 import {computed, ref, watch} from 'vue'
 import dayjs from "dayjs";
 
+import {isAdmin} from "../store";
 import useStorage from "../composable/storage";
 import {descriptionToHTML} from "../helpers/interface";
 import PageSection from "./Providers/PageSection.vue";
@@ -53,6 +54,10 @@ export default {
          type: Number,
          required: true
       },
+      isHidden: {
+         type: Boolean,
+         default: false
+      }
    },
 
    setup(props) {
@@ -67,7 +72,7 @@ export default {
          return descriptionToHTML(props.text)
       })
 
-      return {cardImage, formattedDate, description}
+      return {isAdmin, cardImage, formattedDate, description}
    }
 }
 </script>
@@ -78,6 +83,9 @@ export default {
    justify-content: space-between;
    padding-bottom: 50px;
    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+   &.inactive {
+      opacity: .4;
+   }
 }
 .image-block{
    flex-shrink: 0;

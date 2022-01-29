@@ -21,7 +21,6 @@ export default function useDropdown({placement, offset} = {}) {
   }
 
   function setupPopper() {
-    console.log('set')
     new createPopper(buttonEl.value, dropdownEl.value, {
       placement: dropdownPlacement.value,
       modifiers: [

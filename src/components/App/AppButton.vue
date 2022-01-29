@@ -102,6 +102,10 @@ export default {
          border: 1px solid var(--extra-blue)
       }
    }
+   &:disabled {
+      cursor: not-allowed;
+      opacity: .5;
+   }
 }
 
 </style>

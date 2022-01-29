@@ -3,18 +3,31 @@
       <template #title>{{ articleType }}</template>
       <template #content>
          <form class="form">
-            <AppInput class="title" label="Заголовок" v-model="data.title"/>
+            <div v-if="articleType === 'add-product'" class="select-wrap">
+               <AppSelect
+                  label="Раздел"
+                  :options="sectionOptions"
+                  v-model="section"
+               />
+               <AppSelect
+                   label="Категория"
+                   :options="categoryOptions"
+                   v-model="category"
+               />
+            </div>
+            <AppInput class="title" label="Название" v-model="data.title"/>
 
             <div class="editor-block">
                <label>Описание</label>
                <AppEditor v-model="data.text"/>
             </div>
-            <!--            <span v-for="img in data.images">-->
-            <!--          {{ img }}-->
-            <!--        </span>-->
+
+            <AppInput v-if="isProductPage" type="number" class="price" label="Цена" v-model.number="data.price"/>
+
             <AppImageUpload
                 class="upload-image"
                 :images="data.images"
+                :multiple="!isProductPage"
                 @update:images="onUpdateImages"
             />
          </form>
@@ -22,14 +35,14 @@
       <template #controls>
          <AppButtonsGroup class="controls">
             <AppButton @click="close" color="empty">Отмена</AppButton>
-            <AppButton @click="saveData" color="blue">Сохранить</AppButton>
+            <AppButton @click="saveData" color="blue" :disabled="isButtonDisabled">Сохранить</AppButton>
          </AppButtonsGroup>
       </template>
    </AppModal>
 </template>
 
 <script>
-import {reactive, ref, watch} from "vue";
+import {computed, reactive, ref, watch} from "vue";
 import AppModal from "../../../components/App/AppModal.vue";
 import AppEditor from "../../../components/App/AppEditor.vue";
 import AppButtonsGroup from "../../../components/App/AppButtonsGroup.vue";
@@ -39,10 +52,14 @@ import AppImageUpload from "../../../components/App/AppImageUpload.vue";
 import AppIcon from "../../../components/App/AppIcon.vue";
 import useStorage from "../../../composable/storage";
 import useDatabase from "../../../composable/database";
+import appConfig from "../../../config/app.config.js";
+import useProductCategory from "../composable/productCategory.js";
+import AppSelect from "../../../components/App/AppSelect.vue";
 
 export default {
    name: "EditArticleModal",
    components: {
+      AppSelect,
       AppIcon,
       AppImageUpload,
       AppInput,
@@ -68,16 +85,22 @@ export default {
          type: String,
          default: "",
       },
+      price: {
+         type: Number,
+      },
       images: {
          type: Object,
          default: () => ({}),
       },
    },
    setup(props, {emit}) {
-      const entity = props.articleType.indexOf("news") !== -1 ? "news" : "projects";
+      const entity = props.articleType.split('-')[1];
+      const isProductPage = entity === 'product'
+
+      // Modal
       const modal = ref(null);
       const open = () => {
-         getArticlesCount(`${entity}/count`);
+         if (!isProductPage) getArticlesCount(`${entity}/count`);
          modal.value.open();
       };
       const close = () => {
@@ -85,16 +108,27 @@ export default {
          modal.value.decline();
       };
 
+      let dbPath = entity
+
       const data = reactive({title: ""});
       const {set: setImages, loading: imagesUpload, error: uploadError} = useStorage();
 
       const {get: getArticlesCount, data: articlesCount} = useDatabase();
       const {set: setArticle} = useDatabase();
 
+      // For product editing
+      const {section, sectionOptions, category, categoryOptions, categoryDbPath} = useProductCategory(props.articleType)
+      watch(categoryDbPath, () => {
+         if (!categoryDbPath.value) return
+         dbPath = `catalog/${section.value}/${category.value}`
+         getArticlesCount(`${dbPath}/count`);
+      }, {immediate: true})
+      dbPath = `catalog/${section.value}/${category.value}`
+
       const onUpdateImages = (files) => {
-         console.log(files)
          data.images = files
       };
+
 
       const saveData = async () => {
          const images = getImagesDataForDatabase();
@@ -103,20 +137,21 @@ export default {
              .filter(file => file.type)
              .sort((a, b) => (a.isMain === true ? 1 : -1))
 
-         console.log('id:', props.id, 'current count:', articlesCount.value)
          const articleID = props.id ? +(props.id.slice(2)) : (articlesCount.value === undefined ? 1 : articlesCount.value + 1)
          const articleToSave = {...data, id: `id${articleID}`, images, time: Date.now()}
 
-         const storagePath = `images/${entity}/id${articleID}`
+         let storagePath = `images/${dbPath}/id${articleID}`
 
-         console.log(articleToSave)
          const promises = [
             // Save data to database
-            setArticle(`${entity}/list/id${articleID}`, articleToSave),
+            setArticle(`${dbPath}/list/id${articleID}`, articleToSave),
             // Save images to storage
             setImages(`${storagePath}/gallery`, filesArray),
          ]
-         if (!props.id) promises.push(setArticle(`${entity}/count`, articleID))
+         // If creating new record
+         if (!props.id) {
+            promises.push(setArticle(`${dbPath}/count`, articleID))
+         }
          await Promise.all(promises);
 
          close();
@@ -139,10 +174,16 @@ export default {
       watch(props, () => {
              data.title = props.title;
              data.text = props.text;
+             data.price = props.price || null;
              data.images = props.images;
           },
           {immediate: true}
       );
+
+      const isButtonDisabled = computed(() => {
+         if (!data.title || !Object.keys(data.images).length) return true
+         return false
+      })
 
       const clearForm = () => {
          data.title = "";
@@ -151,6 +192,7 @@ export default {
       };
 
       return {
+         entity,
          modal,
          open,
          close,
@@ -158,6 +200,14 @@ export default {
          data,
          onUpdateImages,
          saveData,
+
+         section,
+         sectionOptions,
+         category,
+         categoryOptions,
+
+         isProductPage,
+         isButtonDisabled,
       };
    },
 };
@@ -168,10 +218,23 @@ export default {
    padding: 0 20px;
 }
 
+.select-wrap,
 .title,
+.price,
 .editor-block,
 .upload-image {
    margin-bottom: 20px;
+}
+
+.select-wrap {
+    display: flex;
+   & > * {
+      margin-right: 40px;
+   }
+ }
+
+.price {
+   max-width: 150px;
 }
 
 .controls {

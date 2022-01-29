@@ -29,7 +29,7 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-   // scrollTo(0,0)
+   scrollTo(0,0)
    next()
    // const route = to.path.slice(1) || 'main'
    //

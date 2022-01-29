@@ -6,26 +6,37 @@
    <Transport/>
 
    <!-- Modals -->
-<!--   <EditArticleModal ref="editModal" articleType="add-news" @update:article=""/>-->
+   <EditArticleModal
+       ref="editModal"
+       articleType="add-product"
+       @update:products=""
+   />
 
 </template>
 
 <script>
+import {ref} from "vue";
 import {isAdmin} from "../../../store";
 import Agriculture from "./Agriculture.vue";
 import Transport from "./Transport.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
 import AppButton from "../../../components/App/AppButton.vue";
+import EditArticleModal from "../../about/modals/EditArticleModal.vue";
 
 export default {
    name: "Products",
-   components: {AppButton, PageSection, Transport, Agriculture},
+   components: {EditArticleModal, AppButton, PageSection, Transport, Agriculture},
    setup() {
+      const editModal = ref(null)
       const addProduct = () => {
-
+         editModal.value.open()
       }
 
-      return {isAdmin, addProduct}
+      return {
+         isAdmin,
+         editModal,
+         addProduct,
+      }
    }
 }
 </script>

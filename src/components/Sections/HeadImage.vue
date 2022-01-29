@@ -37,14 +37,14 @@ export default {
 }
 img {
    width: 100%;
-   max-height: 800px;
+   max-height: 60vh;
    object-fit: cover;
    filter: brightness(.65);
 }
 .title {
    position: absolute;
    width: 100%;
-   bottom: 70px;
+   bottom: 0;
    right: 0;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
    <div class="item" :style="{minHeight: `${itemHeight}px`}">
-      <img class="image" :src="imageSrc" alt="">
-      <p v-if="text">{{text}}</p>
+      <img class="image" :class="{'with-shadow': text}" :src="imageSrc" alt="">
+      <p v-if="text" v-html="text"></p>
    </div>
 </template>
 
@@ -43,10 +43,14 @@ export default {
    flex-shrink: 0;
    object-fit: contain;
    margin: auto;
+   &.with-shadow {
+      box-shadow: var(--image-shadow);
+   }
 }
 p {
+   min-height: 60px;
    margin-top: 20px;
-   font-size: var(--subtitle-size);
-   font-weight: 500;
+   font-size: var(--text-size);
+   text-align: center;
 }
 </style>

@@ -5,6 +5,9 @@
           class="image"
       />
 
+      <router-link to="/solution/agriculture/accurate-planter/sure-drive">Sure Drive</router-link>
+
+
       <TextBlock>
          <p>Правильное расположение семян спасает от взаимного угнетения растений и рационально использует площади. Просевы и двойники, нарушение нормы высева и глубины заделки невозможно исправить. Неконтролируемый сев приводит к 20% потерям ресурсов, снижается потенциал урожайности гибридов.</p>
       </TextBlock>
@@ -44,14 +47,14 @@
 </template>
 
 <script>
-import HeadImage from "../../../../components/Sections/HeadImage.vue";
-import image from "../../../../assets/images/solution/pages/accurate-planter/head-image.jpg";
-import TextBlock from "../../../../components/Sections/TextBlock.vue";
-import AppPage from "../../../../components/App/AppPage.vue";
-import AppTitle from "../../../../components/AppTitle.vue";
-import TextWithImage from "../../../../components/Sections/TextWithImage.vue";
-import AppList from "../../../../components/App/AppList.vue";
-import SoftSection from "../../../../components/Sections/SoftSection.vue";
+import HeadImage from "../../../../../components/Sections/HeadImage.vue";
+import image from "../../../../../assets/images/solution/pages/accurate-planter/head-image.jpg";
+import TextBlock from "../../../../../components/Sections/TextBlock.vue";
+import AppPage from "../../../../../components/App/AppPage.vue";
+import AppTitle from "../../../../../components/AppTitle.vue";
+import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
+import AppList from "../../../../../components/App/AppList.vue";
+import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 
 const variants = [
    {name: 'solution/pages/accurate-planter/variant1.png', title: 'SureSpeed'},

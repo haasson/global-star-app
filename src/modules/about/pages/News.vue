@@ -13,6 +13,7 @@
              :text="news.text"
              :image="getMainImage(news)"
              :time="news.time"
+             :isHidden="news.isHidden"
              class="item"
          />
       </div>

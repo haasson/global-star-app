@@ -1,7 +1,7 @@
 <template>
-   <Card class="card">
+   <Card class="card" :class="{inactive: isHidden}">
 
-      <div class="image">
+      <div class="image" :class="{loading}">
          <img v-if="cardImage" :src="cardImage.src" alt="">
       </div>
 
@@ -10,10 +10,10 @@
       </div>
 
       <div v-ellipsis class="text-container">
-         <p v-html="text"></p>
+         <p v-html="descriptionToHTML(text, {allowedBlocks: 'paragraph'})"></p>
       </div>
 
-      <AppButton v-if="button" :href="link"  class="btn" color="orange">
+      <AppButton v-if="button" :to="link"  class="btn" color="orange">
          {{button}}
       </AppButton>
 
@@ -22,11 +22,10 @@
 
 <script>
 import {ref, watch} from "vue";
-import {getImageUrl} from "../../helpers/firebase";
 import Card from "./Card.vue";
 import AppButton from "../App/AppButton.vue";
-import useImage from "../../composable/useImage";
 import useStorage from "../../composable/storage.js";
+import {descriptionToHTML} from "../../helpers/interface.js";
 
 export default {
    name: "CatalogCard",
@@ -48,19 +47,18 @@ export default {
       },
       link: {
          type: String,
+      },
+      isHidden: {
+         type: Boolean,
+         default: false
       }
    },
 
    setup({image}) {
-      const {get, data: cardImage, error} = useStorage()
-      console.log(image)
+      const {get, data: cardImage, loading, error} = useStorage()
       get(image)
 
-      watch(cardImage, () => {
-         console.log(cardImage.value)
-      })
-
-      return {cardImage}
+      return {descriptionToHTML, cardImage, loading}
    }
 }
 </script>
@@ -68,11 +66,15 @@ export default {
 <style lang="scss" scoped>
 // TODO: box-shadow
 .card {
-   padding: 58px 22px 32px;
+   padding: 32px 22px;
    color: var(--black);
    box-shadow: var(--card-shadow-shifted);
    &:hover {
       box-shadow: var(--card-shadow-shifted);
+   }
+
+   &.inactive {
+      opacity: .5;
    }
 }
 
@@ -82,6 +84,15 @@ export default {
    align-items: center;
    height: 180px;
    margin-bottom: 35px;
+   opacity: 1;
+   transition: opacity 1s;
+   &.loading {
+      opacity: 0;
+   }
+
+   img {
+      max-height: 100%;
+   }
 }
 
 h3 {

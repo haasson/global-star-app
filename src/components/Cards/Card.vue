@@ -30,13 +30,19 @@ export default {
    width: 100%;
    overflow: hidden;
 
-   &:not(.empty) {
-      border-radius: 10px;
-      box-shadow: var(--card-shadow);
-      transition: box-shadow .3s;
-      background-color: #fff;
+   border-radius: 10px;
+   box-shadow: var(--card-shadow);
+   transition: box-shadow .3s;
+   background-color: #fff;
+   &:hover {
+      box-shadow: var(--card-shadow-hover);
+   }
+
+   &.empty {
+      box-shadow: none;
+      background-color: transparent;
       &:hover {
-         box-shadow: var(--card-shadow-hover);
+         box-shadow: none;
       }
    }
 

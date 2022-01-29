@@ -23,14 +23,14 @@
 </template>
 
 <script>
-import image from '../../../../assets/images/solution/pages/navigation/navigation.jpg'
+import image from '../../../../../assets/images/solution/pages/navigation/navigation.jpg'
 
-import HeadImage from "../../../../components/Sections/HeadImage.vue";
-import TextBlock from "../../../../components/Sections/TextBlock.vue";
-import AppPage from "../../../../components/App/AppPage.vue";
-import AppTitle from "../../../../components/AppTitle.vue";
-import AppList from "../../../../components/App/AppList.vue";
-import TextWithImage from "../../../../components/Sections/TextWithImage.vue";
+import HeadImage from "../../../../../components/Sections/HeadImage.vue";
+import TextBlock from "../../../../../components/Sections/TextBlock.vue";
+import AppPage from "../../../../../components/App/AppPage.vue";
+import AppTitle from "../../../../../components/AppTitle.vue";
+import AppList from "../../../../../components/App/AppList.vue";
+import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 
 const displaysList = [
    {name: 'solution/cards/displays/at5.png', text: 'AT5'},

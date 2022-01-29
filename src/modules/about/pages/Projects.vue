@@ -13,6 +13,7 @@
              :text="news.text"
              :image="getMainImage(news)"
              :time="news.time"
+             :isHidden="news.isHidden"
              class="item"
          />
       </div>
@@ -20,7 +21,7 @@
 
 
    <!-- Modals -->
-   <EditArticleModal ref="editModal" articleType="add-project" @update:article="get('projects/list')"/>
+   <EditArticleModal ref="editModal" articleType="add-projects" @update:article="get('projects/list')"/>
 </template>
 
 <script>

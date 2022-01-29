@@ -68,14 +68,14 @@
 </template>
 
 <script>
-import image from "../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
-import imageAccurate from "../../../../assets/images/solution/pages/autodrive/accurate.jpg";
-import HeadImage from "../../../../components/Sections/HeadImage.vue";
-import TextBlock from "../../../../components/Sections/TextBlock.vue";
-import AppPage from "../../../../components/App/AppPage.vue";
-import AppTitle from "../../../../components/AppTitle.vue";
-import TextWithImage from "../../../../components/Sections/TextWithImage.vue";
-import AppList from "../../../../components/App/AppList.vue";
+import image from "../../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
+import imageAccurate from "../../../../../assets/images/solution/pages/autodrive/accurate.jpg";
+import HeadImage from "../../../../../components/Sections/HeadImage.vue";
+import TextBlock from "../../../../../components/Sections/TextBlock.vue";
+import AppPage from "../../../../../components/App/AppPage.vue";
+import AppTitle from "../../../../../components/AppTitle.vue";
+import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
+import AppList from "../../../../../components/App/AppList.vue";
 
 const examples = [
     {name: 'solution/pages/autodrive/example1.jpg'},
@@ -88,7 +88,7 @@ const accurateImages = [
    {name: 'solution/pages/autodrive/accurate-item3.png'},
 ]
 const variants = [
-   {name: 'solution/pages/autodrive/variant1.png', title: 'Подруливающее устройство'},
+   {name: 'solution/pages/autodrive/variant1.png', title: 'Подруливающее устройство', link: '/solution/agriculture/auto-drive/steering-device'},
    {name: 'solution/pages/autodrive/variant2.png', title: 'Гидравлический автопилот'},
    {name: 'solution/pages/autodrive/variant3.png', title: 'Электрический автопилот'},
 ]
