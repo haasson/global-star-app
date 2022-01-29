@@ -123,7 +123,9 @@ export default {
          dbPath = `catalog/${section.value}/${category.value}`
          getArticlesCount(`${dbPath}/count`);
       }, {immediate: true})
-      dbPath = `catalog/${section.value}/${category.value}`
+      if (section) {
+         dbPath = `catalog/${section.value}/${category.value}`
+      }
 
       const onUpdateImages = (files) => {
          data.images = files
