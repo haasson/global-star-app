@@ -33,7 +33,6 @@ const useDatabase = () => {
 
    const put = async (payload) => {
       await putToDatabase(payload)
-         .then((res) => data.value = res)
          .catch(e => {
             console.log(e)
             error.value = e

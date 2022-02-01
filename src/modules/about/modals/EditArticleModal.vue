@@ -25,6 +25,7 @@
             <AppInput v-if="isProductPage" type="number" class="price" label="Цена" v-model.number="data.price"/>
 
             <AppImageUpload
+                v-if="entity !== 'vacancy'"
                 class="upload-image"
                 :images="data.images"
                 :multiple="!isProductPage"
@@ -147,12 +148,15 @@ export default {
          const promises = [
             // Save data to database
             setArticle(`${dbPath}/list/id${articleID}`, articleToSave),
-            // Save images to storage
-            setImages(`${storagePath}/gallery`, filesArray),
          ]
+         console.log(`${dbPath}/list/id${articleID}`, articleToSave)
          // If creating new record
          if (!props.id) {
             promises.push(setArticle(`${dbPath}/count`, articleID))
+         }
+         // Save images to storage if it is necessary
+         if (entity !== 'vacancy') {
+            setImages(`${storagePath}/gallery`, filesArray)
          }
          await Promise.all(promises);
 
@@ -183,7 +187,9 @@ export default {
       );
 
       const isButtonDisabled = computed(() => {
-         if (!data.title || !Object.keys(data.images).length) return true
+         const hasTitle = data.title
+         const hasImages = Object.keys(data.images).length
+         if (!hasTitle || (!hasImages && entity !== 'vacancy')) return true
          return false
       })
 

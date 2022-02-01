@@ -6,14 +6,14 @@
 
       <div v-if="projectsList">
          <ArticleItem
-             v-for="news in projectsList"
+             v-for="project in projectsList"
              articleType="projects"
-             :id="news.id"
-             :title="news.title"
-             :text="news.text"
-             :image="getMainImage(news)"
-             :time="news.time"
-             :isHidden="news.isHidden"
+             :id="project.id"
+             :title="project.title"
+             :text="project.text"
+             :image="getMainImage(project)"
+             :time="project.time"
+             :isHidden="project.isHidden"
              class="item"
          />
       </div>
