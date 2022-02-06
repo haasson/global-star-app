@@ -53,7 +53,6 @@ import AppImageUpload from "../../../components/App/AppImageUpload.vue";
 import AppIcon from "../../../components/App/AppIcon.vue";
 import useStorage from "../../../composable/storage";
 import useDatabase from "../../../composable/database";
-import appConfig from "../../../config/app.config.js";
 import useProductCategory from "../composable/productCategory.js";
 import AppSelect from "../../../components/App/AppSelect.vue";
 
@@ -195,10 +194,10 @@ export default {
       };
 
       watch(props, () => {
-             data.title = props.title;
-             data.text = props.text;
-             data.price = props.price || null;
-             data.images = props.images;
+             data.title = data.title || props.title;
+             data.text = data.text || props.text;
+             data.price = data.price || props.price || null;
+             data.images = data.images || props.images;
           },
           {immediate: true}
       );
@@ -213,7 +212,7 @@ export default {
       const clearForm = () => {
          data.title = "";
          data.text = "";
-         data.images = {};
+         data.images = null;
       };
 
       return {

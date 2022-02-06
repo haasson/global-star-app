@@ -41,7 +41,7 @@
 <script>
 import AppButton from "./AppButton.vue";
 import AppIcon from "./AppIcon.vue";
-import {reactive, ref} from "vue";
+import {ref} from "vue";
 
 export default {
    name: "AppImageUpload",
