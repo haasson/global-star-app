@@ -3,7 +3,7 @@
       <AppList
           title='Gurtam'
           type='soft'
-          itemsPerRow="3"
+          :itemsPerRow="itemsPerRow"
           :items="programSolutions.gurtamPS"
           multiline
           class="list-w-bg"
@@ -12,21 +12,20 @@
       <AppList
           title='DTM'
           type='soft'
-          itemsPerRow="3"
+          itemsPerRow="2"
           :items="programSolutions.dtmPS"
-          multiline
           bgColor="orange"
-          bgType="half"
+          :bgType="width < 1100 ? '' : 'half'"
       />
 
       <AppList
           title='AgLeader'
           type='soft'
-          itemsPerRow="3"
+          itemsPerRow="2"
           :items="programSolutions.agLeaderPS"
-          multiline
           bgColor="orange"
-          bgType="half"
+          :bgType="width < 1100 ? 'full' : 'half'"
+          class="agleader"
       />
    </AppPage>
 </template>
@@ -35,6 +34,8 @@
 import AppList from "../../../components/App/AppList.vue";
 import AppPage from "../../../components/App/AppPage.vue";
 import appConfig from "../../../config/app.config.js";
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 
 export default {
@@ -43,7 +44,13 @@ export default {
 
    setup() {
       const {programSolutions} = appConfig
-      return {programSolutions}
+
+      const listSettings = {1100: 3, default: 2}
+      const {itemsPerRow} = useItemsPerRow(listSettings)
+
+      const {width} = useWindowDimensions()
+
+      return {programSolutions, itemsPerRow, width}
    }
 }
 </script>
@@ -57,5 +64,14 @@ export default {
        transparent calc(100% - 105px),
        transparent 100%
    );
+   @media(max-width: 1100px) {
+      background: var(--orange);
+   }
+   @media(max-width: 568px) {
+      padding-top: 20px;
+   }
+}
+.agleader{
+   padding-bottom: 25px
 }
 </style>

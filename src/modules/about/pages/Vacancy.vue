@@ -16,6 +16,7 @@
              class="item"
              @editButtonClicked="showEditModal"
              @hideButtonClicked="hideVacancy"
+             @deleteButtonClicked="deleteVacancy"
          />
       </div>
    </AppPage>
@@ -36,30 +37,37 @@
        :text="currentVacancy.text"
        @update:article="updateVacancy"
    />
+
+   <AppConfirmationModal ref="confirmModal" type="vacancy" />
 </template>
 
 <script>
+import {ref, watch} from "vue";
+import {useRouter} from "vue-router";
+import useDatabase from "../../../composable/database.js";
 import {isAdmin} from "../../../store";
+
 import AppPage from "../../../components/App/AppPage.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
 import AppButton from "../../../components/App/AppButton.vue";
 import VacancyItem from "../VacancyItem.vue";
 import EditArticleModal from "../modals/EditArticleModal.vue";
-import {ref, watch} from "vue";
-import useDatabase from "../../../composable/database.js";
+import AppConfirmationModal from "../../../components/App/AppConfirmationModal.vue";
 
 export default {
    name: "Vacancy",
-   components: {EditArticleModal, VacancyItem, AppButton, PageSection, AppPage},
+   components: {AppConfirmationModal, EditArticleModal, VacancyItem, AppButton, PageSection, AppPage},
 
    setup() {
+      const router = useRouter()
+
       const addModal = ref(null)
       const addVacancy = () => {
          addModal.value.open()
       }
 
-      const {get, put, data: vacancyList} = useDatabase()
-      console.log(vacancyList)
+      const {get, put, del, data: vacancyList} = useDatabase()
+      const {put: setCount, get: getCount} = useDatabase()
       get('vacancy/list')
 
 
@@ -74,17 +82,29 @@ export default {
          console.log(vacancyList.value)
       })
 
-
       const hideVacancy = (id) => {
          const visibleProp = `vacancy/list/${id}/isHidden`
-         console.log(visibleProp)
          vacancyList.value[id].isHidden = !vacancyList.value[id].isHidden
          put({[visibleProp]: vacancyList.value[id].isHidden})
          // updateVacancy()
       }
 
+      const confirmModal = ref(null)
+      const deleteVacancy= async (id) => {
+         const res = await confirmModal.value.open()
+
+         if (res) {
+            const countUrl = `vacancy/count`
+            const count = await getCount(countUrl)
+
+            await del(`vacancy/list/${id}`)
+            await setCount({[countUrl]: count - 1})
+
+            delete vacancyList.value[id]
+         }
+      }
+
       const updateVacancy = () => {
-         console.log('update')
          get('vacancy/list')
       }
 
@@ -100,8 +120,12 @@ export default {
 
          vacancyList,
 
+         confirmModal,
+
          currentVacancy,
          hideVacancy,
+         deleteVacancy,
+
          updateVacancy,
 
       }

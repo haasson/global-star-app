@@ -3,9 +3,10 @@
       <AppList
           :type="'solution'"
           :items="buildingContent"
-          :itemsPerRow="3"
+          :itemsPerRow="itemsPerRow"
           :title="'Решения для строительства'"
           class="list-w-bg"
+          :multiline="itemsPerRow < 3"
       />
    </AppPage>
 </template>
@@ -14,13 +15,21 @@
 import {buildingContent} from '../composable/solution'
 import AppList from "../../../components/App/AppList.vue";
 import AppPage from "../../../components/App/AppPage.vue";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
+import {computed} from "vue";
 
 export default {
    name: "Building",
    components: {AppPage, AppList},
    setup() {
+      const {width} = useWindowDimensions()
+      const itemsPerRow = computed(() => {
+         if (width.value > 1200) return 3
+         if (width.value <= 1200 && width.value > 640) return 2
+         return 1
+      })
 
-      return {buildingContent}
+      return {buildingContent, itemsPerRow}
    }
 }
 </script>
@@ -36,5 +45,8 @@ export default {
        transparent 100%
    );
    padding-bottom: 90px;
+   @media(max-width: 768px) {
+      background: none;
+   }
 }
 </style>

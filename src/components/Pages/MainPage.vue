@@ -1,5 +1,22 @@
 <template>
-   <AppPage>
+   <AppPage noOffset class="main-page">
+      <HeadImage
+          :src="image"
+          class="image"
+          titleType="simple"
+      />
+
+      <AppList
+          type="simple"
+          gap="12"
+          :items="solutionItems"
+          :itemsPerRow="itemsPerRow"
+          :isSlider="itemsPerRow < 3"
+          title="Выберите готовое решение"
+          bgColor="orange"
+          :bgType="itemsPerRow < 3 ? 'full' : 'half'"
+      />
+
       <div>
          <AppTitle position="left">Тестирование оборудования</AppTitle>
 
@@ -35,17 +52,55 @@
 </template>
 
 <script>
+import image from "../../assets/images/solution/pages/navigation/navigation.jpg";
+
 import AppTitle from "../AppTitle.vue";
 import TextWithImage from "../Sections/TextWithImage.vue";
 import AppButton from "../App/AppButton.vue";
 import AppPage from "../App/AppPage.vue";
+import HeadImage from "../Sections/HeadImage.vue";
+import AppList from "../App/AppList.vue";
+import useItemsPerRow from "../../composable/itemsPerRow.js";
 
 export default {
    name: "MainPage",
-   components: {AppPage, AppButton, TextWithImage, AppTitle},
+   components: {AppList, HeadImage, AppPage, AppButton, TextWithImage, AppTitle},
 
    setup() {
-      return {}
+      const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})
+      const solutionItems = [
+         {name: 'main/tractor.svg', text: 'Для сельского хозяйства', link: '/solution/agriculture'},
+         {name: 'main/truck.svg', text: 'Для транспорта', link: '/solution/transport'},
+         {name: 'main/excavator.svg', text: 'Для строительства', link: '/solution/building'},
+      ]
+
+      return {image, itemsPerRow, solutionItems}
    }
 }
 </script>
+
+<style lang="scss">
+.main-page {
+   div.image {
+      margin-bottom: 0;
+   }
+   .list.simple {
+      .card {
+         .text {
+            order: -1;
+            margin: 0 0 30px 0;
+         }
+         .image-wrap {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 20px -6px black;
+         }
+         .image {
+            max-width: 75px;
+         }
+      }
+   }
+}
+
+</style>

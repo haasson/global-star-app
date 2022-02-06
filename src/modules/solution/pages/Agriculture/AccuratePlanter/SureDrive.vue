@@ -5,6 +5,7 @@
           class="image"
           title="SureDrive"
           titleType="simple"
+          pageName="Sure Drive"
       />
 
       <TextBlock>
@@ -17,7 +18,7 @@
 
       <TextWithImage image="solution/pages/accurate-planter/sure-drive.png" imagePosition="left">
          <p class="list-title">Особенности:</p>
-         <ul>
+         <ul class="unordered-list">
             <li>Автоматическое отключение секций</li>
             <li>Дифференцированный посев (с переменной нормой)</li>
             <li>Компенсация нормы на разворотах и обсевах</li>
@@ -29,14 +30,15 @@
           type="empty"
           gap="5"
           :items="sureImages"
-          itemsPerRow="3"
+          :itemsPerRow="itemsPerRow"
+          :isSlider="itemsPerRow < 3"
       />
 
       <div>
-         <AppTitle>Дисплей</AppTitle>
+         <AppTitle mobileBg="orange">Дисплей</AppTitle>
          <TextWithImage image="solution/pages/accurate-planter/planter.png">
             <p class="list-title">Особенности:</p>
-            <ul>
+            <ul class="unordered-list">
                <li>Контроль параметров высева на всех этапах процесса</li>
                <li>Точный семенной интервал</li>
                <li>Автоматическое (по GPS) включение/выключение подачи семян</li>
@@ -59,6 +61,7 @@ import TextWithImage from "../../../../../components/Sections/TextWithImage.vue"
 import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/AppTitle.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const sureImages = [
    {name: 'solution/pages/accurate-planter/sure1.png', text: 'Автоматическое отключение секций'},
@@ -72,7 +75,9 @@ export default {
    name: "SureDrive",
    components: {SoftSection, AppTitle, AppList, TextWithImage, TextBlock, HeadImage, AppPage},
    setup() {
-      return {image, sureImages, soft}
+      const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})
+
+      return {image, sureImages, soft, itemsPerRow}
    }
 }
 </script>
@@ -80,10 +85,5 @@ export default {
 <style lang="scss" scoped>
 .list-title {
    margin-bottom: 10px;
-}
-
-ul {
-   list-style: disc;
-   margin-left: 30px;
 }
 </style>

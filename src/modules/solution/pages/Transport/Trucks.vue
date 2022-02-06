@@ -1,6 +1,7 @@
 <template>
    <AppPage noOffset>
-      <HeadImage :src="image" />
+      <HeadImage :src="image"
+                 pageName="Транспортные перевозки"/>
 
       <TextBlock>
          <p>Решения на базе программных продуктов Wialon позволяют оптимизировать работу автомобильного парка вашей
@@ -14,7 +15,7 @@
       <AppList
           type="feature" gap="25"
           :items="features"
-          itemsPerRow="3"
+          :itemsPerRow="itemsPerRowFeatures"
           multiline
           justify="flex-start"
       />
@@ -33,6 +34,7 @@ import ImageWithMarkers from "../../../../components/Sections/ImageWithMarkers.v
 import AppList from "../../../../components/App/AppList.vue";
 import AppTitle from "../../../../components/AppTitle.vue";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
+import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/transport/truck.png',
@@ -87,7 +89,9 @@ export default {
    name: "Trucks",
    components: {SoftSection, AppTitle, AppList, ImageWithMarkers, HeadImage, TextBlock, AppPage},
    setup() {
-      return {image, imageWithPoints, features, soft}
+      const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 3, 568: 2, default: 1})
+
+      return {image, imageWithPoints, features, soft, itemsPerRowFeatures}
    }
 }
 </script>

@@ -1,8 +1,10 @@
 <template>
-   <Card class="item" :style="{minHeight: `${itemHeight}px`}" :link="link">
+   <Card class="item" :style="{height: `${itemHeight}px`}" :link="link">
       <h3 v-if="title">{{title}}</h3>
-      <img class="image" :src="imageSrc" alt="" :style="{maxHeight: `${imageHeight}px`}">
-      <p v-if="text" class="text">{{text}}</p>
+      <div class="image-wrap" :style="{maxHeight: `${imageHeight}px`}">
+         <img class="image" :src="imageSrc" alt="" >
+      </div>
+      <p v-if="text" v-html="text" class="text"></p>
    </Card>
 </template>
 
@@ -53,7 +55,7 @@ export default {
    //justify-content: center;
    align-items: center;
    padding: 24px;
-   //height: 100%;
+
 }
 h3 {
    font-size: var(--title-size);
@@ -63,14 +65,20 @@ h3 {
    color: var(--black);
    margin-bottom: 20px;
 }
+.image-wrap {
+   position: relative;
+   height: 100%;
+   margin: 0 auto;
+}
 .image{
-   flex-shrink: 0;
-   margin: auto;
+   //flex-shrink: 0;
+   margin: 0 auto;
+   height: 100%;
+   object-fit: contain;
 }
 p {
    margin-top: 12px;
    font-size: var(--text-size-big);
-   font-weight: 500;
    line-height: 1.15;
    text-align: center;
 }

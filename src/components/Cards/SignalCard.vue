@@ -36,6 +36,7 @@ export default {
    flex-direction: column;
    justify-content: space-between;
    min-height: 156px;
+   max-width: 245px;
    padding: 16px 20px;
    box-sizing: border-box;
    background-color: var(--light-blue);

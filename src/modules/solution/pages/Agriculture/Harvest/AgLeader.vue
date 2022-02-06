@@ -8,7 +8,7 @@
 
    <TextWithImage image="solution/pages/harvest/yield-map.png" imagePosition="left">
       <p class="list-title">Карта урожайности отвечает на вопросы:</p>
-      <ul>
+      <ul class="unordered-list">
          <li>Какие участки поля принесли больше всего?</li>
          <li>Какие участки дали меньше всего?</li>
          <li>Почему?</li>
@@ -21,11 +21,12 @@
        type="simple"
        gap="12"
        :items="systemItems"
-       itemsPerRow="5"
+       :itemsPerRow="itemsPerRowSystem"
+       :isSlider="itemsPerRowSystem < 5"
        :imageHeight="110"
        title="Состав системы"
        bgColor="orange"
-       bgType="half"
+       :bgType="itemsPerRowSystem < 5 ? 'full' : 'half'"
    />
 
    <div>
@@ -33,7 +34,7 @@
       <AppList
           type="feature" gap="25"
           :items="features"
-          itemsPerRow="2"
+          :itemsPerRow="itemsPerRowFeatures"
           multiline
       />
    </div>
@@ -52,6 +53,7 @@ import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarker
 import AppList from "../../../../../components/App/AppList.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const basePath = 'solution/pages/harvest/'
 const imageWithPoints = {
@@ -104,7 +106,19 @@ export default {
    components: {SoftSection, AppAlert, AppList, ImageWithMarkers, TextWithImage, AppTitle, TextBlock},
 
    setup() {
-      return {imageWithPoints, systemItems, features, soft}
+      const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 5, 768: 3, 568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 3, 568: 2, default: 1})
+
+      return {
+         imageWithPoints,
+         systemItems,
+         features,
+         soft,
+
+         itemsPerRowSystem,
+         itemsPerRowFeatures,
+
+      }
    }
 }
 </script>
@@ -112,9 +126,5 @@ export default {
 <style lang="scss" scoped>
 .list-title {
    margin-bottom: 10px;
-}
-ul {
-   list-style: disc;
-   margin-left: 30px;
 }
 </style>

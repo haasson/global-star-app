@@ -1,32 +1,30 @@
 <template>
-   <div class="menu">
-      <div class="wrapper">
-
-         <div class="inner">
-            <MenuItem
-                v-for="(item, key) in data"
-                :name="item.name"
-                :children="nested ? item.children : []"
-                :path="`/${key}`"
-                :style="{order: item.position}"
-                class="menu-item"
-            />
-         </div>
+   <PageSection class="menu" :class="{active: isOpen}">
+      <div class="inner">
+         <MenuItem
+             v-for="(item, key) in data"
+             :name="item.name"
+             :children="nested ? item.children : []"
+             :path="`/${key}`"
+             :style="{order: item.position}"
+             class="menu-item"
+         />
       </div>
-   </div>
+   </PageSection>
 </template>
 
 <script>
 import {computed, watch} from "vue";
-import useDatabase from "../../composable/database.js";
-import {useRouter} from "vue-router";
 
 import MenuItem from "../App/MenuItem.vue";
 import appConfig from "../../config/app.config.js";
+import useWindowDimensions from "../../composable/windowDimensions.js";
+import PageSection from "../Providers/PageSection.vue";
+import useMenuMode from "../../composable/menuMode.js";
 
 export default {
    name: "AppMenu",
-   components: {MenuItem},
+   components: {PageSection, MenuItem},
    props: {
      nested: {
         type: Boolean,
@@ -36,9 +34,15 @@ export default {
 
    setup() {
       const data = appConfig.navigation
+      const {width} = useWindowDimensions()
+
+      const {isOpen} = useMenuMode()
 
       return {
          data,
+         width,
+
+         isOpen,
       }
    }
 }
@@ -48,6 +52,7 @@ export default {
 .menu {
    position: relative;
    z-index: 2;
+   flex-grow: 0;
    background-color: var(--blue);
    color: var(--white);
    font-size: var(--subtitle-size);
@@ -75,5 +80,37 @@ export default {
 .dropdown {
    padding: 10px;
    background-color: yellow;
+}
+
+
+@media(max-width: 768px) {
+   .menu {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 77px;
+      padding-bottom: 40px;
+      background: var(--dark-blue);
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: .3s;
+      &.active {
+         transform: scaleY(1);
+      }
+   }
+   .inner {
+      display: block;
+   }
+   .menu-item {
+      &:not(:last-child):after {
+         display: none;
+      }
+   }
+}
+
+@media(max-width: 420px) {
+   .menu {
+      top: 59px;
+   }
 }
 </style>

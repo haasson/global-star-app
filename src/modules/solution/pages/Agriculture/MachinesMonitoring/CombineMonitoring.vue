@@ -9,7 +9,7 @@
    <AppList
        type="feature" gap="30"
        :items="features"
-       itemsPerRow="3"
+       :itemsPerRow="itemsPerRow"
        multiline
    />
 
@@ -22,6 +22,7 @@ import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/AppTitle.vue";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/machines-monitoring/combine/combine.png',
@@ -67,7 +68,9 @@ export default {
    components: {SoftSection, ImageWithMarkers, AppTitle, AppList, TextBlock},
 
    setup() {
-      return {imageWithPoints, features, soft}
+      const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})
+
+      return {imageWithPoints, features, soft, itemsPerRow}
    }
 }
 </script>

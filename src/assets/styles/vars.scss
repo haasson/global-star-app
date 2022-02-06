@@ -44,5 +44,46 @@ body {
 
    // LAYOUT
    --wrapper: 1400px;
+   --wrapperMargins: 70px;
+
+   @media(max-width: 992px) {
+      --wrapperMargins: 60px;
+
+      --title-size: 25px;
+      --article-text-size: 20px;
+      --subtitle-size: 18px;
+   }
+   @media(max-width: 768px) {
+      --wrapperMargins: 50px;
+
+      --title-size: 23px;
+      --article-text-size: 16px;
+      --subtitle-size: 16px;
+      --text-size-big: 16px;
+
+      --image-shadow: 8px 8px 0px 0px rgba(255, 209, 87, 1);
+   }
+   @media(max-width: 568px) {
+      --wrapperMargins: 40px;
+
+      --title-size: 22px;
+      --text-size-big: 14px;
+      --text-size: 14px;
+
+   }
+   @media(max-width: 480px) {
+      --wrapperMargins: 30px;
+
+      --title-size: 20px;
+      --article-text-size: 14px;
+      --subtitle-size: 14px;
+   }
+   @media(max-width: 420px) {
+      --wrapperMargins: 12px;
+
+      --title-size: 16px;
+      --text-size-big: 12px;
+      --text-size: 12px;
+   }
 }
 

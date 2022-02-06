@@ -11,9 +11,9 @@ const useDatabase = () => {
    const get = async (url) => {
       loading.value = true
       globalLoading.value = true
-      getFromDatabase(url)
+      return await getFromDatabase(url)
          .then((res) => {
-            data.value = res
+            return data.value = res
          })
          .catch(e => error.value = e)
          .finally(() => {
@@ -42,7 +42,7 @@ const useDatabase = () => {
 
    const del = async (url) => {
       await deleteFromDatabase(url)
-         .then((res) => data.value = res)
+         // .then((res) => data.value = res)
          .catch(e => error.value = e)
          .finally(() => loading.value = false)
    }

@@ -1,5 +1,7 @@
 <template>
-   <PageSection class="title" :class="[position, type]">
+   <PageSection
+       class="title"
+       :class="[position, type, {'with-bg': isMobileDevice && mobileBg, 'no-offset': isMobileDevice && mobileNoOffset}]">
       <div class="inner">
          <h2>
             <span class="title-text">
@@ -13,6 +15,7 @@
 
 <script>
 import PageSection from "./Providers/PageSection.vue";
+import useWindowDimensions from "../composable/windowDimensions.js";
 
 const TITLE_POSITIONS = ['left', 'right']
 
@@ -27,8 +30,22 @@ export default {
       },
       type: {
          type: String
+      },
+      mobileBg: {
+         type: Boolean,
+         default: false
+      },
+      mobileNoOffset: {
+         type: Boolean,
+         default: false
       }
    },
+
+   setup() {
+      const {isMobileDevice} = useWindowDimensions()
+
+      return {isMobileDevice}
+   }
 }
 </script>
 
@@ -109,5 +126,47 @@ h2 {
 .title-text {
    display: inline-block;
    min-width: 260px;
+}
+
+
+@media(max-width: 992px) {
+   .title {
+      margin-bottom: 30px;
+      padding: 0;
+      &.left,
+      &.right {
+         background: none;
+         &.simple {
+            background: var(--orange);
+            h2 {
+               padding: 10px;
+               background: none;
+            }
+         }
+         &.with-bg {
+            padding: 12px 0;
+            background: var(--orange);
+         }
+         &.no-offset {
+            margin-bottom: 0;
+         }
+         h2 {
+            min-width: 100%;
+            padding: 0;
+            text-align: center;
+            background: none;
+            color: var(--black)
+         }
+         .title-text {
+            text-align: center;
+         }
+      }
+   }
+}
+
+@media(max-width: 768px) {
+   .title {
+      margin-bottom: 20px;
+   }
 }
 </style>

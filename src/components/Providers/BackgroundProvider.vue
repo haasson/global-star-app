@@ -20,6 +20,8 @@ export default {
 }
 
 .full {
+   position: relative;
+   //z-index: -1;
    background-color: var(--list-bg-color);
 }
 

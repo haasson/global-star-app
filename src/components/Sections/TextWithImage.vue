@@ -2,9 +2,9 @@
    <PageSection class="block">
       <div class="inner">
          <div class="content">
-            <p class="text"><slot /></p>
-            <div class="button">
-               <AppButton v-if="button" :to="button.to" :color="button.color">{{button.text}}</AppButton>
+            <p class="text" :class="[textAlign]"><slot /></p>
+            <div v-if="button" class="button">
+               <AppButton :to="button.to" :color="button.color">{{button.text}}</AppButton>
             </div>
          </div>
          <div class="images" :class="{left: imagePosition === 'left'}">
@@ -33,6 +33,10 @@ export default {
       },
       button: {
          type: Object,
+      },
+      textAlign: {
+         type: String,
+         default: 'left'
       }
    },
 
@@ -73,9 +77,49 @@ export default {
    }
 }
 
-@media(max-width: 768px){
+@media(max-width: 992px){
    .block {
       margin-top: 40px;
+   }
+   .inner {
+      flex-direction: column;
+   }
+   .content {
+      margin: 0 auto;
+   }
+   .images {
+      margin: 0 auto 45px;
+      max-width: 100%;
+      order: -1;
+      &.left {
+         margin: 0 auto 45px;
+      }
+   }
+   .text {
+      &.center {
+         text-align: center;
+      }
+   }
+}
+
+@media(max-width: 480px){
+   .block {
+      margin-top: 24px;
+   }
+   .button {
+      margin-top: 32px;
+   }
+   .images {
+      margin-bottom: 20px;
+      &.left {
+         margin-bottom: 20px;
+      }
+   }
+}
+
+@media(max-width: 420px){
+   .list-title{
+      margin-bottom: 5px;
    }
 }
 

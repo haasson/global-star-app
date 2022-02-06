@@ -6,6 +6,7 @@ import programSolutionRoutes from "../modules/product-solution/routes";
 import serviceRoutes from "../modules/service/routes"
 import aboutRoutes from "../modules/about/routes";
 import contactsRoutes from "../modules/contacts/routes";
+import useMenuMode from "../composable/menuMode.js";
 
 const router = createRouter({
    history: createWebHistory(),
@@ -25,12 +26,13 @@ const router = createRouter({
    ]
 })
 
-
-
+const {closeMenu} = useMenuMode()
 
 router.beforeEach((to, from, next) => {
    scrollTo(0,0)
+   closeMenu()
    next()
+   console.log('after')
    // const route = to.path.slice(1) || 'main'
    //
    // let dbRoute = route.replaceAll('/', '@')

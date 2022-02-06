@@ -3,10 +3,8 @@
       <HeadImage
           :src="image"
           class="image"
+          pageName="Точный высев"
       />
-
-      <router-link to="/solution/agriculture/accurate-planter/sure-drive">Sure Drive</router-link>
-
 
       <TextBlock>
          <p>Правильное расположение семян спасает от взаимного угнетения растений и рационально использует площади. Просевы и двойники, нарушение нормы высева и глубины заделки невозможно исправить. Неконтролируемый сев приводит к 20% потерям ресурсов, снижается потенциал урожайности гибридов.</p>
@@ -15,7 +13,7 @@
       <div>
          <AppTitle position="left">Решение подходит на сеялки</AppTitle>
          <TextWithImage image="solution/pages/accurate-planter/planter.png">
-            <ul>
+            <ul class="unordered-list">
                <li>Case IH 1200</li>
                <li>Harvest International Laser Pro 1</li>
                <li>John Deere ME2/ME2+/XP</li>
@@ -34,10 +32,11 @@
           type="simple"
           gap="14"
           :items="variants"
-          itemsPerRow="3"
+          :itemsPerRow="itemsPerRow"
+          :isSlider="itemsPerRow === 1"
           title="Варианты решений"
           bgColor="orange"
-          bgType="half"
+          :bgType="itemsPerRow === 1 ? 'full' : 'half'"
       />
 
      <SoftSection :items="soft" titlePosition="left" />
@@ -55,10 +54,11 @@ import AppTitle from "../../../../../components/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const variants = [
    {name: 'solution/pages/accurate-planter/variant1.png', title: 'SureSpeed'},
-   {name: 'solution/pages/accurate-planter/variant2.png', title: 'SureDrive'},
+   {name: 'solution/pages/accurate-planter/variant2.png', title: 'SureDrive', link: "/solution/agriculture/accurate-planter/sure-drive"},
    {name: 'solution/pages/accurate-planter/variant3.png', title: 'SureForce'},
 ]
 const soft = ['finiti', 'sms']
@@ -67,7 +67,9 @@ export default {
 name: "AccuratePlanter",
    components: {SoftSection, AppList, TextWithImage, AppTitle, AppPage, TextBlock, HeadImage},
    setup() {
-      return {image, variants, soft}
+      const {itemsPerRow} = useItemsPerRow({768: 3, default: 1})
+
+      return {image, variants, soft, itemsPerRow}
    }
 }
 </script>

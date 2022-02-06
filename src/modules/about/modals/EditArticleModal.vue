@@ -1,6 +1,6 @@
 <template>
    <AppModal ref="modal" :minWidth="1000">
-      <template #title>{{ articleType }}</template>
+      <template #title>{{ titleMap[articleType] }}</template>
       <template #content>
          <form class="form">
             <div v-if="articleType === 'add-product'" class="select-wrap">
@@ -95,13 +95,26 @@ export default {
       },
    },
    setup(props, {emit}) {
+      const titleMap = {
+         'add-vacancy': 'Добавить вакансию',
+         'edit-vacancy': 'Редактировать вакансию',
+         'add-projects': 'Добавить проект',
+         'edit-projects': 'Редактировать проект',
+         'add-news': 'Добавить новость',
+         'edit-news': 'Редактировать новость',
+         'add-product': 'Добавить продукт',
+         'edit-product': 'Редактировать продукт',
+      }
       const entity = props.articleType.split('-')[1];
       const isProductPage = entity === 'product'
 
       // Modal
       const modal = ref(null);
       const open = () => {
-         if (!isProductPage) getArticlesCount(`${entity}/count`);
+         if (!isProductPage) {
+            getLastID(`${entity}/lastID`);
+            getArticlesCount(`${entity}/count`);
+         }
          modal.value.open();
       };
       const close = () => {
@@ -115,14 +128,18 @@ export default {
       const {set: setImages, loading: imagesUpload, error: uploadError} = useStorage();
 
       const {get: getArticlesCount, data: articlesCount} = useDatabase();
+      const {get: getLastID, data: lastID} = useDatabase();
+
       const {set: setArticle} = useDatabase();
+
 
       // For product editing
       const {section, sectionOptions, category, categoryOptions, categoryDbPath} = useProductCategory(props.articleType)
       watch(categoryDbPath, () => {
          if (!categoryDbPath.value) return
          dbPath = `catalog/${section.value}/${category.value}`
-         getArticlesCount(`${dbPath}/count`);
+         getLastID(`${dbPath}/lastID`);
+         getArticlesCount(`${entity}/count`);
       }, {immediate: true})
       if (section) {
          dbPath = `catalog/${section.value}/${category.value}`
@@ -140,7 +157,7 @@ export default {
              .filter(file => file.type)
              .sort((a, b) => (a.isMain === true ? 1 : -1))
 
-         const articleID = props.id ? +(props.id.slice(2)) : (articlesCount.value === undefined ? 1 : articlesCount.value + 1)
+         const articleID = props.id ? +(props.id.slice(2)) : (lastID.value === undefined ? 1 : lastID.value + 1)
          const articleToSave = {...data, id: `id${articleID}`, images, time: Date.now()}
 
          let storagePath = `images/${dbPath}/id${articleID}`
@@ -149,10 +166,10 @@ export default {
             // Save data to database
             setArticle(`${dbPath}/list/id${articleID}`, articleToSave),
          ]
-         console.log(`${dbPath}/list/id${articleID}`, articleToSave)
          // If creating new record
          if (!props.id) {
-            promises.push(setArticle(`${dbPath}/count`, articleID))
+            promises.push(setArticle(`${dbPath}/lastID`, articleID))
+            promises.push(setArticle(`${dbPath}/count`, articlesCount.value ? articlesCount.value + 1 : 1))
          }
          // Save images to storage if it is necessary
          if (entity !== 'vacancy') {
@@ -200,6 +217,7 @@ export default {
       };
 
       return {
+         titleMap,
          entity,
          modal,
          open,

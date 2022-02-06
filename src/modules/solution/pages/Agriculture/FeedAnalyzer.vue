@@ -1,7 +1,7 @@
 <template>
    <AppPage noOffset>
 
-      <HeadImage :src="image"/>
+      <HeadImage :src="image" pageName="БИК анализаторы кормов"/>
 
       <TextBlock>
          <p>
@@ -30,7 +30,7 @@
          <AppList
              type="feature" gap="35"
              :items="features"
-             itemsPerRow="2"
+             :itemsPerRow="itemsPerRow"
              justify="flex-start"
              multiline
          />
@@ -48,6 +48,7 @@ import TextBlock from "../../../../components/Sections/TextBlock.vue";
 import AppTitle from "../../../../components/AppTitle.vue";
 import TextWithImage from "../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../components/App/AppList.vue";
+import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 
 const features = [
    {
@@ -76,8 +77,10 @@ export default {
 name: "FeedAnalyzer",
    components: {AppList, TextWithImage, AppTitle, TextBlock, HeadImage, AppPage},
    setup() {
+      const {itemsPerRow} = useItemsPerRow({568: 2, default: 1})
 
-      return {image, features}
+
+      return {image, features, itemsPerRow}
    }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-   <AppPage>
+   <AppPage class="program-solution-page">
       <AppTitle position="left">{{ namePS }}</AppTitle>
 
       <TextWithImage image="program-solution/laptop.png" imagePosition="left">
@@ -12,7 +12,7 @@
       <AppList
           type="feature" gap="50"
           :items="features"
-          itemsPerRow="2"
+          :itemsPerRow="itemsPerRowFeatures"
           multiline
       />
 
@@ -20,11 +20,12 @@
           type="simple"
           gap="12"
           :items="systemItems"
-          itemsPerRow="4"
+          :itemsPerRow="itemsPerRowSystem"
+          :isSlider="itemsPerRowSystem < 4"
           :imageHeight="110"
           title="Как работает система?"
           bgColor="orange"
-          bgType="half"
+          :bgType="itemsPerRowSystem < 4 ? 'full' : 'half'"
       />
 
    </AppPage>
@@ -37,6 +38,8 @@ import AppPage from "../../../components/App/AppPage.vue";
 import AppTitle from "../../../components/AppTitle.vue";
 import TextWithImage from "../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../components/App/AppList.vue";
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
+import {onMounted} from "vue";
 
 const features = [
    {
@@ -63,10 +66,10 @@ const features = [
 
 const basePath = 'solution/pages/harvest/'
 const systemItems = [
-   {name: `${basePath}/agleader/system-item1.png`, text: 'Дисплей InCommand 800/1200'},
-   {name: `${basePath}/agleader/system-item2.png`, text: 'Навигационный приемник AgLeader 7500'},
-   {name: `${basePath}/agleader/system-item3.jpg`, text: 'Тензо датчик'},
-   {name: `${basePath}/agleader/system-item4.jpg`, text: 'Модуль измерения влажности'},
+   {name: 'program-solution/gear.svg', text: '<b>Поля и культуры</b><br>Импорт или создание полей. Удобный контроль севооборота, список культур и подробная история операций по каждому полю.'},
+   {name: 'program-solution/gear.svg', text: '<b>Обработки полей</b><br>Импортируйте геозоны в качестве полей. Поиск новых обработок полей. Опции редактирования и подтверждения обработок перед добавлением в базу.'},
+   {name: 'program-solution/gear.svg', text: '<b>Спецтехника и водители</b><br>Использование водителей, объектов и прицепов, созданных в Wialon. Расчет показателей топлива, скорости, пробега для каждой обработки поля.'},
+   {name: 'program-solution/gear.svg', text: '<b>Отчеты</b><br>Простая генерация отчетов по водителям, полям, операциям и объектам. Импорт отчетов в csv.'},
 ]
 export default {
    name: "ProductSolutionPage",
@@ -75,19 +78,47 @@ export default {
       const route = useRoute()
       const namePS = appConfig.programSolutions.allPS.find(el => el.name === route.params.name).title
 
+      const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 568: 2, default: 1})
 
-      return {namePS, features, systemItems}
+
+      return {namePS, features, systemItems, itemsPerRowFeatures, itemsPerRowSystem}
    }
 }
 </script>
 
-<style lang="scss" scoped>
-.title {
-   margin-bottom: 8px;
-   font-size: var(--article-text-size);
-   font-weight: 600;
+<style lang="scss">
+.program-solution-page {
+   .title {
+      margin-bottom: 8px;
+      font-size: var(--article-text-size);
+      font-weight: 600;
+   }
+   .text {
+      font-size: var(--subtitle-size);
+   }
+   .list.simple {
+      .card {
+         padding-bottom: 50px;
+      }
+      .image-wrap {
+         width: 65px;
+         height: 65px;
+         margin-bottom: 30px;
+         border: 5px solid var(--orange)
+      }
+      .image {
+         position: absolute;
+         left: -12px;
+         bottom: -7px;
+         transform: scale(1.2);
+      }
+      .text {
+         text-align: left;
+         font-weight: 300;
+         font-size: var(--text-size);
+      }
+   }
 }
-.text {
-   font-size: var(--subtitle-size);
-}
+
 </style>

@@ -1,10 +1,11 @@
 <template>
-   <AppPage noOffset>
+   <AppPage noOffset class="auto-drive-page">
       <HeadImage
           :src="image"
           class="image"
           title="Делайте больше, уставайте меньше"
           titleType="simple"
+          pageName="Автоматическое вождение"
       />
 
       <TextBlock>
@@ -13,9 +14,9 @@
       </TextBlock>
 
       <div>
-         <AppTitle position="left">Система автоматического вождения позволяет</AppTitle>
+         <AppTitle position="left" :mobileBg="true">Система автоматического вождения позволяет</AppTitle>
          <TextWithImage image="solution/pages/autodrive/autodrive-features.png" imagePosition="left">
-            <ul>
+            <ul class="unordered-list">
                <li>Работать в условиях тумана, ночью, повышенной запыленности;</li>
                <li>Экономить посевной материал, ГСМ, средства химической защиты;</li>
                <li>Минимизирует усталость механизатора;</li>
@@ -29,16 +30,17 @@
           type="empty"
           gap="5"
           :items="examples"
-          itemsPerRow="3"
+          :itemsPerRow="itemsPerRowFlow"
+          :isSlider="itemsPerRowFlow === 1"
           title="Посев без использования системы автоматического вождения"
           titleSize="sm"
-          bgColor="blue"
+          :bgColor="width > 568 ? 'blue' : ''"
           bgType="half"
       />
 
       <HeadImage
           :src="imageAccurate"
-          class="image"
+          class="image secondary"
           title="Необходимая точность для вашей культуры"
           titlePosition="left"
           titleType="simple"
@@ -48,7 +50,7 @@
           type="empty"
           gap="5"
           :items="accurateImages"
-          itemsPerRow="3"
+          :itemsPerRow="itemsPerRowAccurate"
           title="Сервисы коррекции позволяют работать с нужной точностью в любое время года"
           titleSize="sm"
       />
@@ -57,10 +59,12 @@
           type="simple"
           gap="14"
           :items="variants"
-          itemsPerRow="3"
+          :itemsPerRow="itemsPerRowVariants"
+          :isSlider="width <= 700"
           title="Варианты решений"
           bgColor="blue"
-          bgType="half"
+          :bgType="width <= 700 ? 'full' : 'half'"
+          class="variants-list"
       />
 
 
@@ -76,6 +80,8 @@ import AppPage from "../../../../../components/App/AppPage.vue";
 import AppTitle from "../../../../../components/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../../components/App/AppList.vue";
+import useWindowDimensions from "../../../../../composable/windowDimensions.js";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const examples = [
     {name: 'solution/pages/autodrive/example1.jpg'},
@@ -96,15 +102,45 @@ export default {
 name: "AutoDrive",
    components: {AppList, TextWithImage, AppTitle, AppPage, TextBlock, HeadImage},
    setup() {
-      return {image, imageAccurate, examples, accurateImages, variants}
+      const {width} = useWindowDimensions()
+
+      const {itemsPerRow: itemsPerRowFlow} = useItemsPerRow({568: 3, default: 1})
+      const {itemsPerRow: itemsPerRowAccurate} = useItemsPerRow({480: 3, default: 1})
+      const {itemsPerRow: itemsPerRowVariants} = useItemsPerRow({700: 3, default: 1})
+
+
+      return {
+         width,
+         itemsPerRowFlow,
+         itemsPerRowAccurate,
+         itemsPerRowVariants,
+
+         image,
+         imageAccurate,
+         examples,
+         accurateImages,
+         variants
+      }
    }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.auto-drive-page {
+   @media(max-width: 700px) {
+      .variants-list {
+         padding-bottom: 10px;
+      }
+   }
 
-ul {
-   list-style: disc;
-   margin-left: 30px;
+   @media(max-width: 480px) {
+      .image {
+         &.secondary {
+            display: none;
+         }
+      }
+   }
 }
+
+
 </style>

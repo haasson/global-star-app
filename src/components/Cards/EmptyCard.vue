@@ -1,6 +1,6 @@
 <template>
    <div class="item" :style="{minHeight: `${itemHeight}px`}">
-      <img class="image" :class="{'with-shadow': text}" :src="imageSrc" alt="">
+      <img class="image" :class="{'with-shadow': text && !noShadow }" :src="imageSrc" alt="">
       <p v-if="text" v-html="text"></p>
    </div>
 </template>
@@ -22,6 +22,10 @@ export default {
       itemHeight: {
          type: Number,
          required: true
+      },
+      noShadow: {
+         type: Boolean,
+         default: false
       }
    },
 
@@ -48,7 +52,7 @@ export default {
    }
 }
 p {
-   min-height: 60px;
+   min-height: 30px;
    margin-top: 20px;
    font-size: var(--text-size);
    text-align: center;

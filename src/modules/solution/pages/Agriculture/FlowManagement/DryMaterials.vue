@@ -10,7 +10,7 @@
       <div>
          <AppTitle position="left">Особенности системы</AppTitle>
          <TextWithImage image="solution/pages/flow-management/system-features.png" imagePosition="left">
-            <ul>
+            <ul class="unordered-list">
                <li>1 контроллер для 3 продуктов</li>
                <li>Плановая и фактическая норма внесения</li>
                <li>Скорость вращения вентилятора</li>
@@ -24,10 +24,10 @@
       </div>
 
       <div>
-         <AppTitle>Дисплей</AppTitle>
+         <AppTitle mobileBg="orange">Дисплей</AppTitle>
          <TextWithImage image="solution/pages/flow-management/display.png">
             <p class="list-title">Особенности:</p>
-            <ul>
+            <ul class="unordered-list">
                <li>Точность заданной нормы при помощи GPS/GLONASS</li>
                <li>Автоматическое включение/ выключение подачи удобрений</li>
                <li>Мгновенная смена норм внесения по зонам карт–предписаний</li>
@@ -61,8 +61,10 @@ export default {
 .list-title {
    margin-bottom: 10px;
 }
-ul {
-   list-style: disc;
-   margin-left: 30px;
+
+@media(max-width: 420px){
+   .list-title{
+      margin-bottom: 5px;
+   }
 }
 </style>

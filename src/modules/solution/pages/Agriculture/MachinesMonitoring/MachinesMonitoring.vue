@@ -3,6 +3,7 @@
       <HeadImage
           :src="image"
           class="image"
+          pageName="Мониторинг с/х техники"
       />
 
       <AppTabs :tabs="tabs"/>

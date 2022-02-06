@@ -1,5 +1,5 @@
 <template>
-   <div class="item">
+   <div class="item" :style="{width: `calc(100%/${itemsPerRow} - 20px)`,}">
       <div class="square">
          <AppIcon
              class="icon"
@@ -18,10 +18,11 @@
 </template>
 
 <script>
-import {ref} from "vue";
+import {computed, ref, watch} from "vue";
 import Card from "./Card.vue";
 import PageSection from "../Providers/PageSection.vue";
 import AppIcon from "../App/AppIcon.vue";
+import useWindowDimensions from "../../composable/windowDimensions.js";
 
 export default {
    name: "FeatureCard",

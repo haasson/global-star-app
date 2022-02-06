@@ -10,11 +10,12 @@
        type="simple"
        gap="12"
        :items="systemItems1"
-       itemsPerRow="4"
+       :itemsPerRow="itemsPerRowSystem1"
+       :isSlider="itemsPerRowSystem1 < 2"
        :imageHeight="280"
        title="Состав системы №1"
        bgColor="orange"
-       bgType="half"
+       :bgType="itemsPerRowSystem1 < 2 ? 'full' : 'half'"
    />
 
    <div>
@@ -22,7 +23,7 @@
       <AppList
           type="feature" gap="25"
           :items="features1"
-          itemsPerRow="2"
+          :itemsPerRow="itemsPerRowFeatures1"
           multiline
       />
    </div>
@@ -31,11 +32,12 @@
        type="simple"
        gap="12"
        :items="systemItems2"
-       itemsPerRow="3"
+       :itemsPerRow="itemsPerRowSystem2"
+       :isSlider="itemsPerRowSystem1 < 3"
        :imageHeight="220"
        title="Состав системы №2"
        bgColor="orange"
-       bgType="half"
+       :bgType="itemsPerRowSystem1 < 3 ? 'full' : 'half'"
    />
 
    <div>
@@ -43,7 +45,7 @@
       <AppList
           type="feature" gap="25"
           :items="features2"
-          itemsPerRow="2"
+          :itemsPerRow="itemsPerRowFeatures2"
           multiline
       />
    </div>
@@ -61,6 +63,7 @@ import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/AppTitle.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const basePath = 'solution/pages/harvest/'
 const imageWithPoints = {
@@ -90,7 +93,7 @@ const features1 = [
 ]
 
 const systemItems2 = [
-   {name: `${basePath}/bunkers-reloader/system-item3.png`, text: 'Облачный сервисField Trace'},
+   {name: `${basePath}/bunkers-reloader/system-item3.png`, text: 'Облачный сервис Field Trace'},
    {name: `${basePath}/bunkers-reloader/system-item4.png`, text: 'Коммутационный контролер KALI'},
    {name: `${basePath}/bunkers-reloader/system-item5.png`, text: 'Сенсорный дисплей'},
 ]
@@ -128,7 +131,25 @@ export default {
    name: "BunkerReloader",
    components: {AppAlert, SoftSection, AppTitle, AppList, ImageWithMarkers, TextBlock},
    setup() {
-      return {imageWithPoints, systemItems1, features1, systemItems2, features2, soft}
+      const {itemsPerRow: itemsPerRowSystem1} = useItemsPerRow({568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowFeatures1} = useItemsPerRow({568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowSystem2} = useItemsPerRow({768: 3, 568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowFeatures2} = useItemsPerRow({568: 2, default: 1})
+
+
+      return {
+         imageWithPoints,
+         systemItems1,
+         features1,
+         systemItems2,
+         features2,
+         soft,
+
+         itemsPerRowSystem1,
+         itemsPerRowFeatures1,
+         itemsPerRowSystem2,
+         itemsPerRowFeatures2
+      }
    }
 }
 </script>

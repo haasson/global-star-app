@@ -22,7 +22,7 @@ body {
    min-width: 320px;
    min-height: 100vh;
    font-family: 'Roboto', sans-serif;
-   font-size: 16px;
+   font-size: var(--text-size);
    line-height: 1.4;
    //color: $main-text-color;
    overflow-x: hidden;
@@ -39,7 +39,7 @@ body {
 
 
 .wrapper {
-   width: calc(100% - 70px);
+   width: calc(100% - var(--wrapperMargins));
    max-width: var(--wrapper);
    margin: 0 auto;
 }
@@ -63,13 +63,38 @@ video {
    outline: none;
 }
 
+.user-list{
+   margin-left: 30px;
+}
+
+ol {
+   &.user-list {
+      list-style: decimal;
+   }
+}
+
+ul{
+   &.user-list {
+      list-style: disc;
+   }
+}
+
+.unordered-list {
+   list-style: disc;
+   margin-left: 30px;
+}
+
 a {
    text-decoration: none;
+   color: var(--black);
    &.dark-bg {
       color: var(--white);
       &:visited {
          color: var(--white)
       }
+   }
+   &:visited, {
+      color: var(--black)
    }
 }
 
@@ -180,5 +205,92 @@ textarea:focus:-moz-placeholder {
 input:focus:-ms-input-placeholder,
 textarea:focus:-ms-input-placeholder {
    color: transparent
+}
+
+.swiper-wrapper {
+   align-items: stretch;
+}
+.swiper-slide {
+   height: auto;
+}
+
+.user-table {
+   font-size: var(--subtitle-size);
+   border: 1px solid var(--black);
+   .row {
+      display: flex;
+      border-bottom: 1px solid var(--black);
+      &.head {
+         font-weight: 600;
+      }
+      &:last-child {
+         border: none
+      }
+   }
+   .col {
+      padding: 16px 40px;
+      &:first-child {
+         width: 70%;
+         border-right: 1px solid var(--black);
+      }
+      &:last-child {
+         flex-grow: 1;
+         text-align: center;
+      }
+   }
+}
+
+@media(max-width: 992px) {
+   .swiper-wrapper {
+      //align-items: center;
+   }
+
+   .swiper-pagination {
+      &.swiper-pagination-bullets {
+         //bottom: 0;
+
+         .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            opacity: .4;
+            &.swiper-pagination-bullet-active {
+               opacity: 1;
+            }
+         }
+      }
+
+   }
+}
+@media(max-width: 768px) {
+   .user-table{
+      .col {
+         padding: 10px 20px;
+      }
+   }
+}
+@media(max-width: 568px){
+   .user-table{
+      border: none;
+      border-top: 1px solid var(--black);
+      .row {
+         border-bottom: none;
+         flex-direction: column;
+      }
+      .col {
+         border-bottom: 1px solid var(--black);
+         &:first-child {
+            width: 100%;
+            border-right: none;
+         }
+      }
+   }
+}
+@media(max-width: 480px) {
+   .user-table {
+      .col {
+         padding: 10px 10px;
+      }
+   }
 }
 

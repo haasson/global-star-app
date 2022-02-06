@@ -447,7 +447,7 @@ const pages = {
 const pageContent = shallowRef([]);
 const dbPath = ref('')
 
-const isAdmin = ref(true)
+const isAdmin = ref(false)
 const globalLoading = ref(false)
 
 export {pages, pageContent, isAdmin, dbPath, globalLoading}

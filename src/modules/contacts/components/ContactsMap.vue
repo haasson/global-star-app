@@ -69,4 +69,20 @@ export default {
 .map {
    height: calc(100% - 1px);
 }
+
+@media(max-width: 768px) {
+   .map-wrap {
+      height: 500px;
+   }
+}
+@media(max-width: 568px) {
+   .map-wrap {
+      height: 400px;
+   }
+}
+@media(max-width: 480px) {
+   .map-wrap {
+      height: 300px;
+   }
+}
 </style>

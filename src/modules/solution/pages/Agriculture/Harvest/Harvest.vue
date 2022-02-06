@@ -3,6 +3,7 @@
       <HeadImage
           :src="image"
           class="image"
+          pageName="Уборка урожая"
       />
 
       <AppTabs :tabs="tabs"/>

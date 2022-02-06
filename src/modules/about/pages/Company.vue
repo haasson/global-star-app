@@ -1,7 +1,7 @@
 <template>
    <AppPage>
       <TextBlock>
-         <p>Компания ГлобалСтар работает с 2013года, основным направлением деятельности является продажа оборудования и
+         <p>Компания ГлобалСтар работает с 2013 года, основным направлением деятельности является продажа оборудования и
             программного обеспечения для транспорта, строительства и сельского хозяйства.</p>
          <p>Наша компания предлагает решения, которые помогают снизить амортизационные расходы на технику,
             контролировать режим её работы путем установки специального оборудования, исключить возможность хищения ГСМ,
@@ -15,7 +15,7 @@
       <AppList
           title='Наши клиенты'
           type='simple'
-          itemsPerRow="3"
+          :itemsPerRow="itemsPerRow"
           itemHeight="100"
           :items="clients"
           multiline
@@ -26,7 +26,7 @@
          <AppTitle position="left">Наши партнеры</AppTitle>
          <AppList
              type='simple'
-             itemsPerRow="3"
+             :itemsPerRow="itemsPerRow"
              itemHeight="100"
              :items="partners"
              multiline
@@ -44,6 +44,7 @@ import AppPage from "../../../components/App/AppPage.vue";
 import TextBlock from "../../../components/Sections/TextBlock.vue";
 import AppList from "../../../components/App/AppList.vue";
 import AppTitle from "../../../components/AppTitle.vue";
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
 
 const slides = [
    'about/company/1.jpg',
@@ -76,9 +77,10 @@ export default {
    components: {AppTitle, AppList, TextBlock, AppPage, AppGallery, PageSection},
 
    setup() {
+      const listSettings = {992: 3, 568: 2, default: 1}
+      const {itemsPerRow} = useItemsPerRow(listSettings)
 
-
-      return {slides, clients, partners}
+      return {slides, clients, partners, itemsPerRow}
    }
 }
 </script>
@@ -97,5 +99,8 @@ p {
        transparent calc(100% - 95px),
        transparent 100%
    );
+   @media(max-width: 992px){
+      background: var(--orange);
+   }
 }
 </style>

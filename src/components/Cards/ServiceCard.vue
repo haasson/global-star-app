@@ -87,5 +87,8 @@ export default {
    margin-top: 20px;
    font-size: var(--subtitle-size);
    text-align: center;
+   @media(max-width: 1200px) {
+      color: var(--white);
+   }
 }
 </style>

@@ -10,7 +10,7 @@
             <div v-if="isOpen" class="text">
                <AppButtonsGroup v-if="isAdmin" class="buttons">
                   <AppButton @click="$emit('editButtonClicked', id)" color="blue">
-                     Редактировать вакансию
+                     Редактировать
                   </AppButton>
 
                   <AppButton @click="$emit('hideButtonClicked', id)" color="blue">
@@ -53,9 +53,6 @@ export default {
    setup(props) {
       const description = computed(() => {
          return descriptionToHTML(props.text)
-      })
-      onMounted(() => {
-         console.log('mount')
       })
 
       const isOpen = ref(false)
@@ -112,11 +109,58 @@ export default {
    .icon {
       width: 20px;
       height: 20px;
+      margin-left: 20px;
 
       border-right: 2px solid var(--blue);
       border-bottom: 2px solid var(--blue);
       transform: rotate(-45deg);
       transform-origin: center center;
+   }
+}
+
+@media(max-width: 992px) {
+   .vacancy-item {
+      .content {
+         margin-bottom: 10px;
+      }
+      .head {
+         padding: 30px 50px;
+      }
+      .text {
+         padding: 30px;
+      }
+   }
+}
+@media(max-width: 768px) {
+   .vacancy-item {
+      .head {
+         padding: 20px 30px;
+      }
+      .icon {
+         width: 15px;
+         height: 15px;
+      }
+   }
+}
+@media(max-width: 568px) {
+   .vacancy-item {
+      .head {
+         padding: 15px 25px;
+      }
+      .text {
+         padding: 20px;
+      }
+   }
+}
+@media(max-width: 480px) {
+   .vacancy-item {
+      .text {
+         padding: 10px;
+      }
+      .icon {
+         width: 10px;
+         height: 10px;
+      }
    }
 }
 

@@ -1,6 +1,7 @@
 <template>
    <AppPage noOffset>
-      <HeadImage :src="image" />
+      <HeadImage :src="image"
+                 pageName="3D система для экскаватора"/>
 
       <TextBlock>
          <p>Система используется для дорог, трасс, дамб, обширных земляных работ.
@@ -13,7 +14,7 @@
       <AppList
           type="feature" gap="25"
           :items="features"
-          itemsPerRow="2"
+          :itemsPerRow="itemsPerRowFeatures"
           multiline
           justify="flex-start"
       />
@@ -38,6 +39,7 @@ import AppList from "../../../../components/App/AppList.vue";
 import AppGallery from "../../../../components/App/AppGallery.vue";
 import AppAlert from "../../../../components/App/AppAlert.vue";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
+import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/3d-system/excavator.png',
@@ -93,7 +95,9 @@ export default {
    name: "3d-system",
    components: {SoftSection, AppAlert, AppGallery, AppList, AppTitle, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
-      return {image, imageWithPoints, features, slides, soft}
+      const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({568: 2, default: 1})
+
+      return {image, imageWithPoints, features, slides, soft, itemsPerRowFeatures}
    }
 }
 </script>

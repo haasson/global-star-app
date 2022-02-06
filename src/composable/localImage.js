@@ -1,4 +1,4 @@
-import {shallowRef, ref, watchEffect} from "vue";
+import {shallowRef, watchEffect} from "vue";
 
 const useLocalImage = (path) => {
    const imageSrc = shallowRef('')
@@ -12,5 +12,3 @@ const useLocalImage = (path) => {
 
 
 export default useLocalImage
-
-

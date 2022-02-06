@@ -5,6 +5,7 @@
           class="image"
           title="Сопровождение на всех этапах заказа"
           titleType="simple"
+          pageName="Сервис"
       />
 
       <TextBlock>
@@ -15,13 +16,13 @@
           type="service"
           gap="36"
           :items="features"
-          itemsPerRow="5"
+          :itemsPerRow="itemsPerRow"
           title="Услуги сервиса"
           bgColor="blue"
-          bgType="line"
+         :bgType="itemsPerRow < 5 ? 'full' : 'line'"
       />
 
-      <TextWithImage image="service/service.png" imagePosition="left">
+      <TextWithImage image="service/service.png" imagePosition="left" textAlign="center">
          <p>
             Наши специалисты всегда готовы помочь вам!
          </p>
@@ -39,6 +40,7 @@ import HeadImage from "../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../components/Sections/TextBlock.vue";
 import AppList from "../../../components/App/AppList.vue";
 import TextWithImage from "../../../components/Sections/TextWithImage.vue";
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
 
 const features = [
    {
@@ -87,12 +89,14 @@ export default {
    components: {TextWithImage, AppList, TextBlock, HeadImage, AppPage},
 
    setup() {
+      const listSettings = {1200: 5, 768: 3, 568: 2, default: 1}
+      const {itemsPerRow} = useItemsPerRow(listSettings)
 
-      return {image, features}
+      return {image, features, itemsPerRow}
    }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

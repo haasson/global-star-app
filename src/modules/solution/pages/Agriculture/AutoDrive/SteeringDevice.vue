@@ -1,8 +1,9 @@
 <template>
-   <AppPage noOffset>
+   <AppPage noOffset class="steering-device-page">
       <HeadImage
           :src="image"
           class="image"
+          pageName="Подруливающее устройство"
       />
 
       <TextBlock>
@@ -17,18 +18,20 @@
           type="simple"
           gap="12"
           :items="systemItems"
-          itemsPerRow="4"
+          :itemsPerRow="itemsPerRowSystem"
+          :isSlider="itemsPerRowSystem < 4"
           :imageHeight="180"
           title="Состав системы"
           bgColor="orange"
-          bgType="half"
+          :bgType="itemsPerRowSystem < 4 ? 'full' : 'half'"
+          class="system"
       />
 
       <AppTitle type="simple" position="left">SteadySteer</AppTitle>
 
       <TextWithImage image="solution/pages/autodrive/steady-steer.png" imagePosition="left">
          <p class="list-title">Особенности:</p>
-         <ul>
+         <ul class="unordered-list">
             <li>Мотор с высоким крутящим моментом: справится с любой рулевой колонкой</li>
             <li>Перестановка с техники на технику за секунды</li>
             <li>Быстрый отклик и высокая точность</li>
@@ -40,7 +43,7 @@
 
       <TextWithImage image="solution/pages/autodrive/steer-command.png">
          <p class="list-title">Особенности:</p>
-         <ul>
+         <ul class="unordered-list">
             <li>Интеграция более чем с 600 моделями техники без конструктивных изменений</li>
             <li>Полная реализация потенциала точности приемника</li>
             <li>9-ти осевая компенсация неровностей</li>
@@ -52,7 +55,7 @@
          <AppList
              type="signal" gap="30"
              :items="signals"
-             itemsPerRow="4"
+             :itemsPerRow="itemsPerRowSignals"
              multiline
          />
       </div>
@@ -73,6 +76,7 @@ import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/autodrive/tractor-blu.png',
@@ -100,17 +104,40 @@ export default {
    name: "SteeringDevice",
    components: {AppAlert, AppTitle, TextWithImage, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
-      return {image, imageWithPoints, systemItems, signals}
+      const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 480: 2, default: 1})
+      const {itemsPerRow: itemsPerRowSignals} = useItemsPerRow({568: 2, default: 1})
+
+      return {
+         image,
+         imageWithPoints,
+         systemItems,
+         signals,
+
+         itemsPerRowSystem,
+         itemsPerRowSignals,
+
+      }
    }
 }
 </script>
 
-<style lang="scss" scoped>
-.list-title {
-   margin-bottom: 10px;
+<style lang="scss">
+.steering-device-page {
+   .list-title {
+      margin-bottom: 10px;
+   }
+
+   @media(max-width: 992px) {
+      .system {
+         padding-bottom: 10px;
+         .swiper-slide {
+            padding-bottom: 25px;
+         }
+         .swiper-pagination-bullets {
+            bottom: 0;
+         }
+      }
+   }
 }
-ul {
-   list-style: disc;
-   margin-left: 30px;
-}
+
 </style>

@@ -10,7 +10,7 @@
       </div>
 
       <div v-ellipsis class="text-container">
-         <p v-html="descriptionToHTML(text, {allowedBlocks: 'paragraph'})"></p>
+         <p v-html="descriptionToHTML(text, 'paragraph')"></p>
       </div>
 
       <AppButton v-if="button" :to="link"  class="btn" color="orange">
@@ -103,6 +103,7 @@ h3 {
    font-size: var(--subtitle-size);
    line-height: 1.15;
    overflow: hidden;
+   word-break: break-word;
 }
 
 p {
@@ -115,5 +116,12 @@ p {
 .btn {
    min-width: auto;
    width: 100%;
+   margin-top: auto;
+}
+
+@media(max-width: 768px) {
+   h3 {
+      font-size: var(--title-size);
+   }
 }
 </style>

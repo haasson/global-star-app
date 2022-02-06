@@ -1,7 +1,11 @@
 <template>
-   <PageSection class="list-block" :class="[bgType, bgColor, {'with-title': title && bgType}]" >
+   <PageSection
+       class="app-list-block"
+       :class="[bgType, bgColor, {'with-title': title && bgType}]"
+       :style="{paddingBottom: `${isSlider && bgType === 'full' ? '20' : 'inherit'}px`}"
+   >
       <div class="inner">
-         <h3 v-if="title" :class="titleSize">{{ title }}</h3>
+         <h3 class="main-title" v-if="title" :class="titleSize">{{ title }}</h3>
 
          <!-- Slider -->
          <Swiper
@@ -9,47 +13,58 @@
              :slides-per-view="itemsPerRow"
              :space-between="2*gap"
              :pagination="{clickable: true}"
-             class="list"
+             class="list slider"
+             :class="[{'with-title': title, 'with-bg': bgColor}, align, type]"
          >
             <SwiperSlide v-for="item in items">
-               <Component
-                   :is="listItemComponent"
-                   :empty="empty"
-                   :title="item.title"
-                   :name="item.name"
-                   :link="item.link"
-                   :text="item.text"
-                   :icon="item.icon"
-                   :image="item.image"
-                   :itemHeight="itemHeight"
-                   :imageHeight="imageHeight"
-                   :button="item.button"
-               />
+               <div :style="{marginLeft: '15px', marginRight: '15px', height: '100%', }">
+                  <Component
+                      :is="listItemComponent"
+                      :empty="empty"
+                      :title="item.title"
+                      :name="item.name"
+                      :link="item.link"
+                      :text="item.text"
+                      :icon="item.icon"
+                      :image="item.image"
+                      :itemHeight="itemHeight"
+                      :imageHeight="imageHeight"
+                      :noShadow="item.noShadow"
+                      :button="item.button"
+                  />
+               </div>
             </SwiperSlide>
-         </Swiper>
+      </Swiper>
 
-         <!-- Simple list -->
-         <ul v-else class="list" :class="{multiline}" :style="{justifyContent: justify}">
-            <Component
-                :is="listItemComponent"
-                v-for="item in items"
-                :empty="empty"
-                :title="item.title"
-                :name="item.name"
-                :link="item.link"
-                :text="item.text"
-                :period="item.period"
-                :price="item.price"
-                :isHidden="item.isHidden"
-                :icon="item.icon"
-                :image="item.image"
-                :itemHeight="itemHeight"
-                :imageHeight="imageHeight"
-                :button="item.button"
-                :style="{width: `calc(100%/${itemsPerRow} - 2*${gap}px)`, margin: `0 ${gap}px ${multiline ? '50px' : 0}`}"
-                class="list-item"
-            />
-         </ul>
+      <!-- Simple list -->
+      <ul
+          v-else
+          class="list"
+          :class="[{multiline: multiline && itemsPerRow > 1, 'with-title': title}, type]"
+          :style="{justifyContent: justify}"
+      >
+         <Component
+             :is="listItemComponent"
+             v-for="item in items"
+             :empty="empty"
+             :title="item.title"
+             :name="item.name"
+             :link="item.link"
+             :text="item.text"
+             :period="item.period"
+             :price="item.price"
+             :isHidden="item.isHidden"
+             :icon="item.icon"
+             :image="item.image"
+             :noShadow="item.noShadow"
+             :itemHeight="itemHeight"
+             :imageHeight="imageHeight"
+             :button="item.button"
+             :style="{width: `calc(100%/${itemsPerRow} - 2*${gap}px)`, marginLeft: `${gap}px`, marginRight: `${gap}px`}"
+             class="list-item"
+             :class="{multiline}"
+         />
+      </ul>
       </div>
    </PageSection>
 
@@ -57,11 +72,10 @@
 </template>
 
 <script>
-import {ref} from 'vue'
 import SwiperCore, {Pagination} from 'swiper'
 import {Swiper, SwiperSlide} from 'swiper/vue'
 
-import {capitalize, computed, defineAsyncComponent, defineComponent, shallowRef} from "vue";
+import {capitalize, defineAsyncComponent, defineComponent, shallowRef} from "vue";
 import BackgroundProvider from "../Providers/BackgroundProvider.vue";
 import PageSection from "../Providers/PageSection.vue";
 
@@ -120,6 +134,10 @@ export default defineComponent({
          type: String,
          default: 'center'
       },
+      align: {
+        type: String,
+        default: 'stretch'
+      },
       multiline: {
          type: Boolean,
          default: false
@@ -141,37 +159,83 @@ export default defineComponent({
 </script>
 
 
-<style lang="scss" scoped>
-.list-block {
+<style lang="scss">
+.app-list-block {
    &.with-title {
       padding-top: 40px;
+      @media(max-width: 568px) {
+         padding-top: 20px;
+      }
    }
 
    &.blue {
-      h3 {
+      .main-title {
          color: var(--white)
       }
    }
-}
-h3 {
-   text-align: center;
+   .main-title {
+      text-align: center;
 
-   &.sm {
-      font-size: var(--subtitle-size);
+      &.sm {
+         font-size: var(--subtitle-size);
+         font-weight: 500;
+      }
+
+      &.lg {
+         font-size: var(--title-size);
+         font-weight: 700;
+      }
    }
 
-   &.lg {
-      font-size: var(--title-size);
-      font-weight: 700;
-   }
-}
+   .list {
+      display: flex;
+      flex-wrap: wrap;
+      //margin-top: 40px;
+      @media(max-width: 480px) {
+         //margin-top: 20px;
+      }
 
-.list {
-   display: flex;
-   flex-wrap: wrap;
-   margin-top: 40px;
-   &.multiline {
-      margin-bottom: -50px;
+      &.slider {
+         padding-bottom: 15px;
+         &.with-bg .swiper-slide {
+            padding-bottom: 25px;
+         }
+         &.center {
+            .swiper-wrapper {
+               align-items: center;
+            }
+         }
+         .swiper-pagination {
+            &.swiper-pagination-bullets {
+               bottom: -5px;
+            }
+         }
+         .card {
+            height: 100%;
+         }
+      }
+
+      &.multiline {
+         margin-bottom: -50px;
+      }
+      &.with-title {
+         padding-top: 40px;
+         @media(max-width: 568px) {
+            padding-top: 20px;
+         }
+      }
+   }
+
+   .list-item {
+      &.multiline {
+         margin-bottom: 50px;
+         @media(max-width: 992px) {
+            margin-bottom: 35px;
+         }
+         @media(max-width: 568px) {
+            margin-bottom: 24px;
+         }
+      }
    }
 }
 

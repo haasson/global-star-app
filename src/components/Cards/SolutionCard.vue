@@ -48,7 +48,7 @@ export default {
    background-repeat: no-repeat;
    background-size: cover;
 
-   font-size: 32px;
+   font-size: var(--title-size);
    font-weight: 700;
    line-height: 1.1;
    color: var(--white);
@@ -63,6 +63,10 @@ export default {
       right: 0;
       bottom: 0;
       background-color: rgba(#000, .2);
+   }
+
+   @media(max-width: 480px) {
+      height: 190px;
    }
 }
 

@@ -52,6 +52,7 @@ export default {
 
    height: 270px;
    max-width: 433px;
+   margin: 0 auto 30px;
    padding: 20px;
    text-align: center;
    font-size: var(--subtitle-size);

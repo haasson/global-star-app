@@ -1,6 +1,7 @@
 <template>
    <AppPage noOffset>
-      <HeadImage :src="image"/>
+      <HeadImage :src="image"
+                 pageName="Контроль кормления КРС"/>
 
       <TextBlock>
          <p class="first">
@@ -19,11 +20,11 @@
       <AppList
           type="feature" gap="30"
           :items="features"
-          itemsPerRow="4"
+          :itemsPerRow="itemsPerRowFeatures"
           multiline
       />
 
-      <div class="dtm">
+      <div v-if="width > 568"  class="dtm">
          <img class="image" src="../../../../assets/images/solution/pages/feed-control/image-dtm.jpg" alt="">
       </div>
 
@@ -31,11 +32,12 @@
           type="simple"
           gap="12"
           :items="systemItems"
-          itemsPerRow="4"
+          :itemsPerRow="itemsPerRowSystem"
+          :isSlider="itemsPerRowSystem < 4"
           :imageHeight="110"
           title="Состав системы"
           bgColor="orange"
-          bgType="half"
+          :bgType="itemsPerRowSystem < 4 ? 'full' : 'half'"
       />
 
       <SoftSection :items="soft" titlePosition="left" />
@@ -55,6 +57,8 @@ import AppList from "../../../../components/App/AppList.vue";
 import AppTitle from "../../../../components/AppTitle.vue";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
 import AppAlert from "../../../../components/App/AppAlert.vue";
+import useItemsPerRow from "../../../../composable/itemsPerRow.js";
+import useWindowDimensions from "../../../../composable/windowDimensions.js";
 
 const basePath = 'solution/pages/feed-control/'
 const features = [
@@ -86,8 +90,21 @@ export default {
 name: "FeedControl",
    components: {AppAlert, SoftSection, AppTitle, AppList, TextBlock, HeadImage, AppPage},
    setup() {
+      const {width} = useWindowDimensions()
+      const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 4, 568: 2, default: 1})
 
-      return {image, features, systemItems, soft}
+
+      return {
+         image,
+         features,
+         systemItems,
+         soft,
+
+         width,
+         itemsPerRowFeatures,
+         itemsPerRowSystem,
+      }
    }
 }
 </script>
@@ -96,7 +113,6 @@ name: "FeedControl",
 .first {
    margin-bottom: 20px;
 }
-
 .image{
    margin: 0 auto;
    box-shadow: var(--image-shadow);

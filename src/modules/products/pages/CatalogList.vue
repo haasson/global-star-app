@@ -1,11 +1,13 @@
 <template>
    <AppTitle>{{title}}</AppTitle>
    <AppList
+       :isSlider="itemsPerRow === 1"
        :items="filteredCatalog"
        type="catalog"
-       :items-per-row="4"
+       :items-per-row="itemsPerRow"
        justify="flex-start"
        multiline
+       class="catalog-list"
    />
 </template>
 
@@ -18,6 +20,7 @@ import {isAdmin} from "../../../store";
 import AppTitle from "../../../components/AppTitle.vue";
 import AppList from "../../../components/App/AppList.vue";
 import useDatabase from "../../../composable/database.js";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 export default {
    name: "CatalogList",
@@ -69,11 +72,24 @@ export default {
          return newCatalog
       })
 
-      return {title, filteredCatalog}
+
+      const {width} = useWindowDimensions()
+      const itemsPerRow = computed(() => {
+         if (width.value > 1200) return 4
+         if (width.value <= 1200 && width.value > 870) return 3
+         if (width.value <= 870 && width.value > 568) return 2
+         return 1
+      })
+
+      return {title, filteredCatalog, itemsPerRow}
    }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+.catalog-list {
+   .swiper-slide {
+      padding: 25px 0;
+   }
+}
 </style>

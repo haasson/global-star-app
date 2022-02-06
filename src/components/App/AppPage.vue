@@ -61,12 +61,45 @@ export default defineComponent({
 }
 .app-page {
    padding-bottom: 100px;
+   @media(max-width: 992px) {
+      padding-bottom: 70px;
+   }
+   @media(max-width: 768px) {
+      padding-bottom: 60px;
+   }
+   @media(max-width: 568px) {
+      padding-bottom: 40px;
+   }
+   @media(max-width: 480px) {
+      padding-bottom: 24px;
+   }
    &:not(.no-offset) {
       padding-top: 70px;
+      @media(max-width: 992px) {
+         padding-top: 50px;
+      }
+      @media(max-width: 768px) {
+         padding-top: 40px;
+      }
+      @media(max-width: 568px) {
+         padding-top: 30px;
+      }
+      @media(max-width: 480px) {
+         padding-top: 24px;
+      }
    }
 }
 
 .app-page > *:not(:last-child) {
    margin-bottom: 70px;
+   @media(max-width: 992px) {
+      margin-bottom: 50px;
+   }
+   @media(max-width: 768px) {
+      margin-bottom: 35px;
+   }
+   @media(max-width: 420px) {
+      margin-bottom: 25px;
+   }
 }
 </style>

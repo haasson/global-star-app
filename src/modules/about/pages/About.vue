@@ -1,5 +1,5 @@
 <template>
-   <AppTabs :tabs="tabs" maxTabWidth="300"/>
+   <AppTabs :tabs="tabs" />
    <RouterView/>
 </template>
 

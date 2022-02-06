@@ -1,15 +1,17 @@
 <template>
    <PageSection>
-      <div class="image-big">
+      <div v-if="!isMobileDevice" class="image-big">
          <img :src="currentSlide" alt="">
       </div>
 
       <Swiper
-          :slidesPerView="'auto'"
+          :slidesPerView="1"
           :slideToClickedSlide="true"
           :spaceBetween="20"
+          :pagination="{clickable: true}"
           class="list"
           @tap="onChange"
+          :breakpoints="breakpoints"
       >
          <SwiperSlide v-for="slide in slidesComponents" class="slide">
             <img :src="slide" alt="">
@@ -23,6 +25,7 @@ import {Swiper, SwiperSlide} from 'swiper/vue'
 import {ref, watch, watchEffect} from "vue";
 import PageSection from "../Providers/PageSection.vue";
 import useLocalImage from "../../composable/localImage.js";
+import useWindowDimensions from "../../composable/windowDimensions.js";
 
 export default {
    name: "AppGallery",
@@ -61,7 +64,24 @@ export default {
          currentSlide.value = slidesComponents.value[event.clickedIndex]
       }
 
-      return {slidesComponents, currentSlide, onChange}
+      const {isMobileDevice} = useWindowDimensions()
+
+      const breakpoints = {
+         "992": {
+            "slidesPerView": 'auto',
+            "spaceBetween": 20,
+            "pagination": false
+         },
+      }
+
+      return {
+         slidesComponents,
+         currentSlide,
+         onChange,
+         breakpoints,
+
+         isMobileDevice,
+      }
    }
 }
 </script>
@@ -72,19 +92,40 @@ export default {
    margin-bottom: 34px;
    box-shadow: var(--image-shadow);
    height: 700px;
+
    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
    }
 }
+
 .slide {
    width: 244px;
    height: 136px;
+
    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+   }
+}
+
+@media(max-width: 992px) {
+   .slide {
+      width: auto;
+      height: 535px;
+      padding: 10px 0 35px;
+      background-color: var(--orange);
+      img {
+         object-fit: contain;
+      }
+   }
+}
+
+@media(max-width: 568px) {
+   .slide {
+      height: 450px;
    }
 }
 </style>

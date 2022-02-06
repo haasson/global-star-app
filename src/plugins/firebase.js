@@ -34,7 +34,6 @@ const setToDatabase = async (url, data) => {
 }
 
 const getFromDatabase = async (url) => {
-   console.log(url, database)
    const records = await query(databaseRef(database, url))
    // const records = await query(databaseRef(database, url), orderByChild('title'))
    let res = null

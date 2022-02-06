@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div class="point-holder">
       <div
           class="point"
           ref="buttonEl"
@@ -45,6 +45,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.point-holder {
+   position: absolute;
+}
 .point {
    width: 30px;
    height: 30px;

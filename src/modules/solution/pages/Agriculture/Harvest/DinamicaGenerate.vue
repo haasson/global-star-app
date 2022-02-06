@@ -10,11 +10,12 @@
        type="simple"
        gap="12"
        :items="systemItems"
-       itemsPerRow="4"
+       :itemsPerRow="itemsPerRowSystem"
+       :isSlider="itemsPerRowSystem < 5"
        :imageHeight="110"
        title="Состав системы"
        bgColor="orange"
-       bgType="half"
+       :bgType="itemsPerRowSystem < 5 ? 'full' : 'half'"
    />
 
    <div>
@@ -22,7 +23,7 @@
       <AppList
           type="feature" gap="25"
           :items="features"
-          itemsPerRow="3"
+          :itemsPerRow="itemsPerRowFeatures"
           multiline
       />
    </div>
@@ -40,6 +41,7 @@ import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/AppTitle.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const basePath = 'solution/pages/harvest/'
 const imageWithPoints = {
@@ -80,7 +82,19 @@ export default {
    components: {SoftSection, AppAlert, AppTitle, AppList, ImageWithMarkers, TextBlock},
 
    setup() {
-      return {imageWithPoints, systemItems, features, soft}
+      const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 3, 568: 2, default: 1})
+
+      return {
+         imageWithPoints,
+         systemItems,
+         features,
+         soft,
+
+         itemsPerRowSystem,
+         itemsPerRowFeatures,
+
+      }
    }
 }
 </script>

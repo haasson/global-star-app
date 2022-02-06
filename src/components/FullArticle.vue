@@ -4,6 +4,7 @@
          <AppButtonsGroup v-if="article">
             <AppButton @click="editArticle" color="blue">Редактировать</AppButton>
             <AppButton @click="hideArticle" color="blue">{{ article.isHidden ? 'Показать' : 'Скрыть' }}</AppButton>
+            <AppButton @click="deleteArticle" color="blue">Удалить</AppButton>
             <div v-if="article.isHidden" class="hidden-warning">Новость скрыта от пользователей</div>
          </AppButtonsGroup>
       </PageSection>
@@ -11,10 +12,10 @@
       <PageSection>
          <div v-if="article" class="inner">
             <h3>{{ article.title }}</h3>
-            <p class="date">{{ article.date }}</p>
+            <p class="date">{{ formattedDate }}</p>
             <div class="text" v-html="description"></div>
 
-            <AppGallery v-if="gallery" :slides="gallery" :fromStorage="true"/>
+            <AppGallery v-if="gallery" class="gallery" :slides="gallery" :fromStorage="true"/>
          </div>
       </PageSection>
    </AppPage>
@@ -31,6 +32,8 @@
        @update:article="updateArticle"
    />
 
+   <AppConfirmationModal ref="confirmModal" :type="articleType" />
+
 </template>
 
 <script>
@@ -39,7 +42,7 @@ import {Swiper, SwiperSlide} from 'swiper/vue'
 import {isAdmin} from "../store";
 
 import useDatabase from "../composable/database";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import useStorage from "../composable/storage";
 import {descriptionToHTML} from "../helpers/interface";
 
@@ -49,10 +52,15 @@ import AppButton from "./App/AppButton.vue";
 import AppButtonsGroup from "./App/AppButtonsGroup.vue";
 import EditArticleModal from "../modules/about/modals/EditArticleModal.vue";
 import AppPage from "./App/AppPage.vue";
+import AppConfirmationModal from "./App/AppConfirmationModal.vue";
+import router from "../router";
+import dayjs from "dayjs";
 
 export default {
    name: "FullArticle",
-   components: {AppPage, EditArticleModal, AppButtonsGroup, AppButton, AppGallery, PageSection, Swiper, SwiperSlide},
+   components: {
+      AppConfirmationModal,
+      AppPage, EditArticleModal, AppButtonsGroup, AppButton, AppGallery, PageSection, Swiper, SwiperSlide},
    props: {
       articleType: {
          type: String,
@@ -62,11 +70,13 @@ export default {
 
    setup(props) {
       const description = ref()
+      const router = useRouter()
       const route = useRoute()
       const articleLink = `${props.articleType}/list/${route.params.id}`
 
-      const {get: getArticle, put: putArticle, data: article} = useDatabase()
-      const {get: getImage, data: image, error} = useStorage()
+      const {get: getArticle, put: putArticle, del: delArticle, data: article} = useDatabase()
+      const {put: setCount, get: getCount} = useDatabase()
+      const {get: getImage, data: image} = useStorage()
 
 
       getArticle(articleLink)
@@ -102,6 +112,7 @@ export default {
       })
 
       const editModal = ref(null)
+      const confirmModal = ref(null)
 
       const editArticle = () => editModal.value.open()
       const hideArticle = async () => {
@@ -109,8 +120,25 @@ export default {
          await putArticle({[visibleProp]: !article.value.isHidden})
          updateArticle()
       }
+      const deleteArticle = async () => {
+         const res = await confirmModal.value.open()
+
+         if (res) {
+            const countUrl = `${props.articleType}/count`
+            const count = await getCount(countUrl)
+
+            await setCount({[countUrl]: count - 1})
+            await delArticle(articleLink)
+
+            router.replace(`/about/${props.articleType}`)
+         }
+      }
 
       const updateArticle = () => getArticle(articleLink)
+
+      const formattedDate = computed(() => {
+         return dayjs(props.time).format('DD.MM.YYYY')
+      })
 
 
       return {
@@ -120,11 +148,15 @@ export default {
          gallery,
 
          editModal,
+         confirmModal,
 
          editArticle,
          hideArticle,
+         deleteArticle,
 
          updateArticle,
+
+         formattedDate
       }
    }
 }
@@ -150,5 +182,21 @@ h3 {
 .text {
    margin-bottom: 30px;
    font-size: var(--subtitle-size);
+}
+
+@media (max-width: 568px) {
+   .inner{
+      display: flex;
+      flex-direction: column;
+      h3 {
+         text-align: center;
+         margin-bottom: 24px;
+         order: -2;
+      }
+   }
+   .gallery{
+      order: -1;
+      margin-bottom: 12px;
+   }
 }
 </style>

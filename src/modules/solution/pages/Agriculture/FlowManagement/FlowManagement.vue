@@ -3,6 +3,7 @@
    <HeadImage
        :src="image"
        class="image"
+       pageName="Управление расходом и внесением"
    />
 
    <AppTabs :tabs="tabs"/>

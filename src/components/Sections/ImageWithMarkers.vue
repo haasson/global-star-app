@@ -1,12 +1,11 @@
 <template>
-   <div class="flex-container">
+   <div v-if="width > 568" class="flex-container">
       <div class="image-container">
          <img :src="imageSrc" alt="">
          <TipPoint
              v-for="point in points"
              :text="point.text"
              :style="{left: `${point.left}%`, top: `${point.top}%`}"
-             class="point"
          />
       </div>
    </div>
@@ -14,6 +13,7 @@
 
 <script>
 import useLocalImage from "../../composable/localImage.js";
+import useWindowDimensions from "../../composable/windowDimensions.js";
 import TipPoint from "../TipPoint.vue";
 
 export default {
@@ -32,7 +32,10 @@ export default {
 
    setup({imagePath}) {
       const {imageSrc} = useLocalImage(imagePath)
-      return {imageSrc}
+      const {width} = useWindowDimensions()
+
+
+      return {imageSrc, width}
    }
 }
 </script>
