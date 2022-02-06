@@ -27,6 +27,8 @@
          />
       </div>
 
+      <RecommendedProducts />
+
       <div>
          <AppTitle>Используйте нужный вам шаблон</AppTitle>
          <TextWithImage image="solution/pages/navigation/template.png">
@@ -50,6 +52,7 @@ import AppList from "../../../../../components/App/AppList.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import useWindowDimensions from "../../../../../composable/windowDimensions.js";
 import {computed} from "vue";
+import RecommendedProducts from "../../../../../components/Sections/RecommendedProducts.vue";
 
 const displaysList = [
    {name: 'solution/cards/displays/at5.png', text: 'AT5', noShadow: true},
@@ -60,7 +63,7 @@ const displaysList = [
 
 export default {
    name: "Navigation",
-   components: {TextWithImage, AppList, AppTitle, AppPage, TextBlock, HeadImage},
+   components: {RecommendedProducts, TextWithImage, AppList, AppTitle, AppPage, TextBlock, HeadImage},
    setup() {const {width} = useWindowDimensions()
       const itemsPerRow = computed(() => {
          if (width.value > 568) return 4

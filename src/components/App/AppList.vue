@@ -47,6 +47,7 @@
              :is="listItemComponent"
              v-for="item in items"
              :empty="empty"
+             :removable="removable"
              :title="item.title"
              :name="item.name"
              :link="item.link"
@@ -63,6 +64,7 @@
              :style="{width: `calc(100%/${itemsPerRow} - 2*${gap}px)`, marginLeft: `${gap}px`, marginRight: `${gap}px`}"
              class="list-item"
              :class="{multiline}"
+             @removeCard="$emit('removeCard', item.cardID)"
          />
       </ul>
       </div>
@@ -88,6 +90,10 @@ export default defineComponent({
       type: {
          type: String,
          required: true
+      },
+      removable: {
+         type: Boolean,
+         default: false
       },
       empty: {
          type: Boolean,

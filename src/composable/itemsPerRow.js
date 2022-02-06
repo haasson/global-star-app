@@ -4,15 +4,17 @@ import {computed} from "vue";
 const useItemsPerRow = (settings) => {
    const {width} = useWindowDimensions()
 
+
    const itemsPerRow = computed(() => {
-      let itemsCount = settings.default
-      const resolutions = Object.keys(settings)
+      const currentSettings = settings.value || settings
+      let itemsCount = currentSettings.default
+      const resolutions = Object.keys(currentSettings)
          .sort((a,b) => +a < +b ? 1 : -1)
          .filter(res => res !== 'default')
 
       for (let i = 0; i < resolutions.length; i++) {
          if (width.value > resolutions[i]) {
-            itemsCount = settings[resolutions[i]]
+            itemsCount = currentSettings[resolutions[i]]
             break
          }
       }

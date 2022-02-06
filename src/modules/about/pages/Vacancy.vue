@@ -78,10 +78,6 @@ export default {
          editModal.value.open()
       }
 
-      watch(vacancyList, () => {
-         console.log(vacancyList.value)
-      })
-
       const hideVacancy = (id) => {
          const visibleProp = `vacancy/list/${id}/isHidden`
          vacancyList.value[id].isHidden = !vacancyList.value[id].isHidden

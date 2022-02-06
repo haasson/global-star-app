@@ -17,19 +17,24 @@
          {{button}}
       </AppButton>
 
+      <div v-if="removable && isAdmin" class="close" @click="$emit('removeCard')">
+         <AppIcon name="close" />
+      </div>
+
    </Card>
 </template>
 
 <script>
-import {ref, watch} from "vue";
+import {isAdmin} from "../../store";
 import Card from "./Card.vue";
 import AppButton from "../App/AppButton.vue";
 import useStorage from "../../composable/storage.js";
 import {descriptionToHTML} from "../../helpers/interface.js";
+import AppIcon from "../App/AppIcon.vue";
 
 export default {
    name: "CatalogCard",
-   components: {AppButton, Card},
+   components: {AppIcon, AppButton, Card},
    props: {
       title: {
          type: String,
@@ -51,6 +56,10 @@ export default {
       isHidden: {
          type: Boolean,
          default: false
+      },
+      removable: {
+         type: Boolean,
+         default: false
       }
    },
 
@@ -58,7 +67,7 @@ export default {
       const {get, data: cardImage, loading, error} = useStorage()
       get(image)
 
-      return {descriptionToHTML, cardImage, loading}
+      return {isAdmin, descriptionToHTML, cardImage, loading}
    }
 }
 </script>
@@ -66,6 +75,7 @@ export default {
 <style lang="scss" scoped>
 // TODO: box-shadow
 .card {
+   position: relative;
    padding: 32px 22px;
    color: var(--black);
    box-shadow: var(--card-shadow-shifted);
@@ -117,6 +127,18 @@ p {
    min-width: auto;
    width: 100%;
    margin-top: auto;
+}
+
+.close {
+   position: absolute;
+   right:0;
+   top: 0;
+   padding: 5px;
+   background: var(--orange);
+   cursor: pointer;
+   &:hover {
+      background: var(--dark-orange);
+   }
 }
 
 @media(max-width: 768px) {

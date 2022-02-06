@@ -32,7 +32,6 @@ router.beforeEach((to, from, next) => {
    scrollTo(0,0)
    closeMenu()
    next()
-   console.log('after')
    // const route = to.path.slice(1) || 'main'
    //
    // let dbRoute = route.replaceAll('/', '@')

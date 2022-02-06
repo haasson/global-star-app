@@ -20,6 +20,8 @@
           justify="flex-start"
       />
 
+      <RecommendedProducts />
+
       <SoftSection :items="soft" titlePosition="left"/>
    </AppPage>
 
@@ -35,6 +37,7 @@ import AppList from "../../../../components/App/AppList.vue";
 import AppTitle from "../../../../components/AppTitle.vue";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
 import useItemsPerRow from "../../../../composable/itemsPerRow.js";
+import RecommendedProducts from "../../../../components/Sections/RecommendedProducts.vue";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/transport/truck.png',
@@ -87,7 +90,7 @@ const soft = ['wialon', 'logistics', 'fleetrun', 'eco-driving']
 
 export default {
    name: "Trucks",
-   components: {SoftSection, AppTitle, AppList, ImageWithMarkers, HeadImage, TextBlock, AppPage},
+   components: {RecommendedProducts, SoftSection, AppTitle, AppList, ImageWithMarkers, HeadImage, TextBlock, AppPage},
    setup() {
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 3, 568: 2, default: 1})
 

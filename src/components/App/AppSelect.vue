@@ -30,12 +30,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 label {
    display: block;
    margin-bottom: 7px;
 }
 select {
+   width: 100%;
    padding: 7px;
 }
 option {

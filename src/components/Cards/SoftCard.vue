@@ -44,6 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 .item {
+   min-width: 32%;
    max-width: 338px;
    height: 120px;
    padding: 22px 18px;
