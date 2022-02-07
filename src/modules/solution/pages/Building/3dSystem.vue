@@ -44,13 +44,13 @@ import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 const imageWithPoints = {
    imagePath: 'solution/pages/3d-system/excavator.png',
    points: [
-      {left: 8, top: 31, text: 'Sensor1'},
-      {left: 25, top: 81.5, text: 'Sensor2'},
-      {left: 48, top: 28, text: 'Sensor3'},
-      {left: 63, top: 62.5, text: 'Sensor4'},
-      {left: 64.5, top: 48, text: 'Sensor5'},
-      {left: 70, top: 68, text: 'Sensor6'},
-      {left: 90.5, top: 59, text: 'Sensor7'},
+      // {left: 8, top: 31, text: 'Sensor1'},
+      // {left: 25, top: 81.5, text: 'Sensor2'},
+      {left: 48, top: 28, text: 'Датчик положения стрелы'},
+      {left: 63, top: 62.5, text: 'WiFi камера в&nbsp;кабину'},
+      {left: 64.5, top: 48, text: 'Навигационный контролер'},
+      {left: 70, top: 68, text: 'Считыватель карточек водителя'},
+      {left: 90.5, top: 59, text: 'Датчик уровня топлива'},
    ]
 }
 

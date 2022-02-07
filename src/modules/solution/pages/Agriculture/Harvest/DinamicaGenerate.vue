@@ -47,10 +47,10 @@ const basePath = 'solution/pages/harvest/'
 const imageWithPoints = {
    imagePath: `${basePath}/combine.png`,
    points: [
-      {left: 40, top: 29, text: 'Sensor1'},
-      {left: 79, top: 37, text: 'Sensor2'},
-      {left: 43, top: 55, text: 'Sensor3'},
-      {left: 48, top: 54, text: 'Sensor4'},
+      {left: 40, top: 29, text: 'Дисплей Nir On Board'},
+      {left: 79, top: 37, text: 'БИК анализатор Evo NIR'},
+      {left: 43, top: 55, text: 'Модем'},
+      {left: 48, top: 54, text: 'GPS антенна'},
    ]
 }
 

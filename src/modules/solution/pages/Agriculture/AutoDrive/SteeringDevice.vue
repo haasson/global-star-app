@@ -81,10 +81,10 @@ import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 const imageWithPoints = {
    imagePath: 'solution/pages/autodrive/tractor-blu.png',
    points: [
-      {left: 48, top: 2.5, text: 'Sensor1'},
-      {left: 54, top: 23, text: 'Sensor2'},
-      {left: 58.5, top: 33, text: 'Sensor3'},
-      {left: 65.5, top: 27, text: 'Sensor4'},
+      {left: 48, top: 2.5, text: 'Приемник AgLeader 7500'},
+      {left: 54, top: 23, text: 'Дисплей InCommand 800G'},
+      {left: 58.5, top: 33, text: 'Контроллер SteerCommand Z2'},
+      {left: 65.5, top: 27, text: 'Электромотор SteadySteer'},
    ]
 }
 

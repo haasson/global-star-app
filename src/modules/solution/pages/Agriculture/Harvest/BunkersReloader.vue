@@ -69,11 +69,11 @@ const basePath = 'solution/pages/harvest/'
 const imageWithPoints = {
    imagePath: `${basePath}/tractor.png`,
    points: [
-      {left: 23, top: 25, text: 'Sensor1'},
-      {left: 26, top: 21, text: 'Sensor2'},
-      {left: 26.5, top: 31, text: 'Sensor3'},
-      {left: 30, top: 31, text: 'Sensor4'},
-      {left: 76, top: 55, text: 'Sensor5'},
+      {left: 23, top: 25, text: 'Облачный сервис Field Scale'},
+      {left: 26, top: 21, text: 'Коммутационный контролер KALI'},
+      {left: 26.5, top: 31, text: 'Сенсорный дисплей'},
+      {left: 30, top: 31, text: 'Чековый принтер'},
+      {left: 76, top: 55, text: 'Терминал DG 400'},
    ]
 }
 const systemItems1 = [

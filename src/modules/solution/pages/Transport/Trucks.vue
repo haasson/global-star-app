@@ -42,12 +42,12 @@ import RecommendedProducts from "../../../../components/Sections/RecommendedProd
 const imageWithPoints = {
    imagePath: 'solution/pages/transport/truck.png',
    points: [
-      {left: 8.5, top: 37, text: 'Sensor1'},
-      {left: 24.5, top: 65, text: 'Sensor2'},
-      {left: 28.5, top: 17, text: 'Sensor3'},
-      {left: 37.5, top: 44, text: 'Sensor4'},
-      {left: 76, top: 60, text: 'Sensor5'},
-      {left: 94.5, top: 31, text: 'Sensor6'},
+      {left: 8.5, top: 37, text: 'Фото-видео камера в кузов автомобиля'},
+      {left: 24.5, top: 65, text: 'Датчик уровня топлива Италон'},
+      {left: 28.5, top: 17, text: 'Трекер (модуль слежения Смарт)'},
+      {left: 37.5, top: 44, text: 'Датчик температуры в рефрижераторе'},
+      {left: 76, top: 60, text: 'Датчики давления в шинах'},
+      {left: 94.5, top: 31, text: 'Датчик открытия дверей'},
    ]
 }
 

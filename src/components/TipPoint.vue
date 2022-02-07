@@ -10,9 +10,7 @@
       </div>
 
 
-      <div ref="dropdownEl" v-show="isOpen" class="dropdown">
-         {{text}}
-      </div>
+      <div ref="dropdownEl" v-show="isOpen" class="dropdown" v-html="text"></div>
    </div>
 </template>
 

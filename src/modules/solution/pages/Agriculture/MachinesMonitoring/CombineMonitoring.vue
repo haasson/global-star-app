@@ -30,12 +30,12 @@ import RecommendedProducts from "../../../../../components/Sections/RecommendedP
 const imageWithPoints = {
    imagePath: 'solution/pages/machines-monitoring/combine/combine.png',
    points: [
-      {left: 39, top: 17, text: 'Sensor1'},
-      {left: 69, top: 28, text: 'Sensor2'},
-      {left: 42, top: 43, text: 'Sensor3'},
-      {left: 70, top: 48, text: 'Sensor4'},
-      {left: 84, top: 47, text: 'Sensor5'},
-      {left: 54, top: 79, text: 'Sensor6'},
+      {left: 39, top: 17, text: 'Трекер'},
+      {left: 69, top: 28, text: 'Датчик наполнения бункера'},
+      {left: 42, top: 43, text: 'Считыватель карт водителей'},
+      {left: 70, top: 48, text: 'Считыватель меток'},
+      {left: 84, top: 47, text: 'Датчик уровня топлива'},
+      {left: 54, top: 79, text: 'Датчик положения  жатки'},
    ]
 }
 
