@@ -1,6 +1,5 @@
 import {ref} from 'vue'
 import {deleteFromDatabase, getFromDatabase, putToDatabase, setToDatabase} from '../plugins/firebase'
-import {globalLoading} from "../store";
 
 
 const useDatabase = () => {
@@ -10,16 +9,12 @@ const useDatabase = () => {
 
    const get = async (url) => {
       loading.value = true
-      globalLoading.value = true
       return await getFromDatabase(url)
          .then((res) => {
             return data.value = res
          })
          .catch(e => error.value = e)
-         .finally(() => {
-            globalLoading.value = false
-            loading.value = false
-         })
+         .finally(() => loading.value = false)
    }
    const set = async (url, payload) => {
       await setToDatabase(url, payload)
@@ -42,7 +37,6 @@ const useDatabase = () => {
 
    const del = async (url) => {
       await deleteFromDatabase(url)
-         // .then((res) => data.value = res)
          .catch(e => error.value = e)
          .finally(() => loading.value = false)
    }

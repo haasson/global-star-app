@@ -98,6 +98,7 @@ const variants = [
    {name: 'solution/pages/autodrive/variant2.png', title: 'Гидравлический автопилот'},
    {name: 'solution/pages/autodrive/variant3.png', title: 'Электрический автопилот'},
 ]
+
 export default {
 name: "AutoDrive",
    components: {AppList, TextWithImage, AppTitle, AppPage, TextBlock, HeadImage},

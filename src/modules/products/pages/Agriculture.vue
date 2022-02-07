@@ -21,6 +21,7 @@ import AppList from "../../../components/App/AppList.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import {computed, ref} from "vue";
 import useWindowDimensions from "../../../composable/windowDimensions.js";
+
 export default {
 name: "Agriculture",
    components: {AppList, AppPage},

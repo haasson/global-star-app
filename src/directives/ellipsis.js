@@ -10,25 +10,27 @@
 
 export default {
    mounted(el, binding = {}) {
-      if (binding.modifiers.sentence) {
-         const realHeight = parseInt(getComputedStyle(el).height)
+      setTimeout(() => {
+         if (binding.modifiers.sentence) {
+            const realHeight = parseInt(getComputedStyle(el).height)
 
-         while (el.scrollHeight > realHeight) {
-            const lastIndex = el.children.length - 1
-            if (lastIndex === 0) break
-            el.children[lastIndex].parentNode.removeChild(el.children[lastIndex])
-         }
-      } else {
-         const description = el.children[0]
+            while (el.scrollHeight > realHeight) {
+               const lastIndex = el.children.length - 1
+               if (lastIndex === 0) break
+               el.children[lastIndex].parentNode.removeChild(el.children[lastIndex])
+            }
+         } else {
+            const description = el.children[0]
 
-         if (description.scrollHeight > el.scrollHeight) {
-            const text = description.textContent.split(' ')
+            if (description.scrollHeight > el.scrollHeight) {
+               const text = description.textContent.split(' ')
 
-            while (description.scrollHeight > el.scrollHeight) {
-               text.pop()
-               description.textContent = text.join(' ') + '...'
+               while (description.scrollHeight > el.scrollHeight) {
+                  text.pop()
+                  description.textContent = text.join(' ') + '...'
+               }
             }
          }
-      }
+      }, 100)
    },
 }

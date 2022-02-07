@@ -5,11 +5,11 @@
          <img v-if="cardImage" :src="cardImage.src" alt="">
       </div>
 
-      <div v-ellipsis class="title-container">
+      <div v-if="title" v-ellipsis class="title-container">
          <h3 v-html="title" />
       </div>
 
-      <div v-ellipsis class="text-container">
+      <div v-if="text" v-ellipsis class="text-container">
          <p v-html="descriptionToHTML(text, 'paragraph')"></p>
       </div>
 
@@ -143,7 +143,11 @@ p {
 
 @media(max-width: 768px) {
    h3 {
-      font-size: var(--title-size);
+      font-size: 20px;
+   }
+   p {
+      font-size: 16px;
    }
 }
+
 </style>

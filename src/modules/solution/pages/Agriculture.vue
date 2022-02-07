@@ -19,6 +19,7 @@ import useWindowDimensions from "../../../composable/windowDimensions.js";
 import {computed} from "vue";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 
+
 export default {
    name: "Agriculture",
    components: {AppPage, AppList},

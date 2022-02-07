@@ -41,6 +41,7 @@ import AppList from "../../../components/App/AppList.vue";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import {onMounted} from "vue";
 
+
 const features = [
    {
       icon: {name: 'computersmall', shift: {top: 10, left: -13}},

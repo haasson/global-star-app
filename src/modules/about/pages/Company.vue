@@ -46,6 +46,7 @@ import AppList from "../../../components/App/AppList.vue";
 import AppTitle from "../../../components/AppTitle.vue";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 
+
 const slides = [
    'about/company/1.jpg',
    'about/company/2.jpg',

@@ -7,6 +7,7 @@ const productsRoutes = [
 
    {
       path: '/products/agriculture',
+      exact: true,
       name: 'productsAgriculture',
       component: () => import("../pages/Agriculture.vue"),
       children: [

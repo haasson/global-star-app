@@ -13,6 +13,8 @@
        multiline
    />
 
+   <RecommendedProducts />
+
    <SoftSection :items="soft" titlePosition="left" />
 </template>
 
@@ -23,6 +25,7 @@ import AppTitle from "../../../../../components/AppTitle.vue";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import RecommendedProducts from "../../../../../components/Sections/RecommendedProducts.vue";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/machines-monitoring/combine/combine.png',
@@ -63,9 +66,10 @@ const features = [
    },
 ]
 const soft = ['hecterra', 'wialon']
+
 export default {
    name: "CombineMonitoring",
-   components: {SoftSection, ImageWithMarkers, AppTitle, AppList, TextBlock},
+   components: {RecommendedProducts, SoftSection, ImageWithMarkers, AppTitle, AppList, TextBlock},
 
    setup() {
       const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})

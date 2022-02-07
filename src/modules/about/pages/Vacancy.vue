@@ -54,6 +54,7 @@ import VacancyItem from "../VacancyItem.vue";
 import EditArticleModal from "../modals/EditArticleModal.vue";
 import AppConfirmationModal from "../../../components/App/AppConfirmationModal.vue";
 
+
 export default {
    name: "Vacancy",
    components: {AppConfirmationModal, EditArticleModal, VacancyItem, AppButton, PageSection, AppPage},

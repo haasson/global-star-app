@@ -3,8 +3,10 @@
 </template>
 
 <script>
+
 export default {
-   name: "Weighting-system"
+   name: "Weighting-system",
+
 }
 </script>
 

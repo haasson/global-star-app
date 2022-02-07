@@ -47,9 +47,12 @@ import ContactsMap from "../components/ContactsMap.vue";
 import AppAlert from "../../../components/App/AppAlert.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
 
+
 export default {
    name: "ContactsPage",
    components: {PageSection, AppAlert, ContactsMap, AppPage},
+
+
 }
 </script>
 

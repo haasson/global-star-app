@@ -34,6 +34,7 @@ import EditArticleModal from "../modals/EditArticleModal.vue";
 import useDatabase from "../../../composable/database";
 import AppPage from "../../../components/App/AppPage.vue";
 
+
 export default {
    name: "Projects",
    components: {AppPage, EditArticleModal, PageSection, AppButton, ArticleItem},

@@ -23,6 +23,7 @@ import PageSection from "../../../components/Providers/PageSection.vue";
 import AppButton from "../../../components/App/AppButton.vue";
 import EditArticleModal from "../../about/modals/EditArticleModal.vue";
 
+
 export default {
    name: "Products",
    components: {EditArticleModal, AppButton, PageSection, Transport, Agriculture},

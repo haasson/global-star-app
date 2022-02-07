@@ -53,7 +53,7 @@ import {computed, ref, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import useDatabase from "../../../composable/database.js";
 import useStorage from "../../../composable/storage.js";
-import {descriptionToHTML} from "../../../helpers/interface.js";
+import {descriptionToHTML, disableLoader} from "../../../helpers/interface.js";
 import {isAdmin} from "../../../store";
 
 import AppPage from "../../../components/App/AppPage.vue";

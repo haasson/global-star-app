@@ -16,21 +16,27 @@ name: "AppLoader",
 
 <style lang="scss" scoped>
 .global-loader {
-   position: absolute;
+   position: fixed;
    top: 0;
    left: 0;
    right: 0;
    bottom: 0;
-   z-index: 1;
+   z-index: 1000;
 
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: rgba(#fff, .7);
+   background-color: rgba(#fff, .5);
 }
 
 .content {
    animation: pulse 1.6s linear infinite;
+   @media(max-width: 768px) {
+      transform: scale(.7);
+   }
+   @media(max-width: 489px) {
+      transform: scale(.5);
+   }
 }
 
 @keyframes pulse {

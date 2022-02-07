@@ -1,10 +1,12 @@
 <template>
-refueller
+   refueller
 </template>
 
 <script>
+
 export default {
-name: "RefuellerMonitoring"
+   name: "RefuellerMonitoring",
+
 }
 </script>
 

@@ -1,10 +1,12 @@
 <template>
-cars
+   cars
 </template>
 
 <script>
+
 export default {
-name: "Cars"
+   name: "Cars",
+
 }
 </script>
 

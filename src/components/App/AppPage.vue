@@ -1,5 +1,6 @@
 <template>
    <div class="app-page" :class="{'no-offset': noOffset}">
+      <AppLoader v-if="globalLoading"/>
       <div class="app-bg"></div>
       <slot />
    </div>

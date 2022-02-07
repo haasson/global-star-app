@@ -22,6 +22,7 @@ import AppList from "../../../components/App/AppList.vue";
 import useDatabase from "../../../composable/database.js";
 import useWindowDimensions from "../../../composable/windowDimensions.js";
 
+
 export default {
    name: "CatalogList",
    components: {AppList, AppTitle},

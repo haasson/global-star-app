@@ -8,10 +8,8 @@
 
 <script>
 import EditorJS from '@editorjs/editorjs'
-import Header from '@editorjs/header'
 import List from '@editorjs/list'
 import Table from '@editorjs/table'
-import ImageTool from '@editorjs/image'
 import { onMounted, ref } from 'vue'
 import AppButton from "./AppButton.vue";
 
@@ -26,7 +24,7 @@ export default {
    setup(props, {emit}) {
       const editor = ref()
       onMounted(() => {
-         initEditor()
+         setTimeout(initEditor, 0)
       })
 
       const initEditor = () => {

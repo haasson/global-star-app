@@ -118,7 +118,7 @@ export default {
       };
       const close = () => {
          clearForm();
-         modal.value.decline();
+         modal.value.confirm();
       };
 
       let dbPath = entity
@@ -204,7 +204,7 @@ export default {
 
       const isButtonDisabled = computed(() => {
          const hasTitle = data.title
-         const hasImages = Object.keys(data.images).length
+         const hasImages = Object.keys(data.images || {}).length
          if (!hasTitle || (!hasImages && entity !== 'vacancy')) return true
          return false
       })

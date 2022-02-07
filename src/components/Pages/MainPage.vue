@@ -62,6 +62,7 @@ import HeadImage from "../Sections/HeadImage.vue";
 import AppList from "../App/AppList.vue";
 import useItemsPerRow from "../../composable/itemsPerRow.js";
 
+
 export default {
    name: "MainPage",
    components: {AppList, HeadImage, AppPage, AppButton, TextWithImage, AppTitle},

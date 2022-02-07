@@ -86,6 +86,7 @@ const systemItems = [
    {name: `${basePath}/system-item4.png`, text: 'Комплект ПО DTM'},
 ]
 const soft = ['dtm', 'dtm-advanced']
+
 export default {
 name: "FeedControl",
    components: {AppAlert, SoftSection, AppTitle, AppList, TextBlock, HeadImage, AppPage},

@@ -1,10 +1,12 @@
 <template>
-truck
+   truck
 </template>
 
 <script>
+
 export default {
-name: "TruckMonitoring"
+   name: "TruckMonitoring",
+
 }
 </script>
 

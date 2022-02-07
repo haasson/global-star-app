@@ -71,6 +71,7 @@ export default {
       const route = useRoute()
       const baseUrl = `recommended/${route.fullPath.replaceAll('/', '@').slice(1)}`
 
+      // Define items per row
       const settings = computed(() => {
          return {
             992: Math.min(4, items.value.length),
@@ -81,6 +82,7 @@ export default {
       })
       const {itemsPerRow} = useItemsPerRow(settings)
 
+      // Get and watch list of recommended products
       const items = ref([])
       const {get: getRecommendedList, data: recommendedList} = useDatabase()
       getRecommendedList(baseUrl)
@@ -88,6 +90,7 @@ export default {
       watch(recommendedList, () => {
          if (!recommendedList.value) return
 
+         // For every recommended product get its properties from database
          Object.keys(recommendedList.value).forEach(id => {
             const item = recommendedList.value[id]
 
@@ -95,18 +98,18 @@ export default {
             const dbPath = `catalog/${item.section}/${item.category}/list/${item.product}`
             getCatalogItem(dbPath)
                 .then((product) => {
-                   product.cardID = `${section.value}-${category.value}-${product.id}`
+                   if (!product) return
+
+                   product.cardID = `${item.section}-${item.category}-${product.id}`
                    product.image = `images/catalog/${item.section}/${item.category}/${item.product}/gallery/${product.images[0].name}`
                    product.link = `/products/${item.section}/${item.category}/${item.product}`
                    items.value.push(product)
                 })
-            // item.image = `images/catalog/agriculture/navigation/${item.product}/gallery/${item.images[0].name}`
-            // item.link = `/products/${section.value}/${category.value}/${id}`
-            // items.value.push(item)
          })
       })
 
 
+      // Define models and options for selects
       const {section, sectionOptions, category, categoryOptions} = useProductCategory('product')
       const {get: getProducts, data: productList, loading: productsLoading} = useDatabase()
 
@@ -125,8 +128,7 @@ export default {
       })
 
 
-      const {} = useDatabase()
-
+      // Products actions (add, delete)
       const addProduct = (e) => {
          e.preventDefault()
          const newProduct = {
@@ -137,19 +139,17 @@ export default {
 
          const {set: postProduct} = useDatabase()
          const dbPath = `${baseUrl}/${section.value}-${category.value}-${product.value}`
-         postProduct(dbPath, newProduct).then(res => {
-            items.value = []
-            getRecommendedList(baseUrl)
-         })
+         postProduct(dbPath, newProduct).then(refreshList)
       }
-
 
       const {del: deleteProduct} = useDatabase()
       const removeProduct = (id) => {
-         deleteProduct(`${baseUrl}/${id}`).then(() => {
-            const index = items.value.findIndex(item => item.cardID === id)
-            items.value.splice(index, 1)
-         })
+         deleteProduct(`${baseUrl}/${id}`).then(refreshList)
+      }
+
+      const refreshList = () => {
+         items.value = []
+         getRecommendedList(baseUrl)
       }
 
 
@@ -161,7 +161,6 @@ export default {
 
          section,
          sectionOptions,
-
          category,
          categoryOptions,
 
@@ -171,7 +170,6 @@ export default {
 
          addProduct,
          removeProduct,
-
       }
    }
 }

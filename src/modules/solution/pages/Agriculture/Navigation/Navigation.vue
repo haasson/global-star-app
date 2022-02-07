@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import {globalLoading} from "../../../../../store";
 import image from '../../../../../assets/images/solution/pages/navigation/navigation.jpg'
 
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";

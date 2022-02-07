@@ -21,6 +21,7 @@
                   <Component
                       :is="listItemComponent"
                       :empty="empty"
+                      :removable="removable"
                       :title="item.title"
                       :name="item.name"
                       :link="item.link"
@@ -31,6 +32,7 @@
                       :imageHeight="imageHeight"
                       :noShadow="item.noShadow"
                       :button="item.button"
+                      @removeCard="$emit('removeCard', item.cardID)"
                   />
                </div>
             </SwiperSlide>
@@ -223,6 +225,12 @@ export default defineComponent({
 
       &.multiline {
          margin-bottom: -50px;
+         @media(max-width: 992px) {
+            margin-bottom: -35px;
+         }
+         @media(max-width: 568px) {
+            margin-bottom: -24px;
+         }
       }
       &.with-title {
          padding-top: 40px;

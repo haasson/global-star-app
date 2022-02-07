@@ -38,6 +38,7 @@ import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 
+
 export default {
    name: "ProductSolutions",
    components: {AppPage, AppList},

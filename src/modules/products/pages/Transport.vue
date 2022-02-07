@@ -24,6 +24,7 @@ import AppPage from "../../../components/App/AppPage.vue";
 import AppList from "../../../components/App/AppList.vue";
 import useWindowDimensions from "../../../composable/windowDimensions.js";
 
+
 export default {
    name: "Transport",
    components: {AppList, AppPage},

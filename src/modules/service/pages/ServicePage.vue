@@ -42,6 +42,7 @@ import AppList from "../../../components/App/AppList.vue";
 import TextWithImage from "../../../components/Sections/TextWithImage.vue";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 
+
 const features = [
    {
       icon: {

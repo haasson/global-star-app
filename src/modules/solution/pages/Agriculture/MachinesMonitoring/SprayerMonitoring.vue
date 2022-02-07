@@ -1,10 +1,12 @@
 <template>
-sprayer
+   sprayer
 </template>
 
 <script>
+
 export default {
-   name: "SprayerMonitoring"
+   name: "SprayerMonitoring",
+
 }
 </script>
 
