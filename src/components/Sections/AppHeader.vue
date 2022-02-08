@@ -9,6 +9,16 @@
             </router-link>
 
             <!-- Search -->
+            <form @submit.prevent="submit">
+               <AppInput
+                   v-if="width > 768"
+                   v-model="searchQuery"
+                   inHeader
+                   icon="search"
+                   placeholder="Поиск..."
+                   class="search"
+               />
+            </form>
 
             <!-- Contacts -->
             <div class="contacts">
@@ -26,25 +36,42 @@
 </template>
 
 <script>
-import AppIcon from "../App/AppIcon.vue";
-import AppMenu from "./AppMenu.vue";
 import {ref} from "vue";
 import useWindowDimensions from "../../composable/windowDimensions.js";
 import useMenuMode from "../../composable/menuMode.js";
+import useSearch from "../../composable/search.js";
+
+import AppIcon from "../App/AppIcon.vue";
+import AppMenu from "./AppMenu.vue";
 import AppBurger from "../App/AppBurger.vue";
+import AppInput from "../App/AppInput.vue";
+
 export default {
    name: "AppHeader",
-   components: {AppBurger, AppMenu, AppIcon},
+   components: {AppInput, AppBurger, AppMenu, AppIcon},
 
    setup () {
       const {width, isDesktop} = useWindowDimensions()
       const {isOpen} = useMenuMode()
 
+      const searchQuery = ref('')
+      const {search} = useSearch()
+
+      const submit = () => {
+         search(searchQuery.value)
+         searchQuery.value = ''
+      }
+
+
       return {
          width,
          isDesktop,
 
-         isOpen
+         isOpen,
+
+         searchQuery,
+         search,
+         submit,
       }
    }
 }
@@ -65,10 +92,18 @@ header {
    align-items: center;
 }
 
+form {
+   flex-grow: 1;
+   max-width: 350px;
+   margin-right: auto;
+   margin-left: 40px;
+}
+
 .contacts {
    display: flex;
-
    align-items: center;
+   flex-shrink: 0;
+   margin-left: 30px;
    font-size: var(--subtitle-size);
    .instagram {
       cursor: pointer;

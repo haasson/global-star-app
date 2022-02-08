@@ -1,6 +1,16 @@
 <template>
    <PageSection class="menu" :class="{active: isOpen}">
       <div class="inner">
+         <form @submit.prevent="submit">
+            <AppInput
+                v-if="width <=768"
+                inHeader
+                v-model="searchQuery"
+                icon="search"
+                placeholder="Поиск..."
+                class="search"
+            />
+         </form>
          <MenuItem
              v-for="(item, key) in data"
              :name="item.name"
@@ -14,17 +24,19 @@
 </template>
 
 <script>
-import {computed, watch} from "vue";
+import {computed, ref, watch} from "vue";
 
 import MenuItem from "../App/MenuItem.vue";
 import appConfig from "../../config/app.config.js";
 import useWindowDimensions from "../../composable/windowDimensions.js";
 import PageSection from "../Providers/PageSection.vue";
 import useMenuMode from "../../composable/menuMode.js";
+import AppInput from "../App/AppInput.vue";
+import useSearch from "../../composable/search.js";
 
 export default {
    name: "AppMenu",
-   components: {PageSection, MenuItem},
+   components: {AppInput, PageSection, MenuItem},
    props: {
      nested: {
         type: Boolean,
@@ -38,11 +50,23 @@ export default {
 
       const {isOpen} = useMenuMode()
 
+
+      const searchQuery = ref('')
+      const {search} = useSearch()
+
+      const submit = () => {
+         search(searchQuery.value)
+         searchQuery.value = ''
+      }
+
       return {
          data,
          width,
 
          isOpen,
+
+         searchQuery,
+         submit,
       }
    }
 }

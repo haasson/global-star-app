@@ -40,6 +40,7 @@
           :title="product.title"
           :text="product.text"
           :price="product.price"
+          :keywords="product.keywords"
           :images="product.images"
           @update:article="updateProduct"
       />

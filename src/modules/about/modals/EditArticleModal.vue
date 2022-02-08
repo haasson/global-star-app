@@ -23,6 +23,7 @@
             </div>
 
             <AppInput v-if="isProductPage" type="number" class="price" label="Цена" v-model.number="data.price"/>
+            <AppInput v-if="isProductPage" textarea label="Ключевые слова для поиска" v-model.trim="data.keywords"/>
 
             <AppImageUpload
                 v-if="entity !== 'vacancy'"
@@ -87,6 +88,9 @@ export default {
       },
       price: {
          type: Number,
+      },
+      keywords: {
+         type: String,
       },
       images: {
          type: Object,
@@ -197,6 +201,7 @@ export default {
              data.title = data.title || props.title;
              data.text = data.text || props.text;
              data.price = data.price || props.price || null;
+             data.keywords = data.keywords || props.keywords || '';
              data.images = data.images || props.images;
           },
           {immediate: true}
@@ -241,14 +246,9 @@ export default {
 <style lang="scss" scoped>
 .form {
    padding: 0 20px;
-}
-
-.select-wrap,
-.title,
-.price,
-.editor-block,
-.upload-image {
-   margin-bottom: 20px;
+   & > * {
+      margin-bottom: 20px;
+   }
 }
 
 .select-wrap {

@@ -17,6 +17,11 @@ const router = createRouter({
          name: 'main',
          component: () => import("../components/Pages/MainPage.vue"),
       },
+      {
+         path: '/search',
+         name: 'search',
+         component: () => import("../components/Pages/SearchPage.vue"),
+      },
 
       ...solutionRoutes,
       ...productsRoutes,
