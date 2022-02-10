@@ -20,6 +20,8 @@
           justify="flex-start"
       />
 
+      <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
+
       <RecommendedProducts />
 
       <SoftSection :items="soft" titlePosition="left"/>
@@ -38,6 +40,7 @@ import AppTitle from "../../../../components/AppTitle.vue";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
 import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 import RecommendedProducts from "../../../../components/Sections/RecommendedProducts.vue";
+import AppAlert from "../../../../components/App/AppAlert.vue";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/transport/truck.png',
@@ -90,7 +93,9 @@ const soft = ['wialon', 'logistics', 'fleetrun', 'eco-driving']
 
 export default {
    name: "Trucks",
-   components: {RecommendedProducts, SoftSection, AppTitle, AppList, ImageWithMarkers, HeadImage, TextBlock, AppPage},
+   components: {
+      AppAlert,
+      RecommendedProducts, SoftSection, AppTitle, AppList, ImageWithMarkers, HeadImage, TextBlock, AppPage},
    setup() {
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 3, 568: 2, default: 1})
 

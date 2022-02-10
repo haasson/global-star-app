@@ -9,25 +9,23 @@
 <!--      </transition>-->
    </main>
 
-   <AppFooter/>
+   <AppFooter @chatButtonClicked="openModal"/>
+
+   <ContactFormModal ref="modal" />
 </template>
 
 <script>
 import {ref} from 'vue'
-
-
-
 import AppHeader from "./components/Sections/AppHeader.vue";
 import AppFooter from "./components/Sections/AppFooter.vue";
+import ContactFormModal from "./components/Modals/ContactFormModal.vue";
 
 export default {
-   components: {AppFooter, AppHeader},
+   components: {ContactFormModal, AppFooter, AppHeader},
 
    setup() {
       const modal = ref(null)
-      const openModal = async () => {
-         return await modal.value.open()
-      }
+      const openModal = async () => modal.value.open()
 
       return {openModal, modal}
    }

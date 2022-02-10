@@ -30,6 +30,7 @@ body {
    --text-size-big: 18px;
    --text-size: 16px;
    --text-small-size: 14px;
+   --text-mini-size: 12px;
 
 
    // SHADOWS
@@ -77,6 +78,7 @@ body {
       --title-size: 20px;
       --article-text-size: 14px;
       --subtitle-size: 14px;
+      --text-mini-size: 10px;
    }
    @media(max-width: 420px) {
       --wrapperMargins: 12px;

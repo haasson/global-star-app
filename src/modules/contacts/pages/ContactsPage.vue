@@ -12,7 +12,7 @@
             </div>
          </PageSection>
 
-         <AppAlert fontSize="medium">
+         <AppAlert size="medium">
             <div class="flex">
                <div>
                   <p class="title-contacts">Отдел продаж</p>

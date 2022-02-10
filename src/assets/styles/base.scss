@@ -149,6 +149,13 @@ button {
    }
 }
 
+.alert-small {
+   display: none;
+   @media(max-width: 568px) {
+      display: block;
+   }
+}
+
 
 
 input::-ms-clear {
@@ -239,6 +246,59 @@ textarea:focus:-ms-input-placeholder {
       }
    }
 }
+
+.vue-select {
+   width: 100%;
+   padding: 10px 16px;
+   background-color: var(--white);
+   border: 1px solid black;
+   border-radius: 0;
+
+   .arrow-downward {
+      width: 10px;
+      height: 10px;
+      margin-left: 5px;
+      color: transparent;
+
+      border:none;
+      border-right: 2px solid var(--blue);
+      border-bottom: 2px solid var(--blue);
+      transform: rotate(45deg);
+      transform-origin: center center;
+      @media(max-width: 768px) {
+         width: 6px;
+         height: 6px;
+      }
+
+      &.active {
+         transform: rotate(225deg);
+      }
+   }
+
+   .vue-input {
+      padding: 0;
+      input {
+         font-size: var(--text-size-big);
+         &::placeholder {
+            color: var(--black);
+         }
+      }
+   }
+
+   .vue-dropdown {
+      .vue-dropdown-item {
+         color: var(--black);
+         padding: 10px 16px;
+         &.selected {
+
+         }
+         &.highlighted {
+            background-color: var(--orange);
+         }
+      }
+   }
+}
+
 
 @media(max-width: 992px) {
    .swiper-wrapper {

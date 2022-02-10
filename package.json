@@ -16,10 +16,13 @@
     "@popperjs/core": "^2.10.2",
     "axios": "^0.24.0",
     "dayjs": "^1.10.7",
+    "emailjs-com": "^3.2.0",
     "firebase": "^9.4.1",
+    "maska": "^1.5.0",
     "reset-css": "^5.0.1",
     "swiper": "^7.2.0",
     "vue": "^3.2.16",
+    "vue-next-select": "^2.10.2",
     "vue-router": "^4.0.12",
     "vue-yandex-maps": "^0.12.2"
   },

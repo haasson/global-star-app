@@ -88,8 +88,13 @@ label {
 }
 input {
    flex-grow: 1;
+   max-width: 100%;
    padding: 10px 16px;
    font-size: var(--subtitle-size);
+   border: none;
+   &::placeholder {
+      font-size: var(--text-size-big);
+   }
 }
 
 textarea {

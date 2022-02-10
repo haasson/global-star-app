@@ -7,17 +7,18 @@
             <div class="overlay" @click="decline"></div>
             <div
                 class="modal"
+                :class="[bg]"
                 :style="`min-width: ${minWidth}px; max-width: ${maxWidth}px;`"
             >
                <!-- Header -->
-               <div class="header">
+               <div v-if="$slots.title" class="header">
                   <h2 class="title">
                      <slot name="title" />
                   </h2>
                </div>
 
                <!-- Body -->
-               <div  v-if="$slots.content" class="content" :class="{ 'scrollable': scrollable }">
+               <div v-if="$slots.content" class="content" :class="{ 'scrollable': scrollable }">
                   <slot name="content" />
                </div>
                <!-- Footer -->
@@ -31,7 +32,7 @@
                    @click="decline"
                    class="close"
                >
-                  <AppIcon name="close"/>
+                  <AppIcon name="close" :fill="bg === 'blue' ? 'white' : 'black'"/>
                </button>
             </div>
          </div>
@@ -53,7 +54,7 @@ export default {
       },
       minWidth: {
          type: Number,
-         default: 500
+         default: 280
       },
       maxWidth: {
          type: Number,
@@ -74,6 +75,10 @@ export default {
       scrollable: {
          type: Boolean,
          default: true
+      },
+      bg: {
+         type: String,
+         default: ''
       }
    },
 
@@ -146,6 +151,7 @@ export default {
    justify-content: center;
    align-items: center;
    z-index: 99;
+   padding: 0 10px;
 }
 .overlay {
    position: absolute;
@@ -156,9 +162,15 @@ export default {
    background-color: rgba(0,0,0,.7);
 }
 .modal {
+   display: flex;
+   flex-direction: column;
    position: relative;
-   max-height: 90%;
+   max-height: 90vh;
    background-color: var(--white);
+   &.blue {
+      background: var(--blue);
+      color: var(--white);
+   }
 }
 .header {
    padding: 16px;
@@ -172,12 +184,17 @@ export default {
 .scrollable {
    overflow: hidden;
    overflow-y: auto;
-   max-height: 65vh;
+   //max-height: 75vh;
+   height: 100%;
 }
 .close {
    position: absolute;
    right: 10px;
    top: 10px;
    cursor: pointer;
+   @media(max-width: 568px) {
+      right: 0;
+      transform: scale(.5);
+   }
 }
 </style>

@@ -13,6 +13,8 @@
        multiline
    />
 
+   <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
+
    <RecommendedProducts />
 
    <SoftSection :items="soft" titlePosition="left" />
@@ -26,6 +28,7 @@ import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarker
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import RecommendedProducts from "../../../../../components/Sections/RecommendedProducts.vue";
+import AppAlert from "../../../../../components/App/AppAlert.vue";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/machines-monitoring/combine/combine.png',
@@ -69,7 +72,7 @@ const soft = ['hecterra', 'wialon']
 
 export default {
    name: "CombineMonitoring",
-   components: {RecommendedProducts, SoftSection, ImageWithMarkers, AppTitle, AppList, TextBlock},
+   components: {AppAlert, RecommendedProducts, SoftSection, ImageWithMarkers, AppTitle, AppList, TextBlock},
 
    setup() {
       const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})

@@ -50,6 +50,8 @@
          </ul>
       </TextWithImage>
 
+      <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
+
       <div>
          <AppTitle position="left">Платные сигналы</AppTitle>
          <AppList

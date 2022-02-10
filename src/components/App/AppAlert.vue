@@ -1,5 +1,5 @@
 <template>
-   <PageSection class="alert" :class="fontSize">
+   <PageSection class="alert" :class="size">
       <div class="inner">
          <p><slot /></p>
       </div>
@@ -12,7 +12,7 @@ export default {
 name: "AppAlert",
    components: {PageSection},
    props: {
-      fontSize: {
+      size: {
          type: String,
          default: 'big'
       }
@@ -32,6 +32,10 @@ name: "AppAlert",
    }
    &.medium {
       font-size: var(--article-text-size);
+   }
+   &.small {
+      padding: 4px 12px;
+      font-size: var(--text-mini-size);
    }
 }
 </style>

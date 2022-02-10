@@ -39,6 +39,8 @@
       />
    </div>
 
+   <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
+
    <SoftSection :items="soft" />
 
    <AppAlert>Цена комплекта от 5600$</AppAlert>

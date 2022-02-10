@@ -8,7 +8,7 @@
          height="100%"
          :viewBox="`0 0 ${width} ${height || width}`"
       >
-         <Component :is="currentIcon" :fill="fill" />
+         <Component :is="currentIcon" :fill="fill" :stroke="stroke" />
       </svg>
    </div>
 </template>
@@ -35,6 +35,9 @@ export default defineComponent({
          default: 1
       },
       fill: {
+         type: String
+      },
+      stroke: {
          type: String
       }
    },

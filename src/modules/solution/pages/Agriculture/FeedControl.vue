@@ -24,6 +24,8 @@
           multiline
       />
 
+      <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
+
       <div v-if="width > 568"  class="dtm">
          <img class="image" src="../../../../assets/images/solution/pages/feed-control/image-dtm.jpg" alt="">
       </div>

@@ -28,6 +28,8 @@
       />
    </div>
 
+   <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
+
    <AppList
        type="simple"
        gap="12"
