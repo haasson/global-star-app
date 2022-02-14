@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import PageSection from "./Providers/PageSection.vue";
-import useWindowDimensions from "../composable/windowDimensions.js";
+import PageSection from "../Providers/PageSection.vue";
+import useWindowDimensions from "../../composable/windowDimensions.js";
 
 const TITLE_POSITIONS = ['left', 'right']
 

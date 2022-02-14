@@ -50,9 +50,9 @@ import {isAdmin} from "../../../store";
 import AppPage from "../../../components/App/AppPage.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
 import AppButton from "../../../components/App/AppButton.vue";
-import VacancyItem from "../VacancyItem.vue";
+import VacancyItem from "../components/VacancyItem.vue";
 import EditArticleModal from "../modals/EditArticleModal.vue";
-import AppConfirmationModal from "../../../components/App/AppConfirmationModal.vue";
+import AppConfirmationModal from "../../../components/Modals/AppConfirmationModal.vue";
 
 
 export default {

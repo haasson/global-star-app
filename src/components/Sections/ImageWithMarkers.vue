@@ -14,7 +14,7 @@
 <script>
 import useLocalImage from "../../composable/localImage.js";
 import useWindowDimensions from "../../composable/windowDimensions.js";
-import TipPoint from "../TipPoint.vue";
+import TipPoint from "../App/TipPoint.vue";
 
 export default {
    name: "ImageWithMarkers",

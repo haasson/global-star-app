@@ -41,7 +41,7 @@
 
 <script>
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
-import AppTitle from "../../../../../components/AppTitle.vue";
+import AppTitle from "../../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";

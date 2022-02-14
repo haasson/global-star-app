@@ -18,7 +18,7 @@ const aboutRoutes = [
             path: 'news/:id',
             name: 'newsArticle',
             meta: {content: 'news'},
-            component: () => import("../../../components/FullArticle.vue"),
+            component: () => import("../components/FullArticle.vue"),
             props: {articleType: 'news'}
          },
          {
@@ -30,7 +30,7 @@ const aboutRoutes = [
             path: 'projects/:id',
             name: 'projectsArticle',
             meta: {content: 'projects'},
-            component: () => import("../../../components/FullArticle.vue"),
+            component: () => import("../components/FullArticle.vue"),
             props: {articleType: 'projects'}
          },
          {

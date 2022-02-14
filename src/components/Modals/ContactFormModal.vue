@@ -60,7 +60,7 @@
 import {computed, reactive, ref, watch} from "vue";
 import emailjs from "emailjs-com";
 
-import AppModal from "../App/AppModal.vue";
+import AppModal from "./AppModal.vue";
 import AppInput from "../App/AppInput.vue";
 import AppButton from "../App/AppButton.vue";
 import AppSelect from "../App/AppSelect.vue";

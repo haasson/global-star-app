@@ -17,7 +17,7 @@ import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import appConfig from "../../../config/app.config.js";
 import {isAdmin} from "../../../store";
 
-import AppTitle from "../../../components/AppTitle.vue";
+import AppTitle from "../../../components/App/AppTitle.vue";
 import AppList from "../../../components/App/AppList.vue";
 import useDatabase from "../../../composable/database.js";
 import useWindowDimensions from "../../../composable/windowDimensions.js";

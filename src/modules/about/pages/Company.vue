@@ -43,7 +43,7 @@ import AppGallery from "../../../components/App/AppGallery.vue";
 import AppPage from "../../../components/App/AppPage.vue";
 import TextBlock from "../../../components/Sections/TextBlock.vue";
 import AppList from "../../../components/App/AppList.vue";
-import AppTitle from "../../../components/AppTitle.vue";
+import AppTitle from "../../../components/App/AppTitle.vue";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 
 

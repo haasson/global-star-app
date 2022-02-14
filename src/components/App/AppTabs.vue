@@ -68,7 +68,6 @@ export default {
    background-color: var(--blue);
    font-size: var(--subtitle-size);
    color: var(--white);
-   box-shadow: 0 -18px 50px 45px rgba(0, 0, 0, 0.6);
 }
 
 .menu-inner {

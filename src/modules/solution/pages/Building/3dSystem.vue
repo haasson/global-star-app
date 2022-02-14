@@ -1,5 +1,5 @@
 <template>
-   <AppPage noOffset>
+   <AppPage :topOffset="false">
       <HeadImage :src="image"
                  pageName="3D система для экскаватора"/>
 
@@ -36,7 +36,7 @@ import AppPage from "../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../components/Sections/TextBlock.vue";
 import ImageWithMarkers from "../../../../components/Sections/ImageWithMarkers.vue";
-import AppTitle from "../../../../components/AppTitle.vue";
+import AppTitle from "../../../../components/App/AppTitle.vue";
 import AppList from "../../../../components/App/AppList.vue";
 import AppGallery from "../../../../components/App/AppGallery.vue";
 import AppAlert from "../../../../components/App/AppAlert.vue";

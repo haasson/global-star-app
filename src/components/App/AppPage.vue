@@ -1,5 +1,5 @@
 <template>
-   <div class="app-page" :class="{'no-offset': noOffset}">
+   <div class="app-page" :class="{'top-offset': topOffset, 'bottom-offset': bottomOffset}">
       <AppLoader v-if="globalLoading"/>
       <div class="app-bg"></div>
       <slot />
@@ -19,7 +19,7 @@ import {globalLoading} from '../../store'
 
 
 import AppEditor from "./AppEditor.vue";
-import AppModal from "./AppModal.vue";
+import AppModal from "../Modals/AppModal.vue";
 import AppSection from "./AppSection.vue";
 import AppLoader from "./AppLoader.vue";
 
@@ -27,10 +27,14 @@ export default defineComponent({
    name: "AppPage",
    components: {AppLoader, AppSection, AppEditor, AppModal},
    props: {
-      noOffset: {
+      topOffset: {
          type: Boolean,
-         default: false
-      }
+         default: true
+      },
+      bottomOffset: {
+         type: Boolean,
+         default: true
+      },
    },
 
    setup(props) {
@@ -61,20 +65,7 @@ export default defineComponent({
    background: linear-gradient(315deg, #ececec 0%, #ececec 550px, #ffffff 550px, #fff calc(100% - 520px), #ececec calc(100% - 520px), #ececec 100%);
 }
 .app-page {
-   padding-bottom: 100px;
-   @media(max-width: 992px) {
-      padding-bottom: 70px;
-   }
-   @media(max-width: 768px) {
-      padding-bottom: 60px;
-   }
-   @media(max-width: 568px) {
-      padding-bottom: 40px;
-   }
-   @media(max-width: 480px) {
-      padding-bottom: 24px;
-   }
-   &:not(.no-offset) {
+   &.top-offset {
       padding-top: 70px;
       @media(max-width: 992px) {
          padding-top: 50px;
@@ -87,6 +78,21 @@ export default defineComponent({
       }
       @media(max-width: 480px) {
          padding-top: 24px;
+      }
+   }
+   &.bottom-offset {
+      padding-bottom: 100px;
+      @media(max-width: 992px) {
+         padding-bottom: 70px;
+      }
+      @media(max-width: 768px) {
+         padding-bottom: 60px;
+      }
+      @media(max-width: 568px) {
+         padding-bottom: 40px;
+      }
+      @media(max-width: 480px) {
+         padding-bottom: 24px;
       }
    }
 }

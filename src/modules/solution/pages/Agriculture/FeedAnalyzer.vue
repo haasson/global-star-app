@@ -1,5 +1,5 @@
 <template>
-   <AppPage noOffset>
+   <AppPage :topOffset="false">
 
       <HeadImage :src="image" pageName="БИК анализаторы кормов"/>
 
@@ -45,7 +45,7 @@ import image from "../../../../assets/images/solution/pages/feed-analyzer/head-i
 import AppPage from "../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../components/Sections/TextBlock.vue";
-import AppTitle from "../../../../components/AppTitle.vue";
+import AppTitle from "../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../components/App/AppList.vue";
 import useItemsPerRow from "../../../../composable/itemsPerRow.js";

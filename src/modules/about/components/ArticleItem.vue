@@ -25,11 +25,11 @@
 import {computed, ref, watch} from 'vue'
 import dayjs from "dayjs";
 
-import {isAdmin} from "../store";
-import useStorage from "../composable/storage";
-import {descriptionToHTML} from "../helpers/interface";
-import PageSection from "./Providers/PageSection.vue";
-import useWindowDimensions from "../composable/windowDimensions.js";
+import {isAdmin} from "../../../store";
+import useStorage from "../../../composable/storage.js";
+import {descriptionToHTML} from "../../../helpers/interface.js";
+import PageSection from "../../../components/Providers/PageSection.vue";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 export default {
    name: "ArticleItem",
@@ -98,8 +98,8 @@ export default {
 .image-block{
    flex-shrink: 0;
    max-width: 390px;
-   width: 33%;
-   //height: 290px;
+   width: 35%;
+   height: 290px;
    margin-right: 70px;
 }
 .image{

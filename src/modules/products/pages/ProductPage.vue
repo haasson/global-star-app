@@ -62,7 +62,7 @@ import PageSection from "../../../components/Providers/PageSection.vue";
 import AppButtonsGroup from "../../../components/App/AppButtonsGroup.vue";
 import AppButton from "../../../components/App/AppButton.vue";
 import EditArticleModal from "../../about/modals/EditArticleModal.vue";
-import AppConfirmationModal from "../../../components/App/AppConfirmationModal.vue";
+import AppConfirmationModal from "../../../components/Modals/AppConfirmationModal.vue";
 
 export default {
    name: "ProductPage",

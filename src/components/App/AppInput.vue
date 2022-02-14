@@ -68,12 +68,14 @@ label {
 .input-wrap {
    display: flex;
    align-items: center;
+   border: 1px solid black;
 
    &.in-header {
       flex-grow: 1;
       background-color: var(--blue);
       border-radius: 30px;
       padding: 8px 16px;
+      border: none;
       input {
          color: var(--white);
          background: none;

@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import AppIcon from "./App/AppIcon.vue";
-import useDropdown from "../composable/dropdown.js";
+import AppIcon from "./AppIcon.vue";
+import useDropdown from "../../composable/dropdown.js";
 
 export default {
    name: "TipPoint",

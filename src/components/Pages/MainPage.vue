@@ -1,5 +1,5 @@
 <template>
-   <AppPage noOffset class="main-page">
+   <AppPage :topOffset="false" class="main-page">
       <HeadImage
           :src="image"
           class="image"
@@ -54,7 +54,7 @@
 <script>
 import image from "../../assets/images/solution/pages/navigation/navigation.jpg";
 
-import AppTitle from "../AppTitle.vue";
+import AppTitle from "../App/AppTitle.vue";
 import TextWithImage from "../Sections/TextWithImage.vue";
 import AppButton from "../App/AppButton.vue";
 import AppPage from "../App/AppPage.vue";

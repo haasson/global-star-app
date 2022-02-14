@@ -61,7 +61,7 @@ export default {
       })
 
       const onChange = (event) => {
-         currentSlide.value = slidesComponents.value[event.clickedIndex]
+         currentSlide.value = slidesComponents.value[event.clickedIndex] || currentSlide.value
       }
 
       const {isMobileDevice} = useWindowDimensions()

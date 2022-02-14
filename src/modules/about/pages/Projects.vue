@@ -27,7 +27,7 @@
 <script>
 import {computed, ref, watch} from 'vue'
 import {isAdmin} from "../../../store";
-import ArticleItem from "../../../components/ArticleItem.vue";
+import ArticleItem from "../components/ArticleItem.vue";
 import AppButton from "../../../components/App/AppButton.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
 import EditArticleModal from "../modals/EditArticleModal.vue";

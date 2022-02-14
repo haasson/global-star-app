@@ -63,6 +63,9 @@ export default {
    border: 1px solid transparent;
    box-shadow: var(--button-shadow);
    cursor: pointer;
+   @media(max-width: 420px) {
+      min-width: 100%;
+   }
 
    &.icon {
       min-width: 0;

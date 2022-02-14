@@ -42,7 +42,7 @@
 
 <script>
 import { onBeforeUnmount, ref, watch } from 'vue'
-import AppIcon from "./AppIcon.vue";
+import AppIcon from "../App/AppIcon.vue";
 
 export default {
    name: 'AppModal',

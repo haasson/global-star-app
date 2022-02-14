@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import AppTitle from "../AppTitle.vue";
+import AppTitle from "../App/AppTitle.vue";
 import useWindowDimensions from "../../composable/windowDimensions.js";
 export default {
    name: "HeadImage",

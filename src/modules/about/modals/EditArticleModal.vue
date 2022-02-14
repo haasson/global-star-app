@@ -45,7 +45,7 @@
 
 <script>
 import {computed, reactive, ref, watch} from "vue";
-import AppModal from "../../../components/App/AppModal.vue";
+import AppModal from "../../../components/Modals/AppModal.vue";
 import AppEditor from "../../../components/App/AppEditor.vue";
 import AppButtonsGroup from "../../../components/App/AppButtonsGroup.vue";
 import AppButton from "../../../components/App/AppButton.vue";

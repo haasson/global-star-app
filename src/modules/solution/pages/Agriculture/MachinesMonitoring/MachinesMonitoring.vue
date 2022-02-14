@@ -1,5 +1,5 @@
 <template>
-   <AppPage noOffset>
+   <AppPage :topOffset="false">
       <HeadImage
           :src="image"
           class="image"

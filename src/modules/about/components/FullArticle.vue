@@ -39,21 +39,21 @@
 <script>
 import {computed, watch, ref} from "vue";
 import {Swiper, SwiperSlide} from 'swiper/vue'
-import {isAdmin} from "../store";
+import {isAdmin} from "../../../store";
 
-import useDatabase from "../composable/database";
+import useDatabase from "../../../composable/database.js";
 import {useRoute, useRouter} from "vue-router";
-import useStorage from "../composable/storage";
-import {descriptionToHTML} from "../helpers/interface";
+import useStorage from "../../../composable/storage.js";
+import {descriptionToHTML} from "../../../helpers/interface.js";
 
-import PageSection from "./Providers/PageSection.vue";
-import AppGallery from "./App/AppGallery.vue";
-import AppButton from "./App/AppButton.vue";
-import AppButtonsGroup from "./App/AppButtonsGroup.vue";
-import EditArticleModal from "../modules/about/modals/EditArticleModal.vue";
-import AppPage from "./App/AppPage.vue";
-import AppConfirmationModal from "./App/AppConfirmationModal.vue";
-import router from "../router";
+import PageSection from "../../../components/Providers/PageSection.vue";
+import AppGallery from "../../../components/App/AppGallery.vue";
+import AppButton from "../../../components/App/AppButton.vue";
+import AppButtonsGroup from "../../../components/App/AppButtonsGroup.vue";
+import EditArticleModal from "../modals/EditArticleModal.vue";
+import AppPage from "../../../components/App/AppPage.vue";
+import AppConfirmationModal from "../../../components/Modals/AppConfirmationModal.vue";
+import router from "../../../router";
 import dayjs from "dayjs";
 
 export default {

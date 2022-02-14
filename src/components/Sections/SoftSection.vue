@@ -15,7 +15,7 @@
 <script>
 import {ref} from "vue";
 import appConfig from "../../config/app.config.js";
-import AppTitle from "../AppTitle.vue";
+import AppTitle from "../App/AppTitle.vue";
 import AppList from "../App/AppList.vue";
 export default {
    name: "SoftSection",

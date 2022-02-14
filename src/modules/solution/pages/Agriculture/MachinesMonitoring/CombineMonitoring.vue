@@ -23,7 +23,7 @@
 <script>
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppList from "../../../../../components/App/AppList.vue";
-import AppTitle from "../../../../../components/AppTitle.vue";
+import AppTitle from "../../../../../components/App/AppTitle.vue";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";

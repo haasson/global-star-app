@@ -15,8 +15,8 @@
 
 <script>
 import AppModal from "./AppModal.vue";
-import AppButtonsGroup from "./AppButtonsGroup.vue";
-import AppButton from "./AppButton.vue";
+import AppButtonsGroup from "../App/AppButtonsGroup.vue";
+import AppButton from "../App/AppButton.vue";
 import {ref} from "vue";
 
 export default {

@@ -1,5 +1,5 @@
 <template>
-   <AppPage noOffset>
+   <AppPage :topOffset="false">
       <HeadImage
           :src="image"
           class="image"
@@ -59,7 +59,7 @@ import image from "../../../../../assets/images/solution/pages/accurate-planter/
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../../components/App/AppList.vue";
-import AppTitle from "../../../../../components/AppTitle.vue";
+import AppTitle from "../../../../../components/App/AppTitle.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 

@@ -32,13 +32,13 @@
 
 <script>
 import {onMounted, ref} from 'vue'
-import {isAdmin} from "../../store";
-import PageSection from "../../components/Providers/PageSection.vue";
+import {isAdmin} from "../../../store";
+import PageSection from "../../../components/Providers/PageSection.vue";
 import {computed} from "vue";
-import {descriptionToHTML} from "../../helpers/interface.js";
-import AppIcon from "../../components/App/AppIcon.vue";
-import AppButton from "../../components/App/AppButton.vue";
-import AppButtonsGroup from "../../components/App/AppButtonsGroup.vue";
+import {descriptionToHTML} from "../../../helpers/interface.js";
+import AppIcon from "../../../components/App/AppIcon.vue";
+import AppButton from "../../../components/App/AppButton.vue";
+import AppButtonsGroup from "../../../components/App/AppButtonsGroup.vue";
 
 export default {
    name: "VacancyItem",

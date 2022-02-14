@@ -1,5 +1,5 @@
 <template>
-   <AppPage noOffset class="steering-device-page">
+   <AppPage :topOffset="false" class="steering-device-page">
       <HeadImage
           :src="image"
           class="image"
@@ -75,7 +75,7 @@ import HeadImage from "../../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
 import AppList from "../../../../../components/App/AppList.vue";
-import AppTitle from "../../../../../components/AppTitle.vue";
+import AppTitle from "../../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";

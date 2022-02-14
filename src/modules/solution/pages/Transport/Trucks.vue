@@ -1,5 +1,5 @@
 <template>
-   <AppPage noOffset>
+   <AppPage :topOffset="false">
       <HeadImage :src="image"
                  pageName="Транспортные перевозки"/>
 
@@ -36,7 +36,7 @@ import TextBlock from "../../../../components/Sections/TextBlock.vue";
 import HeadImage from "../../../../components/Sections/HeadImage.vue";
 import ImageWithMarkers from "../../../../components/Sections/ImageWithMarkers.vue";
 import AppList from "../../../../components/App/AppList.vue";
-import AppTitle from "../../../../components/AppTitle.vue";
+import AppTitle from "../../../../components/App/AppTitle.vue";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
 import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 import RecommendedProducts from "../../../../components/Sections/RecommendedProducts.vue";

@@ -26,7 +26,7 @@ import useDatabase from "../../composable/database.js";
 import useItemsPerRow from "../../composable/itemsPerRow.js";
 
 import AppPage from "../App/AppPage.vue";
-import AppTitle from "../AppTitle.vue";
+import AppTitle from "../App/AppTitle.vue";
 import AppList from "../App/AppList.vue";
 import AppIcon from "../App/AppIcon.vue";
 

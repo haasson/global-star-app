@@ -1,5 +1,5 @@
 <template>
-   <AppPage noOffset class="navigation-page">
+   <AppPage :topOffset="false" class="navigation-page">
       <HeadImage
           :src="image"
           class="image"
@@ -48,7 +48,7 @@ import image from '../../../../../assets/images/solution/pages/navigation/naviga
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppPage from "../../../../../components/App/AppPage.vue";
-import AppTitle from "../../../../../components/AppTitle.vue";
+import AppTitle from "../../../../../components/App/AppTitle.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import useWindowDimensions from "../../../../../composable/windowDimensions.js";
