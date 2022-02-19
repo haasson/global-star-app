@@ -4,9 +4,9 @@
          <AppButton @click="addProject" color="blue">Добавить проект</AppButton>
       </PageSection>
 
-      <div v-if="projectsList">
+      <div v-if="filteredList">
          <ArticleItem
-             v-for="project in projectsList"
+             v-for="project in filteredList"
              articleType="projects"
              :id="project.id"
              :title="project.title"
@@ -15,6 +15,11 @@
              :time="project.time"
              :isHidden="project.isHidden"
              class="item"
+         />
+
+         <AppPagination
+             :totalItems="Object.keys(projectsList).length"
+             @update:pagination="updatePage"
          />
       </div>
    </AppPage>
@@ -27,17 +32,20 @@
 <script>
 import {computed, ref, watch} from 'vue'
 import {isAdmin} from "../../../store";
+import useDatabase from "../../../composable/database";
+import usePagination from "../../../composable/pagination.js";
+
 import ArticleItem from "../components/ArticleItem.vue";
 import AppButton from "../../../components/App/AppButton.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
-import EditArticleModal from "../modals/EditArticleModal.vue";
-import useDatabase from "../../../composable/database";
 import AppPage from "../../../components/App/AppPage.vue";
+import AppPagination from "../../../components/App/AppPagination.vue";
+import EditArticleModal from "../modals/EditArticleModal.vue";
 
 
 export default {
    name: "Projects",
-   components: {AppPage, EditArticleModal, PageSection, AppButton, ArticleItem},
+   components: {AppPagination, AppPage, EditArticleModal, PageSection, AppButton, ArticleItem},
 
    setup() {
       const editModal = ref(null)
@@ -54,6 +62,8 @@ export default {
          return `images/projects/${project.id}/gallery/${mainImageName}`
       }
 
+      const {updatePage, filteredList} = usePagination(projectsList)
+
       return {
          isAdmin,
          editModal,
@@ -62,6 +72,9 @@ export default {
          get,
          projectsList,
          getMainImage,
+
+         updatePage,
+         filteredList,
       }
    }
 }

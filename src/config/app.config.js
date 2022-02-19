@@ -5,6 +5,7 @@ const appConfig = {
    navigation,
    programSolutions,
 
+   itemsPerPage: 10,
    useRetina: false,
 }
 

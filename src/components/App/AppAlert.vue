@@ -25,7 +25,6 @@ name: "AppAlert",
    padding: 31px;
    background-color: var(--orange);
    text-align: center;
-   line-height: 1;
    box-shadow: var(--button-shadow);
    @media(max-width: 568px) {
       padding: 12px;

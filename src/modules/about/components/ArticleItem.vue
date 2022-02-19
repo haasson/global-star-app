@@ -89,7 +89,7 @@ export default {
    display: flex;
    justify-content: space-between;
    align-items: flex-start;
-   padding-bottom: 50px;
+   padding-bottom: 40px;
    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
    &.inactive {
       opacity: .4;
@@ -138,6 +138,9 @@ h3{
    font-weight: 500;
    color: var(--light-blue);
    text-decoration: underline;
+   &:hover {
+      font-weight: 800;
+   }
 }
 
 @media(max-width: 1200px) {

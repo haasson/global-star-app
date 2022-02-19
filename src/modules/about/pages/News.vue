@@ -4,9 +4,9 @@
          <AppButton @click="addNews" color="blue">Добавить новость</AppButton>
       </PageSection>
 
-      <div v-if="newsList">
+      <div v-if="filteredList">
          <ArticleItem
-             v-for="news in newsList"
+             v-for="news in filteredList"
              articleType="news"
              :id="news.id"
              :title="news.title"
@@ -15,6 +15,11 @@
              :time="news.time"
              :isHidden="news.isHidden"
              class="item"
+         />
+
+         <AppPagination
+             :totalItems="Object.keys(newsList).length"
+             @update:pagination="updatePage"
          />
       </div>
 
@@ -26,19 +31,23 @@
 </template>
 
 <script>
-import {computed, ref, watch} from 'vue'
+import {ref} from 'vue'
 import {isAdmin} from "../../../store";
+
+import useDatabase from "../../../composable/database";
+import usePagination from "../../../composable/pagination.js";
+
 import ArticleItem from "../components/ArticleItem.vue";
 import AppButton from "../../../components/App/AppButton.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
-import EditArticleModal from "../modals/EditArticleModal.vue";
-import useDatabase from "../../../composable/database";
 import AppPage from "../../../components/App/AppPage.vue";
+import AppPagination from "../../../components/App/AppPagination.vue";
+import EditArticleModal from "../modals/EditArticleModal.vue";
 
 
 export default {
    name: "News",
-   components: {AppPage, EditArticleModal, PageSection, AppButton, ArticleItem},
+   components: {AppPagination, AppPage, EditArticleModal, PageSection, AppButton, ArticleItem},
 
    setup() {
       const editModal = ref(null)
@@ -56,6 +65,9 @@ export default {
       }
 
 
+      const {updatePage, filteredList} = usePagination(newsList)
+
+
       return {
          isAdmin,
          editModal,
@@ -64,6 +76,9 @@ export default {
          get,
          newsList,
          getMainImage,
+
+         updatePage,
+         filteredList,
       }
    }
 }
