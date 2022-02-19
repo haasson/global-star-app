@@ -83,8 +83,7 @@ export default {
          default: "",
       },
       text: {
-         type: String,
-         default: "",
+         type: Object,
       },
       price: {
          type: Number,

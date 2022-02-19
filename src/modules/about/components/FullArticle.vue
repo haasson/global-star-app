@@ -38,23 +38,24 @@
 
 <script>
 import {computed, watch, ref} from "vue";
+import dayjs from "dayjs";
+
 import {Swiper, SwiperSlide} from 'swiper/vue'
 import {isAdmin} from "../../../store";
+import {descriptionToHTML} from "../../../helpers/interface.js";
 
 import useDatabase from "../../../composable/database.js";
 import {useRoute, useRouter} from "vue-router";
 import useStorage from "../../../composable/storage.js";
-import {descriptionToHTML} from "../../../helpers/interface.js";
+import useLoading from "../../../composable/loading.js";
 
 import PageSection from "../../../components/Providers/PageSection.vue";
 import AppGallery from "../../../components/App/AppGallery.vue";
 import AppButton from "../../../components/App/AppButton.vue";
 import AppButtonsGroup from "../../../components/App/AppButtonsGroup.vue";
-import EditArticleModal from "../modals/EditArticleModal.vue";
 import AppPage from "../../../components/App/AppPage.vue";
+import EditArticleModal from "../modals/EditArticleModal.vue";
 import AppConfirmationModal from "../../../components/Modals/AppConfirmationModal.vue";
-import router from "../../../router";
-import dayjs from "dayjs";
 
 export default {
    name: "FullArticle",
@@ -69,9 +70,11 @@ export default {
    },
 
    setup(props) {
-      const description = ref()
+      useLoading()
       const router = useRouter()
       const route = useRoute()
+
+      const description = ref()
       const articleLink = `${props.articleType}/list/${route.params.id}`
 
       const {get: getArticle, put: putArticle, del: delArticle, data: article} = useDatabase()

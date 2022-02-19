@@ -28,6 +28,8 @@ export default {
 
 <style lang="scss" scoped>
 .about-tabs {
+   position: relative;
+   z-index: 71;
    box-shadow: inset 0 22px 40px -20px rgba(0, 0, 0, 0.6);
 }
 </style>

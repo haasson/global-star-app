@@ -23,6 +23,7 @@
 
 <script>
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import useWindowDimensions from "../../../../../composable/windowDimensions.js";
 import useLoading from "../../../../../composable/loading.js";
 
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
@@ -79,9 +80,10 @@ export default {
 
    setup() {
       useLoading()
+      const {width} = useWindowDimensions()
       const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})
 
-      return {imageWithPoints, features, soft, itemsPerRow}
+      return {width, imageWithPoints, features, soft, itemsPerRow}
    }
 }
 </script>

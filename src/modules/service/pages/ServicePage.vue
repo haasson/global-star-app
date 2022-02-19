@@ -14,7 +14,7 @@
 
       <AppList
           type="service"
-          gap="36"
+          :gap="36"
           :items="features"
           :itemsPerRow="itemsPerRow"
           title="Услуги сервиса"

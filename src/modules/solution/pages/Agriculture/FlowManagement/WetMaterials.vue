@@ -17,7 +17,7 @@
    </div>
 
    <div>
-      <AppTitle mobileBg="orange">Дисплей</AppTitle>
+      <AppTitle mobileBg>Дисплей</AppTitle>
       <TextWithImage image="no-image.png">
          <p class="list-title">Особенности:</p>
          <ul class="unordered-list">

@@ -106,7 +106,7 @@ export default defineComponent({
          default: false
       },
       items: {
-         type: Array,
+         type: [Array, Object],
          required: true
       },
       title: {

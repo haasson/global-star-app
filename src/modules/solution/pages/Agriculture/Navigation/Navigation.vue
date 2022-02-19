@@ -12,15 +12,15 @@
       </TextBlock>
 
       <div>
-         <AppTitle v-if="itemsPerRow !== 1" :mobileBg="true">Выберите дисплей с нужным вам функционалом</AppTitle>
+         <AppTitle v-if="itemsPerRow !== 1" mobileBg>Выберите дисплей с нужным вам функционалом</AppTitle>
          <AppList
              type="empty"
-             gap="5"
+             :gap="5"
              :items="displaysList"
              :itemsPerRow="itemsPerRow"
              :isSlider="itemsPerRow === 1"
              align="center"
-             :title="itemsPerRow === 1 && 'Выберите дисплей с нужным вам функционалом'"
+             :title="itemsPerRow === 1 ? 'Выберите дисплей с нужным вам функционалом' : ''"
              class="list"
              bgColor="orange"
              :bgType="itemsPerRow === 1 ? 'full' : ''"

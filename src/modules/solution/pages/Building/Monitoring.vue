@@ -25,6 +25,7 @@
 <script>
 import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../composable/loading.js";
+import useWindowDimensions from "../../../../composable/windowDimensions.js";
 
 import image from "../../../../assets/images/solution/pages/3d-system/head-image.jpg";
 import AppPage from "../../../../components/App/AppPage.vue";
@@ -80,10 +81,11 @@ export default {
    components: {AppAlert, SoftSection, AppList, AppTitle, ImageWithMarkers, HeadImage, AppPage},
 
    setup() {
+      const {width} = useWindowDimensions()
       useLoading()
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({568: 2, default: 1})
 
-      return {image, imageWithPoints, features, itemsPerRowFeatures, soft}
+      return {width, image, imageWithPoints, features, itemsPerRowFeatures, soft}
    }
 }
 </script>

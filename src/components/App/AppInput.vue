@@ -2,7 +2,7 @@
    <div v-bind="$attrs">
       <label v-if="label">{{ label }}</label>
       <div class="input-wrap" :class="{'in-header': inHeader}">
-         <AppIcon v-if="icon" :name="icon" fill="#9c9b9b" scale=".75" class="icon" />
+         <AppIcon v-if="icon" :name="icon" fill="#9c9b9b" :scale=".75" class="icon" />
          <textarea
             v-if="textarea"
             :value="modelValue"

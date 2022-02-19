@@ -4,9 +4,9 @@
       <AppList
           v-if="softItems"
           type="soft"
-          gap="14"
+          :gap="14"
           :items="softItems"
-          itemsPerRow="2"
+          :itemsPerRow="2"
           empty
       />
    </div>

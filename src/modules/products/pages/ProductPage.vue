@@ -89,8 +89,6 @@ export default {
          const path = `images/catalog/${section}/${category}/${productID}/gallery/${product.value.images[0].name}`
          getImage(path)
 
-         description.value = descriptionToHTML(product.value.text)
-
          // Make object from array of images
          const images = {}
          product.value.images.forEach(img => images[img.name] = img)
@@ -103,10 +101,6 @@ export default {
          const {fileName, src} = image.value
          product.value.images[fileName].src = src
          product.value.images = {...product.value.images}
-
-         // products.value = Object.values(products.value.images)
-         //     .map(image => image.src)
-         //     .sort((a, b) => (a.isMain === true ? 1 : -1))
       })
 
       const description = computed(() => {

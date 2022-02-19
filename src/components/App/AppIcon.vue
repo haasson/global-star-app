@@ -25,11 +25,11 @@ export default defineComponent({
          required: true
       },
       width: {
-         type: String,
-         default: '24'
+         type: Number,
+         default: 24
       },
       height: {
-         type: String,
+         type: Number,
       },
       scale: {
          type: Number,

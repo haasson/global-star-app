@@ -16,7 +16,7 @@
 
       <AppList
           type="simple"
-          gap="12"
+          :gap="12"
           :items="systemItems"
           :itemsPerRow="itemsPerRowSystem"
           :isSlider="itemsPerRowSystem < 4"
@@ -57,7 +57,8 @@
       <div>
          <AppTitle position="left">Платные сигналы</AppTitle>
          <AppList
-             type="signal" gap="30"
+             type="signal"
+             :gap="30"
              :items="signals"
              :itemsPerRow="itemsPerRowSignals"
              multiline

@@ -25,7 +25,7 @@ export default {
          type: String,
       },
       link: {
-         type: String,
+         type: Object,
       }
    },
 

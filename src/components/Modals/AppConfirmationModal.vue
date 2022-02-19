@@ -1,5 +1,5 @@
 <template>
-   <AppModal ref="modal" minWidth="600">
+   <AppModal ref="modal" :minWidth="600">
       <template #title>Подтвердите действие</template>
       <template #content>
          <div class="content">Вы действительно хотите удалить {{ deleteMap[type] }}?</div>

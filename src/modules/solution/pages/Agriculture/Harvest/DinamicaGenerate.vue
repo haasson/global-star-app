@@ -8,7 +8,7 @@
 
    <AppList
        type="simple"
-       gap="12"
+       :gap="12"
        :items="systemItems"
        :itemsPerRow="itemsPerRowSystem"
        :isSlider="itemsPerRowSystem < 5"
@@ -40,6 +40,7 @@
 <script>
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../../composable/loading.js";
+import useWindowDimensions from "../../../../../composable/windowDimensions.js";
 
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
@@ -87,12 +88,15 @@ export default {
    components: {SoftSection, AppAlert, AppTitle, AppList, ImageWithMarkers, TextBlock},
 
    setup() {
+      const {width} = useWindowDimensions()
       useLoading()
 
       const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 568: 2, default: 1})
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 3, 568: 2, default: 1})
 
       return {
+         width,
+
          imageWithPoints,
          systemItems,
          features,

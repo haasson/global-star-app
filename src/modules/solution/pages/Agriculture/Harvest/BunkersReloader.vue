@@ -8,7 +8,7 @@
 
    <AppList
        type="simple"
-       gap="12"
+       :gap="12"
        :items="systemItems1"
        :itemsPerRow="itemsPerRowSystem1"
        :isSlider="itemsPerRowSystem1 < 2"
@@ -33,7 +33,7 @@
 
    <AppList
        type="simple"
-       gap="12"
+       :gap="12"
        :items="systemItems2"
        :itemsPerRow="itemsPerRowSystem2"
        :isSlider="itemsPerRowSystem1 < 3"
@@ -63,6 +63,7 @@
 <script>
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../../composable/loading.js";
+import useWindowDimensions from "../../../../../composable/windowDimensions.js";
 
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
@@ -137,6 +138,7 @@ export default {
    name: "BunkerReloader",
    components: {AppAlert, SoftSection, AppTitle, AppList, ImageWithMarkers, TextBlock},
    setup() {
+      const {width} = useWindowDimensions()
       useLoading()
 
       const {itemsPerRow: itemsPerRowSystem1} = useItemsPerRow({568: 2, default: 1})
@@ -146,6 +148,8 @@ export default {
 
 
       return {
+         width,
+
          imageWithPoints,
          systemItems1,
          features1,

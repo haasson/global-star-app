@@ -28,7 +28,7 @@
 
       <AppList
           type="empty"
-          gap="5"
+          :gap="5"
           :items="sureImages"
           :itemsPerRow="itemsPerRow"
           :isSlider="itemsPerRow < 3"
@@ -37,7 +37,7 @@
       <VideoSection :src="video" />
 
       <div>
-         <AppTitle mobileBg="orange">Дисплей</AppTitle>
+         <AppTitle mobileBg>Дисплей</AppTitle>
          <TextWithImage image="solution/pages/accurate-planter/planter.png">
             <p class="list-title">Особенности:</p>
             <ul class="unordered-list">

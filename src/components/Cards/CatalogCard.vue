@@ -44,7 +44,7 @@ export default {
          type: String,
       },
       text: {
-         type: String,
+         type: Object,
       },
       button: {
         type: String,

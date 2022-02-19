@@ -8,7 +8,7 @@
 
       <AppList
           type="simple"
-          gap="12"
+          :gap="12"
           :items="solutionItems"
           :itemsPerRow="itemsPerRow"
           :isSlider="itemsPerRow < 3"

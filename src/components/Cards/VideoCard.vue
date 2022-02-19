@@ -3,7 +3,7 @@
       <img class="image" :src="imageSrc" alt="">
       <div @click="openModal" class="play-btn">
          <div class="play-inner">
-            <AppIcon name="play" width="30" fill="none" class="icon"/>
+            <AppIcon name="play" :width="30" fill="none" class="icon"/>
          </div>
       </div>
    </div>
@@ -28,7 +28,6 @@ export default {
       },
       itemHeight: {
          type: Number,
-         required: true
       },
    },
 

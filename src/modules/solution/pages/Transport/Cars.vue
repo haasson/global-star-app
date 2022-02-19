@@ -29,6 +29,7 @@
 <script>
 import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../composable/loading.js";
+import useWindowDimensions from "../../../../composable/windowDimensions.js";
 
 import image from "../../../../assets/images/solution/pages/transport/transport.jpg";
 import AppPage from "../../../../components/App/AppPage.vue";
@@ -85,10 +86,11 @@ export default {
    name: "Cars",
    components: {SoftSection, RecommendedProducts, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
+      const {width} = useWindowDimensions()
       useLoading()
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 3, 568: 2, default: 1})
 
-      return {image, imageWithPoints, features, soft, itemsPerRowFeatures}
+      return {width, image, imageWithPoints, features, soft, itemsPerRowFeatures}
    }
 }
 </script>

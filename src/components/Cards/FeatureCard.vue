@@ -1,5 +1,5 @@
 <template>
-   <div class="item" :style="{width: `calc(100%/${itemsPerRow} - 20px)`,}">
+   <div class="item">
       <div class="square">
          <AppIcon
              class="icon"
@@ -40,6 +40,12 @@ export default {
          required: true
       },
    },
+
+   setup() {
+      const {width} = useWindowDimensions()
+
+      return {width}
+   }
 }
 </script>
 

@@ -4,7 +4,7 @@
 
             <!-- Logo -->
             <router-link to="/">
-               <AppIcon name="logo" width="287" height="61" :scale="isDesktop ? 1 : 0.52" :fill="'white'"/>
+               <AppIcon name="logo" :width="287" :height="61" :scale="isDesktop ? 1 : 0.52" :fill="'white'"/>
             </router-link>
 
             <!-- Search -->
@@ -22,7 +22,7 @@
             <!-- Contacts -->
             <div class="contacts">
                <a href="http://instagtam.com" target="_blank" class="instagram">
-                  <AppIcon name="instagram" width="30" height="30" :scale="isDesktop ? 1 : 0.8" />
+                  <AppIcon name="instagram" :width="30" :height="30" :scale="isDesktop ? 1 : 0.8" />
                </a>
                <AppBurger v-if="width <= 768" />
                <a v-else href="tel:+78007006124" class="phone dark-bg">+7 (800) 700-61-24</a>

@@ -22,7 +22,7 @@
 
    <AppList
        type="simple"
-       gap="12"
+       :gap="12"
        :items="systemItems"
        :itemsPerRow="itemsPerRowSystem"
        :isSlider="itemsPerRowSystem < 5"
@@ -63,6 +63,7 @@ import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarker
 import AppList from "../../../../../components/App/AppList.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
+import useWindowDimensions from "../../../../../composable/windowDimensions.js";
 
 const basePath = 'solution/pages/harvest/'
 const imageWithPoints = {
@@ -116,10 +117,14 @@ export default {
 
    setup() {
       useLoading()
+      const {width} = useWindowDimensions()
+
       const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 5, 768: 3, 568: 2, default: 1})
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 3, 568: 2, default: 1})
 
       return {
+         width,
+
          imageWithPoints,
          systemItems,
          features,

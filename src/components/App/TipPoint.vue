@@ -6,7 +6,7 @@
           @mouseover="open"
           @mouseleave="close"
       >
-         <AppIcon name="gear" width="30"/>
+         <AppIcon name="gear" :width="30"/>
       </div>
 
 

@@ -1,7 +1,7 @@
 <template>
    <div class="global-loader">
       <div class="content">
-         <AppIcon name="logo" width="287" height="61" :scale="2" :fill="'#102F51'"/>
+         <AppIcon name="logo" :width="287" :height="61" :scale="2" :fill="'#102F51'"/>
       </div>
    </div>
 </template>

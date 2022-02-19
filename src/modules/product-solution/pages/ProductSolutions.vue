@@ -12,7 +12,7 @@
       <AppList
           title='DTM'
           type='soft'
-          itemsPerRow="2"
+          :itemsPerRow="2"
           :items="programSolutions.dtmPS"
           bgColor="orange"
           :bgType="width < 1100 ? '' : 'half'"
@@ -21,7 +21,7 @@
       <AppList
           title='AgLeader'
           type='soft'
-          itemsPerRow="2"
+          :itemsPerRow="2"
           :items="programSolutions.agLeaderPS"
           bgColor="orange"
           :bgType="width < 1100 ? 'full' : 'half'"

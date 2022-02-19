@@ -4,7 +4,7 @@
                  pageName="Бортовая система взвешивания Pegasus-2"/>
 
       <div>
-         <AppTitle position="left" :mobileBg="true">Бортовая система взвешивания Pegagus-2 позволяет</AppTitle>
+         <AppTitle position="left" mobileBg>Бортовая система взвешивания Pegagus-2 позволяет</AppTitle>
          <TextWithImage image="no-image.png" imagePosition="left">
             <ul class="unordered-list">
                <li>Контролировать производительность машин, снижает затраты на эксплуатацию</li>

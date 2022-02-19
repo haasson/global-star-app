@@ -16,7 +16,7 @@ export default {
    name: "Card",
    props: {
       link: {
-         type: String
+         type: [String, Object]
       },
       empty: {
          type: Boolean

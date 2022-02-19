@@ -19,7 +19,7 @@
 
       <AppList
           type="simple"
-          gap="12"
+          :gap="12"
           :items="systemItems"
           :itemsPerRow="itemsPerRowSystem"
           :isSlider="itemsPerRowSystem < 4"

@@ -33,7 +33,7 @@
 
       <AppList
           type="simple"
-          gap="12"
+          :gap="12"
           :items="systemItems"
           :itemsPerRow="itemsPerRowSystem"
           :isSlider="itemsPerRowSystem < 4"
@@ -47,7 +47,7 @@
 
       <AppList
           type="video"
-          gap="10"
+          :gap="10"
           :items="videoItems"
           :itemsPerRow="itemsPerRowVideo"
           :isSlider="itemsPerRowVideo < 4"

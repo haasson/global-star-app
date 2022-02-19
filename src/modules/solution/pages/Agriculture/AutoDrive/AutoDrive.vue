@@ -14,7 +14,7 @@
       </TextBlock>
 
       <div>
-         <AppTitle position="left" :mobileBg="true">Система автоматического вождения позволяет</AppTitle>
+         <AppTitle position="left" mobileBg>Система автоматического вождения позволяет</AppTitle>
          <TextWithImage image="solution/pages/autodrive/autodrive-features.png" imagePosition="left">
             <ul class="unordered-list">
                <li>Работать в условиях тумана, ночью, повышенной запыленности;</li>
@@ -28,7 +28,7 @@
 
       <AppList
           type="empty"
-          gap="5"
+          :gap="5"
           :items="examples"
           :itemsPerRow="itemsPerRowFlow"
           :isSlider="itemsPerRowFlow === 1"
@@ -48,7 +48,7 @@
 
       <AppList
           type="empty"
-          gap="5"
+          :gap="5"
           :items="accurateImages"
           :itemsPerRow="itemsPerRowAccurate"
           title="Сервисы коррекции позволяют работать с нужной точностью в любое время года"
@@ -57,7 +57,7 @@
 
       <AppList
           type="simple"
-          gap="14"
+          :gap="14"
           :items="variants"
           :itemsPerRow="itemsPerRowVariants"
           :isSlider="width <= 700"

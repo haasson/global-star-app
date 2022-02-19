@@ -81,6 +81,7 @@ export default {
          default: ''
       }
    },
+   emits: ['modalClosed'],
 
    setup(props, {emit}) {
       let resolve

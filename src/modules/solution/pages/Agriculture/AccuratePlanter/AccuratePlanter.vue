@@ -30,7 +30,7 @@
 
       <AppList
           type="simple"
-          gap="14"
+          :gap="14"
           :items="variants"
           :itemsPerRow="itemsPerRow"
           :isSlider="itemsPerRow === 1"

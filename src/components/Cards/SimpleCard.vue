@@ -31,7 +31,6 @@ export default {
       },
       itemHeight: {
          type: Number,
-         required: true
       },
       imageHeight: {
          type: Number,

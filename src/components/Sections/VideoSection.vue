@@ -17,7 +17,7 @@
          />
          <div v-if="!isPlayed" @click="play" class="play-btn">
             <div class="play-inner">
-               <AppIcon name="play" width="30" fill="none" class="icon"/>
+               <AppIcon name="play" :width="30" fill="none" class="icon"/>
             </div>
          </div>
       </div>

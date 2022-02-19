@@ -21,7 +21,7 @@ export default {
       },
       itemHeight: {
          type: Number,
-         required: true
+         default: 0
       },
       noShadow: {
          type: Boolean,
