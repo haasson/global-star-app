@@ -4,7 +4,7 @@
          <div class="content">
             <p class="text" :class="[textAlign]"><slot /></p>
             <div v-if="button" class="button">
-               <AppButton :to="button.to" :color="button.color">{{button.text}}</AppButton>
+               <AppButton :to="button.to" :color="button.color" @click="$emit('onClick')">{{button.text}}</AppButton>
             </div>
          </div>
          <div class="images" :class="{left: imagePosition === 'left'}">

@@ -36,14 +36,14 @@ export default {
    flex-direction: column;
    justify-content: space-between;
    min-height: 156px;
-   max-width: 245px;
+   max-width: 260px;
    padding: 16px 20px;
    box-sizing: border-box;
    background-color: var(--light-blue);
    border-radius: 10px;
 }
 .name{
-   font-size: var(--title-size);
+   font-size: 32px;
    font-weight: 600;
    line-height: 1.2;
    color: var(--white);
@@ -52,10 +52,13 @@ export default {
 .content{
    display: flex;
    justify-content: space-between;
-   font-size: var(--article-text-size);
+   font-size: 24px;
    line-height: 1.2;
    font-weight: 500;
    color: var(--white);
+   @media(max-width: 768px) {
+      font-size: 20px;
+   }
 }
 .price{
    color: var(--orange);

@@ -118,14 +118,19 @@ export default {
       padding: 10px 0 35px;
       background-color: var(--orange);
       img {
-         object-fit: contain;
+         //object-fit: contain;
       }
    }
 }
 
 @media(max-width: 568px) {
    .slide {
-      height: 450px;
+      height: 300px;
+   }
+}
+@media(max-width: 480px) {
+   .slide {
+      height: 236px;
    }
 }
 </style>

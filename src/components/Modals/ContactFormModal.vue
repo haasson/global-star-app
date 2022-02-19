@@ -141,6 +141,9 @@ export default {
    & > * {
       margin-bottom: 25px;
    }
+   h1 {
+      font-size: 20px;
+   }
 }
 h1 {
    font-size: var(--subtitle-size);
@@ -222,6 +225,9 @@ h1 {
    }
 }
 @media(max-width: 480px) {
+   .content {
+      padding: 10px 0;
+   }
    .form {
       & > * {
          margin-bottom: 12px;
@@ -231,9 +237,9 @@ h1 {
       font-size: 10px;
    }
 }
-@media(max-width: 380px) {
+@media(max-width: 420px) {
    .text {
-      font-size: 9px;
+      font-size: 8px;
    }
 }
 </style>

@@ -11,7 +11,7 @@
          </div>
          <div class="content">
             <h3>{{title}}</h3>
-            <p class="date">{{formattedDate}}</p>
+            <p v-if="articleType === 'news'" class="date">{{formattedDate}}</p>
             <div class="text" v-ellipsis.sentence v-html="description"></div>
             <div class="links">
                <router-link class="link" :to="`${articleType}/${id}`">Просмотреть</router-link>
@@ -57,7 +57,7 @@ export default {
          required: true
       },
       id: {
-         type: Number,
+         type: String,
          required: true
       },
       isHidden: {
@@ -166,6 +166,11 @@ h3{
    }
    .links {
       display: none;
+   }
+}
+@media(max-width: 568px) {
+   .image-block{
+      height: 180px;
    }
 }
 </style>

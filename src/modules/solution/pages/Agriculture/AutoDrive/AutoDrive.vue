@@ -1,5 +1,5 @@
 <template>
-   <AppPage :topOffset="false" class="auto-drive-page">
+   <AppPage :topOffset="false" :bottomOffset="width > 992" class="auto-drive-page">
       <HeadImage
           :src="image"
           class="image"
@@ -95,8 +95,8 @@ const accurateImages = [
 ]
 const variants = [
    {name: 'solution/pages/autodrive/variant1.png', title: 'Подруливающее устройство', link: '/solution/agriculture/auto-drive/steering-device'},
-   {name: 'solution/pages/autodrive/variant2.png', title: 'Гидравлический автопилот'},
-   {name: 'solution/pages/autodrive/variant3.png', title: 'Электрический автопилот'},
+   {name: 'solution/pages/autodrive/variant2.png', title: 'Гидравлический автопилот', link: '/solution/agriculture/auto-drive/hydraulic-autopilot'},
+   {name: 'solution/pages/autodrive/variant3.png', title: 'Электрический автопилот', link: '/solution/agriculture/auto-drive/electric-autopilot'},
 ]
 
 export default {

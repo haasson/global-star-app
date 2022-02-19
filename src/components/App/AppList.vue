@@ -1,7 +1,7 @@
 <template>
    <PageSection
        class="app-list-block"
-       :class="[bgType, bgColor, {'with-title': title && bgType}]"
+       :class="[bgType, bgColor, {'with-bg': bgColor}]"
        :style="{paddingBottom: `${isSlider && bgType === 'full' ? '20' : 'inherit'}px`}"
    >
       <div class="inner">
@@ -24,6 +24,8 @@
                       :removable="removable"
                       :title="item.title"
                       :name="item.name"
+                      :src="item.src"
+                      :poster="item.poster"
                       :link="item.link"
                       :text="item.text"
                       :icon="item.icon"
@@ -52,6 +54,8 @@
              :removable="removable"
              :title="item.title"
              :name="item.name"
+             :src="item.src"
+             :poster="item.poster"
              :link="item.link"
              :text="item.text"
              :period="item.period"
@@ -169,7 +173,7 @@ export default defineComponent({
 
 <style lang="scss">
 .app-list-block {
-   &.with-title {
+   &.with-bg {
       padding-top: 40px;
       @media(max-width: 568px) {
          padding-top: 20px;
@@ -187,6 +191,9 @@ export default defineComponent({
       &.sm {
          font-size: var(--subtitle-size);
          font-weight: 500;
+         @media(max-width: 568px) {
+            font-size: 16px;
+         }
       }
 
       &.lg {
@@ -198,29 +205,45 @@ export default defineComponent({
    .list {
       display: flex;
       flex-wrap: wrap;
-      //margin-top: 40px;
-      @media(max-width: 480px) {
-         //margin-top: 20px;
-      }
 
       &.slider {
          padding-bottom: 15px;
-         &.with-bg .swiper-slide {
-            padding-bottom: 25px;
-         }
+         //&.with-bg .swiper-slide {
+         //   padding-bottom: 25px;
+         //}
          &.center {
             .swiper-wrapper {
                align-items: center;
             }
          }
+         .swiper-wrapper {
+            align-items: stretch;
+         }
+         .swiper-slide {
+            height: auto;
+         }
          .swiper-pagination {
             &.swiper-pagination-bullets {
-               bottom: -5px;
+               bottom: 5px;
+
+               .swiper-pagination-bullet {
+                  width: 8px;
+                  height: 8px;
+                  background-color: #f4f4f4;
+                  opacity: .98;
+                  //background-color: #e3e3e3;
+                  box-shadow: 0 0 9px 3px rgba(0,0,0,.2);
+                  &.swiper-pagination-bullet-active {
+                     background-color: white;
+                  }
+               }
             }
          }
          .card {
             height: 100%;
          }
+
+
       }
 
       &.multiline {

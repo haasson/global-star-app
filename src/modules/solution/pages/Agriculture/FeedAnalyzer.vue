@@ -1,5 +1,5 @@
 <template>
-   <AppPage :topOffset="false">
+   <AppPage :topOffset="false" :bottomOffset="width <= 992">
 
       <HeadImage :src="image" pageName="БИК анализаторы кормов"/>
 
@@ -28,7 +28,8 @@
       <div>
          <AppTitle position="left">Особенности системы</AppTitle>
          <AppList
-             type="feature" gap="35"
+             type="feature"
+             :gap="width > 992 ? 35 : 10"
              :items="features"
              :itemsPerRow="itemsPerRow"
              justify="flex-start"
@@ -36,11 +37,14 @@
          />
       </div>
 
+      <VideoSection :src="video" />
+
    </AppPage>
 </template>
 
 <script>
 import image from "../../../../assets/images/solution/pages/feed-analyzer/head-image.jpg";
+import video from "../../../../assets/video/feed-analyzer.mp4";
 
 import AppPage from "../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../components/Sections/HeadImage.vue";
@@ -49,6 +53,8 @@ import AppTitle from "../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../components/App/AppList.vue";
 import useItemsPerRow from "../../../../composable/itemsPerRow.js";
+import useWindowDimensions from "../../../../composable/windowDimensions.js";
+import VideoSection from "../../../../components/Sections/VideoSection.vue";
 
 const features = [
    {
@@ -75,12 +81,13 @@ const features = [
 
 export default {
 name: "FeedAnalyzer",
-   components: {AppList, TextWithImage, AppTitle, TextBlock, HeadImage, AppPage},
+   components: {VideoSection, AppList, TextWithImage, AppTitle, TextBlock, HeadImage, AppPage},
    setup() {
       const {itemsPerRow} = useItemsPerRow({568: 2, default: 1})
+      const {width} = useWindowDimensions()
 
 
-      return {image, features, itemsPerRow}
+      return {image, video, features, itemsPerRow, width}
    }
 }
 </script>

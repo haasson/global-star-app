@@ -237,11 +237,14 @@ export default {
    .product-page {
       .about {
          flex-direction: column;
-         align-items: center;
+      }
+      .description {
+         width: 100%;
       }
       h2{
          &.small{
             display: block;
+            margin: 0 auto;
          }
          &.big{
             display: none;
@@ -262,7 +265,21 @@ export default {
          margin-top: 12px;
          .subtitle {
             margin-bottom: 12px;
-            font-weight: 500;
+         }
+      }
+   }
+}
+@media(max-width: 480px) {
+   .product-page{
+      .text {
+         font-size: 14px;
+      }
+      .price {
+         font-size: 20px;
+      }
+      .specification {
+         .subtitle {
+            font-size: 16px;
          }
       }
    }

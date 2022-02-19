@@ -1,5 +1,5 @@
 <template>
-   <AppPage>
+   <AppPage :topOffset="width > 992" :bottomOffset="width > 992">
       <AppList
           title='Gurtam'
           type='soft'
@@ -72,7 +72,12 @@ export default {
       padding-top: 20px;
    }
 }
-.agleader{
-   padding-bottom: 25px
+
+.app-list-block.with-bg{
+   padding-top: 0;
+   &.agleader{
+      padding-top: 20px;
+      padding-bottom: 35px
+   }
 }
 </style>

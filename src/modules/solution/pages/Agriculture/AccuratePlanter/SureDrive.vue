@@ -34,6 +34,8 @@
           :isSlider="itemsPerRow < 3"
       />
 
+      <VideoSection :src="video" />
+
       <div>
          <AppTitle mobileBg="orange">Дисплей</AppTitle>
          <TextWithImage image="solution/pages/accurate-planter/planter.png">
@@ -53,15 +55,18 @@
 </template>
 
 <script>
+import image from "../../../../../assets/images/solution/pages/accurate-planter/head-image.jpg";
+import video from "../../../../../assets/video/sure-drive.mp4";
+
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import AppPage from "../../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
-import image from "../../../../../assets/images/solution/pages/accurate-planter/head-image.jpg";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
-import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import VideoSection from "../../../../../components/Sections/VideoSection.vue";
 
 const sureImages = [
    {name: 'solution/pages/accurate-planter/sure1.png', text: 'Автоматическое отключение секций'},
@@ -73,11 +78,11 @@ const soft = ['finiti', 'sms']
 
 export default {
    name: "SureDrive",
-   components: {SoftSection, AppTitle, AppList, TextWithImage, TextBlock, HeadImage, AppPage},
+   components: {VideoSection, SoftSection, AppTitle, AppList, TextWithImage, TextBlock, HeadImage, AppPage},
    setup() {
       const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})
 
-      return {image, sureImages, soft, itemsPerRow}
+      return {image, video, sureImages, soft, itemsPerRow}
    }
 }
 </script>

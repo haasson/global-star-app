@@ -10,7 +10,8 @@
       </TextWithImage>
 
       <AppList
-          type="feature" gap="50"
+          type="feature"
+          :gap="width > 992 ? 50 : 20"
           :items="features"
           :itemsPerRow="itemsPerRowFeatures"
           multiline
@@ -24,7 +25,7 @@
           :isSlider="itemsPerRowSystem < 4"
           :imageHeight="110"
           title="Как работает система?"
-          bgColor="orange"
+          :bgColor="itemsPerRowSystem < 4 ? '' : 'orange'"
           :bgType="itemsPerRowSystem < 4 ? 'full' : 'half'"
       />
 
@@ -39,7 +40,8 @@ import AppTitle from "../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../components/App/AppList.vue";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
-import {onMounted} from "vue";
+import {computed, onMounted} from "vue";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 
 const features = [
@@ -79,11 +81,12 @@ export default {
       const route = useRoute()
       const namePS = appConfig.programSolutions.allPS.find(el => el.name === route.params.name).title
 
-      const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({768: 2, default: 1})
       const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 568: 2, default: 1})
 
+      const {width} = useWindowDimensions()
 
-      return {namePS, features, systemItems, itemsPerRowFeatures, itemsPerRowSystem}
+      return {namePS, features, systemItems, itemsPerRowFeatures, itemsPerRowSystem, width}
    }
 }
 </script>
@@ -99,6 +102,9 @@ export default {
       font-size: var(--subtitle-size);
    }
    .list.simple {
+      //.swiper-slide {
+      //   padding: 0 0 25px;
+      //}
       .card {
          padding-bottom: 50px;
       }
@@ -118,6 +124,19 @@ export default {
          text-align: left;
          font-weight: 300;
          font-size: var(--text-size);
+      }
+   }
+}
+
+@media(max-width: 568px) {
+   .program-solution-page {
+      .list.simple {
+         .card {
+            padding: 32px 16px 70px 16px;
+         }
+         .text {
+            font-size: 16px;
+         }
       }
    }
 }

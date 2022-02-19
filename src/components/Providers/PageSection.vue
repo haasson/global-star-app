@@ -1,8 +1,6 @@
 <template>
-   <BackgroundProvider
-       class="section"
-   >
-      <div class="wrapper">
+   <BackgroundProvider :tag="tag" :class="tag ? '' : 'section'" >
+      <div class="wrapper" :class="{full: clearWrapper}">
          <slot />
       </div>
       <slot name="outside-wrapper"/>
@@ -24,14 +22,13 @@ export default {
    name: "PageSection",
    components: {AppButtonsGroup, AppButton, BackgroundProvider},
    props: {
-      // bgType: {
-      //    type: String,
-      //    default: ''
-      // },
-      // bgColor: {
-      //    type: String,
-      //    default: ''
-      // },
+      tag: {
+         type: String
+      },
+      clearWrapper: {
+         type: Boolean,
+         default: false
+      }
    },
 }
 </script>
@@ -43,5 +40,12 @@ export default {
 
 .wrapper {
    position: relative;
+
+   width: calc(100% - var(--wrapperMargins));
+   max-width: var(--wrapper);
+   margin: 0 auto;
+   &.full {
+      width: 100%;
+   }
 }
 </style>

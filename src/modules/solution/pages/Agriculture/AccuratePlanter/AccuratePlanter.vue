@@ -35,7 +35,7 @@
           :itemsPerRow="itemsPerRow"
           :isSlider="itemsPerRow === 1"
           title="Варианты решений"
-          bgColor="orange"
+          :bgColor="itemsPerRow === 1 ? 'blue' : 'orange'"
           :bgType="itemsPerRow === 1 ? 'full' : 'half'"
       />
 
@@ -57,9 +57,9 @@ import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const variants = [
-   {name: 'solution/pages/accurate-planter/variant1.png', title: 'SureSpeed'},
+   {name: 'solution/pages/accurate-planter/variant1.png', title: 'SureSpeed', link: "/solution/agriculture/accurate-planter/sure-speed"},
    {name: 'solution/pages/accurate-planter/variant2.png', title: 'SureDrive', link: "/solution/agriculture/accurate-planter/sure-drive"},
-   {name: 'solution/pages/accurate-planter/variant3.png', title: 'SureForce'},
+   {name: 'solution/pages/accurate-planter/variant3.png', title: 'SureForce', link: "/solution/agriculture/accurate-planter/sure-force"},
 ]
 const soft = ['finiti', 'sms']
 

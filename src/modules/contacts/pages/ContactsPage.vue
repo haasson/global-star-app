@@ -1,5 +1,5 @@
 <template>
-   <AppPage>
+   <AppPage :bottomOffset="width > 992">
       <ContactsMap />
 
       <div class="contacts">
@@ -46,11 +46,18 @@ import AppPage from "../../../components/App/AppPage.vue";
 import ContactsMap from "../components/ContactsMap.vue";
 import AppAlert from "../../../components/App/AppAlert.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 
 export default {
    name: "ContactsPage",
    components: {PageSection, AppAlert, ContactsMap, AppPage},
+
+   setup() {
+      const {width} = useWindowDimensions()
+
+      return {width}
+   }
 
 
 }
@@ -86,6 +93,8 @@ export default {
    .flex {
       flex-direction: column;
       align-items: center;
+      font-size: 16px;
+      line-height: 1.2;
       & > div {
          width: 100%;
       }

@@ -14,14 +14,15 @@
        :isSlider="itemsPerRowSystem1 < 2"
        :imageHeight="280"
        title="Состав системы №1"
-       bgColor="orange"
+       :bgColor="itemsPerRowSystem1 < 5 ? 'blue' : 'orange'"
        :bgType="itemsPerRowSystem1 < 2 ? 'full' : 'half'"
    />
 
    <div>
       <AppTitle position="left">Особенности системы</AppTitle>
       <AppList
-          type="feature" gap="25"
+          type="feature"
+          :gap="width > 992 ? 25 : 10"
           :items="features1"
           :itemsPerRow="itemsPerRowFeatures1"
           multiline
@@ -38,14 +39,15 @@
        :isSlider="itemsPerRowSystem1 < 3"
        :imageHeight="220"
        title="Состав системы №2"
-       bgColor="orange"
+       :bgColor="itemsPerRowSystem1 < 5 ? 'blue' : 'orange'"
        :bgType="itemsPerRowSystem1 < 3 ? 'full' : 'half'"
    />
 
    <div>
       <AppTitle position="left">Особенности системы</AppTitle>
       <AppList
-          type="feature" gap="25"
+          type="feature"
+          :gap="width > 992 ? 25 : 10"
           :items="features2"
           :itemsPerRow="itemsPerRowFeatures2"
           multiline

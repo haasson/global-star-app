@@ -25,6 +25,8 @@ export default [
    },
 
    {path: '/solution/agriculture/accurate-planter/sure-drive', name: 'SureDrive', component: () => import("../pages/Agriculture/AccuratePlanter/SureDrive.vue")},
+   {path: '/solution/agriculture/accurate-planter/sure-speed', name: 'SureSpeed', component: () => import("../pages/Agriculture/AccuratePlanter/SureSpeed.vue")},
+   {path: '/solution/agriculture/accurate-planter/sure-force', name: 'SureForce', component: () => import("../pages/Agriculture/AccuratePlanter/SureForce.vue")},
 
 
    {

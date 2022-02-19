@@ -12,7 +12,7 @@
       <PageSection>
          <div v-if="article" class="inner">
             <h3>{{ article.title }}</h3>
-            <p class="date">{{ formattedDate }}</p>
+            <p v-if="articleType === 'news'" class="date">{{ formattedDate }}</p>
             <div class="text" v-html="description"></div>
 
             <AppGallery v-if="gallery" class="gallery" :slides="gallery" :fromStorage="true"/>

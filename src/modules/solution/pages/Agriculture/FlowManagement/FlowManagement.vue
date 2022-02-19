@@ -6,9 +6,9 @@
        pageName="Управление расходом и внесением"
    />
 
-   <AppTabs :tabs="tabs"/>
+      <AppTabs :tabs="tabs"/>
 
-   <RouterView/>
+      <RouterView/>
    </AppPage>
 </template>
 

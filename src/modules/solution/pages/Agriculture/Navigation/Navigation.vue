@@ -27,7 +27,13 @@
          />
       </div>
 
-      <RecommendedProducts />
+      <div>
+         <AppTitle v-if="width > 992" position="left">Подберите антенну под вашу операцию</AppTitle>
+         <RecommendedProducts
+             :title="width <= 992 ? 'Подберите антенну под вашу операцию' : ''"
+             bg=""
+         />
+      </div>
 
       <div>
          <AppTitle>Используйте нужный вам шаблон</AppTitle>
@@ -71,19 +77,11 @@ export default {
          return 1
       })
 
-      return {image, displaysList, itemsPerRow}
+      return {width, image, displaysList, itemsPerRow}
    }
 }
 </script>
 
 <style lang="scss">
-//.navigation-page {
-//   .list {
-//      @media(max-width: 992px) {
-//         background: var(--orange);
-//         margin-top: 0;
-//      }
-//   }
-//}
 
 </style>

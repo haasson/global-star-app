@@ -1,6 +1,5 @@
 <template>
-   <header>
-      <div class="wrapper">
+   <PageSection tag="header" class="header">
          <div class="inner">
 
             <!-- Logo -->
@@ -30,8 +29,7 @@
             </div>
 
          </div>
-      </div>
-   </header>
+   </PageSection>
    <AppMenu />
 </template>
 
@@ -45,10 +43,11 @@ import AppIcon from "../App/AppIcon.vue";
 import AppMenu from "./AppMenu.vue";
 import AppBurger from "../App/AppBurger.vue";
 import AppInput from "../App/AppInput.vue";
+import PageSection from "../Providers/PageSection.vue";
 
 export default {
    name: "AppHeader",
-   components: {AppInput, AppBurger, AppMenu, AppIcon},
+   components: {PageSection, AppInput, AppBurger, AppMenu, AppIcon},
 
    setup () {
       const {width, isDesktop} = useWindowDimensions()
@@ -78,7 +77,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
+.header {
    position: relative;
    z-index: 1;
    padding: 35px 0;
@@ -120,13 +119,13 @@ form {
 
 
 @media(max-width: 992px) {
-   header {
+   .header {
       padding: 28px 0;
    }
 }
 
 @media(max-width: 768px) {
-   header {
+   .header {
       padding: 23px 0;
    }
    .burger {
@@ -136,7 +135,7 @@ form {
 }
 
 @media(max-width: 420px) {
-   header {
+   .header {
       padding: 14px 0;
    }
 }

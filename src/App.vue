@@ -9,25 +9,39 @@
 <!--      </transition>-->
    </main>
 
-   <AppFooter @chatButtonClicked="openModal"/>
+   <AppFooter />
 
-   <ContactFormModal ref="modal" />
+   <ContactFormModal ref="contactModal" @modalClosed="closeContacts" />
+   <VideoModal ref="videoModal" @modalClosed="closeVideo" :videoAttrs="videoAttrs" />
+
 </template>
 
 <script>
-import {ref} from 'vue'
+import {ref, watch} from 'vue'
+import useModal from "./composable/modal.js";
 import AppHeader from "./components/Sections/AppHeader.vue";
 import AppFooter from "./components/Sections/AppFooter.vue";
 import ContactFormModal from "./components/Modals/ContactFormModal.vue";
+import VideoModal from "./components/Modals/VideoModal.vue";
 
 export default {
-   components: {ContactFormModal, AppFooter, AppHeader},
+   components: {VideoModal, ContactFormModal, AppFooter, AppHeader},
 
    setup() {
-      const modal = ref(null)
-      const openModal = async () => modal.value.open()
+      const contactModal = ref(null)
+      const {isOpen: isContactModalOpen, close: closeContacts} = useModal('contact')
+      watch(isContactModalOpen, () => {
+         if (isContactModalOpen.value) contactModal.value.open()
+      })
 
-      return {openModal, modal}
+      const videoModal = ref(null)
+      const {isOpen: isVideoModalOpen, close: closeVideo, attrs: videoAttrs} = useModal('video')
+      watch(isVideoModalOpen, () => {
+         if (isVideoModalOpen.value) videoModal.value.open()
+      })
+
+
+      return {contactModal, videoModal, closeContacts, closeVideo, videoAttrs}
    }
 }
 </script>

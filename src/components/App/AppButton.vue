@@ -56,9 +56,9 @@ export default {
    min-width: 250px;
    padding: 18px;
    font-family: 'Roboto', sans-serif;
-   font-size: var(--subtitle-size);
+   font-size: 20px;
    font-weight: 500;
-   line-height: var(--subtitle-size);
+   line-height: 1;
    text-align: center;
    border: 1px solid transparent;
    box-shadow: var(--button-shadow);

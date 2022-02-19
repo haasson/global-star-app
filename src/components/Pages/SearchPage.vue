@@ -125,11 +125,11 @@ export default {
 
 <style lang="scss">
 .search-page {
-   .list {
-      .swiper-slide {
-         padding: 25px 0;
-      }
-   }
+   //.list {
+   //   .swiper-slide {
+   //      padding: 25px 0;
+   //   }
+   //}
    .warning {
       display: flex;
       justify-content: center;

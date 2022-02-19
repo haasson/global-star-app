@@ -25,10 +25,17 @@ name: "AppAlert",
    padding: 31px;
    background-color: var(--orange);
    text-align: center;
+   line-height: 1;
    box-shadow: var(--button-shadow);
+   @media(max-width: 568px) {
+      padding: 12px;
+   }
    &.big {
       font-size: var(--title-size);
       font-weight: 600;
+      @media(max-width: 568px) {
+         font-size: 14px;
+      }
    }
    &.medium {
       font-size: var(--article-text-size);

@@ -149,5 +149,24 @@ p {
       font-size: 16px;
    }
 }
+@media(max-width: 480px) {
+   .card {
+      padding: 24px 16px;
+   }
+   .image {
+      height: 144px;
+      margin-bottom: 24px;
+   }
+   h3 {
+      height: 57px;
+      margin-bottom: 12px;
+      font-size: 16px;
+   }
+   p {
+      height: 72px;
+      margin-bottom: 12px;
+      font-size: 12px;
+   }
+}
 
 </style>

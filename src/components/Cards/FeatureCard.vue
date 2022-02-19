@@ -46,7 +46,7 @@ export default {
 <style lang="scss" scoped>
 .item {
    display: flex;
-   align-items: flex-start;
+   align-items: center;
 }
 
 .square {

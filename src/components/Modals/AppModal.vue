@@ -82,7 +82,7 @@ export default {
       }
    },
 
-   setup(props) {
+   setup(props, {emit}) {
       let resolve
       let reject
 
@@ -114,6 +114,7 @@ export default {
       const close = () => {
          isOpen.value = false
          document.body.style.removeProperty('overflow')
+         emit('modalClosed')
       }
 
       const onEscape = e => {
@@ -151,7 +152,6 @@ export default {
    justify-content: center;
    align-items: center;
    z-index: 99;
-   padding: 0 10px;
 }
 .overlay {
    position: absolute;

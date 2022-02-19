@@ -56,5 +56,9 @@ p {
    margin-top: 20px;
    font-size: var(--text-size);
    text-align: center;
+   @media(max-width: 568px) {
+      font-size: 14px;
+      font-weight: 500;
+   }
 }
 </style>

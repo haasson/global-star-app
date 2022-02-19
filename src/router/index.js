@@ -36,12 +36,13 @@ const router = createRouter({
 
 const {closeMenu} = useMenuMode()
 
-router.beforeEach((to, from, next) => {
+
+router.afterEach(() => {
    scrollTo(0,0)
    closeMenu()
 
    // globalLoading.value = true
-   next()
+   // next()
 
 
 

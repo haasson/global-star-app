@@ -22,7 +22,7 @@
           :isSlider="itemsPerRowSystem < 4"
           :imageHeight="180"
           title="Состав системы"
-          bgColor="orange"
+          :bgColor="itemsPerRowSystem < 4 ? 'blue' : 'orange'"
           :bgType="itemsPerRowSystem < 4 ? 'full' : 'half'"
           class="system"
       />
@@ -52,6 +52,8 @@
 
       <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
 
+      <VideoSection :src="video" :poster="poster" />
+
       <div>
          <AppTitle position="left">Платные сигналы</AppTitle>
          <AppList
@@ -70,6 +72,9 @@
 
 <script>
 import image from "../../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
+import video from "../../../../../assets/video/steering.mp4";
+import poster from "../../../../../assets/images/video-posters/steering.jpg";
+
 import AppPage from "../../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
@@ -79,6 +84,7 @@ import AppTitle from "../../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import VideoSection from "../../../../../components/Sections/VideoSection.vue";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/autodrive/tractor-blu.png',
@@ -104,13 +110,18 @@ const signals = [
 
 export default {
    name: "SteeringDevice",
-   components: {AppAlert, AppTitle, TextWithImage, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
+   components: {
+      VideoSection,
+      AppAlert, AppTitle, TextWithImage, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
       const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 480: 2, default: 1})
       const {itemsPerRow: itemsPerRowSignals} = useItemsPerRow({568: 2, default: 1})
 
       return {
          image,
+         video,
+         poster,
+
          imageWithPoints,
          systemItems,
          signals,
@@ -132,9 +143,9 @@ export default {
    @media(max-width: 992px) {
       .system {
          padding-bottom: 10px;
-         .swiper-slide {
-            padding-bottom: 25px;
-         }
+         //.swiper-slide {
+         //   padding-bottom: 25px;
+         //}
          .swiper-pagination-bullets {
             bottom: 0;
          }

@@ -53,7 +53,7 @@ export default {
 <style lang="scss">
 .product-category-page {
    .swiper-slide {
-      padding: 25px 0;
+      padding-top: 10px;
    }
    .list-w-bg {
       background: linear-gradient(180deg,

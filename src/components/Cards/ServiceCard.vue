@@ -1,5 +1,6 @@
 <template>
    <div class="item">
+      <div class="border"></div>
       <div class="card">
          <div class="square">
             <AppIcon
@@ -46,6 +47,15 @@ export default {
    min-height: 152px;
 }
 
+.border {
+   position: absolute;
+   top: -5px;
+   left: calc(50% - 55px);
+   width: 152px;
+   height: 152px;
+   border: 8px solid var(--orange);
+}
+
 .card {
    position: relative;
    display: flex;
@@ -57,16 +67,6 @@ export default {
    background-color: var(--white);
    border-radius: 10px;
    box-shadow: var(--card-shadow);
-   &:before {
-      position: absolute;
-      content: '';
-      top: -20px;
-      left: 20px;
-      width: 152px;
-      height: 152px;
-      border: 8px solid var(--orange);
-      z-index: -1;
-   }
 }
 
 .square {
@@ -89,6 +89,9 @@ export default {
    text-align: center;
    @media(max-width: 1200px) {
       color: var(--white);
+   }
+   @media(max-width: 480px) {
+      font-size: 14px;
    }
 }
 </style>

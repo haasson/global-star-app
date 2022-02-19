@@ -1,5 +1,5 @@
 <template>
-   <PageSection class="menu" :class="{active: isOpen}">
+   <PageSection class="menu" :class="{active: isOpen, 'in-footer': !nested}">
       <div class="inner">
          <form @submit.prevent="submit">
             <AppInput
@@ -80,6 +80,9 @@ export default {
    background-color: var(--blue);
    color: var(--white);
    font-size: var(--subtitle-size);
+   &.in-footer {
+      background-color: var(--light-blue);
+   }
 }
 .menu-item {
    position: relative;
@@ -129,6 +132,12 @@ export default {
       &:not(:last-child):after {
          display: none;
       }
+   }
+}
+
+@media(max-width: 480px) {
+   .menu {
+      font-size: 16px;
    }
 }
 

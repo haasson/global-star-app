@@ -25,7 +25,8 @@ export default {
             if (description.scrollHeight > el.scrollHeight) {
                const text = description.textContent.split(' ')
 
-               while (description.scrollHeight > el.scrollHeight) {
+               while (description.scrollHeight > el.scrollHeight+3) {
+                  if (!text.length) break
                   text.pop()
                   description.textContent = text.join(' ') + '...'
                }

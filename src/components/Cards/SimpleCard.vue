@@ -55,6 +55,9 @@ export default {
    //justify-content: center;
    align-items: center;
    padding: 24px;
+   //@media(max-width: 568px) {
+   //   padding: 12px;
+   //}
 
 }
 h3 {
@@ -81,5 +84,9 @@ p {
    font-size: var(--text-size-big);
    line-height: 1.15;
    text-align: center;
+   @media(max-width: 568px) {
+      font-size: 16px;
+      font-weight: 500;
+   }
 }
 </style>

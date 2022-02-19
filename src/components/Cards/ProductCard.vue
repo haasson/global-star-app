@@ -59,6 +59,9 @@ export default {
    font-weight: 500;
 
    cursor: pointer;
+   @media(max-width: 568px) {
+      font-size: 16px;
+   }
 }
 
 h3 {

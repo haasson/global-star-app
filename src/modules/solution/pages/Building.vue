@@ -45,6 +45,9 @@ export default {
        transparent 100%
    );
    padding-bottom: 90px;
+   @media(max-width: 1200px) {
+      padding-bottom: 0;
+   }
    @media(max-width: 768px) {
       background: none;
    }

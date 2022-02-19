@@ -4,13 +4,6 @@
       <div class="app-bg"></div>
       <slot />
    </div>
-
-<!--   <AppModal ref="modal" :minWidth="900">-->
-<!--      <template #title>Редактирование</template>-->
-<!--      <template #content>-->
-<!--         <AppEditor @update:modelValue="saveData" class="fixed-editor" v-if="isAdmin" />-->
-<!--      </template>-->
-<!--   </AppModal>-->
 </template>
 
 <script>
@@ -37,17 +30,10 @@ export default defineComponent({
       },
    },
 
-   setup(props) {
-      const modal = ref(null)
-      const openModal = async () => {
-         return await modal.value.open()
-      }
+   setup() {
 
       return {
          globalLoading,
-
-         openModal,
-         modal,
       }
    }
 })
@@ -62,9 +48,11 @@ export default defineComponent({
    bottom: 0;
    z-index: -1;
    height: 100vh;
-   background: linear-gradient(315deg, #ececec 0%, #ececec 550px, #ffffff 550px, #fff calc(100% - 520px), #ececec calc(100% - 520px), #ececec 100%);
+   background: linear-gradient(315deg, #ececec 0%, #ececec 37%, #ffffff 37%, #fff calc(100% - 35%), #ececec calc(100% - 35%), #ececec 100%);
 }
 .app-page {
+   display: flex;
+   flex-direction: column;
    &.top-offset {
       padding-top: 70px;
       @media(max-width: 992px) {

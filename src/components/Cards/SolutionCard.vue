@@ -67,6 +67,7 @@ export default {
 
    @media(max-width: 480px) {
       height: 190px;
+      font-size: 24px;
    }
 }
 

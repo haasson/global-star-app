@@ -1,13 +1,18 @@
 <template>
-   <div>
+   <Component :is="tag || 'div'">
       <slot />
-   </div>
+   </Component>
 </template>
 
 <script>
 
 export default {
    name: "BackgroundProvider",
+   props: {
+      tag: {
+         type: String
+      }
+   }
 }
 </script>
 
@@ -20,8 +25,6 @@ export default {
 }
 
 .full {
-   position: relative;
-   //z-index: -1;
    background-color: var(--list-bg-color);
 }
 

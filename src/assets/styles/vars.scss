@@ -34,11 +34,11 @@ body {
 
 
    // SHADOWS
-   --card-shadow: 2px 20px 24px 1px rgba(0, 0, 0, 0.3);
-   --card-shadow-hover: 2px 20px 24px 1px rgba(0, 0, 0, 0.55);
+   --card-shadow: 2px 10px 15px 1px rgba(0, 0, 0, 0.3);
+   --card-shadow-hover: 2px 10px 15px 1px rgba(0, 0, 0, 0.55);
 
-   --card-shadow-shifted: 4px 4px 22px 6px rgba(0, 0, 0, 0.2);
-   --card-shadow-shifted-hover: 4px 4px 22px 6px rgba(0, 0, 0, 0.55);
+   --card-shadow-shifted: 4px 4px 13px 4px rgba(0, 0, 0, 0.2);
+   --card-shadow-shifted-hover: 4px 4px 13px 4px rgba(0, 0, 0, 0.55);
    --button-shadow: 0 21px 19px -14px rgba(0, 0, 0, 0.22);
    --image-shadow: 11px 10px 0px 0px rgba(255, 209, 87, 1);
 
@@ -67,25 +67,29 @@ body {
    @media(max-width: 568px) {
       --wrapperMargins: 40px;
 
-      --title-size: 22px;
+      --title-size: 20px;
       --text-size-big: 14px;
       --text-size: 14px;
 
+      --card-shadow: 2px 10px 14px 1px rgba(0, 0, 0, 0.3);
+      --card-shadow-hover: 2px 10px 14px 1px rgba(0, 0, 0, 0.55);
+      --card-shadow-shifted: 2px 2px 12px 4px rgba(0, 0, 0, 0.2);
+      --card-shadow-shifted-hover: 2px 2px 12px 4px rgba(0, 0, 0, 0.55);
    }
    @media(max-width: 480px) {
       --wrapperMargins: 30px;
 
-      --title-size: 20px;
+      --title-size: 16px;
       --article-text-size: 14px;
       --subtitle-size: 14px;
+      --text-size: 12px;
       --text-mini-size: 10px;
    }
    @media(max-width: 420px) {
       --wrapperMargins: 12px;
 
-      --title-size: 16px;
-      --text-size-big: 12px;
-      --text-size: 12px;
+      //--text-size-big: 12px;
+      --text-size: 10px;
    }
 }
 

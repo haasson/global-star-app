@@ -6,7 +6,10 @@
          надежностью.</p>
    </TextBlock>
 
-   <TextWithImage image="solution/pages/harvest/yield-map.png" imagePosition="left">
+   <TextWithImage
+       image="solution/pages/harvest/yield-map.png"
+       imagePosition="left"
+   >
       <p class="list-title">Карта урожайности отвечает на вопросы:</p>
       <ul class="unordered-list">
          <li>Какие участки поля принесли больше всего?</li>
@@ -25,14 +28,16 @@
        :isSlider="itemsPerRowSystem < 5"
        :imageHeight="110"
        title="Состав системы"
-       bgColor="orange"
+       :bgColor="itemsPerRowSystem < 5 ? 'blue' : 'orange'"
        :bgType="itemsPerRowSystem < 5 ? 'full' : 'half'"
+       class="system-section"
    />
 
-   <div>
+   <div class="feature-section">
       <AppTitle position="left">Особенности системы</AppTitle>
       <AppList
-          type="feature" gap="25"
+          type="feature"
+          :gap="width > 992 ? 25 : 10"
           :items="features"
           :itemsPerRow="itemsPerRowFeatures"
           multiline
@@ -41,9 +46,9 @@
 
    <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
 
-   <SoftSection :items="soft" />
+   <SoftSection :items="soft" class="soft-section" />
 
-   <AppAlert>Цена комплекта от 5600$</AppAlert>
+   <AppAlert class="alert-section">Цена комплекта от 5600$</AppAlert>
 
 </template>
 
@@ -128,5 +133,15 @@ export default {
 <style lang="scss" scoped>
 .list-title {
    margin-bottom: 10px;
+}
+
+@media(max-width: 992px) {
+   .alert-section,
+   .soft-section {
+      order: 2;
+   }
+   .system-section {
+      order: 1;
+   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
    <div v-if="items.length || isAdmin">
       <PageSection v-if="isAdmin" class="full blue">
-         <form class="form">
+         <form class="recommended-form">
 
             <div class="select-wrap">
                <AppSelect
@@ -27,6 +27,7 @@
             <AppButton @click="addProduct" color="orange" :disabled="!productOptions.length">Добавить</AppButton>
          </form>
       </PageSection>
+
       <AppList
           v-if="items.length"
           type="catalog"
@@ -37,8 +38,8 @@
           :isSlider="itemsPerRow < items.length"
           align="center"
           :title="title"
-          class="list"
-          bgColor="blue"
+          class="list recommended-section"
+          :bgColor="bg"
           bgType="full"
           @removeCard="removeProduct"
       />
@@ -65,6 +66,10 @@ export default {
       title: {
          type: String,
          default: 'Рекомендуемое оборудование'
+      },
+      bg: {
+         type: String,
+         default: 'blue'
       }
    },
    setup() {
@@ -175,29 +180,35 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.form {
+<style lang="scss">
+.recommended-form {
+   margin-bottom: 20px;
    padding: 20px 0;
    color: var(--white);
+   .select-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & > * {
+         width: 30%;
+         margin-bottom: 15px;
+      }
+   }
 }
+.recommended-section {
+   .list {
+      padding-bottom: 30px;
+   }
+   .warning {
+      padding: 20px;
+      text-align: center;
+      color: var(--white);
+      background: var(--light-blue);
+   }
 
-.select-wrap {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   & > * {
-      width: 30%;
-      margin-bottom: 15px;
+   .swiper-slide {
+      padding-top: 10px;
    }
 }
 
-.list {
-   padding-bottom: 30px;
-}
-.warning {
-   padding: 20px;
-   text-align: center;
-   color: var(--white);
-   background: var(--light-blue);
-}
 </style>

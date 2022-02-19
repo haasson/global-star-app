@@ -7,7 +7,8 @@
    <ImageWithMarkers :imagePath="imageWithPoints.imagePath" :points="imageWithPoints.points"/>
 
    <AppList
-       type="feature" gap="30"
+       type="feature"
+       :gap="width > 992 ? 30 : 10"
        :items="features"
        :itemsPerRow="itemsPerRow"
        multiline

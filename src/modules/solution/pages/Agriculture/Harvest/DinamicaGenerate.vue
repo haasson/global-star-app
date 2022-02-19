@@ -14,14 +14,15 @@
        :isSlider="itemsPerRowSystem < 5"
        :imageHeight="110"
        title="Состав системы"
-       bgColor="orange"
+       :bgColor="itemsPerRowSystem < 5 ? 'blue' : 'orange'"
        :bgType="itemsPerRowSystem < 5 ? 'full' : 'half'"
    />
 
    <div>
       <AppTitle position="left">Особенности системы</AppTitle>
       <AppList
-          type="feature" gap="25"
+          type="feature"
+          :gap="width > 992 ? 25 : 10"
           :items="features"
           :itemsPerRow="itemsPerRowFeatures"
           multiline

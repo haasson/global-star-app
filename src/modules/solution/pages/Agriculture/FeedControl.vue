@@ -18,7 +18,8 @@
       </TextBlock>
 
       <AppList
-          type="feature" gap="30"
+          type="feature"
+          :gap="width > 992 ? 30 : 10"
           :items="features"
           :itemsPerRow="itemsPerRowFeatures"
           multiline
@@ -38,14 +39,25 @@
           :isSlider="itemsPerRowSystem < 4"
           :imageHeight="110"
           title="Состав системы"
-          bgColor="orange"
+          :bgColor="itemsPerRowSystem < 4 ? 'blue' : 'orange'"
           :bgType="itemsPerRowSystem < 4 ? 'full' : 'half'"
+      />
+
+      <AppTitle v-if="width <= 992">Работа системы</AppTitle>
+
+      <AppList
+          type="video"
+          gap="10"
+          :items="videoItems"
+          :itemsPerRow="itemsPerRowVideo"
+          :isSlider="itemsPerRowVideo < 4"
+          :bgColor="itemsPerRowVideo < 3 ? '' : 'blue'"
+          bgType="full"
       />
 
       <SoftSection :items="soft" titlePosition="left" />
 
       <AppAlert>Цена комплекта от 3990€</AppAlert>
-
    </AppPage>
 </template>
 
@@ -61,6 +73,8 @@ import SoftSection from "../../../../components/Sections/SoftSection.vue";
 import AppAlert from "../../../../components/App/AppAlert.vue";
 import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../../../composable/windowDimensions.js";
+import AppModal from "../../../../components/Modals/AppModal.vue";
+import VideoSection from "../../../../components/Sections/VideoSection.vue";
 
 const basePath = 'solution/pages/feed-control/'
 const features = [
@@ -87,26 +101,34 @@ const systemItems = [
    {name: `${basePath}/system-item3.png`, text: 'Дублирующее табло'},
    {name: `${basePath}/system-item4.png`, text: 'Комплект ПО DTM'},
 ]
+const videoItems = [
+   {src: 'feed1.mp4', poster: 'solution/cards/posters/feed1.jpg'},
+   {src: 'feed2.mp4', poster: 'solution/cards/posters/feed2.jpg'},
+   {src: 'feed3.mp4', poster: 'solution/cards/posters/feed3.jpg'},
+]
 const soft = ['dtm', 'dtm-advanced']
 
 export default {
 name: "FeedControl",
-   components: {AppAlert, SoftSection, AppTitle, AppList, TextBlock, HeadImage, AppPage},
+   components: {VideoSection, AppModal, AppAlert, SoftSection, AppTitle, AppList, TextBlock, HeadImage, AppPage},
    setup() {
       const {width} = useWindowDimensions()
       const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 568: 2, default: 1})
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 4, 568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowVideo} = useItemsPerRow({992: 3, 568: 2, default: 1})
 
 
       return {
          image,
          features,
          systemItems,
+         videoItems,
          soft,
 
          width,
          itemsPerRowFeatures,
          itemsPerRowSystem,
+         itemsPerRowVideo,
       }
    }
 }

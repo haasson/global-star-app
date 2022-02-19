@@ -26,7 +26,4 @@ export default {
    font-size: var(--article-text-size);
    line-height: 1.2;
 }
-.inner {
-   padding: 0 60px;
-}
 </style>

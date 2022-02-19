@@ -19,7 +19,7 @@ export default {
 
       const iconScale = computed(() => {
          if (width.value > 768) return 2
-         if (width.value > 480) return 1.2
+         if (width.value > 568) return 1.2
          return 0.7
       })
 
@@ -40,9 +40,7 @@ export default {
    background-color: rgba(#FFD157, .7);
    transition: background-color .3s;
    cursor: pointer;
-   &:hover {
-      background-color: var(--orange);
-   }
+   animation: pulse linear 2s infinite;
 }
 .inner {
    display: flex;
@@ -64,7 +62,7 @@ export default {
       height: 56px;
    }
 }
-@media(max-width: 480px) {
+@media(max-width: 568px) {
    .float {
       width: 40px;
       height: 40px;
@@ -72,6 +70,18 @@ export default {
    .inner{
       width: 31px;
       height: 31px;
+   }
+}
+
+@keyframes pulse {
+   from {
+      background-color: rgba(#FFD157, .4);
+   }
+   50% {
+      background-color: rgba(#FFD157, .8);
+   }
+   to {
+      background-color: rgba(#FFD157, .4);
    }
 }
 </style>
