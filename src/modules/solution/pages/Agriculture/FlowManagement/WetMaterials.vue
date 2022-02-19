@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import useLoading from "../../../../../composable/loading.js";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
@@ -46,6 +47,7 @@ export default {
    name: "WetMaterials",
    components: {SoftSection, TextWithImage, AppTitle, TextBlock},
    setup() {
+      useLoading()
       return {soft}
    }
 }

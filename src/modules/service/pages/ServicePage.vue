@@ -34,13 +34,15 @@
 </template>
 
 <script>
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
+import useLoading from "../../../composable/loading.js";
 import image from '../../../assets/images/service/head-image.jpg'
+
 import AppPage from "../../../components/App/AppPage.vue";
 import HeadImage from "../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../components/Sections/TextBlock.vue";
 import AppList from "../../../components/App/AppList.vue";
 import TextWithImage from "../../../components/Sections/TextWithImage.vue";
-import useItemsPerRow from "../../../composable/itemsPerRow.js";
 
 
 const features = [
@@ -90,6 +92,8 @@ export default {
    components: {TextWithImage, AppList, TextBlock, HeadImage, AppPage},
 
    setup() {
+      useLoading()
+
       const listSettings = {1200: 5, 768: 3, 568: 2, default: 1}
       const {itemsPerRow} = useItemsPerRow(listSettings)
 

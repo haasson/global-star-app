@@ -23,14 +23,15 @@
 </template>
 
 <script>
-import image from "../../../../assets/images/solution/pages/3d-system/head-image.jpg";
+import useItemsPerRow from "../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../composable/loading.js";
 
+import image from "../../../../assets/images/solution/pages/3d-system/head-image.jpg";
 import AppPage from "../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../components/Sections/HeadImage.vue";
 import ImageWithMarkers from "../../../../components/Sections/ImageWithMarkers.vue";
 import AppTitle from "../../../../components/App/AppTitle.vue";
 import AppList from "../../../../components/App/AppList.vue";
-import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
 import AppAlert from "../../../../components/App/AppAlert.vue";
 
@@ -79,6 +80,7 @@ export default {
    components: {AppAlert, SoftSection, AppList, AppTitle, ImageWithMarkers, HeadImage, AppPage},
 
    setup() {
+      useLoading()
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({568: 2, default: 1})
 
       return {image, imageWithPoints, features, itemsPerRowFeatures, soft}

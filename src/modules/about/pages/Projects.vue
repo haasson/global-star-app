@@ -31,7 +31,7 @@
 
 <script>
 import {computed, ref, watch} from 'vue'
-import {isAdmin} from "../../../store";
+import {globalLoading, isAdmin} from "../../../store";
 import useDatabase from "../../../composable/database";
 import usePagination from "../../../composable/pagination.js";
 
@@ -53,7 +53,7 @@ export default {
          editModal.value.open()
       }
 
-      const {get, data: projectsList} = useDatabase()
+      const {get, data: projectsList, loading} = useDatabase()
       get('projects/list')
 
       const getMainImage = (project) => {
@@ -61,6 +61,10 @@ export default {
          const mainImageName = mainImage ? mainImage.name : project.images[0].name
          return `images/projects/${project.id}/gallery/${mainImageName}`
       }
+
+      watch(loading, () => {
+         if (!loading.value) globalLoading.value = false
+      })
 
       const {updatePage, filteredList} = usePagination(projectsList)
 

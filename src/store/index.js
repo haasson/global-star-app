@@ -450,6 +450,5 @@ const dbPath = ref('')
 const isAdmin = ref(false)
 const globalLoading = ref(false)
 
-const toggleLoading = mode => globalLoading.value = mode
 
-export {pages, pageContent, isAdmin, dbPath, globalLoading, toggleLoading}
+export {pages, pageContent, isAdmin, dbPath, globalLoading}

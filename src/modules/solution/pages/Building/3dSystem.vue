@@ -31,8 +31,10 @@
 </template>
 
 <script>
-import image from "../../../../assets/images/solution/pages/3d-system/head-image.jpg";
+import useItemsPerRow from "../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../composable/loading.js";
 
+import image from "../../../../assets/images/solution/pages/3d-system/head-image.jpg";
 import AppPage from "../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../components/Sections/TextBlock.vue";
@@ -42,7 +44,6 @@ import AppList from "../../../../components/App/AppList.vue";
 import AppGallery from "../../../../components/App/AppGallery.vue";
 import AppAlert from "../../../../components/App/AppAlert.vue";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
-import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/3d-system/excavator.png',
@@ -98,6 +99,7 @@ export default {
    name: "3d-system",
    components: {SoftSection, AppAlert, AppGallery, AppList, AppTitle, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
+      useLoading()
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({568: 2, default: 1})
 
       return {image, imageWithPoints, features, slides, soft, itemsPerRowFeatures}

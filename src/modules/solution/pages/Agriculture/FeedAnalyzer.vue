@@ -43,6 +43,10 @@
 </template>
 
 <script>
+import useItemsPerRow from "../../../../composable/itemsPerRow.js";
+import useWindowDimensions from "../../../../composable/windowDimensions.js";
+import useLoading from "../../../../composable/loading.js";
+
 import image from "../../../../assets/images/solution/pages/feed-analyzer/head-image.jpg";
 import video from "../../../../assets/video/feed-analyzer.mp4";
 
@@ -52,8 +56,6 @@ import TextBlock from "../../../../components/Sections/TextBlock.vue";
 import AppTitle from "../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../components/App/AppList.vue";
-import useItemsPerRow from "../../../../composable/itemsPerRow.js";
-import useWindowDimensions from "../../../../composable/windowDimensions.js";
 import VideoSection from "../../../../components/Sections/VideoSection.vue";
 
 const features = [
@@ -83,6 +85,7 @@ export default {
 name: "FeedAnalyzer",
    components: {VideoSection, AppList, TextWithImage, AppTitle, TextBlock, HeadImage, AppPage},
    setup() {
+      useLoading()
       const {itemsPerRow} = useItemsPerRow({568: 2, default: 1})
       const {width} = useWindowDimensions()
 

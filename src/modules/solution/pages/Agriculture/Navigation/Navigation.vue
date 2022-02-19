@@ -48,17 +48,17 @@
 </template>
 
 <script>
-import {globalLoading} from "../../../../../store";
-import image from '../../../../../assets/images/solution/pages/navigation/navigation.jpg'
+import {computed} from "vue";
+import useLoading from "../../../../../composable/loading.js";
+import useWindowDimensions from "../../../../../composable/windowDimensions.js";
 
+import image from '../../../../../assets/images/solution/pages/navigation/navigation.jpg'
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppPage from "../../../../../components/App/AppPage.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
-import useWindowDimensions from "../../../../../composable/windowDimensions.js";
-import {computed} from "vue";
 import RecommendedProducts from "../../../../../components/Sections/RecommendedProducts.vue";
 
 const displaysList = [
@@ -71,7 +71,9 @@ const displaysList = [
 export default {
    name: "Navigation",
    components: {RecommendedProducts, TextWithImage, AppList, AppTitle, AppPage, TextBlock, HeadImage},
-   setup() {const {width} = useWindowDimensions()
+   setup() {
+      useLoading()
+      const {width} = useWindowDimensions()
       const itemsPerRow = computed(() => {
          if (width.value > 568) return 4
          return 1

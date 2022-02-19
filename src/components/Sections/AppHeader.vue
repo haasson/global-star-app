@@ -79,7 +79,7 @@ export default {
 <style lang="scss" scoped>
 .header {
    position: relative;
-   z-index: 1;
+   z-index: 70;
    padding: 35px 0;
    background-color: var(--light-blue);
    color: var(--white)

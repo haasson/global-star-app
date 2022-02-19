@@ -27,6 +27,9 @@
 </template>
 
 <script>
+import useItemsPerRow from "../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../composable/loading.js";
+
 import image from "../../../../assets/images/solution/pages/transport/transport.jpg";
 import AppPage from "../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../components/Sections/HeadImage.vue";
@@ -35,7 +38,6 @@ import ImageWithMarkers from "../../../../components/Sections/ImageWithMarkers.v
 import AppList from "../../../../components/App/AppList.vue";
 import RecommendedProducts from "../../../../components/Sections/RecommendedProducts.vue";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
-import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 
 const imageWithPoints = {
    imagePath: 'solution/pages/transport/truck.png',
@@ -83,6 +85,7 @@ export default {
    name: "Cars",
    components: {SoftSection, RecommendedProducts, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
+      useLoading()
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 3, 568: 2, default: 1})
 
       return {image, imageWithPoints, features, soft, itemsPerRowFeatures}

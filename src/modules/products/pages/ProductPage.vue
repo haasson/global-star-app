@@ -54,7 +54,8 @@ import {computed, ref, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import useDatabase from "../../../composable/database.js";
 import useStorage from "../../../composable/storage.js";
-import {descriptionToHTML, disableLoader} from "../../../helpers/interface.js";
+import useLoading from "../../../composable/loading.js";
+import {descriptionToHTML} from "../../../helpers/interface.js";
 import {isAdmin} from "../../../store";
 
 import AppPage from "../../../components/App/AppPage.vue";
@@ -68,6 +69,8 @@ export default {
    name: "ProductPage",
    components: {AppConfirmationModal, EditArticleModal, AppButton, AppButtonsGroup, PageSection, AppPage},
    setup() {
+      useLoading()
+
       const router = useRouter()
       const route = useRoute()
       const {section, category, productID} = route.params

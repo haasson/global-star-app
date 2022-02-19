@@ -71,6 +71,9 @@
 </template>
 
 <script>
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../../composable/loading.js";
+
 import image from "../../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
 import video from "../../../../../assets/video/steering.mp4";
 import poster from "../../../../../assets/images/video-posters/steering.jpg";
@@ -83,7 +86,6 @@ import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
-import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import VideoSection from "../../../../../components/Sections/VideoSection.vue";
 
 const imageWithPoints = {
@@ -114,6 +116,7 @@ export default {
       VideoSection,
       AppAlert, AppTitle, TextWithImage, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
+      useLoading()
       const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 480: 2, default: 1})
       const {itemsPerRow: itemsPerRowSignals} = useItemsPerRow({568: 2, default: 1})
 

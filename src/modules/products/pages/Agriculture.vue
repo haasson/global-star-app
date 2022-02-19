@@ -15,18 +15,22 @@
 </template>
 
 <script>
+import {computed, ref} from "vue";
+import {onBeforeRouteUpdate, useRoute} from "vue-router";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
+import useLoading from "../../../composable/loading.js";
 import {agricultureContent} from '../composable/products'
+
 import AppPage from "../../../components/App/AppPage.vue";
 import AppList from "../../../components/App/AppList.vue";
-import {onBeforeRouteUpdate, useRoute} from "vue-router";
-import {computed, ref} from "vue";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 export default {
 name: "Agriculture",
    components: {AppList, AppPage},
 
    setup() {
+      useLoading()
+
       const route = useRoute()
       const inCategory = ref(route?.params?.id)
       onBeforeRouteUpdate((to, from, next) => {

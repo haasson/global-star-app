@@ -75,7 +75,7 @@ export default {
 <style lang="scss" scoped>
 .menu {
    position: relative;
-   z-index: 2;
+   z-index: 71;
    flex-grow: 0;
    background-color: var(--blue);
    color: var(--white);

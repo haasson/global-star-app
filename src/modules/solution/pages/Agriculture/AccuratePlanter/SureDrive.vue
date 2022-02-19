@@ -55,10 +55,12 @@
 </template>
 
 <script>
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../../composable/loading.js";
+
 import image from "../../../../../assets/images/solution/pages/accurate-planter/head-image.jpg";
 import video from "../../../../../assets/video/sure-drive.mp4";
 
-import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import AppPage from "../../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
@@ -80,6 +82,7 @@ export default {
    name: "SureDrive",
    components: {VideoSection, SoftSection, AppTitle, AppList, TextWithImage, TextBlock, HeadImage, AppPage},
    setup() {
+      useLoading()
       const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})
 
       return {image, video, sureImages, soft, itemsPerRow}

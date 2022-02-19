@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import {ref, watch} from "vue";
-import {useRouter} from "vue-router";
-import useDatabase from "../../../composable/database.js";
+import {ref} from "vue";
 import {isAdmin} from "../../../store";
+import useDatabase from "../../../composable/database.js";
+import useLoading from "../../../composable/loading.js";
 
 import AppPage from "../../../components/App/AppPage.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
@@ -60,7 +60,7 @@ export default {
    components: {AppConfirmationModal, EditArticleModal, VacancyItem, AppButton, PageSection, AppPage},
 
    setup() {
-      const router = useRouter()
+      useLoading()
 
       const addModal = ref(null)
       const addVacancy = () => {
@@ -83,7 +83,6 @@ export default {
          const visibleProp = `vacancy/list/${id}/isHidden`
          vacancyList.value[id].isHidden = !vacancyList.value[id].isHidden
          put({[visibleProp]: vacancyList.value[id].isHidden})
-         // updateVacancy()
       }
 
       const confirmModal = ref(null)

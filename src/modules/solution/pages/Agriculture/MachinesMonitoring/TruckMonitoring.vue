@@ -3,7 +3,7 @@
 </template>
 
 <script>
-
+import useLoading from "../../../../../composable/loading.js";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
 
 const imageWithPoints = {
@@ -21,6 +21,7 @@ export default {
    name: "TruckMonitoring",
    components: {ImageWithMarkers},
    setup () {
+      useLoading()
       return {imageWithPoints}
    }
 }

@@ -65,6 +65,7 @@ import AppList from "../App/AppList.vue";
 import useItemsPerRow from "../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../composable/windowDimensions.js";
 import useModal from "../../composable/modal.js";
+import useLoading from "../../composable/loading.js";
 
 
 export default {
@@ -72,6 +73,7 @@ export default {
    components: {AppList, HeadImage, AppPage, AppButton, TextWithImage, AppTitle},
 
    setup() {
+      useLoading()
       const {width} = useWindowDimensions()
 
       const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})

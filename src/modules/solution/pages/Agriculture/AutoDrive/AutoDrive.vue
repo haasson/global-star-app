@@ -72,16 +72,19 @@
 </template>
 
 <script>
+import useWindowDimensions from "../../../../../composable/windowDimensions.js";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../../composable/loading.js";
+
 import image from "../../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
 import imageAccurate from "../../../../../assets/images/solution/pages/autodrive/accurate.jpg";
+
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppPage from "../../../../../components/App/AppPage.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../../components/App/AppList.vue";
-import useWindowDimensions from "../../../../../composable/windowDimensions.js";
-import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const examples = [
     {name: 'solution/pages/autodrive/example1.jpg'},
@@ -103,6 +106,7 @@ export default {
 name: "AutoDrive",
    components: {AppList, TextWithImage, AppTitle, AppPage, TextBlock, HeadImage},
    setup() {
+      useLoading()
       const {width} = useWindowDimensions()
 
       const {itemsPerRow: itemsPerRowFlow} = useItemsPerRow({568: 3, default: 1})

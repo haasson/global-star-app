@@ -22,12 +22,14 @@
 </template>
 
 <script>
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../../composable/loading.js";
+
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
-import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import RecommendedProducts from "../../../../../components/Sections/RecommendedProducts.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
 
@@ -76,6 +78,7 @@ export default {
    components: {AppAlert, RecommendedProducts, SoftSection, ImageWithMarkers, AppTitle, AppList, TextBlock},
 
    setup() {
+      useLoading()
       const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})
 
       return {imageWithPoints, features, soft, itemsPerRow}

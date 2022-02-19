@@ -7,7 +7,7 @@
          </div>
 
          <div class="pages">
-            <span>{{page}}</span>/<span>{{totalPages}}</span>
+            <span>{{ page }}</span>/<span>{{ totalPages }}</span>
          </div>
 
          <div @click="nextPage" class="arrow" :class="{active: page < totalPages}">
@@ -41,12 +41,14 @@ export default {
       })
 
       const prevPage = () => {
-         if (page.value !== 1) page.value--
+         if (page.value === 1) return
+         page.value--
          updatePagination()
       }
 
       const nextPage = () => {
-         if (page.value !== totalPages.value) page.value++
+         if (page.value === totalPages.value) return
+         page.value++
          updatePagination()
       }
 
@@ -69,14 +71,18 @@ export default {
    font-weight: 500;
    color: var(--blue);
 }
+
 .pages {
    margin: 0 20px;
 }
+
 .arrow {
    opacity: .3;
+
    &.active {
       opacity: 1;
       cursor: pointer;
+
       &:hover {
          font-weight: 800;
       }

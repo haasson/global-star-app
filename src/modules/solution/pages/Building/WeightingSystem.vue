@@ -24,8 +24,9 @@
 </template>
 
 <script>
-import image from "../../../../assets/images/no-image.png";
+import useLoading from "../../../../composable/loading.js";
 
+import image from "../../../../assets/images/no-image.png";
 import AppPage from "../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../components/Sections/HeadImage.vue";
 import AppTitle from "../../../../components/App/AppTitle.vue";
@@ -50,6 +51,7 @@ export default {
    name: "Weighting-system",
    components: {AppAlert, SoftSection, ImageWithMarkers, TextWithImage, AppTitle, HeadImage, AppPage},
    setup() {
+      useLoading()
       return {image, imageWithPoints, soft}
    }
 }

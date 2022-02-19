@@ -46,15 +46,17 @@
 </template>
 
 <script>
-import HeadImage from "../../../../../components/Sections/HeadImage.vue";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../../composable/loading.js";
 import image from "../../../../../assets/images/solution/pages/accurate-planter/head-image.jpg";
+
+import HeadImage from "../../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppPage from "../../../../../components/App/AppPage.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
-import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const variants = [
    {name: 'solution/pages/accurate-planter/variant1.png', title: 'SureSpeed', link: "/solution/agriculture/accurate-planter/sure-speed"},
@@ -67,6 +69,7 @@ export default {
 name: "AccuratePlanter",
    components: {SoftSection, AppList, TextWithImage, AppTitle, AppPage, TextBlock, HeadImage},
    setup() {
+      useLoading()
       const {itemsPerRow} = useItemsPerRow({768: 3, default: 1})
 
       return {image, variants, soft, itemsPerRow}

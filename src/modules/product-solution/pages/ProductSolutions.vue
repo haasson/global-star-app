@@ -31,12 +31,13 @@
 </template>
 
 <script>
-import AppList from "../../../components/App/AppList.vue";
-import AppPage from "../../../components/App/AppPage.vue";
 import appConfig from "../../../config/app.config.js";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../../composable/windowDimensions.js";
+import useLoading from "../../../composable/loading.js";
 
+import AppList from "../../../components/App/AppList.vue";
+import AppPage from "../../../components/App/AppPage.vue";
 
 
 export default {
@@ -44,6 +45,7 @@ export default {
    components: {AppPage, AppList},
 
    setup() {
+      useLoading()
       const {programSolutions} = appConfig
 
       const listSettings = {1100: 3, default: 2}

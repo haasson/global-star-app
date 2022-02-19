@@ -8,12 +8,10 @@
 </template>
 
 <script>
-import {ref, shallowRef, watchEffect} from "vue";
-import {getImageUrl} from "../../helpers/firebase";
+import {shallowRef, watchEffect} from "vue";
 
 import Card from "./Card.vue";
 import AppPicture from "../App/AppPicture.vue";
-import useImage from "../../composable/useImage";
 
 export default {
    name: "ProductCard",

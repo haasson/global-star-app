@@ -61,13 +61,15 @@
 </template>
 
 <script>
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../../composable/loading.js";
+
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
-import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 
 const basePath = 'solution/pages/harvest/'
 const imageWithPoints = {
@@ -135,6 +137,8 @@ export default {
    name: "BunkerReloader",
    components: {AppAlert, SoftSection, AppTitle, AppList, ImageWithMarkers, TextBlock},
    setup() {
+      useLoading()
+
       const {itemsPerRow: itemsPerRowSystem1} = useItemsPerRow({568: 2, default: 1})
       const {itemsPerRow: itemsPerRowFeatures1} = useItemsPerRow({568: 2, default: 1})
       const {itemsPerRow: itemsPerRowSystem2} = useItemsPerRow({768: 3, 568: 2, default: 1})

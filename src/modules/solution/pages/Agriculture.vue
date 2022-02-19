@@ -12,18 +12,19 @@
 </template>
 
 <script>
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
+import useLoading from "../../../composable/loading.js";
 import {agricultureContent} from '../composable/solution'
+
 import AppList from "../../../components/App/AppList.vue";
 import AppPage from "../../../components/App/AppPage.vue";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
-import {computed} from "vue";
-import useItemsPerRow from "../../../composable/itemsPerRow.js";
-
 
 export default {
    name: "Agriculture",
    components: {AppPage, AppList},
    setup() {
+      useLoading()
+
       const listSettings = {1200: 3, 640: 2, default: 1}
       const {itemsPerRow} = useItemsPerRow(listSettings)
 

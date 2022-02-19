@@ -1,15 +1,12 @@
 <template>
    <div class="app-page" :class="{'top-offset': topOffset, 'bottom-offset': bottomOffset}">
-      <AppLoader v-if="globalLoading"/>
       <div class="app-bg"></div>
       <slot />
    </div>
 </template>
 
 <script>
-import {defineComponent, defineAsyncComponent, watch, ref} from 'vue'
-import {globalLoading} from '../../store'
-
+import {defineComponent} from 'vue'
 
 import AppEditor from "./AppEditor.vue";
 import AppModal from "../Modals/AppModal.vue";
@@ -31,10 +28,6 @@ export default defineComponent({
    },
 
    setup() {
-
-      return {
-         globalLoading,
-      }
    }
 })
 </script>

@@ -15,6 +15,7 @@
 <script>
 import {useRouter} from "vue-router";
 import image from "../../../../../assets/images/solution/pages/flow-management/head-image.jpg";
+
 import PageSection from "../../../../../components/Providers/PageSection.vue";
 import MenuItem from "../../../../../components/App/MenuItem.vue";
 import AppTabs from "../../../../../components/App/AppTabs.vue";

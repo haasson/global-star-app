@@ -13,20 +13,23 @@
 
 <script>
 import {computed, ref, watch} from "vue";
-import {onBeforeRouteUpdate, useRoute} from "vue-router";
+import {useRoute} from "vue-router";
+import useDatabase from "../../../composable/database.js";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
+import useLoading from "../../../composable/loading.js";
+
 import appConfig from "../../../config/app.config.js";
 import {isAdmin} from "../../../store";
 
 import AppTitle from "../../../components/App/AppTitle.vue";
 import AppList from "../../../components/App/AppList.vue";
-import useDatabase from "../../../composable/database.js";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 
 export default {
    name: "CatalogList",
    components: {AppList, AppTitle},
    setup() {
+      useLoading()
       const route = useRoute()
 
       const {get: getCatalog, data: catalog} = useDatabase()

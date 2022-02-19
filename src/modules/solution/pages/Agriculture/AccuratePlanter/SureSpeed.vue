@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import useLoading from "../../../../../composable/loading.js";
+
 import image from "../../../../../assets/images/solution/pages/accurate-planter/head-image.jpg";
 import video from "../../../../../assets/video/sure-speed.mp4";
 
@@ -64,6 +66,7 @@ export default {
    name: "SureSpeed",
    components: {VideoSection, AppTitle, SoftSection, TextWithImage, TextBlock, HeadImage, AppPage},
    setup() {
+      useLoading()
       return {image, video, soft}
    }
 }

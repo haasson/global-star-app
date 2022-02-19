@@ -12,17 +12,20 @@
 </template>
 
 <script>
+import {computed} from "vue";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
+import useLoading from "../../../composable/loading.js";
+
 import {transportContent} from '../composable/solution'
 import AppList from "../../../components/App/AppList.vue";
 import AppPage from "../../../components/App/AppPage.vue";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
-import {computed} from "vue";
-
 
 export default {
    name: "Transport",
    components: {AppPage, AppList},
    setup() {
+      useLoading()
+
       const {width} = useWindowDimensions()
       const itemsPerRow = computed(() => {
          if (width.value > 1200) return 3

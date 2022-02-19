@@ -56,6 +56,8 @@ import AppList from "../../../components/App/AppList.vue";
 import AppTitle from "../../../components/App/AppTitle.vue";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../../composable/windowDimensions.js";
+import {onMounted} from "vue";
+import {globalLoading} from "../../../store";
 
 
 const slides = [
@@ -89,6 +91,7 @@ export default {
    components: {AppTitle, AppList, TextBlock, AppPage, AppGallery, PageSection},
 
    setup() {
+      onMounted(() => globalLoading.value = false)
       const {width} = useWindowDimensions()
       const listSettings = {992: 3, default: 2}
       const {itemsPerRow} = useItemsPerRow(listSettings)

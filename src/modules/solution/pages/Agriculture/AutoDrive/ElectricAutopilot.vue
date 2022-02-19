@@ -71,10 +71,12 @@
 </template>
 
 <script>
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import useLoading from "../../../../../composable/loading.js";
+
 import image from "../../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
 import video from "../../../../../assets/video/e-autopilot.mp4";
 
-import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import AppPage from "../../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
@@ -115,6 +117,7 @@ export default {
       VideoSection,
       AppAlert, AppTitle, TextWithImage, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
+      useLoading()
       const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 480: 2, default: 1})
       const {itemsPerRow: itemsPerRowSignals} = useItemsPerRow({568: 2, default: 1})
 

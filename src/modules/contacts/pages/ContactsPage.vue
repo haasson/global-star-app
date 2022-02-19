@@ -42,11 +42,13 @@
 </template>
 
 <script>
+import useWindowDimensions from "../../../composable/windowDimensions.js";
+import useLoading from "../../../composable/loading.js";
+
 import AppPage from "../../../components/App/AppPage.vue";
 import ContactsMap from "../components/ContactsMap.vue";
 import AppAlert from "../../../components/App/AppAlert.vue";
 import PageSection from "../../../components/Providers/PageSection.vue";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 
 export default {
@@ -54,6 +56,7 @@ export default {
    components: {PageSection, AppAlert, ContactsMap, AppPage},
 
    setup() {
+      useLoading()
       const {width} = useWindowDimensions()
 
       return {width}

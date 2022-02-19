@@ -1,5 +1,4 @@
 <template>
-   <div id="modals"/>
    <AppHeader/>
 
    <main>
@@ -11,21 +10,26 @@
 
    <AppFooter />
 
+   <div id="modals"/>
    <ContactFormModal ref="contactModal" @modalClosed="closeContacts" />
    <VideoModal ref="videoModal" @modalClosed="closeVideo" :videoAttrs="videoAttrs" />
 
+   <AppLoader v-if="globalLoading"/>
 </template>
 
 <script>
 import {ref, watch} from 'vue'
+import {globalLoading} from "./store";
+
 import useModal from "./composable/modal.js";
 import AppHeader from "./components/Sections/AppHeader.vue";
 import AppFooter from "./components/Sections/AppFooter.vue";
 import ContactFormModal from "./components/Modals/ContactFormModal.vue";
 import VideoModal from "./components/Modals/VideoModal.vue";
+import AppLoader from "./components/App/AppLoader.vue";
 
 export default {
-   components: {VideoModal, ContactFormModal, AppFooter, AppHeader},
+   components: {AppLoader, VideoModal, ContactFormModal, AppFooter, AppHeader},
 
    setup() {
       const contactModal = ref(null)
@@ -41,7 +45,7 @@ export default {
       })
 
 
-      return {contactModal, videoModal, closeContacts, closeVideo, videoAttrs}
+      return {globalLoading, contactModal, videoModal, closeContacts, closeVideo, videoAttrs}
    }
 }
 </script>

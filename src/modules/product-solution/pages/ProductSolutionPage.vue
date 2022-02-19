@@ -33,15 +33,17 @@
 </template>
 
 <script>
-import {useRoute} from "vue-router";
 import appConfig from "../../../config/app.config.js";
+
+import {useRoute} from "vue-router";
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
+import useLoading from "../../../composable/loading.js";
+
 import AppPage from "../../../components/App/AppPage.vue";
 import AppTitle from "../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../components/App/AppList.vue";
-import useItemsPerRow from "../../../composable/itemsPerRow.js";
-import {computed, onMounted} from "vue";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
 
 
 const features = [
@@ -77,7 +79,9 @@ const systemItems = [
 export default {
    name: "ProductSolutionPage",
    components: {AppList, TextWithImage, AppTitle, AppPage},
+
    setup() {
+      useLoading()
       const route = useRoute()
       const namePS = appConfig.programSolutions.allPS.find(el => el.name === route.params.name).title
 

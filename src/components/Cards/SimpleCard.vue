@@ -9,9 +9,7 @@
 </template>
 
 <script>
-import {ref} from "vue";
 import Card from "./Card.vue";
-import useImage from "../../composable/useImage";
 import useLocalImage from "../../composable/localImage";
 
 export default {
