@@ -1,14 +1,15 @@
 <template>
    <div
        class="icon"
-       :style="`width: ${width}px; height: ${height || width}px`"
+       :style="`width: ${width * scale}px; height: ${(height * scale) || (width * scale)}px`"
    >
       <svg
-         width="100%"
-         height="100%"
-         :viewBox="`0 0 ${width} ${height || width}`"
+          v-if="currentIcon"
+          width="100%"
+          height="100%"
+          :viewBox="`0 0 ${width} ${height || width}`"
       >
-         <Component :is="currentIcon" :fill="fill" />
+         <Component :is="currentIcon" :fill="fill" :stroke="stroke"/>
       </svg>
    </div>
 </template>
@@ -24,22 +25,28 @@ export default defineComponent({
          required: true
       },
       width: {
-         type: String,
-         default: '24'
+         type: Number,
+         default: 24
       },
       height: {
-         type: String,
+         type: Number,
+      },
+      scale: {
+         type: Number,
+         default: 1
       },
       fill: {
+         type: String
+      },
+      stroke: {
          type: String
       }
    },
 
-   setup({name}) {
-      console.log(name)
+   setup(props) {
       const currentIcon = shallowRef('')
       watchEffect(() => {
-         import(`../../icons/Icon${capitalize(name)}.vue`).then(component => {
+         import(`../../icons/Icon${capitalize(props.name)}.vue`).then(component => {
             currentIcon.value = component.default
          })
       })

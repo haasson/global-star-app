@@ -16,7 +16,11 @@ body {
 
    --brown: #404040;
 
-   --placeholder-color: black;
+   --placeholder-color: #9c9b9b;
+
+
+   // OFFSETS
+   --page-offset-top: 60px;
 
 
    // TYPOGRAPHY
@@ -26,19 +30,66 @@ body {
    --text-size-big: 18px;
    --text-size: 16px;
    --text-small-size: 14px;
+   --text-mini-size: 12px;
 
 
    // SHADOWS
-   --card-shadow: 2px 46px 40px -24px rgba(0, 0, 0, 0.2);
-   --card-shadow-hover: 2px 46px 40px -24px rgba(0, 0, 0, 0.55);
+   --card-shadow: 2px 10px 15px 1px rgba(0, 0, 0, 0.3);
+   --card-shadow-hover: 2px 10px 15px 1px rgba(0, 0, 0, 0.55);
 
-   --card-shadow-shifted: 40px 46px 40px -24px rgba(0, 0, 0, 0.2);
-   --card-shadow-shifted-hover: 40px 46px 40px -24px rgba(0, 0, 0, 0.55);
+   --card-shadow-shifted: 4px 4px 13px 4px rgba(0, 0, 0, 0.2);
+   --card-shadow-shifted-hover: 4px 4px 13px 4px rgba(0, 0, 0, 0.55);
    --button-shadow: 0 21px 19px -14px rgba(0, 0, 0, 0.22);
    --image-shadow: 11px 10px 0px 0px rgba(255, 209, 87, 1);
 
 
    // LAYOUT
-   --wrapper: 1280px;
+   --wrapper: 1400px;
+   --wrapperMargins: 70px;
+
+   @media(max-width: 992px) {
+      --wrapperMargins: 60px;
+
+      --title-size: 25px;
+      --article-text-size: 20px;
+      --subtitle-size: 18px;
+   }
+   @media(max-width: 768px) {
+      --wrapperMargins: 50px;
+
+      --title-size: 23px;
+      --article-text-size: 16px;
+      --subtitle-size: 16px;
+      --text-size-big: 16px;
+
+      --image-shadow: 8px 8px 0px 0px rgba(255, 209, 87, 1);
+   }
+   @media(max-width: 568px) {
+      --wrapperMargins: 40px;
+
+      --title-size: 20px;
+      --text-size-big: 14px;
+      --text-size: 14px;
+
+      --card-shadow: 2px 10px 14px 1px rgba(0, 0, 0, 0.3);
+      --card-shadow-hover: 2px 10px 14px 1px rgba(0, 0, 0, 0.55);
+      --card-shadow-shifted: 2px 2px 12px 4px rgba(0, 0, 0, 0.2);
+      --card-shadow-shifted-hover: 2px 2px 12px 4px rgba(0, 0, 0, 0.55);
+   }
+   @media(max-width: 480px) {
+      --wrapperMargins: 30px;
+
+      --title-size: 16px;
+      --article-text-size: 14px;
+      --subtitle-size: 14px;
+      --text-size: 12px;
+      --text-mini-size: 10px;
+   }
+   @media(max-width: 420px) {
+      --wrapperMargins: 12px;
+
+      //--text-size-big: 12px;
+      --text-size: 10px;
+   }
 }
 

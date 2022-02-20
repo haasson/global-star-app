@@ -1,72 +1,39 @@
 <template>
-   <main>
-      <div class="bg"></div>
-
-      <AppSection
-          v-for="(section, index) in pageContent"
-          :section="section"
-          :index="index"
-      />
-
-   </main>
-
-   <AppModal ref="modal" :minWidth="900">
-      <template #title>Редактирование</template>
-      <template #content>
-         <AppEditor @update:modelValue="saveData" class="fixed-editor" v-if="isAdmin" />
-      </template>
-   </AppModal>
+   <div class="app-page" :class="{'top-offset': topOffset, 'bottom-offset': bottomOffset}">
+      <div class="app-bg"></div>
+      <slot />
+   </div>
 </template>
 
 <script>
-import {defineComponent, defineAsyncComponent, watch, ref} from 'vue'
-import {pageContent} from '../../store'
-
-
+import {defineComponent} from 'vue'
 
 import AppEditor from "./AppEditor.vue";
-import AppModal from "./AppModal.vue";
+import AppModal from "../Modals/AppModal.vue";
 import AppSection from "./AppSection.vue";
-import {useRouter} from "vue-router";
+import AppLoader from "./AppLoader.vue";
 
 export default defineComponent({
    name: "AppPage",
-   components: {AppSection, AppEditor, AppModal},
+   components: {AppLoader, AppSection, AppEditor, AppModal},
+   props: {
+      topOffset: {
+         type: Boolean,
+         default: true
+      },
+      bottomOffset: {
+         type: Boolean,
+         default: true
+      },
+   },
 
-   setup(props) {
-      const router = useRouter()
-      watch(pageContent, () => {
-         pageContent.value.forEach(component => component.is = defineAsyncComponent(() => import(`../${component.name}.vue`)))
-      }, {immediate: true})
-
-
-      const modal = ref(null)
-      const openModal = async () => {
-         return await modal.value.open()
-      }
-
-      const saveData = (data) => {
-         console.log(data)
-      }
-
-
-      return {
-         pageContent,
-
-         openModal,
-         modal,
-         saveData,
-      }
+   setup() {
    }
 })
 </script>
 
-<style lang="scss" scoped>
-main {
-   position: relative;
-   flex-grow: 1;
-}
-.bg {
+<style lang="scss">
+.app-bg {
    position: fixed;
    top: 0;
    left: 0;
@@ -74,10 +41,53 @@ main {
    bottom: 0;
    z-index: -1;
    height: 100vh;
-   background: linear-gradient(315deg, #ececec 0%, #ececec 400px, #ffffff 400px, #fff calc(100% - 400px), #ececec calc(100% - 400px), #ececec 100%);
-
+   background: linear-gradient(315deg, #ececec 0%, #ececec 37%, #ffffff 37%, #fff calc(100% - 35%), #ececec calc(100% - 35%), #ececec 100%);
 }
-section {
-   margin-top: 60px;
+.app-page {
+   display: flex;
+   flex-direction: column;
+   &.top-offset {
+      padding-top: 70px;
+      @media(max-width: 992px) {
+         padding-top: 50px;
+      }
+      @media(max-width: 768px) {
+         padding-top: 40px;
+      }
+      @media(max-width: 568px) {
+         padding-top: 30px;
+      }
+      @media(max-width: 480px) {
+         padding-top: 24px;
+      }
+   }
+   &.bottom-offset {
+      padding-bottom: 100px;
+      @media(max-width: 992px) {
+         padding-bottom: 70px;
+      }
+      @media(max-width: 768px) {
+         padding-bottom: 60px;
+      }
+      @media(max-width: 568px) {
+         padding-bottom: 40px;
+      }
+      @media(max-width: 480px) {
+         padding-bottom: 24px;
+      }
+   }
+}
+
+.app-page > *:not(:last-child) {
+   margin-bottom: 70px;
+   @media(max-width: 992px) {
+      margin-bottom: 50px;
+   }
+   @media(max-width: 768px) {
+      margin-bottom: 35px;
+   }
+   @media(max-width: 420px) {
+      margin-bottom: 25px;
+   }
 }
 </style>

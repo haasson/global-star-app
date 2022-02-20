@@ -7,10 +7,8 @@
 </template>
 
 <script>
-import {reactive, ref} from "vue";
+import {reactive} from "vue";
 import appConfig from "../../config/app.config";
-import {getImageUrl} from "../../helpers/firebase";
-import useImage from "../../composable/useImage";
 
 export default {
    name: "AppPicture",
@@ -38,9 +36,9 @@ export default {
          srcset.webp = `${path}.webp`
       }
 
-      const cardImage = useImage(image)
+      // const cardImage = useImage(image)
 
-      return {srcset, ext, cardImage}
+      return {srcset, ext}
    }
 }
 </script>

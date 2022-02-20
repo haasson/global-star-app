@@ -1,17 +1,21 @@
 import { ref, nextTick } from 'vue'
 import { createPopper } from '@popperjs/core'
+import useWindowDimensions from "./windowDimensions.js";
 
-export default function useDropdown({placement} = {}) {
+export default function useDropdown({placement, offset, breakpoint = 0} = {}) {
   const dropdownEl = ref(null)
   const buttonEl = ref(null)
   const isOpen = ref(false)
 
+  const {width} = useWindowDimensions()
+
   const dropdownPlacement = ref(placement || 'bottom-start')
 
   function open() {
-    nextTick(() => {
-      setupPopper()
-    })
+    if (width.value > breakpoint) {
+      nextTick(() => setupPopper())
+    }
+
     isOpen.value = true
   }
 
@@ -24,12 +28,12 @@ export default function useDropdown({placement} = {}) {
     new createPopper(buttonEl.value, dropdownEl.value, {
       placement: dropdownPlacement.value,
       modifiers: [
-        // {
-        //   name: 'offset',
-        //   options: {
-        //     offset: [-10, 10]
-        //   }
-        // },
+        {
+          name: 'offset',
+          options: {
+            offset: offset || [0,0]
+          }
+        },
         {
           name: 'preventOverflow',
           options: {

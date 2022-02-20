@@ -1,53 +1,50 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import routes from './routes'
-import {pageContent, dbPath} from '../store'
-import useDatabase from "../composable/database";
-import {toRaw, watch} from "vue";
-import MainPage from "../components/Pages/MainPage.vue";
+
+import solutionRoutes from "../modules/solution/routes";
+import productsRoutes from "../modules/products/routes";
+import programSolutionRoutes from "../modules/product-solution/routes";
+import serviceRoutes from "../modules/service/routes"
+import aboutRoutes from "../modules/about/routes";
+import contactsRoutes from "../modules/contacts/routes";
+import useMenuMode from "../composable/menuMode.js";
+import {globalLoading} from "../store";
 
 const router = createRouter({
    history: createWebHistory(),
    routes: [
       {
-         path: '/404',
-         name: '404',
-         component: MainPage
-      }
+         path: '/',
+         name: 'main',
+         component: () => import("../components/Pages/MainPage.vue"),
+      },
+      {
+         path: '/search',
+         name: 'search',
+         component: () => import("../components/Pages/SearchPage.vue"),
+      },
+
+      ...solutionRoutes,
+      ...productsRoutes,
+      ...programSolutionRoutes,
+      ...serviceRoutes,
+      ...aboutRoutes,
+      ...contactsRoutes,
+
+      { path: '/:pathMatch(.*)',  component: () => import("../components/Pages/PageNotFound.vue") }
    ]
 })
 
+const {closeMenu} = useMenuMode()
+
 router.beforeEach((to, from, next) => {
-   const route = to.path.slice(1) || 'main'
+   globalLoading.value = true
+   closeMenu()
 
-   console.log(route)
+   next()
+})
 
-   if (route === '404') return next()
-   // if (router.hasRoute(route)) {
-   //    console.log(to.path, from.path)
-   //    console.log('here', route)
-   //    return next(route)
-   // }
-
-   let dbRoute = route.replaceAll('/', '@')
-   dbPath.value = `pages/${dbRoute}`
-   console.log(`pages/${dbRoute}`)
-
-   const {get, data, loading} = useDatabase(`pages/${dbRoute}`)
-   get()
-
-   watch(loading, () => {
-      console.log(data.value)
-      if (loading.value || !data.value) return next('/404')
-
-      // if (data.value.redirect) {
-      //    router.push(`${dbRoute}/${data.value.redirect}`)
-      //    return
-      // }
-
-      pageContent.value = toRaw(data.value.content) || [{name: 'PageNotFound'}]
-      next()
-   })
-
+router.afterEach(() => {
+   scrollTo(0,0)
 })
 
 export default router

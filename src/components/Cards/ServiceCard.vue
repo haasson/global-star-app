@@ -1,13 +1,14 @@
 <template>
    <div class="item">
-      <div>
+      <div class="border"></div>
+      <div class="card">
          <div class="square">
             <AppIcon
                 class="icon"
                 :style="{top: `${icon.shift.top}px`, left: `${icon.shift.left}px`}"
                 :name="icon.name"
-                :width="icon.size.width"
-                :height="icon.size.height"
+                :width="100"
+                :height="100"
             />
          </div>
       </div>
@@ -18,13 +19,11 @@
 </template>
 
 <script>
-import {ref} from "vue";
-import Card from "./Card.vue";
 import AppIcon from "../App/AppIcon.vue";
 
 export default {
    name: "ServiceCard",
-   components: {AppIcon, Card},
+   components: {AppIcon},
    props: {
       icon: {
          type: Object,
@@ -39,37 +38,60 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.big-square {
-   position: absolute;
-   top: 144px;
-   left: 218px;
-   width: 152px;
-   height: 152px;
-   border: 8px solid var(--orange);
-   z-index: -1;
-}
-
 .item {
    //display: flex;
+   position: relative;
    justify-content: center;
    align-items: center;
    margin-bottom: 32px;
    min-height: 152px;
 }
 
+.border {
+   position: absolute;
+   top: -5px;
+   left: calc(50% - 55px);
+   width: 152px;
+   height: 152px;
+   border: 8px solid var(--orange);
+}
+
+.card {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 152px;
+   height: 152px;
+   margin: 15px auto 0;
+   background-color: var(--white);
+   border-radius: 10px;
+   box-shadow: var(--card-shadow);
+}
+
 .square {
    position: relative;
    width: 100px;
    height: 100px;
+   margin: 0 auto;
    border: 8px solid var(--orange);
+   box-shadow: inset 5px -5px 10px 0 rgba(0,0,0,.3), 5px -5px 10px 0 rgba(0,0,0,.3);
 }
+
 
 .icon {
    position: absolute;
 }
 
 .text {
+   margin-top: 20px;
    font-size: var(--subtitle-size);
    text-align: center;
+   @media(max-width: 1200px) {
+      color: var(--white);
+   }
+   @media(max-width: 480px) {
+      font-size: 14px;
+   }
 }
 </style>

@@ -1,6 +1,16 @@
-import { initializeApp } from "firebase/app";
-import {getStorage} from "firebase/storage";
-import {set, ref, get, child, update, remove, getDatabase} from 'firebase/database'
+import {initializeApp} from "firebase/app";
+import {getDownloadURL, getStorage, ref as storageRef, uploadBytes} from "firebase/storage";
+import {
+   child, equalTo,
+   getDatabase, limitToFirst,
+   limitToLast,
+   onValue, orderByChild,
+   query,
+   ref as databaseRef,
+   remove,
+   set,
+   update
+} from 'firebase/database'
 
 const firebaseConfig = {
    apiKey: "AIzaSyCpNXKCMuPpH4fD2d0NgNFrwdge2aTNJi4",
@@ -15,30 +25,51 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const storage = getStorage(app);
+// Database
 const database = getDatabase(app);
-const dbRef = ref(database)
+const dbRef = databaseRef(database)
 
 const setToDatabase = async (url, data) => {
-   console.log(url, data, typeof data)
-   return await set(ref(database, url), data)
+   return await set(databaseRef(database, url), data)
 }
 
 const getFromDatabase = async (url) => {
-   const snapshot = await get(child(dbRef, url))
+   const records = await query(databaseRef(database, url))
+   // const records = await query(databaseRef(database, url), orderByChild('title'))
+   let res = null
 
-   if (snapshot.exists()) {
-      return snapshot.val()
-   }
+   const promise = new Promise((resolve, reject) => {
+      onValue(records, snapshot => {
+         res = snapshot.val()
+         resolve()
+      })
+   })
+
+   await promise
+   return res
 }
 
 const putToDatabase = async (data) => {
-   console.log(data)
-   return await update(ref(database), data)
+   return await update(databaseRef(database), data)
 }
 
 const deleteFromDatabase = async (url) => {
    return await remove(child(dbRef, url))
+}
+
+
+// Storage
+const storage = getStorage(app);
+
+const putToStorage = async (url, file) => {
+   const ref = storageRef(storage, url)
+   uploadBytes(ref, file).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+   });
+}
+
+const getFromStorage = async (url) => {
+   return await getDownloadURL(storageRef(storage, url))
 }
 
 
@@ -51,6 +82,9 @@ export {
    getFromDatabase,
    setToDatabase,
    putToDatabase,
-   deleteFromDatabase
+   deleteFromDatabase,
+
+   getFromStorage,
+   putToStorage,
 }
 

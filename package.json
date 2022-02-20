@@ -2,24 +2,29 @@
   "name": "global-star",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",
-    "@popperjs/core": "^2.10.2",
     "@editorjs/editorjs": "^2.22.2",
     "@editorjs/header": "^2.6.1",
     "@editorjs/image": "^2.6.1",
     "@editorjs/list": "^1.6.2",
     "@editorjs/table": "^2.0.1",
+    "@popperjs/core": "^2.10.2",
     "axios": "^0.24.0",
+    "dayjs": "^1.10.7",
+    "emailjs-com": "^3.2.0",
     "firebase": "^9.4.1",
+    "maska": "^1.5.0",
     "reset-css": "^5.0.1",
     "swiper": "^7.2.0",
     "vue": "^3.2.16",
-    "vue-router": "^4.0.12"
+    "vue-next-select": "^2.10.2",
+    "vue-router": "^4.0.12",
+    "vue-yandex-maps": "^0.12.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",

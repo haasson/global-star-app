@@ -22,10 +22,11 @@ body {
    min-width: 320px;
    min-height: 100vh;
    font-family: 'Roboto', sans-serif;
-   font-size: 16px;
+   font-size: var(--text-size);
    line-height: 1.4;
    //color: $main-text-color;
    overflow-x: hidden;
+   overflow-y: scroll;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -35,13 +36,6 @@ body {
    //transition: opacity 1s, transform .5s;
 }
 
-
-
-.wrapper {
-   width: calc(100% - 70px);
-   max-width: var(--wrapper);
-   margin: 0 auto;
-}
 
 
 img {
@@ -62,13 +56,53 @@ video {
    outline: none;
 }
 
+.user-list{
+   margin-left: 30px;
+}
+
+ol {
+   &.user-list {
+      list-style: decimal;
+   }
+}
+
+ul{
+   &.user-list {
+      list-style: disc;
+   }
+}
+
+.unordered-list {
+   list-style: disc;
+   margin-left: 30px;
+}
+
 a {
    text-decoration: none;
-   color: var(--white);
+   color: var(--black);
+   &.dark-bg {
+      color: var(--white);
+      &:visited {
+         color: var(--white)
+      }
+   }
+   &:visited, {
+      color: var(--black)
+   }
+}
+
+b {
+   font-weight: 600;
+}
+
+i {
+   font-style: italic;
 }
 
 button {
-   border: none ;
+   box-shadow: none;
+   border: none;
+   background-color: transparent;
 }
 
 .nowrap {
@@ -105,6 +139,13 @@ button {
    }
    &_16-9::before {
       padding-top: 56.25%
+   }
+}
+
+.alert-small {
+   display: none;
+   @media(max-width: 568px) {
+      display: block;
    }
 }
 
@@ -164,5 +205,143 @@ textarea:focus:-moz-placeholder {
 input:focus:-ms-input-placeholder,
 textarea:focus:-ms-input-placeholder {
    color: transparent
+}
+
+
+.user-table {
+   font-size: var(--subtitle-size);
+   border: 1px solid var(--black);
+   .row {
+      display: flex;
+      border-bottom: 1px solid var(--black);
+      &.head {
+         font-weight: 600;
+      }
+      &:last-child {
+         border: none
+      }
+   }
+   .col {
+      padding: 16px 40px;
+      &:first-child {
+         width: 70%;
+         border-right: 1px solid var(--black);
+      }
+      &:last-child {
+         flex-grow: 1;
+         text-align: center;
+      }
+   }
+   @media (max-width: 480px) {
+      font-size: 14px;
+   }
+}
+
+.vue-select {
+   width: 100%;
+   padding: 10px 16px;
+   background-color: var(--white);
+   border: 1px solid black;
+   border-radius: 0;
+
+   .arrow-downward {
+      width: 10px;
+      height: 10px;
+      margin-left: 5px;
+      color: transparent;
+
+      border:none;
+      border-right: 2px solid var(--blue);
+      border-bottom: 2px solid var(--blue);
+      transform: rotate(45deg);
+      transform-origin: center center;
+      @media(max-width: 768px) {
+         width: 6px;
+         height: 6px;
+      }
+
+      &.active {
+         transform: rotate(225deg);
+      }
+   }
+
+   .vue-input {
+      padding: 0;
+      input {
+         font-size: var(--text-size-big);
+         &::placeholder {
+            color: var(--black);
+         }
+      }
+   }
+
+   .vue-dropdown {
+      .vue-dropdown-item {
+         color: var(--black);
+         padding: 10px 16px;
+         &.selected {
+
+         }
+         &.highlighted {
+            background-color: var(--orange);
+         }
+      }
+   }
+}
+
+
+@media(max-width: 992px) {
+   .swiper-wrapper {
+      //align-items: center;
+      .swiper-slide {
+         padding: 0 0 25px;
+      }
+   }
+
+   //.swiper-pagination {
+   //   &.swiper-pagination-bullets {
+   //      .swiper-pagination-bullet {
+   //         width: 8px;
+   //         height: 8px;
+   //         background-color: #c4c4c4;
+   //         //opacity: 1;
+   //         &.swiper-pagination-bullet-active {
+   //            background-color: #fff;
+   //         }
+   //      }
+   //   }
+
+   //}
+}
+@media(max-width: 768px) {
+   .user-table{
+      .col {
+         padding: 10px 20px;
+      }
+   }
+}
+@media(max-width: 568px){
+   .user-table{
+      border: none;
+      border-top: 1px solid var(--black);
+      .row {
+         border-bottom: none;
+         flex-direction: column;
+      }
+      .col {
+         border-bottom: 1px solid var(--black);
+         &:first-child {
+            width: 100%;
+            border-right: none;
+         }
+      }
+   }
+}
+@media(max-width: 480px) {
+   .user-table {
+      .col {
+         padding: 10px 10px;
+      }
+   }
 }
 

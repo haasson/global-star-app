@@ -43,7 +43,7 @@ export default {
       console.log(props)
       const clicked = ref(false)
 
-      const {set, get, data} = useDatabase(dbPath.value + '/content')
+      const {set, get, data} = useDatabase()
       const deleteSection = (index) => {
          if (clicked.value) {
 
@@ -53,7 +53,7 @@ export default {
             })]
 
             newContent.splice(index, 1)
-            set(newContent).then(() => get())
+            set(dbPath.value + '/content', newContent).then(() => get(dbPath.value + '/content'))
 
             clicked.value = false
          } else {

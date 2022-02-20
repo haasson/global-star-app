@@ -1,7 +1,8 @@
 <template>
    <Component
-       :is="href ? 'a' : 'button'"
-       :href="href || null"
+       :is="href ? 'a' : to ? 'router-link' : 'button'"
+       :href="href"
+       :to="to"
        class="btn"
        :class="[color, {icon}]"
    >
@@ -31,8 +32,12 @@ export default {
       href: {
          type: String
       },
+      to: {
+         type: String
+      },
       color: {
          type: String,
+         default: 'empty'
       }
    },
 
@@ -51,18 +56,19 @@ export default {
    min-width: 250px;
    padding: 18px;
    font-family: 'Roboto', sans-serif;
-   font-size: var(--subtitle-size);
+   font-size: 20px;
    font-weight: 500;
-   line-height: var(--subtitle-size);
+   line-height: 1;
    text-align: center;
    border: 1px solid transparent;
    box-shadow: var(--button-shadow);
    cursor: pointer;
+   @media(max-width: 420px) {
+      min-width: 100%;
+   }
 
    &.icon {
-      padding: 0;
       min-width: 0;
-      box-shadow: none;
    }
 
    &.orange {
@@ -87,6 +93,21 @@ export default {
          background-color: var(--dark-blue);
          border: 1px solid transparent;
       }
+   }
+
+   &.empty {
+      color: var(--black);
+      border: 1px solid var(--blue);
+      &:hover {
+         border: 1px solid var(--dark-orange)
+      }
+      &:active {
+         border: 1px solid var(--extra-blue)
+      }
+   }
+   &:disabled {
+      cursor: not-allowed;
+      opacity: .5;
    }
 }
 
