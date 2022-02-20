@@ -1,6 +1,3 @@
-import {onMounted} from "vue";
-import {globalLoading} from "../store";
-
 const colorsMap = {
    orange: '#FFD157',
    blue: '#102F51'
@@ -32,11 +29,6 @@ const descriptionToHTML = (description, allowedBlocks = '') => {
    }).join('')
 }
 
-const disableLoader = () => {
-   onMounted(() => {
-      globalLoading.value = false
-   })
-}
 
-export {getColorByName, descriptionToHTML, disableLoader}
+export {getColorByName, descriptionToHTML}
 

@@ -49,6 +49,7 @@
 
 <script>
 import useLoading from "../../../../../composable/loading.js";
+import useWindowDimensions from "../../../../../composable/windowDimensions.js";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import {displaysList} from "../../../data/agriculture/navigation/navigation.js";
 
@@ -67,6 +68,7 @@ export default {
    components: {RecommendedProducts, TextWithImage, AppList, AppTitle, AppPage, TextBlock, HeadImage},
    setup() {
       useLoading()
+      const {width} = useWindowDimensions()
       const {itemsPerRow} = useItemsPerRow({568: 4, default: 1})
 
       return {width, image, displaysList, itemsPerRow}

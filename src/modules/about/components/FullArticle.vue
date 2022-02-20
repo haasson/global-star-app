@@ -75,6 +75,7 @@ export default {
       const route = useRoute()
 
       const description = ref()
+      const formattedDate = ref('')
       const articleLink = `${props.articleType}/list/${route.params.id}`
 
       const {get: getArticle, put: putArticle, del: delArticle, data: article} = useDatabase()
@@ -93,6 +94,7 @@ export default {
          paths.forEach(path => getImage(path))
 
          description.value = descriptionToHTML(article.value.text)
+         formattedDate.value = dayjs(article.value.time).format('DD.MM.YYYY')
 
          // Make object from array of images
          const images = {}
@@ -138,10 +140,6 @@ export default {
       }
 
       const updateArticle = () => getArticle(articleLink)
-
-      const formattedDate = computed(() => {
-         return dayjs(props.time).format('DD.MM.YYYY')
-      })
 
 
       return {

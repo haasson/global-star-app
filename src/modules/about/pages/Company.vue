@@ -48,8 +48,6 @@
 </template>
 
 <script>
-import {onMounted} from "vue";
-import {globalLoading} from "../../../store";
 import {slides, clients, partners} from '../data/company.js'
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../../composable/windowDimensions.js";
@@ -67,7 +65,6 @@ export default {
    components: {AppTitle, AppList, TextBlock, AppPage, AppGallery, PageSection},
 
    setup() {
-      onMounted(() => globalLoading.value = false)
       const {width} = useWindowDimensions()
       const {itemsPerRow} = useItemsPerRow({992: 3, default: 2})
 
