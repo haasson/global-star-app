@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {ref, watch} from 'vue'
+import {computed, watch} from 'vue'
 import useDropdown from '../../composable/dropdown'
 import useWindowDimensions from "../../composable/windowDimensions.js";
 import useMenuMode from "../../composable/menuMode.js";
@@ -64,7 +64,7 @@ export default {
    setup(props) {
       const {buttonEl, dropdownEl, open, close, isOpen} = useDropdown({placement: props.placement, breakpoint: 768})
       const {width} = useWindowDimensions()
-      const isMobileMenu = ref(width.value <= 768)
+      const isMobileMenu = computed(() => width.value <= 768)
 
       const parseParams = (params) => {
          let query = ''
