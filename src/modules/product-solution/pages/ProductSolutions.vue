@@ -46,12 +46,10 @@ export default {
 
    setup() {
       useLoading()
-      const {programSolutions} = appConfig
-
-      const listSettings = {1100: 3, default: 2}
-      const {itemsPerRow} = useItemsPerRow(listSettings)
-
       const {width} = useWindowDimensions()
+
+      const {programSolutions} = appConfig
+      const {itemsPerRow} = useItemsPerRow({1100: 3, default: 2})
 
       return {programSolutions, itemsPerRow, width}
    }

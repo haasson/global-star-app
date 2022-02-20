@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import {computed, ref} from 'vue'
+import {ref} from 'vue'
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
 import useLoading from "../../../composable/loading.js";
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import {transportContent} from '../composable/products'
 
 import AppPage from "../../../components/App/AppPage.vue";
@@ -42,11 +42,7 @@ export default {
       transportContent.forEach(item => item.link = { name: 'catalogList2', params: { id: item.name }})
 
 
-      const {width} = useWindowDimensions()
-      const itemsPerRow = computed(() => {
-         if (width.value > 768) return 2
-         return 1
-      })
+      const {itemsPerRow} = useItemsPerRow({768: 2, default: 1})
 
       return {inCategory, transportContent, itemsPerRow}
    }

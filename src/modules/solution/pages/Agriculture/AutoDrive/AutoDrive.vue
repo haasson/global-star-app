@@ -76,6 +76,7 @@ import useWindowDimensions from "../../../../../composable/windowDimensions.js";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../../composable/loading.js";
 
+import {examples, accurateImages, variants} from "../../../data/agriculture/auto-drive/auto-drive.js";
 import image from "../../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
 import imageAccurate from "../../../../../assets/images/solution/pages/autodrive/accurate.jpg";
 
@@ -86,21 +87,6 @@ import AppTitle from "../../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../../components/App/AppList.vue";
 
-const examples = [
-    {name: 'solution/pages/autodrive/example1.jpg'},
-    {name: 'solution/pages/autodrive/example2.jpg'},
-    {name: 'solution/pages/autodrive/example3.jpg'},
-]
-const accurateImages = [
-   {name: 'solution/pages/autodrive/accurate-item1.png'},
-   {name: 'solution/pages/autodrive/accurate-item2.png'},
-   {name: 'solution/pages/autodrive/accurate-item3.png'},
-]
-const variants = [
-   {name: 'solution/pages/autodrive/variant1.png', title: 'Подруливающее устройство', link: '/solution/agriculture/auto-drive/steering-device'},
-   {name: 'solution/pages/autodrive/variant2.png', title: 'Гидравлический автопилот', link: '/solution/agriculture/auto-drive/hydraulic-autopilot'},
-   {name: 'solution/pages/autodrive/variant3.png', title: 'Электрический автопилот', link: '/solution/agriculture/auto-drive/electric-autopilot'},
-]
 
 export default {
 name: "AutoDrive",

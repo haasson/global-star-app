@@ -47,6 +47,7 @@ import useItemsPerRow from "../../../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../../../composable/windowDimensions.js";
 import useLoading from "../../../../composable/loading.js";
 
+import {features} from "../../data/agriculture/feed-analyzer/feed-analyzer.js";
 import image from "../../../../assets/images/solution/pages/feed-analyzer/head-image.jpg";
 import video from "../../../../assets/video/feed-analyzer.mp4";
 
@@ -58,28 +59,6 @@ import TextWithImage from "../../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../../components/App/AppList.vue";
 import VideoSection from "../../../../components/Sections/VideoSection.vue";
 
-const features = [
-   {
-      icon: {name: 'bag', shift: {top: 5, left: -3}},
-      text: 'Доступны для анализа градуировки 52 видов кормов и зерна\n',
-   },
-   {
-      icon: {name: 'flask', shift: {top: 11, left: 10}},
-      text: 'Определение показателей при открытии силосной ямы',
-   },
-   {
-      icon: {name: 'apple', shift: {top: -3, left: 8}},
-      text: 'Для экспресс анализа в поле, перед уборкой',
-   },
-   {
-      icon: {name: 'flower', shift: {top: 5, left: 0}},
-      text: 'Определяет влажность, крахмал, клетчатку, золу, сырой жир, протеин',
-   },
-   {
-      icon: {name: 'hand', shift: {top: -18, left: -6}},
-      text: 'Определения качества сырья от поставщиков',
-   },
-]
 
 export default {
 name: "FeedAnalyzer",

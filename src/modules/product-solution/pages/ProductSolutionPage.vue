@@ -34,6 +34,7 @@
 
 <script>
 import appConfig from "../../../config/app.config.js";
+import {features, systemItems} from '../data/product-solution-page.js'
 
 import {useRoute} from "vue-router";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
@@ -46,49 +47,20 @@ import TextWithImage from "../../../components/Sections/TextWithImage.vue";
 import AppList from "../../../components/App/AppList.vue";
 
 
-const features = [
-   {
-      icon: {name: 'computersmall', shift: {top: 10, left: -13}},
-      title: 'Конроль спецтехники',
-      text: 'Клиент получае данные о качестве и объеме полевых работ, а также о действиях сельхозтехники и механизаторов',
-   },
-   {
-      icon: {name: 'scheme', shift: {top: -5, left: 2}},
-      title: 'Автоматизация учета',
-      text: 'Рассчитывает площади обработок полей, затраты топлива, пробег, скорость и другие параметры, экономя время сотрудников.',
-   },
-   {
-      icon: {name: 'map', shift: {top: -2, left: 4}},
-      title: 'Достоверность данных',
-      text: 'Hecterra точно вычисляет площади обработки полей сложных форм, учитывает перекрытия, пропуски и некультивируемые зоны внутри полей',
-   },
-   {
-      icon: {name: 'control', shift: {top: -2, left: -13}},
-      title: 'Интеграция через API',
-      text: 'Передавайте и используйте данные из Hecterra в 1С и других учетных системах при помощи API.',
-   },
-]
 
-const basePath = 'solution/pages/harvest/'
-const systemItems = [
-   {name: 'program-solution/gear.svg', text: '<b>Поля и культуры</b><br>Импорт или создание полей. Удобный контроль севооборота, список культур и подробная история операций по каждому полю.'},
-   {name: 'program-solution/gear.svg', text: '<b>Обработки полей</b><br>Импортируйте геозоны в качестве полей. Поиск новых обработок полей. Опции редактирования и подтверждения обработок перед добавлением в базу.'},
-   {name: 'program-solution/gear.svg', text: '<b>Спецтехника и водители</b><br>Использование водителей, объектов и прицепов, созданных в Wialon. Расчет показателей топлива, скорости, пробега для каждой обработки поля.'},
-   {name: 'program-solution/gear.svg', text: '<b>Отчеты</b><br>Простая генерация отчетов по водителям, полям, операциям и объектам. Импорт отчетов в csv.'},
-]
 export default {
    name: "ProductSolutionPage",
    components: {AppList, TextWithImage, AppTitle, AppPage},
 
    setup() {
       useLoading()
+      const {width} = useWindowDimensions()
       const route = useRoute()
+
       const namePS = appConfig.programSolutions.allPS.find(el => el.name === route.params.name).title
 
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({768: 2, default: 1})
       const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 568: 2, default: 1})
-
-      const {width} = useWindowDimensions()
 
       return {namePS, features, systemItems, itemsPerRowFeatures, itemsPerRowSystem, width}
    }

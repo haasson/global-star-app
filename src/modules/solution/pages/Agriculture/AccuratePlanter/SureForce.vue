@@ -47,10 +47,11 @@
 </template>
 
 <script>
+import useLoading from "../../../../../composable/loading.js";
+
+import {soft} from "../../../data/agriculture/accurate-planter/sure-force.js";
 import image from "../../../../../assets/images/solution/pages/accurate-planter/head-image.jpg";
 import video from "../../../../../assets/video/sure-force.mp4";
-
-import useLoading from "../../../../../composable/loading.js";
 
 import AppPage from "../../../../../components/App/AppPage.vue";
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
@@ -59,8 +60,6 @@ import TextWithImage from "../../../../../components/Sections/TextWithImage.vue"
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import VideoSection from "../../../../../components/Sections/VideoSection.vue";
-
-const soft = ['finiti', 'sms']
 
 export default {
    name: "SureForce",

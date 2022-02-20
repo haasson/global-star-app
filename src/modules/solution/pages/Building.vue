@@ -12,9 +12,8 @@
 </template>
 
 <script>
-import {computed} from "vue";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
 import useLoading from "../../../composable/loading.js";
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import {buildingContent} from '../composable/solution'
 
 import AppList from "../../../components/App/AppList.vue";
@@ -25,13 +24,7 @@ export default {
    components: {AppPage, AppList},
    setup() {
       useLoading()
-
-      const {width} = useWindowDimensions()
-      const itemsPerRow = computed(() => {
-         if (width.value > 1200) return 3
-         if (width.value <= 1200 && width.value > 640) return 2
-         return 1
-      })
+      const {itemsPerRow} = useItemsPerRow({1200: 3, 640: 2, default: 1})
 
       return {buildingContent, itemsPerRow}
    }

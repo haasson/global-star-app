@@ -75,6 +75,7 @@
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../../composable/loading.js";
 
+import {imageWithPoints, systemItems, signals} from "../../../data/agriculture/auto-drive/electric-autopilot.js";
 import image from "../../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
 import video from "../../../../../assets/video/e-autopilot.mp4";
 
@@ -87,30 +88,6 @@ import AppTitle from "../../../../../components/App/AppTitle.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import AppAlert from "../../../../../components/App/AppAlert.vue";
 import VideoSection from "../../../../../components/Sections/VideoSection.vue";
-
-const imageWithPoints = {
-   imagePath: 'solution/pages/autodrive/tractor-blu.png',
-   points: [
-      {left: 48, top: 2.5, text: 'Приемник AgLeader 7500'},
-      {left: 54, top: 23, text: 'Дисплей InCommand 800G'},
-      {left: 58.5, top: 33, text: 'Контроллер SteerCommand Z2'},
-      {left: 65.5, top: 27, text: 'Электромотор SteadySteer'},
-   ]
-}
-
-const systemItems = [
-   {name: `solution/pages/autodrive/system-item1.png`, text: 'Дисплей InCommand 800G'},
-   {name: `solution/pages/autodrive/system-item2.png`, text: 'Навигационный приемник AgLeader 7500'},
-   {name: `no-image.png`, text: 'Гидрораспределитель'},
-   {name: `solution/pages/autodrive/system-item4.png`, text: 'Навигационный контроллер SteerCommand Z2'},
-   {name: `no-image.png`, text: 'Датчик угла поворота полурамы'},
-]
-
-const signals = [
-   {title: 'RTK', period: '1 месяц', price: '7000₽'},
-   {title: 'RTK', period: '3 месяца', price: '18000₽'},
-   {title: 'RTK', period: '6 месяцев', price: '32000₽'},
-]
 
 export default {
    name: "ElectricAutopilot",

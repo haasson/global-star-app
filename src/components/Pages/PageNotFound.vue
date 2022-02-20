@@ -7,12 +7,16 @@
 </template>
 
 <script>
+import useLoading from "../../composable/loading.js";
 import AppPage from "../App/AppPage.vue";
 import AppButton from "../App/AppButton.vue";
 
 export default {
    name: "PageNotFound",
-   components: {AppButton, AppPage}
+   components: {AppButton, AppPage},
+   setup() {
+      useLoading()
+   }
 }
 </script>
 

@@ -24,6 +24,7 @@ import {ref} from "vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import useDatabase from "../../composable/database.js";
 import useItemsPerRow from "../../composable/itemsPerRow.js";
+import useLoading from "../../composable/loading.js";
 
 import AppPage from "../App/AppPage.vue";
 import AppTitle from "../App/AppTitle.vue";
@@ -34,6 +35,7 @@ export default {
    name: "Search",
    components: {AppIcon, AppList, AppTitle, AppPage},
    setup() {
+      useLoading()
       const {itemsPerRow} = useItemsPerRow({1200: 4, 870: 3, 568: 2, default: 1})
 
       const route = useRoute()

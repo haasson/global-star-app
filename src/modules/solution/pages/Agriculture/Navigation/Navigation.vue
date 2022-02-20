@@ -48,9 +48,9 @@
 </template>
 
 <script>
-import {computed} from "vue";
 import useLoading from "../../../../../composable/loading.js";
-import useWindowDimensions from "../../../../../composable/windowDimensions.js";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import {displaysList} from "../../../data/agriculture/navigation/navigation.js";
 
 import image from '../../../../../assets/images/solution/pages/navigation/navigation.jpg'
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
@@ -61,23 +61,13 @@ import AppList from "../../../../../components/App/AppList.vue";
 import TextWithImage from "../../../../../components/Sections/TextWithImage.vue";
 import RecommendedProducts from "../../../../../components/Sections/RecommendedProducts.vue";
 
-const displaysList = [
-   {name: 'solution/cards/displays/at5.png', text: 'AT5', noShadow: true},
-   {name: 'solution/cards/displays/compass.png', text: 'Compass', noShadow: true},
-   {name: 'solution/cards/displays/incommand-800.png', text: 'InCommand 800', noShadow: true},
-   {name: 'solution/cards/displays/incommand-1200.png', text: 'InCommand 800', noShadow: true},
-]
 
 export default {
    name: "Navigation",
    components: {RecommendedProducts, TextWithImage, AppList, AppTitle, AppPage, TextBlock, HeadImage},
    setup() {
       useLoading()
-      const {width} = useWindowDimensions()
-      const itemsPerRow = computed(() => {
-         if (width.value > 568) return 4
-         return 1
-      })
+      const {itemsPerRow} = useItemsPerRow({568: 4, default: 1})
 
       return {width, image, displaysList, itemsPerRow}
    }

@@ -15,8 +15,8 @@
 import {computed, ref, watch} from "vue";
 import {useRoute} from "vue-router";
 import useDatabase from "../../../composable/database.js";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
 import useLoading from "../../../composable/loading.js";
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
 
 import appConfig from "../../../config/app.config.js";
 import {isAdmin} from "../../../store";
@@ -32,6 +32,9 @@ export default {
       useLoading()
       const route = useRoute()
 
+      const {itemsPerRow} = useItemsPerRow({1200: 4, 870: 3, 568: 2, default: 1})
+
+
       const {get: getCatalog, data: catalog} = useDatabase()
 
       const getParams = (currentRoute) => {
@@ -44,13 +47,6 @@ export default {
       const category = ref(getParams(route).category)
 
       const title = ref(appConfig.navigation.products.children[section.value].children[category.value].name)
-
-      // onBeforeRouteUpdate((to, from, next) => {
-      //    section.value = getParams(to).section
-      //    category.value = getParams(to).category
-      //    title.value = appConfig.navigation.products.children[section.value].children[category.value].name
-      //    next()
-      // })
 
       watch(category, () => {
          getCatalog(`catalog/${section.value}/${category.value}/list`)
@@ -74,15 +70,6 @@ export default {
             if (!catalog.value[key].isHidden) newCatalog[key] =  catalog.value[key]
          }
          return newCatalog
-      })
-
-
-      const {width} = useWindowDimensions()
-      const itemsPerRow = computed(() => {
-         if (width.value > 1200) return 4
-         if (width.value <= 1200 && width.value > 870) return 3
-         if (width.value <= 870 && width.value > 568) return 2
-         return 1
       })
 
       return {title, filteredCatalog, itemsPerRow}

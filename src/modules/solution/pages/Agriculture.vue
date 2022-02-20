@@ -25,8 +25,7 @@ export default {
    setup() {
       useLoading()
 
-      const listSettings = {1200: 3, 640: 2, default: 1}
-      const {itemsPerRow} = useItemsPerRow(listSettings)
+      const {itemsPerRow} = useItemsPerRow({1200: 3, 640: 2, default: 1})
 
       return {agricultureContent, itemsPerRow}
    }

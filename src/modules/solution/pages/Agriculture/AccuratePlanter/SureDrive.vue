@@ -58,6 +58,7 @@
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../../composable/loading.js";
 
+import {sureImages, soft} from "../../../data/agriculture/accurate-planter/sure-drive.js";
 import image from "../../../../../assets/images/solution/pages/accurate-planter/head-image.jpg";
 import video from "../../../../../assets/video/sure-drive.mp4";
 
@@ -69,14 +70,6 @@ import AppList from "../../../../../components/App/AppList.vue";
 import AppTitle from "../../../../../components/App/AppTitle.vue";
 import SoftSection from "../../../../../components/Sections/SoftSection.vue";
 import VideoSection from "../../../../../components/Sections/VideoSection.vue";
-
-const sureImages = [
-   {name: 'solution/pages/accurate-planter/sure1.png', text: 'Автоматическое отключение секций'},
-   {name: 'solution/pages/accurate-planter/sure2.png', text: 'Дифференцированный посев <br> (переменная норма высева)'},
-   {name: 'solution/pages/accurate-planter/sure3.png', text: 'Компенсация нормы высева <br> на поворотах'},
-]
-
-const soft = ['finiti', 'sms']
 
 export default {
    name: "SureDrive",

@@ -48,44 +48,20 @@
 </template>
 
 <script>
+import {onMounted} from "vue";
+import {globalLoading} from "../../../store";
+import {slides, clients, partners} from '../data/company.js'
+import useItemsPerRow from "../../../composable/itemsPerRow.js";
+import useWindowDimensions from "../../../composable/windowDimensions.js";
+
 import PageSection from "../../../components/Providers/PageSection.vue";
 import AppGallery from "../../../components/App/AppGallery.vue";
 import AppPage from "../../../components/App/AppPage.vue";
 import TextBlock from "../../../components/Sections/TextBlock.vue";
 import AppList from "../../../components/App/AppList.vue";
 import AppTitle from "../../../components/App/AppTitle.vue";
-import useItemsPerRow from "../../../composable/itemsPerRow.js";
-import useWindowDimensions from "../../../composable/windowDimensions.js";
-import {onMounted} from "vue";
-import {globalLoading} from "../../../store";
 
 
-const slides = [
-   'about/company/1.jpg',
-   'about/company/2.jpg',
-   'about/company/3.jpg',
-   'about/company/4.jpg',
-   'about/company/5.jpg',
-   'about/company/6.jpg',
-   'about/company/7.jpg',
-   'about/company/8.jpg',
-]
-const clients = [
-   {name: 'about/clients/1.png'},
-   {name: 'about/clients/2.png'},
-   {name: 'about/clients/3.png'},
-   {name: 'about/clients/4.png'},
-   {name: 'about/clients/5.png'},
-   {name: 'about/clients/6.png'},
-]
-const partners = [
-   {name: 'about/partners/1.png'},
-   {name: 'about/partners/2.png'},
-   {name: 'about/partners/3.png'},
-   {name: 'about/partners/4.png'},
-   {name: 'about/partners/5.png'},
-   {name: 'about/partners/6.png'},
-]
 export default {
    name: "Company",
    components: {AppTitle, AppList, TextBlock, AppPage, AppGallery, PageSection},
@@ -93,8 +69,7 @@ export default {
    setup() {
       onMounted(() => globalLoading.value = false)
       const {width} = useWindowDimensions()
-      const listSettings = {992: 3, default: 2}
-      const {itemsPerRow} = useItemsPerRow(listSettings)
+      const {itemsPerRow} = useItemsPerRow({992: 3, default: 2})
 
       return {width, slides, clients, partners, itemsPerRow}
    }
