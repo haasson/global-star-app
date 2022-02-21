@@ -130,6 +130,7 @@ export default {
 
 .dropdown {
    display: flex;
+   z-index: 73;
    flex-direction: column;
    background-color: var(--dark-blue);
 }
@@ -154,8 +155,7 @@ export default {
 @media(max-width: 768px) {
    .trigger {
       padding: 16px 0;
-      border-top: 2px solid rgba(#fff, .5);
-
+      border-bottom: 2px solid rgba(#fff, .5);
    }
 
    .sub-item {

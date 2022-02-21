@@ -91,7 +91,7 @@ export default {
       content: '';
       right: 0;
       top: 50%;
-      z-index: 1;
+      z-index: 72;
       height: 36px;
       width: 2px;
       background: rgba(#fff, .5);
@@ -104,10 +104,10 @@ export default {
    justify-content: center;
 }
 
-.dropdown {
-   padding: 10px;
-   background-color: yellow;
-}
+//.dropdown {
+//   padding: 10px;
+//   background-color: yellow;
+//}
 
 
 @media(max-width: 768px) {
@@ -132,6 +132,9 @@ export default {
       &:not(:last-child):after {
          display: none;
       }
+   }
+   .search {
+      border-bottom: 2px solid rgba(#fff, .5);
    }
 }
 
