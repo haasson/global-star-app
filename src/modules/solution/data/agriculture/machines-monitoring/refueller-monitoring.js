@@ -1,5 +1,5 @@
 const imageWithPoints = {
-   imagePath: 'solution/pages/transport/refueller.png',
+   imagePath: 'solution/pages/machines-monitoring/refueller.png',
    points: [
       {left: 6, top: 36, text: 'Трекер Галилео 7.0'},
       {left: 38, top: 53, text: 'Датчик уровня топлива Италон'},
@@ -16,7 +16,6 @@ const features = [
       text: 'Мониторинг работы в режиме реального времени',
    },
    {
-
       icon: {name: 'map', shift: {top: -5, left: 2}},
       text: 'Контроль мест и времени стоянок',
    },
@@ -38,6 +37,6 @@ const features = [
    },
 ]
 
-const soft = ['wialon', 'logistics', 'fleetrun', 'eco-driving']
+const soft = ['hecterra', 'wialon']
 
 export {imageWithPoints, features, soft}

@@ -76,4 +76,14 @@ p {
 .icon {
    position: absolute;
 }
+
+@media(max-width: 568px) {
+   .square {
+      transform-origin: left center;
+      transform: scale(.8);
+   }
+   .content {
+      margin-left: 0;
+   }
+}
 </style>

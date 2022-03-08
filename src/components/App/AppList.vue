@@ -221,22 +221,11 @@ export default defineComponent({
          }
          .swiper-slide {
             height: auto;
+            padding: 0 0 25px;
          }
          .swiper-pagination {
             &.swiper-pagination-bullets {
                bottom: 5px;
-
-               .swiper-pagination-bullet {
-                  width: 8px;
-                  height: 8px;
-                  background-color: #f4f4f4;
-                  opacity: .98;
-                  //background-color: #e3e3e3;
-                  box-shadow: 0 0 9px 3px rgba(0,0,0,.2);
-                  &.swiper-pagination-bullet-active {
-                     background-color: white;
-                  }
-               }
             }
          }
          .card {

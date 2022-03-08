@@ -51,6 +51,7 @@
 import {slides, clients, partners} from '../data/company.js'
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../../composable/windowDimensions.js";
+import useLoading from "../../../composable/loading.js";
 
 import PageSection from "../../../components/Providers/PageSection.vue";
 import AppGallery from "../../../components/App/AppGallery.vue";
@@ -65,6 +66,7 @@ export default {
    components: {AppTitle, AppList, TextBlock, AppPage, AppGallery, PageSection},
 
    setup() {
+      useLoading()
       const {width} = useWindowDimensions()
       const {itemsPerRow} = useItemsPerRow({992: 3, default: 2})
 
@@ -106,9 +108,12 @@ export default {
          background: var(--orange);
       }
    }
-   .card {
-      padding: 12px;
+   @media(max-width: 568px) {
+      .list .card {
+         padding: 12px;
+      }
    }
+
 }
 
 </style>

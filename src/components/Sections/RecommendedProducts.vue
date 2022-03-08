@@ -182,7 +182,6 @@ export default {
 
 <style lang="scss">
 .recommended-form {
-   margin-bottom: 20px;
    padding: 20px 0;
    color: var(--white);
    .select-wrap {

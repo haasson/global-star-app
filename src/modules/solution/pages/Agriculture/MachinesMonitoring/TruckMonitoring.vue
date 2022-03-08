@@ -1,28 +1,50 @@
 <template>
+   <TextBlock>
+      <p>Мониторинг работы сельскохозяйственной техники на базе Wialon (Hecterra) – это эффективный способ анализа
+         работы и принятия административных решений. </p>
+   </TextBlock>
+
    <ImageWithMarkers :imagePath="imageWithPoints.imagePath" :points="imageWithPoints.points"/>
+
+   <AppList
+       type="feature"
+       :gap="width > 992 ? 30 : 10"
+       :items="features"
+       :itemsPerRow="itemsPerRow"
+       justify="flex-start"
+       multiline
+   />
+
+   <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
+
+   <RecommendedProducts />
+
+   <SoftSection :items="soft" titlePosition="left" />
 </template>
 
 <script>
 import useLoading from "../../../../../composable/loading.js";
-import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
+import useWindowDimensions from "../../../../../composable/windowDimensions.js";
+import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
+import {features, imageWithPoints, soft} from "../../../data/agriculture/machines-monitoring/truck-monitoring.js";
 
-const imageWithPoints = {
-   imagePath: 'solution/pages/transport/truck.png',
-   points: [
-      {left: 24.5, top: 65, text: 'Датчик уровня топлива'},
-      {left: 28.5, top: 17, text: 'Трекер'},
-      {left: 37.5, top: 44, text: 'Считыватель карт водителей'},
-      {left: 76, top: 60, text: 'Считыватель меток'},
-      {left: 94.5, top: 31, text: 'Датчик поднятия кузова'},
-   ]
-}
+import ImageWithMarkers from "../../../../../components/Sections/ImageWithMarkers.vue";
+import TextBlock from "../../../../../components/Sections/TextBlock.vue";
+import AppList from "../../../../../components/App/AppList.vue";
+import AppAlert from "../../../../../components/App/AppAlert.vue";
+import RecommendedProducts from "../../../../../components/Sections/RecommendedProducts.vue";
+import SoftSection from "../../../../../components/Sections/SoftSection.vue";
+
 
 export default {
    name: "TruckMonitoring",
-   components: {ImageWithMarkers},
-   setup () {
+   components: {SoftSection, RecommendedProducts, AppAlert, AppList, TextBlock, ImageWithMarkers},
+   setup() {
       useLoading()
-      return {imageWithPoints}
+      const {width} = useWindowDimensions()
+      const {itemsPerRow} = useItemsPerRow({992: 3, 568: 2, default: 1})
+
+      return {width, imageWithPoints, features, soft, itemsPerRow}
    }
 }
 </script>

@@ -1,10 +1,15 @@
 <template>
    <AppPage :topOffset="false" :bottomOffset="width > 992" class="main-page">
-      <HeadImage
-          :src="image"
-          class="image"
-          titleType="simple"
-      />
+      <Swiper
+          :slidesPerView="1"
+          :pagination="{clickable: true}"
+          class="head-slider"
+      >
+         <SwiperSlide v-for="slide in slides" class="slide">
+            <img :src="slide.component" alt="" class="image">
+            <div class="slide-text" v-html="slide.text"></div>
+         </SwiperSlide>
+      </Swiper>
 
       <AppList
           type="simple"
@@ -54,23 +59,32 @@
 </template>
 
 <script>
-import image from "../../assets/images/solution/pages/navigation/navigation.jpg";
+import {onMounted, ref} from "vue";
+import {Swiper, SwiperSlide} from 'swiper/vue'
+import useItemsPerRow from "../../composable/itemsPerRow.js";
+import useWindowDimensions from "../../composable/windowDimensions.js";
+import useModal from "../../composable/modal.js";
+import useLoading from "../../composable/loading.js";
+import useLocalImage from "../../composable/localImage.js";
 
 import AppTitle from "../App/AppTitle.vue";
 import TextWithImage from "../Sections/TextWithImage.vue";
 import AppButton from "../App/AppButton.vue";
 import AppPage from "../App/AppPage.vue";
-import HeadImage from "../Sections/HeadImage.vue";
 import AppList from "../App/AppList.vue";
-import useItemsPerRow from "../../composable/itemsPerRow.js";
-import useWindowDimensions from "../../composable/windowDimensions.js";
-import useModal from "../../composable/modal.js";
-import useLoading from "../../composable/loading.js";
 
+
+
+const slidesData = [
+   {src: 'main/slider/1.jpg', text: 'Автоматическое вождение <br> высочайшего уровня'},
+   {src: 'main/slider/2.jpg', text: 'Системы контроля <br> кормления КРС'},
+   {src: 'main/slider/3.jpg', text: 'Курсоуказатели'},
+   {src: 'main/slider/4.jpg', text: 'Мониторинг спецтехники'},
+]
 
 export default {
    name: "MainPage",
-   components: {AppList, HeadImage, AppPage, AppButton, TextWithImage, AppTitle},
+   components: {Swiper, SwiperSlide, AppList, AppPage, AppButton, TextWithImage, AppTitle},
 
    setup() {
       useLoading()
@@ -85,16 +99,63 @@ export default {
 
       const {open: openContactForm} = useModal('contact')
 
-      return {width, image, itemsPerRow, solutionItems, openContactForm}
+
+      const slides = ref([])
+      onMounted(() => {
+         slidesData.forEach(slide => {
+            const {imageSrc} = useLocalImage(slide.src)
+            slides.value.push({component: imageSrc.value, text: slide.text})
+         })
+      })
+
+      return {width, slides, itemsPerRow, solutionItems, openContactForm}
    }
 }
 </script>
 
 <style lang="scss">
 .main-page {
-   div.image {
+   .head-slider {
+      max-width: 100%;
       margin-bottom: 0;
+      .slide {
+         position: relative;
+      }
+      .image {
+         width: 100%;
+         height: 100%;
+         max-height: 60vh;
+         min-height: 180px;
+         object-fit: cover;
+         filter: brightness(.65);
+      }
+      .slide-text {
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%,-50%);
+         width: 100%;
+         padding: 20px;
+         color: var(--white);
+         font-size: 48px;
+         line-height: 1.15;
+         font-weight: 600;
+         text-align: center;
+         @media(max-width: 992px) {
+            font-size: 36px;
+         }
+         @media(max-width: 768px) {
+            font-size: 28px;
+         }
+         @media(max-width: 568px) {
+            font-size: 22px;
+         }
+         @media(max-width: 568px) {
+            font-size: 16px;
+         }
+      }
    }
+
    .list.simple {
       .card {
          .text {

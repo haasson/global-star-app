@@ -43,7 +43,9 @@ router.beforeEach((to, from, next) => {
    next()
 })
 
-router.afterEach(() => {
+router.afterEach((to) => {
+   if (to.meta.scrollBehavior === 'hold') return
+
    scrollTo(0,0)
 })
 

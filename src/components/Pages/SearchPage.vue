@@ -24,7 +24,7 @@ import {ref} from "vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import useDatabase from "../../composable/database.js";
 import useItemsPerRow from "../../composable/itemsPerRow.js";
-import useLoading from "../../composable/loading.js";
+import {globalLoading} from "../../store";
 
 import AppPage from "../App/AppPage.vue";
 import AppTitle from "../App/AppTitle.vue";
@@ -35,7 +35,6 @@ export default {
    name: "Search",
    components: {AppIcon, AppList, AppTitle, AppPage},
    setup() {
-      useLoading()
       const {itemsPerRow} = useItemsPerRow({1200: 4, 870: 3, 568: 2, default: 1})
 
       const route = useRoute()
@@ -58,6 +57,8 @@ export default {
 
          const productsArray = getFlattenCatalog(catalog)
          suitableProducts.value = getSuitableProducts(productsArray, query)
+
+         globalLoading.value = false
       }
 
       const getFlattenCatalog = (catalog) => {
@@ -102,8 +103,9 @@ export default {
          })
 
          suitableProducts.forEach(product => {
-            product.image = `images/catalog/${product.section}/${product.category}/${product.id}/gallery/${product.images[0].name}`
-            product.link = `/products/${product.section}/${product.category}/${product.id}`
+            const {section, category, id, images} = product
+            product.image = `images/catalog/${section}/${category}/${id}/gallery/${images[0].name}`
+            product.link = `/products/${section}/${category}/${id}`
          })
 
          return suitableProducts

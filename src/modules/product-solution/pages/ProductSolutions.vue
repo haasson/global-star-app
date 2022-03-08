@@ -1,5 +1,6 @@
 <template>
-   <AppPage :topOffset="width > 992" :bottomOffset="width > 992">
+   <AppPage :topOffset="false" :bottomOffset="width > 992">
+      <HeadImage :src="image" class="head-image" />
       <AppList
           title='Gurtam'
           type='soft'
@@ -36,13 +37,15 @@ import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../../composable/windowDimensions.js";
 import useLoading from "../../../composable/loading.js";
 
+import image from '../../../assets/images/program-solution/head-image.jpg'
 import AppList from "../../../components/App/AppList.vue";
 import AppPage from "../../../components/App/AppPage.vue";
+import HeadImage from "../../../components/Sections/HeadImage.vue";
 
 
 export default {
    name: "ProductSolutions",
-   components: {AppPage, AppList},
+   components: {HeadImage, AppPage, AppList},
 
    setup() {
       useLoading()
@@ -51,12 +54,16 @@ export default {
       const {programSolutions} = appConfig
       const {itemsPerRow} = useItemsPerRow({1100: 3, default: 2})
 
-      return {programSolutions, itemsPerRow, width}
+      return {image, programSolutions, itemsPerRow, width}
    }
 }
 </script>
 
 <style lang="scss" scoped>
+.head-image {
+   margin-bottom: 0;
+}
+
 .list-w-bg {
    padding: 40px 0 50px;
    background: linear-gradient(180deg,

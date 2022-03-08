@@ -33,8 +33,8 @@ export default [
       path: '/solution/agriculture/flow-management',
       component: () => import("../pages/Agriculture/FlowManagement/FlowManagement.vue"),
       children: [
-         {path: 'dry', name: 'dryMaterials', component: () => import("../pages/Agriculture/FlowManagement/DryMaterials.vue")},
-         {path: 'wet', name: 'wetMaterials', component: () => import("../pages/Agriculture/FlowManagement/WetMaterials.vue")}
+         {path: 'dry', name: 'dryMaterials', component: () => import("../pages/Agriculture/FlowManagement/DryMaterials.vue"), meta: {scrollBehavior: 'hold'}},
+         {path: 'wet', name: 'wetMaterials', component: () => import("../pages/Agriculture/FlowManagement/WetMaterials.vue"), meta: {scrollBehavior: 'hold'}}
       ]
    },
 
@@ -42,11 +42,11 @@ export default [
       path: '/solution/agriculture/machines-monitoring',
       component: () => import("../pages/Agriculture/MachinesMonitoring/MachinesMonitoring.vue"),
       children: [
-         {path: 'combine', name: 'combineMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/CombineMonitoring.vue")},
-         {path: 'tractor', name: 'tractorMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/TractorMonitoring.vue")},
-         {path: 'refueller', name: 'refuellerMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/RefuellerMonitoring.vue")},
-         {path: 'truck', name: 'truckMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/TruckMonitoring.vue")},
-         {path: 'sprayer', name: 'sprayerMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/SprayerMonitoring.vue")}
+         {path: 'combine', name: 'combineMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/CombineMonitoring.vue"), meta: {scrollBehavior: 'hold'}},
+         {path: 'tractor', name: 'tractorMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/TractorMonitoring.vue"), meta: {scrollBehavior: 'hold'}},
+         {path: 'refueller', name: 'refuellerMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/RefuellerMonitoring.vue"), meta: {scrollBehavior: 'hold'}},
+         {path: 'truck', name: 'truckMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/TruckMonitoring.vue"), meta: {scrollBehavior: 'hold'}},
+         {path: 'sprayer', name: 'sprayerMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/SprayerMonitoring.vue"), meta: {scrollBehavior: 'hold'}}
       ]
    },
 
@@ -54,9 +54,9 @@ export default [
       path: '/solution/agriculture/harvest',
       component: () => import("../pages/Agriculture/Harvest/Harvest.vue"),
       children: [
-         {path: 'agleader', name: 'agLeaderHarvest', component: () => import("../pages/Agriculture/Harvest/AgLeader.vue")},
-         {path: 'dinamica', name: 'dinamicaGenerateHarvest', component: () => import("../pages/Agriculture/Harvest/DinamicaGenerate.vue")},
-         {path: 'bunkers', name: 'bunkersReloaderHarvest', component: () => import("../pages/Agriculture/Harvest/BunkersReloader.vue")}
+         {path: 'agleader', name: 'agLeaderHarvest', component: () => import("../pages/Agriculture/Harvest/AgLeader.vue"), meta: {scrollBehavior: 'hold'}},
+         {path: 'dinamica', name: 'dinamicaGenerateHarvest', component: () => import("../pages/Agriculture/Harvest/DinamicaGenerate.vue"), meta: {scrollBehavior: 'hold'}},
+         {path: 'bunkers', name: 'bunkersReloaderHarvest', component: () => import("../pages/Agriculture/Harvest/BunkersReloader.vue"), meta: {scrollBehavior: 'hold'}}
       ]
    },
 

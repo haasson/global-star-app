@@ -289,30 +289,25 @@ textarea:focus:-ms-input-placeholder {
    }
 }
 
+.swiper-pagination {
+   &.swiper-pagination-bullets {
 
-@media(max-width: 992px) {
-   .swiper-wrapper {
-      //align-items: center;
-      .swiper-slide {
-         padding: 0 0 25px;
+      .swiper-pagination-bullet {
+         width: 8px;
+         height: 8px;
+         background-color: #f4f4f4;
+         opacity: .68;
+         box-shadow: 0 0 9px 3px rgba(0, 0, 0, .2);
+
+         &.swiper-pagination-bullet-active {
+            opacity: 1;
+            background-color: white;
+         }
       }
    }
-
-   //.swiper-pagination {
-   //   &.swiper-pagination-bullets {
-   //      .swiper-pagination-bullet {
-   //         width: 8px;
-   //         height: 8px;
-   //         background-color: #c4c4c4;
-   //         //opacity: 1;
-   //         &.swiper-pagination-bullet-active {
-   //            background-color: #fff;
-   //         }
-   //      }
-   //   }
-
-   //}
 }
+
+
 @media(max-width: 768px) {
    .user-table{
       .col {

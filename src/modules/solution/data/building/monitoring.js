@@ -7,7 +7,7 @@ const imageWithPoints = {
       {left: 63, top: 62.5, text: 'WiFi камера в&nbsp;кабину'},
       {left: 64.5, top: 48, text: 'Навигационный контролер'},
       {left: 70, top: 68, text: 'Считыватель карточек водителя'},
-      {left: 90.5, top: 59, text: 'Датчик уровня топлива'},
+      {left: 90.5, top: 59, text: 'Датчик уровня топлива Италон'},
    ]
 }
 const features = [

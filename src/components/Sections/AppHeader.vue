@@ -21,7 +21,7 @@
 
             <!-- Contacts -->
             <div class="contacts">
-               <a href="http://instagtam.com" target="_blank" class="instagram">
+               <a href="https://instagram.com/globalstar_rus" target="_blank" class="instagram">
                   <AppIcon name="instagram" :width="30" :height="30" :scale="isDesktop ? 1 : 0.8" />
                </a>
                <AppBurger v-if="width <= 768" />

@@ -61,8 +61,8 @@ export default {
 
 .white {
    display: flex;
-   justify-content: flex-end;
-   max-width: 105px;
+   justify-content: center;
+   width: 105px;
    height: 66px;
    background-color: var(--white);
    border-radius: 0 7px 7px 0;
@@ -71,7 +71,6 @@ export default {
 
 .image {
    height: 66px;
-   margin-right: 15px;
 }
 
 .name {

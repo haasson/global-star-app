@@ -1,11 +1,11 @@
 const imageWithPoints = {
-   imagePath: 'solution/pages/machines-monitoring/combine/combine.png',
+   imagePath: 'solution/pages/machines-monitoring/combine.png',
    points: [
-      {left: 39, top: 17, text: 'Трекер'},
+      {left: 39, top: 17, text: 'Трекер Сигнал 2651'},
       {left: 69, top: 28, text: 'Датчик наполнения бункера'},
       {left: 42, top: 43, text: 'Считыватель карт водителей'},
       {left: 70, top: 48, text: 'Считыватель меток'},
-      {left: 84, top: 47, text: 'Датчик уровня топлива'},
+      {left: 84, top: 47, text: 'Датчик уровня топлива Италон'},
       {left: 54, top: 79, text: 'Датчик положения  жатки'},
    ]
 }
