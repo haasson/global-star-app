@@ -1,4 +1,4 @@
-const basePath = 'solution/pages/harvest/'
+const basePath = 'solution/pages/harvest'
 const imageWithPoints = {
    imagePath: `${basePath}/tractor.png`,
    points: [

@@ -44,6 +44,6 @@ name: "Harvest",
    margin-bottom: 70px;
 }
 .image {
-   margin-bottom: 0;
+   margin-bottom: 0 !important;
 }
 </style>

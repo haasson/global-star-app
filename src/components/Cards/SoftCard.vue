@@ -106,7 +106,6 @@ export default {
    }
    .image {
       height: 46px;
-      margin-right: 10px;
    }
    .text {
       font-size: 19px;
@@ -133,7 +132,6 @@ export default {
    }
    .image {
       height: 26px;
-      margin-right: 10px;
    }
    .text {
       font-size: 16px;
@@ -157,7 +155,6 @@ export default {
    }
    .image {
       height: 26px;
-      margin-right: 10px;
    }
    .text {
       font-size: 12px;

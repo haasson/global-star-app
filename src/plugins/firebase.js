@@ -13,13 +13,13 @@ import {
 } from 'firebase/database'
 
 const firebaseConfig = {
-   apiKey: "AIzaSyCpNXKCMuPpH4fD2d0NgNFrwdge2aTNJi4",
-   authDomain: "global-star-22.firebaseapp.com",
-   projectId: "global-star-22",
-   databaseURL: "https://global-star-22-default-rtdb.europe-west1.firebasedatabase.app",
-   storageBucket: "global-star-22.appspot.com",
-   messagingSenderId: "709373139489",
-   appId: "1:709373139489:web:d983b71a3c69311842a160"
+   apiKey: "AIzaSyCuoHOf7xExCNBY_8Ml6FBDHqPhL28oNeQ",
+   authDomain: "gstar-su.firebaseapp.com",
+   databaseURL: "https://gstar-su-default-rtdb.asia-southeast1.firebasedatabase.app",
+   projectId: "gstar-su",
+   storageBucket: "gstar-su.appspot.com",
+   messagingSenderId: "595357973398",
+   appId: "1:595357973398:web:dad79d446697535fa0fbb7"
 };
 
 // Initialize Firebase

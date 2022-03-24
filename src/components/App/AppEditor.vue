@@ -10,7 +10,7 @@
 import EditorJS from '@editorjs/editorjs'
 import List from '@editorjs/list'
 import Table from '@editorjs/table'
-import { onMounted, ref } from 'vue'
+import {onBeforeUnmount, onMounted, ref} from 'vue'
 import AppButton from "./AppButton.vue";
 
 export default {
@@ -24,10 +24,12 @@ export default {
    setup(props, {emit}) {
       const editor = ref()
       onMounted(() => {
+         console.log('init Editor', props.modelValue)
          setTimeout(initEditor, 0)
       })
 
       const initEditor = () => {
+         console.log(props.modelValue)
          editor.value = new EditorJS({
             holder: 'codex-editor',
             // defaultBlock: 'header',
@@ -59,6 +61,10 @@ export default {
             emit('update:modelValue', data)
          })
       }
+
+      onBeforeUnmount(() => {
+         editor.value.destroy()
+      })
 
    }
 }

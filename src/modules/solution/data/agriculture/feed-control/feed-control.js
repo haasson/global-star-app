@@ -1,4 +1,4 @@
-const basePath = 'solution/pages/feed-control/'
+const basePath = 'solution/pages/feed-control'
 const features = [
    {
       icon: {name: 'wallet', shift: {top: -9, left: -5}},
@@ -13,7 +13,7 @@ const features = [
       text: 'Увеличение надоев',
    },
    {
-      icon: {name: 'signeddocs', shift: {top: -4, left: 4}},
+      icon: {name: 'signedDocs', shift: {top: -4, left: 4}},
       text: 'Учет кормов',
    },
 ]

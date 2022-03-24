@@ -44,6 +44,6 @@ export default {
 <style lang="scss" scoped>
 
 .image {
-   margin-bottom: 0;
+   margin-bottom: 0 !important;
 }
 </style>

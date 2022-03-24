@@ -216,6 +216,7 @@ export default {
       const clearForm = () => {
          data.title = "";
          data.text = "";
+         data.price = "";
          data.images = null;
       };
 

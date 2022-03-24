@@ -117,7 +117,7 @@ export default {
 .main-page {
    .head-slider {
       max-width: 100%;
-      margin-bottom: 0;
+      margin-bottom: 0 !important;
       .slide {
          position: relative;
       }

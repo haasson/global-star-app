@@ -25,6 +25,7 @@
           :gap="width > 992 ? 25 : 10"
           :items="features"
           :itemsPerRow="itemsPerRowFeatures"
+          justify="flex-start"
           multiline
       />
    </div>

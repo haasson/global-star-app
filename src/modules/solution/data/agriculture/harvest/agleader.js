@@ -1,4 +1,4 @@
-const basePath = 'solution/pages/harvest/'
+const basePath = 'solution/pages/harvest'
 const imageWithPoints = {
    imagePath: `${basePath}/combine.png`,
    points: [
@@ -11,8 +11,8 @@ const imageWithPoints = {
 }
 const systemItems = [
    {name: `${basePath}/agleader/system-item1.png`, text: 'Дисплей InCommand 800/1200'},
-   {name: `${basePath}/agleader/system-item2.png`, text: 'Навигационный приемник AgLeader 7500'},
-   {name: `${basePath}/agleader/system-item3.jpg`, text: 'Тензо датчик'},
+   {name: `${basePath}/agleader/system-item2.png`, text: 'Тензо датчик'},
+   {name: `${basePath}/agleader/system-item3.jpg`, text: 'Навигационный приемник AgLeader 7500'},
    {name: `${basePath}/agleader/system-item4.jpg`, text: 'Модуль измерения влажности'},
    {name: `${basePath}/agleader/system-item5.jpg`, text: 'Датчик положения жатки'},
 ]

@@ -61,7 +61,7 @@ export default {
 
 <style lang="scss" scoped>
 .head-image {
-   margin-bottom: 0;
+   margin-bottom: 0 !important;
 }
 
 .list-w-bg {
