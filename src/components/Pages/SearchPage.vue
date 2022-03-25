@@ -67,12 +67,14 @@ export default {
             const categories = catalog[section] || {}
             for (const category in categories) {
                const list = categories[category].list
-               const productsArray = Object.values(list)
-               productsArray.forEach(product => {
-                  product.section = section
-                  product.category = category
-               })
-               result = [...result, ...productsArray]
+               if (list) {
+                  const productsArray = Object.values(list)
+                  productsArray.forEach(product => {
+                     product.section = section
+                     product.category = category
+                  })
+                  result = [...result, ...productsArray]
+               }
             }
          }
          return result

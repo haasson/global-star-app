@@ -57,6 +57,7 @@ export default {
       const {search} = useSearch()
 
       const submit = () => {
+         if (!searchQuery.value) return
          search(searchQuery.value)
          searchQuery.value = ''
       }
