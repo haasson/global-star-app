@@ -53,7 +53,7 @@ import useWindowDimensions from "../../../../../composable/windowDimensions.js";
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import {displaysList} from "../../../data/agriculture/navigation/navigation.js";
 
-import image from '../../../../../assets/images/solution/pages/navigation/navigation.jpg'
+import image from '../../../../../assets/images/solution/pages/navigation/head-image.png'
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
 import TextBlock from "../../../../../components/Sections/TextBlock.vue";
 import AppPage from "../../../../../components/App/AppPage.vue";

@@ -3,6 +3,11 @@
       <Swiper
           :slidesPerView="1"
           :pagination="{clickable: true}"
+          :loop="true"
+          :autoplay="{delay: 4000}"
+          :speed="300"
+          :initialSlide="1"
+          :modules="modules"
           class="head-slider"
       >
          <SwiperSlide v-for="slide in slides" class="slide">
@@ -31,7 +36,9 @@
              class="test-equipment"
              @onClick="openContactForm"
          >
-            <p>Заполните форму и мы свяжемся с Вами, чтобы подобрать оборудование для пробной установки на Вашу технику. На всем протяжении периода тестирования наш технический отдел будет сопровождать Вас. Уже на пробном периоде тестирования большинство компаний ощущают экономический эффект от внедрения наших решений.</p>
+            <p>Заполните форму и мы свяжемся с Вами, чтобы подобрать оборудование для пробной установки на Вашу технику.
+               На всем протяжении периода тестирования наш технический отдел будет сопровождать Вас. Уже на пробном
+               периоде тестирования большинство компаний ощущают экономический эффект от внедрения наших решений.</p>
          </TextWithImage>
       </div>
 
@@ -45,7 +52,8 @@
              :button="{color: 'blue', text: 'Программные решения', to: 'program-solution'}"
          >
             <p>
-               Здесь будет какой-то текст, описывающий, что такое программные решения, возможно для чего они нужны, и как они помогут бизнесу.
+               Здесь будет какой-то текст, описывающий, что такое программные решения, возможно для чего они нужны, и
+               как они помогут бизнесу.
             </p>
             <p>
                Чтобы прочитать подробнее можно кликнуть на этот блок, либо сделать ссылку читать далее...
@@ -60,6 +68,7 @@
 
 <script>
 import {onMounted, ref} from "vue";
+import {Autoplay} from 'swiper'
 import {Swiper, SwiperSlide} from 'swiper/vue'
 import useItemsPerRow from "../../composable/itemsPerRow.js";
 import useWindowDimensions from "../../composable/windowDimensions.js";
@@ -72,7 +81,6 @@ import TextWithImage from "../Sections/TextWithImage.vue";
 import AppButton from "../App/AppButton.vue";
 import AppPage from "../App/AppPage.vue";
 import AppList from "../App/AppList.vue";
-
 
 
 const slidesData = [
@@ -108,7 +116,9 @@ export default {
          })
       })
 
-      return {width, slides, itemsPerRow, solutionItems, openContactForm}
+      const modules = [Autoplay]
+
+      return {width, slides, itemsPerRow, solutionItems, openContactForm, modules}
    }
 }
 </script>
@@ -118,9 +128,11 @@ export default {
    .head-slider {
       max-width: 100%;
       margin-bottom: 0 !important;
+
       .slide {
          position: relative;
       }
+
       .image {
          width: 100%;
          height: 100%;
@@ -129,11 +141,12 @@ export default {
          object-fit: cover;
          filter: brightness(.65);
       }
+
       .slide-text {
          position: absolute;
          left: 50%;
          top: 50%;
-         transform: translate(-50%,-50%);
+         transform: translate(-50%, -50%);
          width: 100%;
          padding: 20px;
          color: var(--white);
@@ -162,17 +175,20 @@ export default {
             order: -1;
             margin: 0 0 30px 0;
          }
+
          .image-wrap {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             box-shadow: 0 0 20px -6px black;
          }
+
          .image {
             max-width: 75px;
          }
       }
    }
+
    .orange-block {
       padding: 24px 0;
       background: var(--orange);
@@ -181,6 +197,7 @@ export default {
    @media(max-width: 992px) {
       .test-equipment {
          margin: 0;
+
          .images {
             display: none;
 

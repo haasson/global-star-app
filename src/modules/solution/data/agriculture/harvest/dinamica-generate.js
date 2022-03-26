@@ -4,8 +4,8 @@ const imageWithPoints = {
    points: [
       {left: 40, top: 29, text: 'Дисплей Nir On Board'},
       {left: 79, top: 37, text: 'БИК анализатор Evo NIR'},
-      {left: 43, top: 55, text: 'Модем'},
-      {left: 48, top: 54, text: 'GPS антенна'},
+      {left: 43, top: 19, text: 'Модем'},
+      {left: 48, top: 20, text: 'GPS антенна'},
    ]
 }
 

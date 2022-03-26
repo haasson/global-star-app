@@ -3,7 +3,7 @@ const imageWithPoints = {
    points: [
       {left: 48, top: 2.5, text: 'Приемник AgLeader 7500'},
       {left: 54, top: 23, text: 'Электромотор SteadySteer'},
-      {left: 58.5, top: 33, text: 'Дисплей InCommand 800G'},
+      {left: 44, top: 15, text: 'Дисплей InCommand 800G'},
       {left: 65.5, top: 27, text: 'Контроллер SteerCommand Z2'},
    ]
 }

@@ -76,7 +76,7 @@ import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../../composable/loading.js";
 
 import {imageWithPoints, systemItems, signals} from "../../../data/agriculture/auto-drive/electric-autopilot.js";
-import image from "../../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
+import image from "../../../../../assets/images/solution/pages/autodrive/head-image.jpg";
 import video from "../../../../../assets/video/e-autopilot.mp4";
 
 import AppPage from "../../../../../components/App/AppPage.vue";

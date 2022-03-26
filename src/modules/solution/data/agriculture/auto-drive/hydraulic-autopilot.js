@@ -2,9 +2,10 @@ const imageWithPoints = {
    imagePath: 'solution/pages/autodrive/tractor-blu.png',
    points: [
       {left: 48, top: 2.5, text: 'Приемник AgLeader 7500'},
-      {left: 54, top: 23, text: 'Дисплей InCommand 800G'},
+      {left: 44, top: 15, text: 'Дисплей InCommand 800G'},
       {left: 58.5, top: 33, text: 'Контроллер SteerCommand Z2'},
-      {left: 65.5, top: 27, text: 'Электромотор SteadySteer'},
+      {left: 34, top: 58, text: 'Гидрораспределитель'},
+      {left: 49, top: 65, text: 'Датчик угла поворота полурамы'},
    ]
 }
 

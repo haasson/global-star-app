@@ -84,7 +84,7 @@ const navigation = {
 
    products: {
       position: 2,
-      name: 'Продукты',
+      name: 'Каталог',
       children: {
          agriculture: {
             position: 1,

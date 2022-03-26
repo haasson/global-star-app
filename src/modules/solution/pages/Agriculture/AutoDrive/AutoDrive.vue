@@ -77,7 +77,7 @@ import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../../composable/loading.js";
 
 import {examples, accurateImages, variants} from "../../../data/agriculture/auto-drive/auto-drive.js";
-import image from "../../../../../assets/images/solution/pages/autodrive/autodrive.jpg";
+import image from "../../../../../assets/images/solution/pages/autodrive/head-image.jpg";
 import imageAccurate from "../../../../../assets/images/solution/pages/autodrive/accurate.jpg";
 
 import HeadImage from "../../../../../components/Sections/HeadImage.vue";
