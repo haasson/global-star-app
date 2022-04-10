@@ -2,64 +2,62 @@ const gurtamPS = [
    {
       name: 'wialon',
       text: 'Wialon',
-      title: 'Wialon'
    },
    {
       name: 'hecterra',
       text: 'Hecterra',
-      title: 'Hecterra'
    },
    {
       name: 'logistics',
       text: 'Logistics',
-      title: 'Logistics'
    },
    {
       name: 'eco-driving',
       text: 'Eco Driving',
-      title: 'Eco Driving'
    },
    {
       name: 'fleetrun',
       text: 'Fleetrun',
-      title: 'Fleetrun'
    },
    {
-      name: 'wia-tag',
+      name: 'wiatag',
       text: 'Wia Tag',
-      title: 'Wia Tag'
    },
 ]
 const dtmPS = [
    {
       name: 'dtm',
-      title: 'DTM'
    },
    {
       name: 'dtm-advanced',
-      title: 'DTM Advanced'
    },
 ]
 const agLeaderPS = [
    {
       name: 'finiti',
-      title: 'AgFiniti'
+      link: false
    },
    {
       name: 'sms',
-      title: 'SMS'
+      link: false
    },
 ];
 
 const otherPS = [
    {
-      name: 'field-trace'
+      name: 'field-trace',
+      link: false
    }
 ]
 
 const allPS = [...gurtamPS, ...dtmPS, ...agLeaderPS]
 allPS.forEach(el => {
-   el.link = `/program-solution/${el.name}`
+   if (el.link !== false) {
+      el.link = `/program-solution/${el.name}`
+   }
+   else {
+      el.link = ''
+   }
 })
 
 export default {

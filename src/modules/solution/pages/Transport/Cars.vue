@@ -20,6 +20,8 @@
           justify="flex-start"
       />
 
+      <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
+
       <RecommendedProducts />
 
       <SoftSection :items="soft" titlePosition="left"/>
@@ -41,11 +43,12 @@ import ImageWithMarkers from "../../../../components/Sections/ImageWithMarkers.v
 import AppList from "../../../../components/App/AppList.vue";
 import RecommendedProducts from "../../../../components/Sections/RecommendedProducts.vue";
 import SoftSection from "../../../../components/Sections/SoftSection.vue";
+import AppAlert from "../../../../components/App/AppAlert.vue";
 
 
 export default {
    name: "Cars",
-   components: {SoftSection, RecommendedProducts, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
+   components: {AppAlert, SoftSection, RecommendedProducts, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
       const {width} = useWindowDimensions()
       useLoading()

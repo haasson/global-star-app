@@ -7,16 +7,14 @@
       />
 
       <TextBlock>
-         <p>Подруливающее устройство SteadySteer подходит для автоматизации рулевого управления тракторов, комбайнов и самоходных сельскохозяйственных машин. Индивидуальные монтажные комплекты разработаны для 600 моделей техники,
-            а запатентованная AgLeader Technology оригинальная схема крепления мотора позволяет за секунды переносить электрический мотор с техники на технику.
-         </p>
+         <p>Комплект автопилота FJDynamics поддерживает различные типы машин, включая тракторы, опрыскиватели и комбайны. Система способна работать в любую погоду, с водо- и пыленепроницаемостью ≥ IP65. Точность системы составляет до ± 2,5 см. Точность остается неизменной даже при высокой скорости.</p>
       </TextBlock>
 
       <ImageWithMarkers :imagePath="imageWithPoints.imagePath" :points="imageWithPoints.points"/>
 
       <AppList
           type="simple"
-          :gap="12"
+          :gap="itemsPerRowSystem < systemItems.length ? 0 : 15"
           :items="systemItems"
           :itemsPerRow="itemsPerRowSystem"
           :isSlider="itemsPerRowSystem < systemItems.length"
@@ -27,28 +25,17 @@
           class="system"
       />
 
-      <AppTitle type="simple" position="left">SteadySteer</AppTitle>
-
-      <TextWithImage image="solution/pages/autodrive/steady-steer.png" imagePosition="left">
-         <p class="list-title">Особенности:</p>
-         <ul class="unordered-list">
-            <li>Мотор с высоким крутящим моментом: справится с любой рулевой колонкой</li>
-            <li>Перестановка с техники на технику за секунды</li>
-            <li>Быстрый отклик и высокая точность</li>
-            <li>Устанавливается практически на любую сельскохозяйственную технику</li>
-         </ul>
-      </TextWithImage>
-
-      <AppTitle type="simple">SteerCommand Z2</AppTitle>
-
-      <TextWithImage image="solution/pages/autodrive/steer-command.png">
-         <p class="list-title">Особенности:</p>
-         <ul class="unordered-list">
-            <li>Интеграция более чем с 600 моделями техники без конструктивных изменений</li>
-            <li>Полная реализация потенциала точности приемника</li>
-            <li>9-ти осевая компенсация неровностей</li>
-         </ul>
-      </TextWithImage>
+      <div>
+         <AppTitle position="left">Особенности системы</AppTitle>
+         <AppList
+             type="feature"
+             :gap="width > 992 ? 35 : 10"
+             :items="features"
+             :itemsPerRow="itemsPerRowFeatures"
+             justify="flex-start"
+             multiline
+         />
+      </div>
 
       <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
 
@@ -75,7 +62,7 @@
 import useItemsPerRow from "../../../../../composable/itemsPerRow.js";
 import useLoading from "../../../../../composable/loading.js";
 
-import {imageWithPoints, systemItems, signals} from "../../../data/agriculture/auto-drive/electric-autopilot.js";
+import {imageWithPoints, systemItems, features, signals} from "../../../data/agriculture/auto-drive/electric-autopilot.js";
 import image from "../../../../../assets/images/solution/pages/autodrive/head-image.jpg";
 import video from "../../../../../assets/video/e-autopilot.mp4";
 
@@ -98,6 +85,7 @@ export default {
       useLoading()
       const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 480: 2, default: 1})
       const {itemsPerRow: itemsPerRowSignals} = useItemsPerRow({568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 4, 568: 2, default: 1})
 
       return {
          image,
@@ -105,10 +93,12 @@ export default {
 
          imageWithPoints,
          systemItems,
+         features,
          signals,
 
          itemsPerRowSystem,
          itemsPerRowSignals,
+         itemsPerRowFeatures,
 
       }
    }

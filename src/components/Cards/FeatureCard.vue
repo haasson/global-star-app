@@ -10,8 +10,8 @@
          />
       </div>
       <div class="content">
-         <h3 v-if="title">{{title}}</h3>
-         <p>{{ text }}</p>
+         <h3 v-if="title" v-html="title" />
+         <p v-html="text" />
       </div>
 
    </div>

@@ -1,13 +1,13 @@
 const imageWithPoints = {
    imagePath: 'solution/pages/3d-system/excavator.png',
    points: [
-      // {left: 8, top: 31, text: 'Sensor1'},
-      // {left: 25, top: 81.5, text: 'Sensor2'},
-      {left: 48, top: 28, text: 'Датчик положения стрелы'},
-      {left: 63, top: 62.5, text: 'WiFi камера в&nbsp;кабину'},
-      {left: 64.5, top: 48, text: 'Навигационный контролер'},
-      {left: 70, top: 68, text: 'Считыватель карточек водителя'},
-      {left: 90.5, top: 59, text: 'Датчик уровня топлива Италон'},
+      {left: 26, top: 84, text: 'Сенсорный модуль'},
+      {left: 4, top: 31, text: 'Сенсорный модуль'},
+      {left: 44, top: 26, text: 'Сенсорный модуль'},
+      {left: 71, top: 69, text: 'Сенсорный модуль'},
+      {left: 62, top: 60, text: 'Дисплей'},
+      {left: 69, top: 45, text: '4G антенна'},
+      {left: 92, top: 56, text: 'GNSS антенна'},
    ]
 }
 
@@ -25,7 +25,7 @@ const features = [
       text: 'Контроль глубины выемки грунта',
    },
    {
-      icon: {name: 'rulerandpen', width:78, shift: {top: -8, left: -8}},
+      icon: {name: 'rulerAndPen', width:78, shift: {top: -8, left: -8}},
       text: 'Точность работы до 1 см',
    },
    {
@@ -39,11 +39,9 @@ const features = [
 ]
 
 const slides = [
-   '../../assets/images/solution/pages/3d-system/1.jpg',
-   '../../assets/images/solution/pages/3d-system/2.jpg',
-   '../../assets/images/solution/pages/3d-system/3.jpg',
-   '../../assets/images/solution/pages/3d-system/2.jpg',
-   '../../assets/images/solution/pages/3d-system/3.jpg',
+   'solution/pages/3d-system/1.jpg',
+   'solution/pages/3d-system/2.jpg',
+   'solution/pages/3d-system/3.jpg',
 ]
 
 const soft = ['fleetrun', 'wialon']

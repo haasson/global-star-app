@@ -17,6 +17,7 @@
           :items="programSolutions.dtmPS"
           bgColor="orange"
           :bgType="width < 1100 ? '' : 'half'"
+          class="dtm"
       />
 
       <AppList
@@ -82,9 +83,15 @@ export default {
 
 .app-list-block.with-bg{
    padding-top: 0;
-   &.agleader{
+   &.agleader {
       padding-top: 20px;
       padding-bottom: 35px
+   }
+   &.dtm {
+      padding-top: 20px;
+      @media(max-width: 1100px) {
+         padding-top: 0;
+      }
    }
 }
 </style>

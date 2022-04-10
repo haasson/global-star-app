@@ -24,8 +24,6 @@
 
       <AppAlert class="alert-small" size="small">* Для более подробного ознакомления с данным решением, рекомендуем вам воспользоваться полной версией сайта.</AppAlert>
 
-      <SoftSection :items="soft" titlePosition="left" />
-
       <AppAlert>Цена комплекта от 19000$</AppAlert>
    </AppPage>
 </template>
@@ -46,12 +44,11 @@ import AppTitle from "../../../../components/App/AppTitle.vue";
 import AppList from "../../../../components/App/AppList.vue";
 import AppGallery from "../../../../components/App/AppGallery.vue";
 import AppAlert from "../../../../components/App/AppAlert.vue";
-import SoftSection from "../../../../components/Sections/SoftSection.vue";
 
 
 export default {
    name: "3d-system",
-   components: {SoftSection, AppAlert, AppGallery, AppList, AppTitle, ImageWithMarkers, TextBlock, HeadImage, AppPage},
+   components: {AppAlert, AppGallery, AppList, AppTitle, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
       const {width} = useWindowDimensions()
       useLoading()

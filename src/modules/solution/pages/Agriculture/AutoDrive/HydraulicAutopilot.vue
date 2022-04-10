@@ -16,7 +16,7 @@
 
       <AppList
           type="simple"
-          :gap="12"
+          :gap="itemsPerRowSystem < systemItems.length ? 0 : 15"
           :items="systemItems"
           :itemsPerRow="itemsPerRowSystem"
           :isSlider="itemsPerRowSystem < systemItems.length"
@@ -97,7 +97,7 @@ export default {
       AppAlert, AppTitle, TextWithImage, AppList, ImageWithMarkers, TextBlock, HeadImage, AppPage},
    setup() {
       useLoading()
-      const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 480: 2, default: 1})
+      const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({1200: 5, 992: 4, 768: 3, 480: 2, default: 1})
       const {itemsPerRow: itemsPerRowSignals} = useItemsPerRow({568: 2, default: 1})
 
       return {

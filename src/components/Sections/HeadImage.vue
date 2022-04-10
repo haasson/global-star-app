@@ -1,6 +1,6 @@
 <template>
    <div class="image-block">
-      <img :src="src" alt="">
+      <img :src="src" alt="" :style="{objectPosition}">
       <AppTitle v-if="width > 992 && title" :position="titlePosition" :type="titleType" class="title">{{title}}</AppTitle>
       <div v-if="pageName && width <= 768" class="page-name">
          {{pageName}}
@@ -19,6 +19,10 @@ export default {
       src: {
          type: String,
          required: true
+      },
+      objectPosition: {
+         type: String,
+         default: 'center'
       },
       pageName: {
          type: String,

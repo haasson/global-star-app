@@ -225,6 +225,7 @@ textarea:focus:-ms-input-placeholder {
       padding: 16px 40px;
       &:first-child {
          width: 70%;
+         flex-shrink: 0;
          border-right: 1px solid var(--black);
       }
       &:last-child {

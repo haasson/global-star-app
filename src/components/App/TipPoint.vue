@@ -57,7 +57,7 @@ export default {
 }
 
 .dropdown {
-   max-width: 175px;
+   max-width: 250px;
    padding: 8px;
    z-index: 1;
    border: 1px solid var(--black);

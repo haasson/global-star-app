@@ -1,19 +1,37 @@
 const imageWithPoints = {
    imagePath: 'solution/pages/autodrive/tractor-blu.png',
    points: [
-      {left: 48, top: 2.5, text: 'Приемник AgLeader 7500'},
-      {left: 54, top: 23, text: 'Дисплей InCommand 800G'},
-      {left: 58.5, top: 33, text: 'Контроллер SteerCommand Z2'},
-      {left: 65.5, top: 27, text: 'Электромотор SteadySteer'},
+      {left: 54, top: 23, text: 'Электрическое рулевое колесо'},
+      {left: 45, top: 19, text: 'Терминал управления'},
+      {left: 63, top: 42, text: 'Сенсорный модуль'},
+      {left: 59, top: 1, text: 'Антенна GNSS'},
    ]
 }
 
 const systemItems = [
-   {name: `solution/pages/autodrive/system-item1.png`, text: 'Дисплей InCommand 800G'},
-   {name: `solution/pages/autodrive/system-item2.png`, text: 'Навигационный приемник AgLeader 7500'},
-   {name: `no-image.png`, text: 'Гидрораспределитель'},
-   {name: `solution/pages/autodrive/system-item4.png`, text: 'Навигационный контроллер SteerCommand Z2'},
-   {name: `no-image.png`, text: 'Датчик угла поворота полурамы'},
+   {name: `solution/pages/autodrive/electric-item1.png`, text: 'Электрическое рулевое колесо'},
+   {name: `solution/pages/autodrive/electric-item2.png`, text: 'Терминал управления'},
+   {name: `solution/pages/autodrive/electric-item3.png`, text: 'Сенсорный модуль'},
+   {name: `solution/pages/autodrive/electric-item4.png`, text: 'Антенна GNSS'},
+]
+
+const features = [
+   {
+      icon: {name: 'time', shift: {top: 4, left: -13}},
+      text: 'Работа от базовой станции РТК',
+   },
+   {
+      icon: {name: 'map', shift: {top: -5, left: 3}},
+      text: 'Точность 2-3 см',
+   },
+   {
+      icon: {name: 'map', shift: {top: -5, left: 3}},
+      text: 'Легкая переустановка',
+   },
+   {
+      icon: {name: 'monitor', shift: {top: -3, left: -13}},
+      text: 'Невысокая цена по сравнению с аналогами',
+   },
 ]
 
 const signals = [
@@ -22,4 +40,4 @@ const signals = [
    {title: 'RTK', period: '6 месяцев', price: '32000₽'},
 ]
 
-export {imageWithPoints, signals, systemItems}
+export {imageWithPoints, signals, features, systemItems}

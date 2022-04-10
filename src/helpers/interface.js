@@ -29,6 +29,8 @@ const descriptionToHTML = (description, allowedBlocks = '') => {
    }).join('')
 }
 
+const toCamelCase = (str) => str.replace(/\s*-\s*\w/g, parts => parts[parts.length - 1].toUpperCase())
 
-export {getColorByName, descriptionToHTML}
+
+export {getColorByName, descriptionToHTML, toCamelCase}
 

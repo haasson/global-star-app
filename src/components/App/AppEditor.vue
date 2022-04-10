@@ -24,12 +24,10 @@ export default {
    setup(props, {emit}) {
       const editor = ref()
       onMounted(() => {
-         console.log('init Editor', props.modelValue)
          setTimeout(initEditor, 0)
       })
 
       const initEditor = () => {
-         console.log(props.modelValue)
          editor.value = new EditorJS({
             holder: 'codex-editor',
             // defaultBlock: 'header',

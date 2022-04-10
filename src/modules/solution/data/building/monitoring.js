@@ -24,7 +24,7 @@ const features = [
       text: 'Учет рабочего времени/моточасов',
    },
    {
-      icon: {name: 'rulerandpen', width:78, shift: {top: -8, left: -8}},
+      icon: {name: 'rulerAndPen', width:78, shift: {top: -8, left: -8}},
       text: 'Снижение амортизационного износа техники',
    },
    {

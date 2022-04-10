@@ -2,7 +2,7 @@ const basePath = 'solution/pages/harvest'
 const imageWithPoints = {
    imagePath: `${basePath}/combine.png`,
    points: [
-      {left: 39, top: 17, text: 'Тензодатчик'},
+      {left: 70, top: 55, text: 'Тензодатчик'},
       {left: 79, top: 26, text: 'Навигационный приемник AgLeader 7500'},
       {left: 42, top: 43, text: 'Монитор InCommand 800/1200'},
       {left: 80, top: 50, text: 'Модуль измерения влажности'},

@@ -7,25 +7,38 @@
 
    <div>
       <AppTitle position="left">Особенности системы</AppTitle>
-      <TextWithImage image="no-image.png" imagePosition="left">
+      <TextWithImage image="solution/pages/flow-management/wet-equip-1.png" imagePosition="left">
          <ul class="unordered-list">
             <li>Контроль параметров внесения растворов СЗР и ЖКУ</li>
             <li>Автоматическое включение/ выключение секций (от 5 до 36)</li>
-            <li>Дифференцированное внесение норм расхода по зонам карт– предписаний</li>
+            <li>Дифференцированное внесение норм расхода по зонам карт–предписаний</li>
+            <li>Протоколирование данных о параметрах защитных мероприятий и жидких подкормках</li>
          </ul>
       </TextWithImage>
-   </div>
 
-   <div>
-      <AppTitle mobileBg>Дисплей</AppTitle>
-      <TextWithImage image="no-image.png">
-         <p class="list-title">Особенности:</p>
+      <TextWithImage image="solution/pages/flow-management/wet-equip-2.png">
          <ul class="unordered-list">
-            <li>автоматический регулятор расхода жидкости</li>
+            <li>Автоматический регулятор расхода жидкости</li>
             <li>Автоматически включает и выключает секции (до 36)</li>
             <li>Контроль рабочей жидкости и препаратов по картам–предписаний</li>
             <li>Управление на основе расхода или давления</li>
             <li>Поддержка ШИМ или сервоэлектрического управления</li>
+
+         </ul>
+      </TextWithImage>
+   </div>
+
+
+   <div>
+      <AppTitle mobileBg>Дисплей</AppTitle>
+      <TextWithImage image="solution/pages/flow-management/wet-equip-3.png">
+         <p class="list-title">Особенности:</p>
+         <ul class="unordered-list">
+            <li>Точность заданной нормы при помощи GPS/GLONASS</li>
+            <li>Автоматическое включение/ выключение подачи удобрений</li>
+            <li>Мгновенная смена норм внесения по зонам карт–предписаний</li>
+            <li>Одновременное внесение до 8 продуктов с переменной нормой</li>
+
          </ul>
       </TextWithImage>
    </div>

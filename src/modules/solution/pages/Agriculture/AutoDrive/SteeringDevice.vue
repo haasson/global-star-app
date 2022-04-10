@@ -16,7 +16,7 @@
 
       <AppList
           type="simple"
-          :gap="12"
+          :gap="itemsPerRowSystem < systemItems.length ? 0 : 15"
           :items="systemItems"
           :itemsPerRow="itemsPerRowSystem"
           :isSlider="itemsPerRowSystem < 4"
