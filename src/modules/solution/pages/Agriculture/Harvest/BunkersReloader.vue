@@ -14,7 +14,7 @@
        :isSlider="itemsPerRowSystem1 < 2"
        :imageHeight="280"
        title="Состав системы №1"
-       :bgColor="itemsPerRowSystem1 < 5 ? 'blue' : 'orange'"
+       :bgColor="itemsPerRowSystem1 < 2 ? 'blue' : 'orange'"
        :bgType="itemsPerRowSystem1 < 2 ? 'full' : 'half'"
    />
 
@@ -39,8 +39,8 @@
        :isSlider="itemsPerRowSystem1 < 3"
        :imageHeight="220"
        title="Состав системы №2"
-       :bgColor="itemsPerRowSystem1 < 5 ? 'blue' : 'orange'"
-       :bgType="itemsPerRowSystem1 < 3 ? 'full' : 'half'"
+       :bgColor="itemsPerRowSystem2 < 3 ? 'blue' : 'orange'"
+       :bgType="itemsPerRowSystem2 < 3 ? 'full' : 'half'"
    />
 
    <div>

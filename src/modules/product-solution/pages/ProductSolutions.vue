@@ -1,6 +1,10 @@
 <template>
    <AppPage :topOffset="false" :bottomOffset="width > 992">
-      <HeadImage :src="image" class="head-image" />
+      <HeadImage :src="image" />
+     <TextBlock>
+       Наши программные решения в транспортной, сельскохозяйственной и строительной отраслях, помогают нашим клиентам выйти на принципиально новый уровень использования своей техники. Сотрудники нашей компании, имеют большой опыт обучения продуктам компании, а также осуществления технической и информационной поддержки с целью повышения эффективности  использования оборудования и встроенных программных решений.
+     </TextBlock>
+
       <AppList
           title='Gurtam'
           type='soft'
@@ -42,18 +46,19 @@ import image from '../../../assets/images/program-solution/head-image.jpg'
 import AppList from "../../../components/App/AppList.vue";
 import AppPage from "../../../components/App/AppPage.vue";
 import HeadImage from "../../../components/Sections/HeadImage.vue";
+import TextBlock from '../../../components/Sections/TextBlock.vue'
 
 
 export default {
    name: "ProductSolutions",
-   components: {HeadImage, AppPage, AppList},
+   components: { TextBlock, HeadImage, AppPage, AppList},
 
    setup() {
       useLoading()
       const {width} = useWindowDimensions()
 
       const {programSolutions} = appConfig
-      const {itemsPerRow} = useItemsPerRow({1100: 3, default: 2})
+      const {itemsPerRow} = useItemsPerRow({1100: 4, default: 2})
 
       return {image, programSolutions, itemsPerRow, width}
    }
@@ -61,10 +66,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.head-image {
-   margin-bottom: 0 !important;
-}
-
 .list-w-bg {
    padding: 40px 0 50px;
    background: linear-gradient(180deg,

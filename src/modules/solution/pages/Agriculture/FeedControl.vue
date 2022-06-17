@@ -36,11 +36,11 @@
           :gap="12"
           :items="systemItems"
           :itemsPerRow="itemsPerRowSystem"
-          :isSlider="itemsPerRowSystem < 4"
+          :isSlider="itemsPerRowSystem < 5"
           :imageHeight="110"
           title="Состав системы"
-          :bgColor="itemsPerRowSystem < 4 ? 'blue' : 'orange'"
-          :bgType="itemsPerRowSystem < 4 ? 'full' : 'half'"
+          :bgColor="itemsPerRowSystem < 5 ? 'blue' : 'orange'"
+          :bgType="itemsPerRowSystem < 5 ? 'full' : 'half'"
       />
 
       <AppTitle v-if="width <= 992">Работа системы</AppTitle>
@@ -87,7 +87,7 @@ name: "FeedControl",
       useLoading()
       const {width} = useWindowDimensions()
 
-      const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({992: 4, 768: 3, 568: 2, default: 1})
+      const {itemsPerRow: itemsPerRowSystem} = useItemsPerRow({1100: 5, 992: 4, 768: 3, 568: 2, default: 1})
       const {itemsPerRow: itemsPerRowFeatures} = useItemsPerRow({992: 4, 568: 2, default: 1})
       const {itemsPerRow: itemsPerRowVideo} = useItemsPerRow({992: 3, 568: 2, default: 1})
 

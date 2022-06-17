@@ -12,9 +12,9 @@ const imageWithPoints = {
 const systemItems = [
    {name: `solution/pages/autodrive/system-item1.png`, text: 'Дисплей InCommand 800G'},
    {name: `solution/pages/autodrive/system-item2.png`, text: 'Навигационный приемник AgLeader 7500'},
-   {name: `no-image.png`, text: 'Гидрораспределитель'},
+   {name: `solution/pages/autodrive/system-item6.png`, text: 'Гидрораспределитель'},
    {name: `solution/pages/autodrive/system-item4.png`, text: 'Навигационный контроллер SteerCommand Z2'},
-   {name: `no-image.png`, text: 'Датчик угла поворота полурамы'},
+   {name: `solution/pages/autodrive/system-item5.png`, text: 'Датчик угла поворота полурамы'},
 ]
 
 const signals = [

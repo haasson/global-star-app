@@ -17,7 +17,7 @@
              :class="[{'with-title': title, 'with-bg': bgColor}, align, type]"
          >
             <SwiperSlide v-for="item in items">
-               <div :style="{marginLeft: '15px', marginRight: '15px', height: '100%', }">
+               <div :style="{height: '100%', }">
                   <Component
                       :is="listItemComponent"
                       :empty="empty"

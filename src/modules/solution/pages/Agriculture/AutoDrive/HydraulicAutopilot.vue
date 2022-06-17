@@ -27,15 +27,14 @@
           class="system"
       />
 
-      <AppTitle type="simple" position="left">SteadySteer</AppTitle>
+      <AppTitle type="simple" position="left">Гидрораспределитель</AppTitle>
 
-      <TextWithImage image="solution/pages/autodrive/steady-steer.png" imagePosition="left">
-         <p class="list-title">Особенности:</p>
+      <TextWithImage image="solution/pages/autodrive/hydro-block.png" imagePosition="left">
+         <p class="list-title">Совместим с:</p>
          <ul class="unordered-list">
-            <li>Мотор с высоким крутящим моментом: справится с любой рулевой колонкой</li>
-            <li>Перестановка с техники на технику за секунды</li>
-            <li>Быстрый отклик и высокая точность</li>
-            <li>Устанавливается практически на любую сельскохозяйственную технику</li>
+           <li>Тракторы: 2 WD , 4 WD, гусеничные</li>
+           <li>Самоходные зерно и кормоуборочные комбайны, опрыскиватели, машины для внесения удобрений</li>
+           <li>Гидравлика закрытого и открытого типа</li>
          </ul>
       </TextWithImage>
 
@@ -66,7 +65,7 @@
       </div>
 
 
-      <AppAlert>Цена комплекта от 11500$</AppAlert>
+      <AppAlert>Цена комплекта от 13500$</AppAlert>
 
    </AppPage>
 </template>
@@ -125,9 +124,6 @@ export default {
    @media(max-width: 992px) {
       .system {
          padding-bottom: 10px;
-         //.swiper-slide {
-         //   padding-bottom: 25px;
-         //}
          .swiper-pagination-bullets {
             bottom: 0;
          }

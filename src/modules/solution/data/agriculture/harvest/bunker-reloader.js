@@ -20,7 +20,7 @@ const features1 = [
       text: 'Фиксирование загрузки, выгрузки и общий вес в прицепе',
    },
    {
-      icon: {name: 'computersmall', shift: {top: 9, left: 3}},
+      icon: {name: 'computerSmall', shift: {top: 9, left: 3}},
       text: 'Вывод информации о загрузках и выгрузках на чековый принтер',
    },
 ]
@@ -53,7 +53,7 @@ const features2 = [
       text: 'Оптимизация производительности и логистики уборочного процесса',
    },
    {
-      icon: {name: 'computersmall', shift: {top: 5, left: 3}},
+      icon: {name: 'computerSmall', shift: {top: 5, left: 3}},
       text: 'Информация о переполнении и выгрузке бункера',
    },
 ]

@@ -21,8 +21,8 @@
 
             <!-- Contacts -->
             <div class="contacts">
-               <a href="https://instagram.com/globalstar_rus" target="_blank" class="instagram">
-                  <AppIcon name="instagram" :width="30" :height="30" :scale="isDesktop ? 1 : 0.8" />
+               <a href="https://vk.com/globalstar_rus" target="_blank" class="instagram">
+                  <AppIcon name="instagram" :width="30" :height="24" fill="white" :scale="isDesktop ? 1 : 0.8" />
                </a>
                <AppBurger v-if="width <= 768" />
                <a v-else href="tel:+78007006124" class="phone dark-bg">+7 (800) 700-61-24</a>

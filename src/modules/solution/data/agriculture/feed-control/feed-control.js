@@ -22,6 +22,7 @@ const systemItems = [
    {name: `${basePath}/system-item2.png`, text: 'Пульт дистанционного управления'},
    {name: `${basePath}/system-item3.png`, text: 'Дублирующее табло'},
    {name: `${basePath}/system-item4.png`, text: 'Комплект ПО DTM'},
+   {name: `${basePath}/system-item5.png`, text: '3G модем'},
 ]
 const videoItems = [
    {src: 'feed1.mp4', poster: 'solution/cards/posters/feed1.jpg'},

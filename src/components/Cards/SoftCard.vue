@@ -1,5 +1,5 @@
 <template>
-   <Card class="item" v-if="text" v-bind="$attrs">
+   <Card class="item" v-if="text" v-bind="$attrs" :link="link">
       <div class="rectangle">
          <div class="white">
             <img class="image" :src="imageSrc" alt="">
@@ -10,7 +10,7 @@
       </div>
    </Card>
 
-   <Card class="item middle" v-else>
+   <Card v-else class="item middle" :link="link">
       <img class="image-big" :src="imageSrc" alt="">
    </Card>
 </template>
@@ -30,6 +30,9 @@ export default {
       text: {
          type: String,
       },
+     link: {
+       type: String,
+     },
    },
 
    setup({name}) {
@@ -43,7 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .item {
-   min-width: 32%;
+   min-width: 30%;
    max-width: 338px;
    height: 120px;
    padding: 22px 18px;
