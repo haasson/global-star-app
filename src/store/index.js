@@ -1,7 +1,7 @@
 import {ref} from 'vue'
 
 
-const isAdmin = ref(true)
+const isAdmin = ref(false)
 const globalLoading = ref(false)
 
 
