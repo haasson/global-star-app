@@ -60,8 +60,6 @@ allPS.forEach(el => {
    }
 })
 
-console.log(allPS)
-
 export default {
    gurtamPS,
    dtmPS,

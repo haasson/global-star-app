@@ -33,7 +33,6 @@ export default {
    display: flex;
    justify-content: center;
    align-items: center;
-   bottom: 170px;
    width: 112px;
    height: 112px;
    border-radius: 50%;
