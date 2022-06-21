@@ -6,7 +6,7 @@
 
       <div v-if="filteredList">
          <ArticleItem
-             v-for="project in filteredList"
+             v-for="project in filteredList.reverse()"
              articleType="projects"
              :id="project.id"
              :title="project.title"

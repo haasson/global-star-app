@@ -2,8 +2,8 @@
    <form class="form" v-if="status === 'new'" @submit.prevent="sendEmail">
       <h2>{{ title }}</h2>
       <div class="form-inner">
-         <AppInput v-model="formData.name" v-maska="'S*'" placeholder="Имя*"/>
-         <AppInput v-model="formData.surname" v-maska="'S*'" placeholder="Фамилия"/>
+         <AppInput v-model="formData.name" placeholder="Имя*"/>
+         <AppInput v-model="formData.surname" placeholder="Фамилия"/>
          <AppInput v-model="formData.phone" v-maska="'+7 (###) ###-##-##'" placeholder="Телефон*"/>
          <AppInput v-if="!short" v-model="formData.email" v-maska="'X*@S*.S*'" placeholder="E-mail"/>
          <VueNextSelect
