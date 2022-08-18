@@ -1,12 +1,18 @@
 export default [
    {
       path: '/solution/building',
-      component: () => import("../pages/Building.vue")
+      component: () => import("../pages/Building.vue"),
+      meta: {
+         title: 'Системы мониторинга строительной техники / Global Star'
+      }
    },
 
    {
       path: '/solution/building/weighting-system',
-      component: () => import("../pages/Building/WeightingSystem.vue")
+      component: () => import("../pages/Building/WeightingSystem.vue"),
+      meta: {
+         title: 'Лучшая система бортового взвешивания / Весы на погрузчик Pegasus2 / Global Star'
+      }
    },
 
    {

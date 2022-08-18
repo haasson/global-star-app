@@ -16,8 +16,10 @@
 </template>
 
 <script>
-import {ref} from 'vue'
+import { ref, watch } from 'vue'
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
+import { globalLoading } from '../../../store'
+
 import useLoading from "../../../composable/loading.js";
 import useItemsPerRow from "../../../composable/itemsPerRow.js";
 import {transportContent} from '../composable/products'
@@ -38,6 +40,10 @@ export default {
          inCategory.value = to.params.id
          next()
       })
+
+     watch(inCategory, () => {
+       if (!inCategory.value) globalLoading.value = false
+     })
 
       transportContent.forEach(item => item.link = { name: 'catalogList2', params: { id: item.name }})
 

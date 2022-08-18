@@ -1,7 +1,10 @@
 export default [
    {
       path: '/solution/transport',
-      component: () => import("../pages/Transport.vue")
+      component: () => import("../pages/Transport.vue"),
+      meta: {
+         title: 'Системы мониторинга транспорта / Global Star'
+      }
    },
 
    {

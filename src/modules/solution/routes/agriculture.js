@@ -16,7 +16,14 @@ export default [
 
    {path: '/solution/agriculture/auto-drive/steering-device', name: 'SteeringDevice', component: () => import("../pages/Agriculture/AutoDrive/SteeringDevice.vue")},
    {path: '/solution/agriculture/auto-drive/hydraulic-autopilot', name: 'HydraulicAutopilot', component: () => import("../pages/Agriculture/AutoDrive/HydraulicAutopilot.vue")},
-   {path: '/solution/agriculture/auto-drive/electric-autopilot', name: 'ElectricAutopilot', component: () => import("../pages/Agriculture/AutoDrive/ElectricAutopilot.vue")},
+   {
+      path: '/solution/agriculture/auto-drive/electric-autopilot',
+      name: 'ElectricAutopilot',
+      component: () => import("../pages/Agriculture/AutoDrive/ElectricAutopilot.vue"),
+      meta: {
+         title: 'Лучшее решение Автопилота для сельхозтехники / FJDynamics'
+      }
+   },
 
 
    {
@@ -42,7 +49,15 @@ export default [
       path: '/solution/agriculture/machines-monitoring',
       component: () => import("../pages/Agriculture/MachinesMonitoring/MachinesMonitoring.vue"),
       children: [
-         {path: 'combine', name: 'combineMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/CombineMonitoring.vue"), meta: {scrollBehavior: 'hold'}},
+         {
+            path: 'combine',
+            name: 'combineMonitoring',
+            component: () => import("../pages/Agriculture/MachinesMonitoring/CombineMonitoring.vue"),
+            meta: {
+               scrollBehavior: 'hold',
+               title: 'Мониторинг сельхозтехники / Агронавигация / Global Star'
+            }
+         },
          {path: 'tractor', name: 'tractorMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/TractorMonitoring.vue"), meta: {scrollBehavior: 'hold'}},
          {path: 'refueller', name: 'refuellerMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/RefuellerMonitoring.vue"), meta: {scrollBehavior: 'hold'}},
          {path: 'truck', name: 'truckMonitoring', component: () => import("../pages/Agriculture/MachinesMonitoring/TruckMonitoring.vue"), meta: {scrollBehavior: 'hold'}},
@@ -62,11 +77,17 @@ export default [
 
    {
       path: '/solution/agriculture/feed-control',
-      component: () => import("../pages/Agriculture/FeedControl.vue")
+      component: () => import("../pages/Agriculture/FeedControl.vue"),
+      meta: {
+         title: 'Система контроля кормления / Умная Ферма Global Star'
+      }
    },
 
    {
       path: '/solution/agriculture/feed-analyzer',
-      component: () => import("../pages/Agriculture/FeedAnalyzer.vue")
+      component: () => import("../pages/Agriculture/FeedAnalyzer.vue"),
+      meta: {
+         title: 'ИК Анализаторы кормов / Global Star'
+      }
    },
 ]

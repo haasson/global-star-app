@@ -25,7 +25,7 @@
                   <AppIcon name="instagram" :width="30" :height="24" fill="white" :scale="isDesktop ? 1 : 0.8" />
                </a>
                <AppBurger v-if="width <= 768" />
-               <a v-else href="tel:+78006000270" class="phone dark-bg">+7 (800) 600-02-70</a>
+               <a v-else href="tel:+78006000270" class="phone dark-bg">8 (800) 600-02-70</a>
             </div>
 
          </div>

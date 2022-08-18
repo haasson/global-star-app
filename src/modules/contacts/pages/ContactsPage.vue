@@ -17,14 +17,14 @@
           <div>
             <p class="title-contacts">Отдел продаж</p>
             <div class="phone">
-              <a href="mailto:sales@gstar.su">sales@gstar.su</a>
+              <a href="mailto:info@gstar.su">info@gstar.su</a>
               <a href="tel:+79635249223">+7(963)-524-92-23</a>
             </div>
           </div>
           <div>
             <p class="title-contacts">Отдел сервиса</p>
             <div class="phone">
-              <a href="mailto:support@gstar.su">support@gstar.su</a>
+              <a href="mailto:info@gstar.su">info@gstar.su</a>
               <a href="tel:+79132106594">+7(913)-210-65-94</a>
             </div>
           </div>

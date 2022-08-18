@@ -16,6 +16,9 @@ const router = createRouter({
          path: '/',
          name: 'main',
          component: () => import("../components/Pages/MainPage.vue"),
+         meta: {
+            title: 'Global Star / Агронавигаторы / Автопилоты для сельхозтехники / Системы Контроля Кормления КРС / Мониторинг Транспорта'
+         }
       },
       {
          path: '/search',
@@ -37,6 +40,16 @@ const router = createRouter({
 const {closeMenu} = useMenuMode()
 
 router.beforeEach((to, from, next) => {
+   let title
+
+   const childWithTitle = to.matched.find(el => typeof el.meta === 'function')
+   if (childWithTitle) {
+      title = childWithTitle.meta(to).title
+   } else {
+      title = to.meta?.title
+   }
+   document.title = title || 'Global Star'
+
    globalLoading.value = true
    closeMenu()
 
